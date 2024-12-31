@@ -1,0 +1,27 @@
+.main {
+  display: flex; /* equivalent to flex */
+  flex-direction: column; /* equivalent to flex-col */
+  margin-left: 1rem; /* equivalent to mx-4 (assuming 1rem = 16px, so 1rem = 16px) */
+  margin-right: 1rem; /* equivalent to mx-4 */
+  margin-top: 40px; /* equivalent to mt-[40px] */
+  flex-grow: 1; /* equivalent to flex-grow */
+}
+
+.main span {
+  font-size: medium;
+}
+
+@media (max-width: 640px) {
+  .main span {
+    font-size: small;
+  }
+  .main img {
+    max-width: 400px;
+  }
+}
+
+@media (max-width: 450px) {
+  .main img {
+    max-width: 250px;
+  }
+}

@@ -1,0 +1,44 @@
+.main {
+  background-color: #e2e8f0; /* equivalent to bg-stone-200 */
+  border-radius: 0.75rem; /* equivalent to rounded-xl (assuming 1rem = 16px, so 0.75rem = 12px) */
+  display: flex; /* equivalent to flex */
+  flex-grow: 1; /* equivalent to flex-grow */
+}
+
+.main input {
+  font-size: medium;
+}
+.main textarea {
+  font-size: medium;
+}
+
+@media (max-width: 1280px) {
+  .main input {
+    font-size: medium;
+  }
+  .main textarea {
+    font-size: medium;
+  }
+  .main select {
+    font-size: medium;
+  }
+}
+
+@media (max-width: 1024px) {
+  .main {
+    flex-direction: column;
+    /* overflow: scroll; */
+  }
+}
+
+@media (max-width: 640px) {
+  .main input {
+    font-size: small;
+  }
+  .main textarea {
+    font-size: small;
+  }
+  .main select {
+    font-size: small;
+  }
+}

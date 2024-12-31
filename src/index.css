@@ -1,0 +1,243 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+body {
+  font-family: "Poppins";
+}
+
+a.active div {
+  background-color: #dc93f6;
+}
+
+::backdrop {
+  background-color: black;
+  opacity: 0.5;
+}
+
+.disabled {
+  opacity: 0.2;
+  pointer-events: none;
+}
+
+tspan {
+  font-size: 14px;
+  font-weight: 500;
+  font-family: "Poppins";
+}
+
+.MuiChartsTooltip-root {
+  text-transform: capitalize;
+  font-family: "Poppins";
+}
+.css-rizt0-MuiTypography-root {
+  font-family: "Poppins" !important;
+}
+
+.customScroll::-webkit-scrollbar {
+  width: 8px;
+  border-radius: 30px;
+}
+
+.customScroll::-webkit-scrollbar-track {
+  border-radius: 30px;
+}
+
+.customScroll:hover::-webkit-scrollbar-thumb {
+  background: #888;
+  border-radius: 30px;
+}
+
+/* .customScrollThin {
+customScrollThinLight
+  scrollbar-width: thin;
+} */
+.scrollbar-hidden::-webkit-scrollbar {
+  display: none; /* Chrome, Safari, and Opera */
+}
+
+.customScrollThin::-webkit-scrollbar {
+  width: 4px;
+  height: 8px;
+  border-radius: 20px;
+}
+
+.customScrollThin::-webkit-scrollbar-track {
+  border-radius: 20px;
+}
+
+.customScrollThin:hover::-webkit-scrollbar-thumb {
+  background: #888;
+  border-radius: 20px;
+}
+
+.customScrollThinLight::-webkit-scrollbar {
+  width: 4px;
+  border-radius: 20px;
+}
+
+.customScrollThinLight::-webkit-scrollbar-track {
+  border-radius: 20px;
+}
+
+.customScrollThinLight::-webkit-scrollbar-thumb {
+  background: #d4d4d4;
+
+  border-radius: 20px;
+}
+
+.splitBox {
+  background-image: url("./assets/bg-pattern-striped.jpg");
+  background-repeat: repeat;
+  background-size: cover;
+}
+
+.whiteScr {
+  background-image: url("./assets/bg-pattern-once.png");
+  background-repeat: repeat;
+  background-size: contain;
+}
+
+.interlaced {
+  background-image: url("./assets/strange_bullseyes.png");
+  background-repeat: repeat;
+  background-size: contain;
+}
+
+.billViewBg {
+  background-image: url("./assets/strange_bullseyes.png");
+  background-repeat: repeat;
+  background-size: contain;
+}
+
+.errorBg {
+  background-image: url("./assets/error-bg-pattern.jpg");
+  background-repeat: repeat;
+  background-size: contain;
+}
+
+.striped {
+  background-image: url("./assets/bg-pattern-striped.jpg");
+  background-repeat: repeat;
+  background-size: cover;
+}
+
+.zigzag {
+  position: relative;
+}
+.zigzag::before {
+  position: absolute;
+  content: "";
+  display: block;
+  background: linear-gradient(45deg, white 25%, transparent 25%),
+    linear-gradient(-45deg, white 25%, transparent 25%);
+  background-size: 15px 15px;
+  height: 15px;
+  width: 100%;
+  top: -15px;
+}
+.zigzag::after {
+  position: absolute;
+  content: "";
+  display: block;
+  background: linear-gradient(45deg, white 25%, transparent 25%),
+    linear-gradient(-45deg, white 25%, transparent 25%);
+  background-size: 15px 15px;
+  height: 15px;
+  width: 100%;
+  bottom: -15px;
+  transform: rotateX(180deg);
+}
+.billCuts {
+  background-image: url("./assets/bg-pattern-once.png");
+  background-repeat: repeat;
+  background-size: auto;
+}
+.bgLogin {
+  background-image: url("./assets/money-hand.jpg");
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+.billCuts-stone {
+  background-image: url("./assets/bg-pattern-fabric.png");
+  background-repeat: no-repeat;
+}
+input[type="file"] {
+  display: none;
+}
+.imgPlaceholder {
+  background-image: url("./assets/loading-circle.gif");
+  background-size: auto;
+  background-repeat: no-repeat;
+  background-position: center;
+}
+
+.fadeBottom {
+  mask-image: linear-gradient(black, transparent);
+}
+
+.presentDay {
+  background-color: #954edd;
+  color: white;
+  border: 2px solid #954edd;
+}
+
+.isInRange {
+  background-color: aquamarine;
+  color: black;
+}
+
+.removeDropDown {
+  -moz-appearance: none;
+  -webkit-appearance: none;
+}
+
+.recharts-legend-wrapper ul li {
+  cursor: pointer;
+}
+
+.gradient {
+  width: 100vw;
+  height: 100vh;
+  background: linear-gradient(334deg, #6b97f7, #7525e2, #f7137e);
+  background-size: 180% 180%;
+  animation: gradient-animation 6s ease infinite;
+}
+
+.loginHeight {
+  height: calc(90vh - 350px);
+}
+
+.Toastify__toast {
+  border-radius: 15px;
+}
+
+.Toastify__close-button {
+  margin: auto auto;
+  padding: 3px 3px;
+  padding-right: 1.5px;
+  border-radius: 100%;
+  border: 2px solid black;
+}
+.Toastify__close-button svg {
+  width: 15px;
+  height: 15px;
+  display: flexbox;
+  justify-content: center;
+  align-items: center;
+  justify-items: center;
+  text-align: center;
+  margin-right: 0px;
+}
+
+@keyframes gradient-animation {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}

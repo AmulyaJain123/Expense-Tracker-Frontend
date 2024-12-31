@@ -1,0 +1,51 @@
+.main {
+  background-color: #ffffff; /* equivalent to bg-white */
+  position: relative; /* Set relative positioning to use pseudo-elements for zigzag */
+  min-height: 800px; /* equivalent to min-h-[900px] */
+  padding-bottom: 100px; /* equivalent to pb-[100px] */
+}
+
+/* Responsive widths for different breakpoints */
+@media (min-width: 640px) {
+  /* sm breakpoint */
+  .main {
+    width: 600px; /* equivalent to sm:w-[600px] */
+  }
+}
+
+@media (min-width: 1280px) {
+  /* xl breakpoint */
+  .main {
+    width: 500px; /* equivalent to xl:w-[500px] */
+  }
+}
+
+@media (min-width: 1536px) {
+  /* 2xl breakpoint */
+  .main {
+    width: 750px; /* equivalent to 2xl:w-[750px] */
+  }
+}
+
+@media (max-width: 640px) {
+  .main p {
+    font-size: small;
+  }
+  .main span {
+    font-size: small;
+  }
+  .main {
+    min-height: 500px;
+  }
+}
+
+@media (max-width: 450px) {
+  .main {
+    width: 350px;
+  }
+}
+@media (max-width: 400px) {
+  .main {
+    width: 300px;
+  }
+}

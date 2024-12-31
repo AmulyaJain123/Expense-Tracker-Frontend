@@ -1,0 +1,90 @@
+.descIcon {
+  border-radius: 1.5rem; /* equivalent to rounded-3xl */
+  transform: scale(0.5); /* equivalent to scale-50 */
+  position: absolute; /* equivalent to absolute */
+  top: -120px; /* equivalent to top-[-120px] */
+  left: -120px; /* equivalent to left-[-120px] */
+  background-color: #f1f5f9; /* equivalent to bg-slate-100 */
+  width: 250px; /* equivalent to w-[250px] */
+  aspect-ratio: 1 / 1; /* equivalent to aspect-square */
+  padding: 1rem; /* equivalent to p-4 */
+  display: flex; /* equivalent to flex */
+  justify-content: center; /* equivalent to justify-center */
+  align-items: center; /* equivalent to items-center */
+}
+.wrapper {
+  display: flex; /* equivalent to flex */
+  flex-direction: column; /* equivalent to flex-col */
+  width: 100%; /* equivalent to w-full */
+}
+
+.descIcon i {
+  font-size: 130px;
+}
+.descTitle {
+  padding-left: 100px; /* equivalent to pl-[100px] */
+  font-weight: bold; /* equivalent to font-bold */
+  font-size: 40px; /* equivalent to text-[40px] */
+  padding-top: 1rem; /* equivalent to py-4 (assuming base unit of 1rem) */
+  padding-bottom: 1rem; /* equivalent to py-4 (assuming base unit of 1rem) */
+}
+.desc {
+  margin-left: 50px; /* equivalent to mx-[50px] */
+  margin-right: 50px; /* equivalent to mx-[50px] */
+}
+
+@media (max-width: 640px) {
+  .wrapper p {
+    font-size: 13px;
+    line-height: 20px;
+  }
+  .descIcon i {
+    font-size: 90px;
+  }
+  .descIcon {
+    border-radius: 1.5rem; /* equivalent to rounded-3xl */
+    transform: scale(0.5); /* equivalent to scale-50 */
+    position: absolute; /* equivalent to absolute */
+    top: -80px; /* equivalent to top-[-120px] */
+    left: -80px; /* equivalent to left-[-120px] */
+    background-color: #f1f5f9; /* equivalent to bg-slate-100 */
+    width: 170px; /* equivalent to w-[250px] */
+    aspect-ratio: 1 / 1; /* equivalent to aspect-square */
+    padding: 1rem; /* equivalent to p-4 */
+    display: flex; /* equivalent to flex */
+    justify-content: center; /* equivalent to justify-center */
+    align-items: center; /* equivalent to items-center */
+  }
+  .descTitle {
+    padding-left: 0px; /* equivalent to pl-[100px] */
+    text-align: center;
+    font-weight: bold; /* equivalent to font-bold */
+    font-size: 25px; /* equivalent to text-[40px] */
+    padding-top: 1rem; /* equivalent to py-4 (assuming base unit of 1rem) */
+    padding-bottom: 1rem; /* equivalent to py-4 (assuming base unit of 1rem) */
+  }
+}
+
+@media (max-width: 450px) {
+  .desc {
+    margin-left: 20px; /* equivalent to mx-[50px] */
+    margin-right: 20px; /* equivalent to mx-[50px] */
+  }
+  .descIcon {
+    top: -70px; /* equivalent to top-[-120px] */
+    left: -70px; /* equivalent to left-[-120px] */
+  }
+}
+
+@media (max-width: 768px) {
+  .desc p {
+    flex-direction: column;
+  }
+  .desc {
+    text-align: center;
+    justify-content: center;
+  }
+  .desc p > span {
+    margin-right: 0px;
+  }
+}

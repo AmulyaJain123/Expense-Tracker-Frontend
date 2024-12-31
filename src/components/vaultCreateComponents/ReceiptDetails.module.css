@@ -1,0 +1,33 @@
+.main {
+  background-color: #ffffff; /* equivalent to bg-white */
+  width: 358px; /* equivalent to w-[358px] */
+  padding-bottom: 50px; /* equivalent to pb-[100px] */
+  position: relative; /* Set relative positioning to use pseudo-elements for zigzag */
+}
+
+.main > div:first-child {
+  height: 60px;
+  font-size: x-large;
+}
+
+.main input {
+  font-size: large;
+}
+
+@media (max-width: 640px) {
+  .main > div:first-child {
+    height: 50px;
+    font-size: 20px;
+  }
+
+  .main > div + div + div > div > div:first-child {
+    font-size: medium;
+  }
+
+  .main input {
+    font-size: medium;
+  }
+  .main {
+    width: 300px;
+  }
+}

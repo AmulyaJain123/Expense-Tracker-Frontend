@@ -1,0 +1,17 @@
+.main {
+  display: flex; /* equivalent to flex */
+  margin: 1rem; /* equivalent to m-4 (assuming 1rem = 16px, so 1rem = 16px) */
+  gap: 1rem; /* equivalent to space-x-4 (assuming 1rem = 16px, so 1rem = 16px) */
+}
+
+.main #largeTitle {
+  font-size: 25px;
+}
+
+.main #mediumTitle {
+  font-size: 20px;
+}
+
+.main #inputBox {
+  font-size: 16px;
+}

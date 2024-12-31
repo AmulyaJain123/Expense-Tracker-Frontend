@@ -1,0 +1,83 @@
+#menuContent {
+  margin-top: 2rem; /* equivalent to mt-8 (assuming base unit of 1rem = 8px) */
+  margin-left: 100px; /* equivalent to mx-[100px] */
+  margin-right: 100px; /* equivalent to mx-[100px] */
+}
+
+#menuContent > div > div {
+  display: flex; /* equivalent to flex */
+  background-color: #f5f5f5; /* equivalent to bg-stone-100 */
+  padding-top: 1rem; /* equivalent to py-4 (assuming base unit of 1rem) */
+  padding-bottom: 1rem; /* equivalent to py-4 */
+  padding-left: 0.5rem; /* equivalent to px-2 (assuming base unit of 0.5rem) */
+  padding-right: 0.5rem; /* equivalent to px-2 */
+  border-bottom: 2px solid #d1d5db; /* equivalent to border-b-2 border-stone-300 */
+  margin-left: 100px; /* equivalent to mx-[100px] */
+  margin-right: 100px; /* equivalent to mx-[100px] */
+  gap: 50px; /* equivalent to space-x-[50px] */
+}
+
+#menuContent p {
+  font-size: 16px;
+}
+
+#menuContent > div > div > div {
+  font-size: large;
+}
+
+@media (max-width: 1280px) {
+  #menuContent {
+    margin-top: 2rem; /* equivalent to mt-8 (assuming base unit of 1rem = 8px) */
+    margin-left: 50px; /* equivalent to mx-[100px] */
+    margin-right: 50px; /* equivalent to mx-[100px] */
+  }
+
+  #menuContent > div > div {
+    margin-left: 50px; /* equivalent to mx-[100px] */
+    margin-right: 50px; /* equivalent to mx-[100px] */
+  }
+}
+
+@media (max-width: 640px) {
+  #menuContent > div > div > div {
+    font-size: medium;
+  }
+
+  #menuContent > div > div > div + div {
+    font-size: small;
+  }
+
+  #menuContent {
+    margin-left: 20px; /* equivalent to mx-[100px] */
+    margin-right: 20px; /* equivalent to mx-[100px] */
+  }
+
+  #menuContent > div > div {
+    margin-left: 20px; /* equivalent to mx-[100px] */
+    margin-right: 20px; /* equivalent to mx-[100px] */
+    gap: 10px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  #menuContent > div > div > div + div > p {
+    text-align: center;
+    padding-left: 10px;
+    padding-right: 10px;
+  }
+
+  #menuContent > div > div > div {
+    text-align: center;
+  }
+}
+
+@media (max-width: 768px) {
+  #menuContent > div > div > div + div > p {
+    font-size: small;
+  }
+
+  #menuContent > div > div > div {
+    font-size: medium;
+  }
+}

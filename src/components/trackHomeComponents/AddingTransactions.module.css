@@ -1,0 +1,35 @@
+.main {
+  margin-top: 4rem; /* equivalent to mt-16 (assuming 1rem = 16px, so 4rem = 64px) */
+  display: flex; /* equivalent to flex */
+  flex-direction: column; /* equivalent to flex-col */
+  gap: 0.5rem; /* equivalent to space-y-2 (assuming 1rem = 16px, so 0.5rem = 8px) */
+}
+
+.main > div > div:first-child {
+  font-size: large;
+}
+.main > div {
+  flex-direction: row;
+  margin-left: 100px;
+  margin-right: 100px;
+}
+
+@media (max-width: 1280px) {
+  .main > div > div:first-child {
+    font-size: medium;
+  }
+  .main > div > div:nth-of-type(2) {
+    font-size: small;
+  }
+}
+
+@media (max-width: 768px) {
+  .main > div {
+    flex-direction: column;
+    margin-left: 20px;
+    margin-right: 20px;
+    align-items: center;
+    text-align: center;
+    row-gap: 10px;
+  }
+}

@@ -1,0 +1,36 @@
+.main {
+  width: 90vw; /* equivalent to w-[90vw] */
+  height: 94vh; /* equivalent to h-[94vh] */
+  display: flex; /* equivalent to flex */
+  flex-direction: column; /* equivalent to flex-col */
+  padding: 0.75rem; /* equivalent to p-3 (assuming base unit of 1rem = 16px, so 0.75rem = 12px) */
+  border-radius: 1rem; /* equivalent to rounded-2xl (assuming 1rem = 16px, so 1rem = 32px) */
+  font-size: large;
+}
+
+@media (max-width: 1400px) {
+  .main {
+    font-size: medium;
+  }
+  .main menu {
+    font-size: large;
+  }
+  .main header {
+    font-size: x-large;
+  }
+}
+
+@media (max-width: 768px) {
+  .main header {
+    font-size: 20px;
+  }
+}
+
+@media (max-width: 850px) {
+  .main {
+    font-size: small;
+  }
+  .main menu {
+    font-size: medium;
+  }
+}
