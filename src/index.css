@@ -33,6 +33,9 @@ tspan {
 .css-rizt0-MuiTypography-root {
   font-family: "Poppins" !important;
 }
+.MuiTypography-root {
+  font-family: "Poppins" !important;
+}
 
 .customScroll::-webkit-scrollbar {
   width: 8px;
