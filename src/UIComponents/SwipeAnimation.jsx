@@ -102,16 +102,14 @@ export default function SwipeAnimation() {
   return (
     <div className="my-24 mt-4 pb-[80px] rounded-xl mx-auto w-full">
       <div className=" relative p-4   w-full flex flex-col justify-center items-center">
-        <div className="h-[600px] flex justify-center items-center">
+        <div className="h-[600px] w-[1000px] flex justify-center items-center">
           <motion.img
             src={config[ind].image}
-            style={{
-              height: "500px",
-            }}
+            style={{}}
             key={ind}
             initial={{ opacity: 0, y: 70 }}
             animate={{ opacity: 1, y: 0 }}
-            className="h-fit shadow-lg border-2 border-stone-200 rounded-2xl"
+            className=" max-w-[1100px] max-h-[500px] shadow-lg border-2 border-stone-200 rounded-2xl"
             alt=""
           />
         </div>
