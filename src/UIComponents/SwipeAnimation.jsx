@@ -1,25 +1,25 @@
 import { useState, useEffect } from "react";
 import { motion } from "framer-motion";
-import activity from "../assets/gallery/activity.png";
-import bargraph from "../assets/gallery/bargraph.png";
-import categories from "../assets/gallery/categories.png";
-import filter from "../assets/gallery/filter.png";
-import friends from "../assets/gallery/friends.png";
-import piechart from "../assets/gallery/piechart.png";
-import profile from "../assets/gallery/profile.png";
-import scatterplot from "../assets/gallery/scatterplot.png";
-import splitModal from "../assets/gallery/splitModal.png";
-import splitRes from "../assets/gallery/splitRes.png";
-import splitResult from "../assets/gallery/splitResult.png";
-import splitView from "../assets/gallery/splitView.png";
-import tag from "../assets/gallery/tag.png";
-import tags from "../assets/gallery/tags.png";
-import trackCreate from "../assets/gallery/trackCreate.png";
-import transaction from "../assets/gallery/transaction.png";
-import transactions from "../assets/gallery/transactions.png";
-import warranty from "../assets/gallery/warranty.png";
-import warrantyView from "../assets/gallery/warrantyView.png";
-import bills from "../assets/gallery/bills.png";
+import activity from "../assets/gallery/activity.webp";
+import bargraph from "../assets/gallery/bargraph.webp";
+import categories from "../assets/gallery/categories.webp";
+import filter from "../assets/gallery/filter.webp";
+import friends from "../assets/gallery/friends.webp";
+import piechart from "../assets/gallery/piechart.webp";
+import profile from "../assets/gallery/profile.webp";
+import scatterplot from "../assets/gallery/scatterplot.webp";
+import splitModal from "../assets/gallery/splitModal.webp";
+import splitRes from "../assets/gallery/splitRes.webp";
+import splitResult from "../assets/gallery/splitResult.webp";
+import splitView from "../assets/gallery/splitView.webp";
+import tag from "../assets/gallery/tag.webp";
+import tags from "../assets/gallery/tags.webp";
+import trackCreate from "../assets/gallery/trackCreate.webp";
+import transaction from "../assets/gallery/transaction.webp";
+import transactions from "../assets/gallery/transactions.webp";
+import warranty from "../assets/gallery/warranty.webp";
+import warrantyView from "../assets/gallery/warrantyView.webp";
+import bills from "../assets/gallery/bills.webp";
 
 const config = [
   { image: activity, name: "Activity | Profile", width: 700 },
