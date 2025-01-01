@@ -54,10 +54,11 @@ export default function ScatterGraph() {
                 onClick={() => setYear((p) => p - 1)}
                 className="hover:scale-110 disabled:pointer-events-none disabled:opacity-50 duration-500"
                 disabled={
+                  transactions.length === 0 ||
                   new Date(
                     transactions[transactions.length - 1].dateTime
                   ).getFullYear() >
-                  year - 1
+                    year - 1
                 }
               >
                 <img
@@ -73,6 +74,7 @@ export default function ScatterGraph() {
                 onClick={() => setYear((p) => p + 1)}
                 className="hover:scale-110 disabled:pointer-events-none disabled:opacity-50 duration-500"
                 disabled={
+                  transactions.length === 0 ||
                   new Date(transactions[0].dateTime).getFullYear() < year + 1
                 }
               >
