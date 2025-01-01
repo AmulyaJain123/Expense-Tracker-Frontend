@@ -1,4 +1,4 @@
-import vault from "../assets/vault.png";
+import vault from "../assets/vault.webp";
 import { Link } from "react-router-dom";
 import styled from "styled-components";
 import styles from "./VaultHome.module.css";

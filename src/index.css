@@ -157,7 +157,7 @@ customScrollThinLight
   background-size: auto;
 }
 .bgLogin {
-  background-image: url("./assets/money-hand.jpg");
+  background-image: url("./assets/money-hand.webp");
   background-repeat: no-repeat;
   background-size: cover;
 }

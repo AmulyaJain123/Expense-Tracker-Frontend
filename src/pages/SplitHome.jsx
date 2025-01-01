@@ -1,4 +1,4 @@
-import split from "../assets/split.png";
+import split from "../assets/split.webp";
 import SplitHomeMenu from "../components/splitHomeComponents/SplitHomeMenu";
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";

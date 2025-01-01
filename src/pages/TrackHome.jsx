@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import billTrackIcon from "../assets/billTrack-Icon.png";
+import billTrackIcon from "../assets/billTrack-Icon.webp";
 import { Link } from "react-router-dom";
 import TrackHomeMenu from "../components/trackHomeComponents/TrackHomeMenu";
 import add from "../assets/add.png";

@@ -1,5 +1,4 @@
 import { useState, useEffect } from "react";
-import { motion } from "framer-motion";
 import activity from "../assets/gallery/activity.webp";
 import bargraph from "../assets/gallery/bargraph.webp";
 import categories from "../assets/gallery/categories.webp";
@@ -22,66 +21,67 @@ import warrantyView from "../assets/gallery/warrantyView.webp";
 import bills from "../assets/gallery/bills.webp";
 
 const config = [
-  { image: activity, name: "Activity | Profile", width: 700 },
-  { image: bargraph, name: "Expense Pattern | Track > Dashboard", width: 700 },
   {
-    image: categories,
-    name: "Manage Categories | Track > Categories",
+    image: transaction,
+    name: "Transaction Details | TRACK > Transactions > View",
     width: 700,
   },
-  { image: filter, name: "Filter | Track > Transactions", width: 700 },
+  {
+    image: transactions,
+    name: "Transaction History | TRACK > Transactions",
+    width: 700,
+  },
+  { image: activity, name: "Activity | Profile", width: 700 },
+  { image: bargraph, name: "Expense Pattern | TRACK > Dashboard", width: 700 },
+  {
+    image: categories,
+    name: "Manage Categories | TRACK > Categories",
+    width: 700,
+  },
+  { image: filter, name: "Filter | TRACK > Transactions", width: 700 },
   { image: friends, name: "Find People | Friends", width: 700 },
   {
     image: piechart,
-    name: "Categorical Distribution | Track > Dashboard",
+    name: "Categorical Distribution | TRACK > Dashboard",
     width: 700,
   },
   { image: profile, name: "Profile", width: 700 },
   {
     image: scatterplot,
-    name: "Expense Distribution | Track > Dashboard",
+    name: "Expense Distribution | TRACK > Dashboard",
     width: 700,
   },
-  { image: splitModal, name: "Adding Bills | Split > Create", width: 700 },
-  { image: splitRes, name: "Split Result | Split > Create", width: 700 },
+  { image: splitModal, name: "Adding Bills | SPLIT > Create", width: 700 },
+  { image: splitRes, name: "SPLIT Result | SPLIT > Create", width: 700 },
   {
     image: splitResult,
-    name: "Split Result | Split > View > Shared",
+    name: "SPLIT Result | SPLIT > View > Shared",
     width: 700,
   },
-  { image: splitView, name: "Saved Splits | Split > View > Saved", width: 700 },
+  { image: splitView, name: "Saved SPLITS | SPLIT > View > Saved", width: 700 },
   {
     image: tag,
-    name: "Create Warranty | Vault > Create > Warranty",
+    name: "Create Warranty | VAULT > Create > Warranty",
     width: 700,
   },
-  { image: tags, name: "Manage Tags | Vault > Tags", width: 700 },
+  { image: tags, name: "Manage Tags | VAULT > Tags", width: 700 },
   {
     image: trackCreate,
-    name: "Create Transaction | Track > Create",
+    name: "Create Transaction | TRACK > Create",
     width: 700,
   },
-  {
-    image: transaction,
-    name: "Transaction Details | Track > Transactions > View",
-    width: 700,
-  },
-  {
-    image: transactions,
-    name: "Transaction History | Track > Transactions",
-    width: 700,
-  },
+
   {
     image: warranty,
-    name: "Create Warranty | Vault > Create > Warranty",
+    name: "Create Warranty | VAULT > Create > Warranty",
     width: 700,
   },
   {
     image: warrantyView,
-    name: "Saved Warranties | Vault > View > Warranty",
+    name: "Saved Warranties | VAULT > View > Warranty",
     width: 700,
   },
-  { image: bills, name: "Adding Bills | Split > Create", width: 700 },
+  { image: bills, name: "Adding Bills | SPLIT > Create", width: 700 },
 ];
 
 export default function SwipeAnimation() {
@@ -102,16 +102,17 @@ export default function SwipeAnimation() {
   return (
     <div className="my-24 mt-4 pb-[80px] rounded-xl mx-auto w-full">
       <div className=" relative p-4   w-full flex flex-col justify-center items-center">
-        <div className="h-[600px] w-[1000px] flex justify-center items-center">
-          <motion.img
-            src={config[ind].image}
-            style={{}}
-            key={ind}
-            initial={{ opacity: 0, y: 70 }}
-            animate={{ opacity: 1, y: 0 }}
-            className=" max-w-[1100px] max-h-[500px] shadow-lg border-2 border-stone-200 rounded-2xl"
-            alt=""
-          />
+        <div className="h-[600px] w-[1000px] relative flex justify-center items-center">
+          {config.map((i, index) => {
+            return (
+              <img
+                src={i.image}
+                style={{ opacity: ind === index ? "1" : "0" }}
+                className="absolute max-w-[1100px] rounded-3xl duration-700 border-2 border-stone-200 max-h-[500px] right-[50%] translate-x-[50%] top-[50%] translate-y-[-50%]"
+                alt=""
+              />
+            );
+          })}
         </div>
         <span className="absolute bottom-[-10px] right-[50%] translate-x-[50%] text-xl font-bold">
           {config[ind].name}
