@@ -61,44 +61,46 @@ export default function ExpensePattern() {
           <header className="flex p-2 px-4 pr-2 h-fit justify-center rounded-xl bg-[#9f21e3] text-white">
             <span className="text-2xl font-semibold ">Expense Pattern</span>
           </header>
-          {val &&
-          val.filter((i) => i.incoming != 0 || i.outgoing != 0).length != 0 ? (
-            <div className="flex flex-col flex-grow  space-y-3">
-              <div className="flex space-x-3 pr-4 text-sm xl:text-base justify-end items-center">
-                <button
-                  onClick={() => setYear((p) => p - 1)}
-                  className="hover:scale-110 disabled:pointer-events-none disabled:opacity-50 duration-500"
-                  disabled={
-                    new Date(
-                      transactions[transactions.length - 1].dateTime
-                    ).getFullYear() >
-                    year - 1
-                  }
-                >
-                  <img
-                    src={right}
-                    className="w-[20px] rotate-180 h-[20px] flex justify-center items-center"
-                    alt=""
-                  />
-                </button>
-                <div className="py-1 px-3 capitalize rounded-lg bg-white font-medium">
-                  {year}
-                </div>
-                <button
-                  onClick={() => setYear((p) => p + 1)}
-                  className="hover:scale-110 disabled:pointer-events-none disabled:opacity-50 duration-500"
-                  disabled={
-                    new Date(transactions[0].dateTime).getFullYear() < year + 1
-                  }
-                >
-                  <img
-                    src={right}
-                    className="w-[20px]  h-[20px] flex justify-center items-center"
-                    alt=""
-                  />
-                </button>
-              </div>
 
+          <div className="flex flex-col flex-grow  space-y-3">
+            <div className="flex space-x-3 pr-4 text-sm xl:text-base justify-end items-center">
+              <button
+                onClick={() => setYear((p) => p - 1)}
+                className="hover:scale-110 disabled:pointer-events-none disabled:opacity-50 duration-500"
+                disabled={
+                  new Date(
+                    transactions[transactions.length - 1].dateTime
+                  ).getFullYear() >
+                  year - 1
+                }
+              >
+                <img
+                  src={right}
+                  className="w-[20px] rotate-180 h-[20px] flex justify-center items-center"
+                  alt=""
+                />
+              </button>
+              <div className="py-1 px-3 capitalize rounded-lg bg-white font-medium">
+                {year}
+              </div>
+              <button
+                onClick={() => setYear((p) => p + 1)}
+                className="hover:scale-110 disabled:pointer-events-none disabled:opacity-50 duration-500"
+                disabled={
+                  new Date(transactions[0].dateTime).getFullYear() < year + 1
+                }
+              >
+                <img
+                  src={right}
+                  className="w-[20px]  h-[20px] flex justify-center items-center"
+                  alt=""
+                />
+              </button>
+            </div>
+
+            {val &&
+            val.filter((i) => i.incoming != 0 || i.outgoing != 0).length !=
+              0 ? (
               <div className="flex normal-case flex-grow flex-col space-y-2  p-4 ">
                 {val ? (
                   <>
@@ -116,13 +118,13 @@ export default function ExpensePattern() {
                   </>
                 ) : null}
               </div>
-            </div>
-          ) : (
-            <div className="flex flex-grow flex-col justify-center items-center space-y-3">
-              <img src={noEntries} className="w-[80px] h-[80px]" alt="" />
-              <span>No Transactions Found</span>
-            </div>
-          )}
+            ) : (
+              <div className="flex flex-grow flex-col justify-center items-center space-y-3">
+                <img src={noEntries} className="w-[80px] h-[80px]" alt="" />
+                <span>No Transactions Found</span>
+              </div>
+            )}
+          </div>
         </div>
       </div>
     </>

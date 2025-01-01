@@ -47,43 +47,44 @@ export default function ScatterGraph() {
               Expense Distribution
             </span>
           </header>
-          {val && (val.incoming.length != 0 || val.outgoing.length != 0) ? (
-            <div className="flex flex-col flex-grow  space-y-3">
-              <div className="flex space-x-3 pr-4 text-sm xl:text-base justify-end items-center">
-                <button
-                  onClick={() => setYear((p) => p - 1)}
-                  className="hover:scale-110 disabled:pointer-events-none disabled:opacity-50 duration-500"
-                  disabled={
-                    new Date(
-                      transactions[transactions.length - 1].dateTime
-                    ).getFullYear() >
-                    year - 1
-                  }
-                >
-                  <img
-                    src={right}
-                    className="w-[20px] rotate-180 h-[20px] flex justify-center items-center"
-                    alt=""
-                  />
-                </button>
-                <div className="py-1 px-3 capitalize rounded-lg bg-white font-medium">
-                  {year}
-                </div>
-                <button
-                  onClick={() => setYear((p) => p + 1)}
-                  className="hover:scale-110 disabled:pointer-events-none disabled:opacity-50 duration-500"
-                  disabled={
-                    new Date(transactions[0].dateTime).getFullYear() < year + 1
-                  }
-                >
-                  <img
-                    src={right}
-                    className="w-[20px]  h-[20px] flex justify-center items-center"
-                    alt=""
-                  />
-                </button>
-              </div>
 
+          <div className="flex flex-col flex-grow  space-y-3">
+            <div className="flex space-x-3 pr-4 text-sm xl:text-base justify-end items-center">
+              <button
+                onClick={() => setYear((p) => p - 1)}
+                className="hover:scale-110 disabled:pointer-events-none disabled:opacity-50 duration-500"
+                disabled={
+                  new Date(
+                    transactions[transactions.length - 1].dateTime
+                  ).getFullYear() >
+                  year - 1
+                }
+              >
+                <img
+                  src={right}
+                  className="w-[20px] rotate-180 h-[20px] flex justify-center items-center"
+                  alt=""
+                />
+              </button>
+              <div className="py-1 px-3 capitalize rounded-lg bg-white font-medium">
+                {year}
+              </div>
+              <button
+                onClick={() => setYear((p) => p + 1)}
+                className="hover:scale-110 disabled:pointer-events-none disabled:opacity-50 duration-500"
+                disabled={
+                  new Date(transactions[0].dateTime).getFullYear() < year + 1
+                }
+              >
+                <img
+                  src={right}
+                  className="w-[20px]  h-[20px] flex justify-center items-center"
+                  alt=""
+                />
+              </button>
+            </div>
+
+            {val && (val.incoming.length != 0 || val.outgoing.length != 0) ? (
               <div className="flex normal-case flex-grow flex-col space-y-2  p-4 ">
                 {val ? (
                   <>
@@ -145,13 +146,13 @@ export default function ScatterGraph() {
                   </>
                 ) : null}
               </div>
-            </div>
-          ) : (
-            <div className="flex flex-grow flex-col min-h-[500px] justify-center items-center space-y-3">
-              <img src={noEntries} className="w-[80px] h-[80px]" alt="" />
-              <span>No Transactions Found</span>
-            </div>
-          )}
+            ) : (
+              <div className="flex flex-grow flex-col min-h-[500px] justify-center items-center space-y-3">
+                <img src={noEntries} className="w-[80px] h-[80px]" alt="" />
+                <span>No Transactions Found</span>
+              </div>
+            )}
+          </div>
         </div>
       </div>
     </>
