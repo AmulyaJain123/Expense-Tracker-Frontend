@@ -344,15 +344,15 @@ export default function Data({ data, changeData, removeData, selected }) {
           return (
             <>
               <div className="flex flex-col">
-                <div className="flex bg-white rounded-xl py-2 px-2 text-xl justify-between items-center pr-4 font-semibold ">
+                <div className="flex bg-white rounded-xl py-[4px] px-[4px] text-base justify-between items-center pr-3 font-semibold ">
                   <div className="flex ">
                     <span className="rounded-lg py-1 px-4 capitalize">
                       {i.name}
                     </span>
                     {inputContent.find((j) => j.name === i.name)?.confirm !=
                     null ? (
-                      <div className="flex space-x-4 ml-8 items-center">
-                        <div className="flex space-x-2 items-center font-medium text-base">
+                      <div className="flex space-x-4 ml-6  items-center">
+                        <div className="flex space-x-2 items-center font-medium text-xs">
                           <span>{`Are you sure you want to`}</span>{" "}
                           <span className="text-red-500">Delete</span>
                           <span>
@@ -371,14 +371,14 @@ export default function Data({ data, changeData, removeData, selected }) {
                           </span>
                           <span>?</span>
                         </div>
-                        <div className="flex items-center space-x-2">
+                        <div className="flex items-center space-x-1">
                           <button
                             onClick={() => confirmDelete(i.name)}
                             disabled={
                               inputContent.find((j) => j.name === i.name)
                                 ?.loading2
                             }
-                            className="rounded-lg bg-red-500 border-2 border-red-500 text-base text-white  px-2 font-medium hover:text-red-500 hover:bg-white duration-500 disabled:pointer-events-none disabled:opacity-50"
+                            className="rounded-md bg-red-500 border-[1.5px] border-red-500 text-xs text-white  px-[6px] font-medium hover:text-red-500 hover:bg-white duration-500 disabled:pointer-events-none disabled:opacity-50"
                           >
                             Yes
                           </button>
@@ -388,17 +388,17 @@ export default function Data({ data, changeData, removeData, selected }) {
                               inputContent.find((j) => j.name === i.name)
                                 ?.loading2
                             }
-                            className="rounded-lg bg-blue-500 border-2 border-blue-500 text-base text-white  px-2 font-medium hover:text-blue-500 hover:bg-white duration-500 disabled:pointer-events-none disabled:opacity-50"
+                            className="rounded-md bg-blue-500 border-[1.5px] border-blue-500 text-xs text-white  px-[6px] font-medium hover:text-blue-500 hover:bg-white duration-500 disabled:pointer-events-none disabled:opacity-50"
                           >
                             No
                           </button>
                         </div>
-                        <div className="flex items-center pl-4 space-x-3 text-base font-normal">
+                        <div className="flex items-center pl-2 space-x-2 text-base font-normal">
                           {inputContent.find((j) => j.name === i.name)
                             .loading2 ? (
                             <img
                               src={load}
-                              className="w-[25px] h-[25px]"
+                              className="w-[20px] h-[20px]"
                               alt=""
                             />
                           ) : inputContent.find((j) => j.name === i.name)
@@ -406,10 +406,10 @@ export default function Data({ data, changeData, removeData, selected }) {
                             <>
                               <img
                                 src={exclamation}
-                                className="w-[20px] h-[20px] flex justify-center items-center"
+                                className="w-[15px] h-[15px] flex justify-center items-center"
                                 alt=""
                               />
-                              <span className="text-red-500">
+                              <span className="text-red-500 text-xs">
                                 {
                                   inputContent.find((j) => j.name === i.name)
                                     .error2
@@ -430,27 +430,27 @@ export default function Data({ data, changeData, removeData, selected }) {
                   >
                     <img
                       src={cancel}
-                      className="w-[20px] h-[20px] flex items-center justify-center"
+                      className="w-[15px] h-[15px] flex items-center justify-center"
                       alt=""
                     />
                   </button>
                 </div>
-                <div className="flex mt-4 ">
-                  <div className=" flex  pl-[100px] ">
+                <div className="flex mt-3 ">
+                  <div className=" flex  pl-[80px] ">
                     <img
                       src={side}
-                      className="w-[55px] h-[55px] flex items-center justify-center"
+                      className="w-[40px] h-[40px] flex items-center justify-center"
                       alt=""
                     />
                   </div>
                   <div className="flex flex-col flex-grow">
-                    <div className=" bg-white flex-grow ml-4 rounded-xl flex p-4 gap-4 flex-wrap ">
+                    <div className=" bg-white flex-grow ml-3 rounded-xl flex p-3 gap-2 flex-wrap ">
                       {i.categories.length != 0 ? (
                         <>
                           {i.categories.map((j) => {
                             return (
-                              <div className="rounded-lg py-[5px] h-fit flex items-center font-medium px-4 pr-2 border-2 border-[#dc93f6]  bg-[#dc93f6]">
-                                <span className="mr-2 capitalize">{j}</span>
+                              <div className="rounded-md text-xs py-[4px] h-fit flex items-center font-medium px-3 pr-[6px] border-[1.5px] border-[#dc93f6]  bg-[#dc93f6]">
+                                <span className="mr-[6px] capitalize">{j}</span>
                                 <button
                                   disabled={
                                     inputContent.find((j) => j.name === i.name)
@@ -461,7 +461,7 @@ export default function Data({ data, changeData, removeData, selected }) {
                                 >
                                   <img
                                     src={cancel}
-                                    className="w-[20px] h-[20px] flex items-center justify-center"
+                                    className="w-[15px] h-[15px] flex items-center justify-center"
                                     alt=""
                                   />
                                 </button>
@@ -470,12 +470,12 @@ export default function Data({ data, changeData, removeData, selected }) {
                           })}
                         </>
                       ) : (
-                        <span className="rounded-lg py-[5px] h-fit flex items-center font-medium px-4 pr-2 border-2 border-slate-100 bg-slate-100 text-slate-400">
+                        <span className="rounded-md py-[4px] h-fit flex items-center font-medium px-3 pr-[6px] text-xs border-[1.5px] border-slate-100 bg-slate-100 text-slate-400">
                           No Categories
                         </span>
                       )}
                     </div>
-                    <div className="  ml-4 pb-0 flex p-4 flex-grow  ">
+                    <div className="  ml-3 pb-0 flex p-3 flex-grow  ">
                       {inputBox.includes(i.name) ? (
                         <div className="flex space-x-4">
                           <input
@@ -484,20 +484,20 @@ export default function Data({ data, changeData, removeData, selected }) {
                             value={
                               inputContent.find((j) => j.name === i.name)?.val
                             }
-                            className="py-1 px-3 w-[200px] bg-stone-50 rounded-lg border-2 border-stone-400 focus:outline-none "
+                            className="py-[2px] px-2 w-[150px] bg-stone-50 rounded-md text-xs border-[1.5px] border-stone-400 focus:outline-none "
                           />
-                          <div className="flex items-center space-x-2">
+                          <div className="flex items-center space-x-[6px]">
                             <button
                               onClick={() => addCat(i.name)}
                               disabled={
                                 inputContent.find((j) => j.name === i.name)
                                   ?.loading
                               }
-                              className="p-2 disabled:pointer-events-none disabled:opacity-50 rounded-md hover:bg-slate-200 duration-500"
+                              className="p-[6px] disabled:pointer-events-none disabled:opacity-50 rounded-md hover:bg-slate-200 duration-500"
                             >
                               <img
                                 src={tick}
-                                className="w-[20px] h-[20px] flex items-center justify-between"
+                                className="w-[15px] h-[15px] flex items-center justify-between"
                                 alt=""
                               />
                             </button>
@@ -507,21 +507,21 @@ export default function Data({ data, changeData, removeData, selected }) {
                                 inputContent.find((j) => j.name === i.name)
                                   ?.loading
                               }
-                              className="p-2 disabled:pointer-events-none disabled:opacity-50 rounded-md hover:bg-slate-200 duration-500"
+                              className="p-[6px] disabled:pointer-events-none disabled:opacity-50 rounded-md hover:bg-slate-200 duration-500"
                             >
                               <img
                                 src={cross}
-                                className="w-[20px] h-[20px] flex items-center justify-between"
+                                className="w-[15px] h-[15px] flex items-center justify-between"
                                 alt=""
                               />
                             </button>
                           </div>
-                          <div className="flex items-center pl-4 space-x-3">
+                          <div className="flex items-center pl-3 space-x-2">
                             {inputContent.find((j) => j.name === i.name)
                               ?.loading ? (
                               <img
                                 src={load}
-                                className="w-[25px] h-[25px]"
+                                className="w-[20px] h-[20px]"
                                 alt=""
                               />
                             ) : inputContent.find((j) => j.name === i.name)
@@ -529,10 +529,10 @@ export default function Data({ data, changeData, removeData, selected }) {
                               <>
                                 <img
                                   src={exclamation}
-                                  className="w-[20px] h-[20px] flex justify-center items-center"
+                                  className="w-[15px] h-[15px]  flex justify-center items-center"
                                   alt=""
                                 />
-                                <span className="text-red-500">
+                                <span className="text-red-500 text-xs">
                                   {
                                     inputContent.find((j) => j.name === i.name)
                                       ?.error
@@ -545,7 +545,7 @@ export default function Data({ data, changeData, removeData, selected }) {
                       ) : (
                         <button
                           onClick={() => addCatClick(i.name)}
-                          className="rounded-lg py-[5px] h-fit flex items-center font-medium px-4  border-dashed border-2 border-stone-400 bg-stone-100"
+                          className="rounded-md py-[4px] h-fit flex items-center font-medium px-3  border-dashed border-[1.5px] text-xs border-stone-400 bg-stone-100"
                         >
                           ADD
                         </button>
@@ -559,54 +559,54 @@ export default function Data({ data, changeData, removeData, selected }) {
         })}
 
       {data.length === 0 ? (
-        <div className="flex py-1 px-3 rounded-lg bg-slate-200 text-slate-500 font-medium">
+        <div className="flex py-1 px-3 rounded-lg text-base bg-slate-200 text-slate-500 font-medium">
           No Groups
         </div>
       ) : null}
 
       <hr className="border border-stone-300" />
 
-      <div className="flex p-2">
+      <div className="flex p-[6px]  text-xs">
         {mainAdd ? (
-          <div className="flex space-x-4">
+          <div className="flex space-x-3">
             <input
               type="text"
               onChange={(event) => Maininputchange(event)}
               value={mainInput.val}
-              className="py-1 px-3 w-[200px] bg-stone-50 rounded-lg border-2 border-stone-400 focus:outline-none "
+              className="py-1 px-3 w-[150px]  bg-stone-50 rounded-md border-[1.5px] border-stone-400 focus:outline-none "
             />
             <div className="flex items-center space-x-2">
               <button
                 onClick={() => addMainCat()}
                 disabled={mainInput.loading}
-                className="p-2 disabled:pointer-events-none disabled:opacity-50 rounded-md hover:bg-slate-200 duration-500"
+                className="p-[6px] disabled:pointer-events-none disabled:opacity-50 rounded-md hover:bg-slate-200 duration-500"
               >
                 <img
                   src={tick}
-                  className="w-[20px] h-[20px] flex items-center justify-between"
+                  className="w-[15px] h-[15px] flex items-center justify-between"
                   alt=""
                 />
               </button>
               <button
                 onClick={() => cancelAddMainCatClick()}
                 disabled={mainInput.loading}
-                className="p-2 disabled:pointer-events-none disabled:opacity-50 rounded-md hover:bg-slate-200 duration-500"
+                className="p-[6px] disabled:pointer-events-none disabled:opacity-50 rounded-md hover:bg-slate-200 duration-500"
               >
                 <img
                   src={cross}
-                  className="w-[20px] h-[20px] flex items-center justify-between"
+                  className="w-[15px] h-[15px] flex items-center justify-between"
                   alt=""
                 />
               </button>
             </div>
-            <div className="flex items-center pl-4 space-x-3">
+            <div className="flex items-center pl-3 space-x-2">
               {mainInput.loading ? (
-                <img src={load} className="w-[25px] h-[25px]" alt="" />
+                <img src={load} className="w-[20px] h-[20px]" alt="" />
               ) : mainInput.error != null ? (
                 <>
                   <img
                     src={exclamation}
-                    className="w-[20px] h-[20px] flex justify-center items-center"
+                    className="w-[15px] h-[15px] flex justify-center items-center"
                     alt=""
                   />
                   <span className="text-red-500">{mainInput.error}</span>
@@ -617,7 +617,7 @@ export default function Data({ data, changeData, removeData, selected }) {
         ) : (
           <button
             onClick={addMainCatClick}
-            className="rounded-lg py-[5px] w-fit h-fit flex items-center font-medium px-4  border-dashed border-2 border-stone-400 bg-stone-100"
+            className="rounded-lg py-[4px] text-xs w-fit h-fit flex items-center font-medium px-3  border-dashed border-[1.5px] border-stone-400 bg-stone-100"
           >
             ADD
           </button>

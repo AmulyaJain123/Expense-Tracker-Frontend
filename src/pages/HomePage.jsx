@@ -35,15 +35,15 @@ export default function HomePage() {
         <title>Home | BILLBUD</title>
         <meta name="description" content="Home" />
       </Helmet>
-      <div className="h-full w-full pb-[200px] bg-white overflow-auto text-stone-700 rounded-l-xl rounded-r-xl lg:rounded-r-none">
-        <header className="flex flex-col  sm:pt-[100px]  justify-center items-center space-y-[10px]">
-          <h2 className="text-[42px] sm:text-[56px] xl:text-[72px] mx-[20px] text-center font-bold text-stone-700">
+      <div className="h-full w-full pb-[150px] bg-white overflow-auto text-stone-700 rounded-l-xl rounded-r-xl lg:rounded-r-none">
+        <header className="flex flex-col  sm:pt-[80px]  justify-center items-center space-y-[10px]">
+          <h2 className="text-[42px] sm:text-[56px] xl:text-[55px] mx-[20px] text-center font-bold text-stone-700">
             Welcome to{" "}
             <span style={{ fontFamily: "fredoka" }} className="uppercase">
               BillBud
             </span>
           </h2>
-          <p className="font-medium text-[14px] sm:text-lg text-center mx-[20px]">
+          <p className="font-medium text-[14px] sm:text-sm text-center mx-[20px]">
             The{" "}
             <span className="text-[#9d4edd] font-medium">Expense Tracker</span>,{" "}
             <span className="text-[#9d4edd] font-medium">Digital Storage</span>,{" "}
@@ -52,13 +52,13 @@ export default function HomePage() {
           </p>
         </header>
 
-        <div className="flex flex-grow mt-[50px] justify-center items-center">
+        <div className="flex flex-grow mt-[20px] justify-center items-center">
           <SwipeAnimation />
         </div>
 
         <div className={`${styles.wrapper}`}>
-          <div className="flex flex-col px-[40px]  sm:mx-[100px] 2xl:mx-[200px] ">
-            <p className="text-center flex flex-col space-y-2 font-medium text-lg">
+          <div className="flex flex-col px-[40px]  mx-[150px] ">
+            <p className="text-center flex flex-col space-y-2 font-medium text-sm">
               <p>
                 Managing finances can often be a daunting task, but with{" "}
                 <span
@@ -84,26 +84,26 @@ export default function HomePage() {
               </p>
             </p>
 
-            <menu className="flex flex-col 2xl:flex-row  space-y-8 2xl:space-y-0 mx-auto mt-[80px] sm:mt-[100px] gap-x-8 justify-between">
+            <menu className="flex flex-row  mx-auto mt-[60px] sm:mt-[80px] gap-x-5 justify-between">
               <div className="flex flex-col relative">
-                <div className="rounded-3xl bg-slate-100 w-[150px]  aspect-square p-4 flex justify-center items-center">
-                  <i className="fi fi-ss-vault flex justify-center items-center text-[80px]  text-neutral-600"></i>
+                <div className="rounded-2xl bg-slate-100 w-[110px]  aspect-square p-4 flex justify-center items-center">
+                  <i className="fi fi-ss-vault flex justify-center items-center text-[60px]  text-neutral-600"></i>
                 </div>
                 <div className="absolute bottom-[-10px] scale-110 left-[-50px] translate-x-[-50%] translate-y-[100%]">
                   <img src={vault} className="" alt="" />
                 </div>
               </div>
               <div className="flex flex-col relative">
-                <div className="rounded-3xl bg-slate-100 w-[150px]  aspect-square p-4 flex justify-center items-center">
-                  <i className="fi fi-ss-calculator-bill flex justify-center items-center text-[80px]  text-neutral-600"></i>
+                <div className="rounded-2xl bg-slate-100 w-[110px]  aspect-square p-4 flex justify-center items-center">
+                  <i className="fi fi-ss-calculator-bill flex justify-center items-center text-[60px]  text-neutral-600"></i>
                 </div>
                 <div className="absolute bottom-[-10px]  left-[-30px]  translate-y-[100%]">
                   <img src={track} className="" alt="" />
                 </div>
               </div>
               <div className="flex flex-col relative">
-                <div className="rounded-3xl bg-slate-100 w-[150px] aspect-square p-4 flex justify-center items-center">
-                  <i className="fi fi-ss-hexagon-divide flex justify-center items-center  text-[80px]  text-neutral-600"></i>
+                <div className="rounded-2xl bg-slate-100 w-[110px] aspect-square p-4 flex justify-center items-center">
+                  <i className="fi fi-ss-hexagon-divide flex justify-center items-center  text-[60px]  text-neutral-600"></i>
                 </div>
                 <div className="absolute bottom-[-5px]  right-[-50px] translate-x-[40%] translate-y-[100%]">
                   <img src={split} className="" alt="" />
@@ -113,20 +113,20 @@ export default function HomePage() {
           </div>
         </div>
 
-        <div className="flex flex-col mt-[300px]">
-          <h1 className="font-bold capitalize underline underline-offset-4 text-[35px] text-center">
+        <div className="flex flex-col mt-[240px]">
+          <h1 className="font-bold capitalize underline underline-offset-4 text-[28px] text-center">
             Find me here
           </h1>
 
-          <div className="flex justify-center  w-[80%] rounded-3xl mx-auto pt-[30px] pb-[70px] items-center mt-6 gap-28">
+          <div className="flex justify-center  w-[80%] rounded-3xl mx-auto pt-[30px] pb-[70px] items-center mt-6 gap-20">
             <div className="text-lg relative flex justify-center items-center ">
-              <img src={email} className="w-[55px] " alt="" />
-              <span className="items-center absolute bottom-[-10px] translate-y-[100%] right-[50%] translate-x-[50%] min-w-[110px] justify-center bg-white rounded-xl px-2  h-fit flex w-fit py-1">
+              <img src={email} className="w-[45px] " alt="" />
+              <span className="items-center absolute bottom-[-5px] translate-y-[100%] right-[50%] translate-x-[50%] min-w-[110px] justify-center bg-white rounded-xl px-2  h-fit flex w-fit py-1">
                 {copyStatus ? (
-                  <span className=" rounded-lg px-2">
+                  <span className=" rounded-lg px-2 flex items-center py-1">
                     <span
                       ref={copyRef}
-                      className="opacity-[0.1] text-base font-medium text-green-600 duration-[2500ms]"
+                      className="opacity-[0.1] text-xs font-medium text-green-600 duration-[2500ms]"
                     >
                       Copied
                     </span>
@@ -134,9 +134,9 @@ export default function HomePage() {
                 ) : (
                   <button
                     onClick={() => copyEmail("amulyajain123@gmail.com")}
-                    className=" hover:bg-stone-100 rounded-lg px-2"
+                    className=" hover:bg-stone-100 rounded-lg px-2 flex items-center py-1"
                   >
-                    <span className="text-base text-nowrap font-medium ">
+                    <span className="text-xs text-nowrap font-medium ">
                       Copy Email
                     </span>
                   </button>
@@ -148,14 +148,14 @@ export default function HomePage() {
               className="hover:scale-110 duration-500"
               href="https://www.linkedin.com/in/amulya-jain-a31180255/"
             >
-              <img src={linkedin} className="w-[50px]" alt="" />
+              <img src={linkedin} className="w-[40px]" alt="" />
             </a>
             <a
               className="hover:scale-110 duration-500"
               target="_blank"
               href="https://github.com/AmulyaJain123"
             >
-              <img src={github} className="w-[50px]" alt="" />
+              <img src={github} className="w-[40px]" alt="" />
             </a>
           </div>
         </div>

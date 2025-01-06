@@ -44,15 +44,15 @@ export default function PieCharts({ data }) {
   }
 
   return (
-    <div className="flex flex-grow justify-evenly mt-6 ml-24 ">
+    <div className="flex flex-grow justify-evenly mt-4 ml-24 ">
       <div className="flex flex-col relative items-center">
-        <span className="pr-24 text-lg font-medium mb-8 ">
+        <span className="pr-24 text-sm font-medium mb-6 ">
           Overall Expenses
         </span>
         {data.pc1.filter((i) => i.value != 0).length === 0 ? (
           <div className="min-h-[200px]">
-            <div className="flex absolute top-[50%] w-[300px] left-[50%] pr-24 translate-x-[-50%] translate-y-[-50%]  flex-grow flex-col justify-center items-center space-y-3">
-              <img src={noEntries} className="w-[80px] h-[80px]" alt="" />
+            <div className="flex text-sm absolute top-[50%] w-[300px] left-[50%] pr-24 translate-x-[-50%] translate-y-[-50%]  flex-grow flex-col justify-center items-center space-y-3">
+              <img src={noEntries} className="w-[60px] h-[60px]" alt="" />
               <span>No Transactions Found</span>
             </div>
           </div>
@@ -64,7 +64,7 @@ export default function PieCharts({ data }) {
                 {
                   data: data.pc1,
                   highlightScope: { fade: "global", highlight: "item" },
-                  cornerRadius: 8,
+                  cornerRadius: 6,
                   faded: {
                     innerRadius: 30,
                     additionalRadius: -30,
@@ -74,15 +74,15 @@ export default function PieCharts({ data }) {
                 },
               ]}
               slotProps={{ legend: { hidden: isHidden } }}
-              height={240}
-              width={350}
+              height={200}
+              width={300}
             />
           </Box>
         )}
       </div>
 
       <div className="flex flex-col relative items-center">
-        <span className="pr-24 text-lg font-medium mb-8 ">
+        <span className="pr-24 text-sm font-medium mb-6 ">
           Outgoing Expenses
         </span>
         {pc2Content != null ? (
@@ -90,15 +90,15 @@ export default function PieCharts({ data }) {
             <button onClick={() => setPc2Content(null)}>
               <img
                 src={right}
-                className="w-[25px] h-[25px] rotate-180"
+                className="w-[20px] h-[20px] rotate-180"
                 alt=""
               />
             </button>
           </div>
         ) : null}
         {data.pc2.filter((i) => i.value != 0).length === 0 ? (
-          <div className="flex absolute top-[50%] w-[300px] left-[50%] pr-24 translate-x-[-50%] translate-y-[-50%]  flex-grow flex-col justify-center items-center space-y-3">
-            <img src={noEntries} className="w-[80px] h-[80px]" alt="" />
+          <div className="flex text-sm absolute top-[50%] w-[300px] left-[50%] pr-24 translate-x-[-50%] translate-y-[-50%]  flex-grow flex-col justify-center items-center space-y-3">
+            <img src={noEntries} className="w-[60px] h-[60px]" alt="" />
             <span>No Transactions Found</span>
           </div>
         ) : (
@@ -116,7 +116,7 @@ export default function PieCharts({ data }) {
                           j.list[1] === i.label
                       ).color,
                     })),
-                    cornerRadius: 8,
+                    cornerRadius: 6,
                     highlightScope: { fade: "global", highlight: "item" },
 
                     faded: {
@@ -130,8 +130,8 @@ export default function PieCharts({ data }) {
                 ]}
                 onItemClick={(event, d) => firstOutgoingClick(event, d)}
                 slotProps={{ legend: { hidden: isHidden } }}
-                height={240}
-                width={350}
+                height={200}
+                width={300}
               />
             ) : (
               <PieChart
@@ -149,7 +149,7 @@ export default function PieCharts({ data }) {
                     cornerRadius: 5,
                     highlightScope: { highlight: "item" },
                     innerRadius: 0,
-                    outerRadius: 70,
+                    outerRadius: 60,
                     faded: {
                       innerRadius: 30,
                       additionalRadius: -30,
@@ -169,10 +169,10 @@ export default function PieCharts({ data }) {
                           j.list[2] === i.label
                       ).color,
                     })),
-                    cornerRadius: 8,
+                    cornerRadius: 6,
                     highlightScope: { fade: "global", highlight: "item" },
-                    innerRadius: 90,
-                    outerRadius: 120,
+                    innerRadius: 75,
+                    outerRadius: 100,
                     faded: {
                       innerRadius: 30,
                       additionalRadius: -30,
@@ -183,20 +183,20 @@ export default function PieCharts({ data }) {
                   },
                 ]}
                 slotProps={{ legend: { hidden: isHidden } }}
-                height={240}
-                width={350}
+                height={200}
+                width={300}
               />
             )}
           </Box>
         )}
 
-        <div className="min-h-[40px] mt-8 pr-24 flex capitalize">
+        <div className="min-h-[40px] mt-6 pr-24 text-xs flex capitalize">
           {pc2Content != null ? pc2Content.name : ""}
         </div>
       </div>
 
       <div className="flex flex-col relative items-center">
-        <span className="pr-24 text-lg font-medium mb-8 ">
+        <span className="pr-24 text-sm font-medium mb-6 ">
           Incoming Expenses
         </span>
         {pc3Content != null ? (
@@ -204,15 +204,15 @@ export default function PieCharts({ data }) {
             <button onClick={() => setPc3Content(null)}>
               <img
                 src={right}
-                className="w-[25px] h-[25px] rotate-180"
+                className="w-[20px] h-[20px] rotate-180"
                 alt=""
               />
             </button>
           </div>
         ) : null}
         {data.pc3.filter((i) => i.value != 0).length === 0 ? (
-          <div className="flex absolute top-[50%] w-[300px] left-[50%] pr-24 translate-x-[-50%] translate-y-[-50%]  flex-grow flex-col justify-center items-center space-y-3">
-            <img src={noEntries} className="w-[80px] h-[80px]" alt="" />
+          <div className="flex text-sm absolute top-[50%] w-[300px] left-[50%] pr-24 translate-x-[-50%] translate-y-[-50%]  flex-grow flex-col justify-center items-center space-y-3">
+            <img src={noEntries} className="w-[60px] h-[60px]" alt="" />
             <span>No Transactions Found</span>
           </div>
         ) : (
@@ -230,7 +230,7 @@ export default function PieCharts({ data }) {
                           j.list[1] === i.label
                       ).color,
                     })),
-                    cornerRadius: 8,
+                    cornerRadius: 6,
                     highlightScope: { fade: "global", highlight: "item" },
                     faded: {
                       innerRadius: 30,
@@ -243,8 +243,8 @@ export default function PieCharts({ data }) {
                 ]}
                 slotProps={{ legend: { hidden: isHidden } }}
                 onItemClick={(event, d) => firstIncomingClick(event, d)}
-                height={240}
-                width={350}
+                height={200}
+                width={300}
               />
             ) : (
               <PieChart
@@ -262,7 +262,7 @@ export default function PieCharts({ data }) {
                     cornerRadius: 5,
                     highlightScope: { highlight: "item" },
                     innerRadius: 0,
-                    outerRadius: 70,
+                    outerRadius: 60,
                     faded: {
                       innerRadius: 30,
                       additionalRadius: -30,
@@ -282,10 +282,10 @@ export default function PieCharts({ data }) {
                           j.list[2] === i.label
                       ).color,
                     })),
-                    cornerRadius: 8,
+                    cornerRadius: 6,
                     highlightScope: { fade: "global", highlight: "item" },
-                    innerRadius: 90,
-                    outerRadius: 120,
+                    innerRadius: 75,
+                    outerRadius: 100,
                     faded: {
                       innerRadius: 30,
                       additionalRadius: -30,
@@ -296,13 +296,13 @@ export default function PieCharts({ data }) {
                   },
                 ]}
                 slotProps={{ legend: { hidden: isHidden } }}
-                height={240}
-                width={350}
+                height={200}
+                width={300}
               />
             )}
           </Box>
         )}
-        <div className="min-h-[40px] mt-8 pr-24 flex capitalize">
+        <div className="min-h-[40px] mt-8 pr-24 text-xs flex capitalize">
           {pc3Content != null ? pc3Content.name : ""}
         </div>
       </div>

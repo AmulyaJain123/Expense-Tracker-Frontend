@@ -92,50 +92,40 @@ export default function QRPic({ data }) {
       setProfilePicError("Something went wrong.");
     }
   }
-  //   {data.qrCode ? (
-  //                   <div></div>
-  //                 ) : (
-  //                   <div className="w-[250px] relative h-[250px] flex justify-center items-center text-neutral-500 ">
-  //                     <img src={qr} className="w-full h-full blur-sm" alt="" />
-  //                     <div className="absolute top-[50%] text-nowrap bg-neutral-100 px-5 h-[40px] flex justify-center items-center  rounded-full  right-[50%] translate-x-[50%] translate-y-[-50%]">
-  //                       UPI ID NOT ENTERED
-  //                     </div>
-  //                   </div>
-  //                 )}
   return (
     <>
       <div className="    ">
-        <div className="bg-neutral-100 relative p-6 rounded-lg ">
+        <div className="bg-neutral-100 relative p-4 rounded-lg ">
           <div className={profilePicUploadLoading ? "blur-sm" : ""}>
             {data.qrCode && !profilePicUrl ? (
               <img
                 src={data.qrCode}
                 onLoad={() => setProfilePicUploadLoading(false)}
-                className="w-[250px] h-[250px] "
+                className="w-[170px] h-[170px] "
                 alt=""
               />
             ) : profilePicUrl === null ? (
               <img
                 src={qr}
                 onLoad={() => setProfilePicUploadLoading(false)}
-                className="w-[250px] h-[250px] blur-sm "
+                className="w-[170px] h-[170px] blur-sm "
                 alt=""
               />
             ) : (
               <img
                 src={profilePicUrl}
                 onLoad={() => setProfilePicUploadLoading(false)}
-                className="w-[250px] h-[250px] object-cover object-center"
+                className="w-[170px] h-[170px] object-cover object-center"
                 alt=""
               />
             )}
           </div>
           {profilePicUploadLoading === true ? (
             <>
-              <div className="absolute top-[50%] p-2 bg-neutral-100 right-[50%] rounded-full translate-x-[50%] translate-y-[-50%]">
+              <div className="absolute top-[50%] p-1 bg-neutral-100 right-[50%] rounded-full translate-x-[50%] translate-y-[-50%]">
                 <img
                   src={load}
-                  className="w-[40px] h-[40px]  flex justify-center items-center"
+                  className="w-[30px] h-[30px]  flex justify-center items-center"
                   alt=""
                 />
               </div>
@@ -143,7 +133,7 @@ export default function QRPic({ data }) {
           ) : null}
           {profilePicUrl ? (
             <>
-              <div className="absolute top-[-10px] flex space-x-6 right-[-80px] translate-y-[-100%]">
+              <div className="absolute top-[-10px] flex space-x-4 right-[-60px] translate-y-[-100%]">
                 <button
                   disabled={profilePicUploadLoading}
                   className="disabled:pointer-events-none disabled:opacity-50"
@@ -151,7 +141,7 @@ export default function QRPic({ data }) {
                 >
                   <img
                     src={cross}
-                    className="w-[25px] hover:opacity-50 opacity-100 h-[25px] flex justify-center items-center"
+                    className="w-[20px] hover:opacity-50 opacity-100 h-[20px] flex justify-center items-center"
                     alt=""
                   />
                 </button>
@@ -162,7 +152,7 @@ export default function QRPic({ data }) {
                 >
                   <img
                     src={tick}
-                    className="w-[25px] hover:opacity-50 opacity-100 h-[25px] flex justify-center items-center"
+                    className="w-[20px] hover:opacity-50 opacity-100 h-[20px] flex justify-center items-center"
                     alt=""
                   />
                 </button>
@@ -172,11 +162,11 @@ export default function QRPic({ data }) {
             <button
               onClick={profilePicClick}
               disabled={profilePicUploadLoading}
-              className="absolute bottom-[10px] disabled:pointer-events-none disabled:opacity-50 scale-90 hover:scale-100 border-neutral-300 border-2 duration-700 text-xl flex justify-center items-center p-3 h-[50px] bg-[#fff] rounded-full font-extrabold text-white tracking-widest right-[10px]"
+              className="absolute bottom-[5px] disabled:pointer-events-none disabled:opacity-50 scale-90 hover:scale-100 border-neutral-300 border-[1.5px] duration-700 text-base flex justify-center items-center p-2  bg-[#fff] rounded-full font-extrabold text-white tracking-wider right-[5px]"
             >
               <img
                 src={pencil}
-                className="w-[25px] h-[25px] flex justify-center items-center"
+                className="w-[20px] h-[20px] flex justify-center items-center"
                 alt=""
               />
             </button>
@@ -184,22 +174,22 @@ export default function QRPic({ data }) {
             <button
               onClick={profilePicClick}
               disabled={profilePicUploadLoading}
-              className="absolute bottom-[50px]  scale-90 disabled:opacity-50 disabled:pointer-events-none hover:scale-100 duration-700 text-xl flex  justify-center items-center px-5 h-[50px] bg-[#9F21E3] rounded-full font-extrabold text-white tracking-widest right-[50%] translate-x-[50%] "
+              className="absolute bottom-[30px]  scale-90 disabled:opacity-50 disabled:pointer-events-none hover:scale-100 duration-700 text-base flex  justify-center items-center px-4 h-[40px] bg-[#9F21E3] rounded-full font-extrabold text-white tracking-wider right-[50%] translate-x-[50%] "
             >
               UPLOAD
             </button>
           )}
         </div>
 
-        <div className="flex items-center justify-center h-[50px] mt-8 text-red-500">
+        <div className="flex items-center justify-center h-[40px] mt-4 text-red-500">
           {profilePicError ? (
             <>
               <img
                 src={exclamation}
-                className="w-[20px] h-[20px] mr-2 flex justify-center items-center"
+                className="w-[15px] h-[15px] mr-2 flex justify-center items-center"
                 alt=""
               />
-              <p className="font-normal text-base">{profilePicError}</p>
+              <p className="font-normal text-xs">{profilePicError}</p>
             </>
           ) : null}
         </div>

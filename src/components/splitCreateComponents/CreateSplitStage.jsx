@@ -37,8 +37,8 @@ export default function CreateSplitStage() {
   }
 
   return (
-    <>
-      <div className={`${styles.main}`}>
+    <div className="h-[600px] overflow-clip">
+      <div className={`${styles.main} scale-75 origin-top`}>
         <header
           style={{}}
           className=" text-[20px] sm:text-[25px] xl:text-[30px] font-extrabold uppercase justify-center mb-4 flex items-center rounded-lg bg-slate-100 py-2 sm:py-3 xl:py-5 px-5"
@@ -78,6 +78,6 @@ export default function CreateSplitStage() {
         </div>
         <Friends />
       </div>
-    </>
+    </div>
   );
 }

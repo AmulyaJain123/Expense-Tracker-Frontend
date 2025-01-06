@@ -9,13 +9,13 @@ export default function Bills({ data }) {
   return (
     <>
       <div className="flex flex-col flex-grow">
-        <h1 className="py-3 text-center uppercase font-bold text-3xl bg-white rounded-2xl">
+        <h1 className="py-2 text-center uppercase font-bold text-[22px] bg-white rounded-xl">
           Bills
         </h1>
-        <div className="flex flex-grow bg-white p-4 mt-4 rounded-2xl">
-          <div className="flex-grow rounded-lg  text-sm md:text-base lg:text-lg py-2 flex font-medium flex-col text-stone-400">
-            <div className="text-sm md:text-base lg:text-lg flex flex-col text-stone-500  rounded-lg  ">
-              <div className="border-b-2 border-slate gap-y-2 gap-x-2 p-4 flex flex-wrap flex-grow ">
+        <div className="flex flex-grow bg-white mt-[10px] rounded-xl">
+          <div className="flex-grow rounded-md  text-sm py-3 flex font-medium flex-col text-stone-400">
+            <div className="text-sm flex flex-col text-stone-500  rounded-md  ">
+              <div className="border-b-[2px] border-slate-100 gap-y-2 gap-x-2 p-4 flex flex-wrap flex-grow ">
                 {data.map((bill) => {
                   return (
                     <Thumb
@@ -29,9 +29,9 @@ export default function Bills({ data }) {
                 })}
               </div>
 
-              <div className="p-2 sm:p-4 w-full ">
+              <div className="p-2 sm:p-3 text-[13px] min-h-[400px] w-full ">
                 {selectedBill === null ? (
-                  <p className="text-center mt-24 text-base text-stone-500 font-normal">
+                  <p className="text-center mt-24 text-sm text-stone-500 font-normal">
                     No Bill Selected
                   </p>
                 ) : (

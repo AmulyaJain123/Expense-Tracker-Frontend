@@ -15,49 +15,6 @@ export default function WarrantyCreate() {
   const detailValidation = useSelector((state) => state.vault.detailValidation);
   const fileValidation = useSelector((state) => state.vault.fileValidation);
 
-  // function getExpiryDate(initialDate, expireDuration) {
-  //   let currDate = new Date(initialDate);
-  //   let { days, months, years } = expireDuration;
-
-  //   while (years != 0) {
-  //     let year = 365;
-  //     let currY = currDate.getFullYear();
-  //     if (
-  //       (((currY % 100 != 0 && currY % 4 === 0) || currY % 400 === 0) &&
-  //         (currDate.getMonth() + 1 < 3 ||
-  //           (currDate.getMonth() + 1 === 2 && currDate.getDate() < 29))) ||
-  //       ((((currY + 1) % 100 != 0 && (currY + 1) % 4 === 0) ||
-  //         (currY + 1) % 400 === 0) &&
-  //         currDate.getMonth() + 1 > 2)
-  //     ) {
-  //       year = 366;
-  //     }
-  //     const res = currDate.setDate(currDate.getDate() + year);
-  //     currDate = new Date(res);
-  //     // console.log(currDate);
-  //     years--;
-  //   }
-  //   while (months != 0) {
-  //     let month = 30;
-  //     const daysInMonths = [31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31];
-  //     let currY = currDate.getFullYear();
-  //     let currM = currDate.getMonth();
-  //     if ((currY % 100 != 0 && currY % 4 === 0) || currY % 400 === 0) {
-  //       daysInMonths[1] = 29;
-  //     }
-  //     month = daysInMonths[currM];
-  //     const res = currDate.setDate(currDate.getDate() + month);
-  //     currDate = new Date(res);
-  //     // console.log(currDate);
-  //     months--;
-  //   }
-  //   const res = currDate.setDate(currDate.getDate() + days);
-  //   currDate = new Date(res);
-  //   // console.log(currDate);
-  //   currDate.setHours(23, 59, 59, 0);
-  //   return currDate;
-  // }
-
   async function saveHandle() {
     setLoading("load");
     const res = detailRef.current.getData();
@@ -104,7 +61,7 @@ export default function WarrantyCreate() {
   return (
     <>
       <div className="flex flex-col w-fit mx-auto">
-        <div className="flex-col xl:flex-row items-center xl:items-stretch justify-center space-y-[100px] xl:space-y-0 xl:space-x-[50px] mt-[50px] p-2 sm:p-4 text-stone-600 flex">
+        <div className="flex-col xl:flex-row items-center xl:items-stretch justify-center space-y-[100px] xl:space-y-0 xl:space-x-[30px] mt-[30px] p-2 sm:p-4 text-stone-600 flex">
           <WarrantyDetails ref={detailRef} />
           <InputFile ref={inputRef} />
         </div>
@@ -116,7 +73,7 @@ export default function WarrantyCreate() {
         <Loading retry={retry} changeMode={changeMode} mode={loading} />
       ) : null}
 
-      <div className="flex flex-col items-center sm:items-start scale-90 sm:scale-100 sm:flex-row justify-between mx-auto mt-6 sm:pr-8 mb-6">
+      <div className="flex flex-col items-center sm:items-start scale-90 sm:scale-100 sm:flex-row justify-between mt-6  mb-6">
         <DiscardBillButton>Discard</DiscardBillButton>
         <Button
           disabled={!(detailValidation && fileValidation) || loading === "load"}

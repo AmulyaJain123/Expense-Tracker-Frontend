@@ -3,7 +3,7 @@
   border-top-left-radius: 1rem; /* equivalent to rounded-l-xl (assuming 1rem is the radius) */
   border-bottom-left-radius: 1rem; /* equivalent to rounded-l-xl */
   height: 100vh; /* equivalent to h-screen */
-  margin-top: 0.5rem; /* equivalent to my-2 (assuming 1rem base unit) */
+  margin-top: 6px; /* equivalent to my-2 (assuming 1rem base unit) */
   margin-bottom: 0.5rem; /* equivalent to my-2 */
   overflow: auto; /* equivalent to overflow-auto */
 }

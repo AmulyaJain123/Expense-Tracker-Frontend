@@ -113,8 +113,8 @@ export default function Scatter({ data, mode, year }) {
 
   return (
     <ScatterChart
-      width={1200}
-      height={450}
+      width={920}
+      height={350}
       voronoiMaxRadius={5}
       slotProps={{ legend: { hidden: true } }}
       xAxis={[

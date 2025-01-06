@@ -12,23 +12,23 @@ export default function Transactions() {
   const data = useSelector((state) => state.dashboard.data);
   console.log(data);
   return (
-    <div className="flex flex-col relative p-4  rounded-2xl mx-4 h-fit bg-[#f7ebfd]">
+    <div className="flex flex-col relative p-3  rounded-2xl mx-3 h-fit bg-[#f7ebfd]">
       <Link
         to={"/track/protected/transactions"}
-        className="absolute rounded-lg bg-[#fffdf7] border-2 border-stone-700 text-[black] font-medium shadow-xl text-md bottom-[40px] z-20  right-[50px]"
+        className="absolute rounded-md bg-[#fffdf7] border-[1.5px] border-stone-700 text-[black] font-medium shadow-xl text-md bottom-[25px] z-20  right-[25px]"
       >
         <div className="flex space-x-1 px-2 items-center">
-          <img src={more} className="w-[50px]" alt="" />
+          <img src={more} className="w-[40px]" alt="" />
         </div>
       </Link>
-      <div className=" flex justify-center mb-4 pl-6 pr-2 rounded-xl  py-2 bg-[#9f21e3] ">
-        <span className="text-2xl text-white font-semibold">
+      <div className=" flex justify-center mb-3 pl-4 pr-2 rounded-lg  py-[6px] bg-[#9f21e3] ">
+        <span className="text-lg text-white font-semibold">
           Last 15 Transactions
         </span>
       </div>
-      <div className="p-4 px-8 rounded-t-sm space-y-2 rounded-b-xl bg-[#f7ebfd]  ">
+      <div className="p-3 px-6 rounded-t-sm space-y-[6px] rounded-b-xl bg-[#f7ebfd]  ">
         <>
-          <header className="flex border-b-[2px] border-stone-500 pb-2 mr-4 space-x-3 flex-grow text-md font-semibold text-stone-500 p-1 px-4">
+          <header className="flex border-b-[1.5px] border-stone-500 pb-[6px] mr-4 space-x-2 flex-grow text-xs font-semibold text-stone-500 p-1 px-3">
             <div className="flex-[0.14] flex space-x-3  ">
               <span className="flex justify-center items-center">Name</span>
             </div>
@@ -52,15 +52,15 @@ export default function Transactions() {
             </div>
             <div className="w-[30px] flex space-x-3">Type</div>
           </header>
-          <div className="flex flex-col pt-4 space-y-3 h-[450px] overflow-auto customScrollThin pr-2">
+          <div className="flex flex-col pt-3 space-y-2 h-[350px] overflow-auto customScrollThin pr-2">
             {data != null && data.length === 0 ? (
-              <div className="flex flex-col mt-24 items-center space-y-4">
+              <div className="flex flex-col mt-24 items-center space-y-3">
                 <img
                   src={empty}
-                  className="h-[100px] w-[100px] flex justify-center items-center"
+                  className="h-[60px] w-[60px] flex justify-center items-center"
                   alt=""
                 />
-                <p className="text-center text-stone-500 mt-16 text-lg font-medium">
+                <p className="text-center text-stone-500 mt-16 text-sm font-medium">
                   No Transactions Found
                 </p>
               </div>
@@ -88,7 +88,7 @@ export default function Transactions() {
                     return (
                       <div
                         key={ind}
-                        className="flex rounded-sm text-sm border-b-2 border-[#adb5bd] bg-[#f8f9fa] text-black space-x-3 p-1 py-2 px-4"
+                        className="flex rounded-sm text-[11px] border-b-[1.5px] border-[#adb5bd] bg-[#f8f9fa] text-black space-x-2 p-1 py-[6px] px-3"
                       >
                         <span className="flex-[0.14]  ">
                           {transactionName.length > 15

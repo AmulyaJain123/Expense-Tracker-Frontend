@@ -9,15 +9,15 @@ const Button = styled.button`
   position: absolute;
   bottom: 2rem; /* bottom-8 */
   right: 2rem; /* right-8 */
-  padding-left: 1rem; /* px-4 */
-  padding-right: 1rem; /* px-4 */
-  padding-top: 0.5rem; /* py-2 */
-  padding-bottom: 0.5rem; /* py-2 */
-  border-radius: 0.75rem; /* rounded-xl */
-  font-size: 1.125rem; /* text-lg */
+  padding-left: 0.8rem; /* px-4 */
+  padding-right: 0.8rem; /* px-4 */
+  padding-top: 0.4rem; /* py-2 */
+  padding-bottom: 0.4rem; /* py-2 */
+  border-radius: 0.6rem; /* rounded-xl */
+  font-size: 0.9rem; /* text-lg */
   font-weight: 800; /* font-semibold */
   box-shadow: 0 10px 15px rgba(0, 0, 0, 0.1); /* shadow-xl */
-  border-width: 2px; /* border-[3px] */
+  border-width: 1.5px; /* border-[3px] */
   border-color: #38a3a5; /* border-[#2dc653] */
   background-color: #38a3a5; /* bg-[#2dc653] */
   color: #fff; /* text-[#f0fff1] */
@@ -36,7 +36,7 @@ const Option = styled.button`
     props.$status === "true" ? "#9d4edd" : "white"};
   color: ${(props) => (props.$status === "true" ? "white" : "black")};
   border: ${(props) =>
-    props.$status === "true" ? "2px solid #9d4edd" : "2px solid #d6d3d1"};
+    props.$status === "true" ? "1.5px solid #9d4edd" : "1.5px solid #d6d3d1"};
 
   &:hover {
     scale: ${(props) => (props.$status === "true" ? "100%" : "110%")};
@@ -85,33 +85,33 @@ export default function CategoryFilter() {
   }
 
   return (
-    <div className="flex relative flex-col flex-grow bg-[#fefae0] mr-4 rounded-r-xl p-4 px-16">
-      <div className="font-semibold flex flex-col mt-[8px] mb-[40px] text-xl text-black text-center"></div>
-      <div className="text-xl font-semibold mx-auto mb-[10px] uppercase">
+    <div className="flex relative flex-col flex-grow bg-[#fefae0] mr-3 rounded-r-lg p-4 px-12">
+      <div className="font-semibold flex flex-col mt-[8px] mb-[20px] text-xl text-black text-center"></div>
+      <div className="text-[15px] font-semibold mx-auto mb-[10px] uppercase">
         {"Select categorie(s)"}
       </div>
 
-      <div className="flex flex-col  h-[450px] overflow-auto customScrollThin">
-        <div className="flex mx-4 py-4 flex-col  justify-center mt-4 flex-wrap gap-3">
-          <span className="flex text-lg rounded-lg py-1 px-4 bg-[#dc93f6] font-medium">
+      <div className="flex flex-col  h-[350px] overflow-auto customScrollThin">
+        <div className="flex mx-2 py-2 flex-col  justify-center mt-4 flex-wrap gap-3">
+          <span className="flex text-sm rounded-lg py-1 px-4 bg-[#dc93f6] font-medium">
             Outgoing
           </span>
           <Option
             key={"null"}
             $status={check(`outgoingADAVRAnull`) ? "true" : "false"}
             onClick={() => clickHandle(`outgoingADAVRAnull`)}
-            className="p-1 px-2 w-fit uppercase ml-12 text-sm duration-500 flex space-x-3 items-center rounded-lg bg-white border-2 border-stone-400 "
+            className="p-[3px] px-[6px] w-fit uppercase ml-8 text-xs duration-500 flex space-x-3 items-center rounded-md bg-white border-[1.5px] border-stone-400 "
           >
             <span>{"null"}</span>
           </Option>
-          <div className="flex flex-col space-y-2">
+          <div className="flex text-xs flex-col space-y-1">
             {data.categories.outgoing.map((i) => {
               return (
-                <div className="flex flex-col pl-12 space-y-2">
-                  <span className="flex bg-black rounded-lg text-white px-3 py-1">
+                <div className="flex flex-col pl-8 space-y-1">
+                  <span className="flex bg-black rounded-md text-white px-3 py-1">
                     {i.name}
                   </span>
-                  <div className="flex flex-wrap gap-2 pl-8">
+                  <div className="flex flex-wrap gap-1 pl-8">
                     {i.categories.map((j) => {
                       return (
                         <Option
@@ -124,7 +124,7 @@ export default function CategoryFilter() {
                           onClick={() =>
                             clickHandle(`outgoingADAVRA${i.name}ADAVRA${j}`)
                           }
-                          className="p-1 px-2 text-sm duration-500 flex space-x-3 items-center rounded-lg bg-white border-2 border-stone-400 "
+                          className="p-[3px] px-[6px] text-xs duration-500 flex space-x-3 items-center rounded-md bg-white border-[1.5px] border-stone-400 "
                         >
                           <span>{j}</span>
                         </Option>
@@ -137,26 +137,26 @@ export default function CategoryFilter() {
           </div>
         </div>
 
-        <div className="flex mx-4 py-4 flex-col  justify-center mt-4 flex-wrap gap-3">
-          <span className="flex text-lg rounded-lg py-1 px-4 bg-[#dc93f6] font-medium">
+        <div className="flex mx-2 py-2 flex-col  justify-center mt-4 flex-wrap gap-3">
+          <span className="flex text-sm rounded-lg py-1 px-4 bg-[#dc93f6] font-medium">
             Incoming
           </span>
           <Option
             key={"null"}
             $status={check(`incomingADAVRAnull`) ? "true" : "false"}
             onClick={() => clickHandle(`incomingADAVRAnull`)}
-            className="p-1 px-2 w-fit uppercase ml-12 text-sm duration-500 flex space-x-3 items-center rounded-lg bg-white border-2 border-stone-400 "
+            className="p-[3px] px-[6px] w-fit uppercase ml-8 text-xs duration-500 flex space-x-3 items-center rounded-md bg-white border-[1.5px] border-stone-400 "
           >
             <span>{"null"}</span>
           </Option>
-          <div className="flex flex-col space-y-2">
+          <div className="flex text-xs flex-col space-y-1">
             {data.categories.incoming.map((i) => {
               return (
-                <div className="flex flex-col pl-12 space-y-2">
-                  <span className="flex bg-black rounded-lg text-white px-3 py-1">
+                <div className="flex flex-col pl-8 space-y-1">
+                  <span className="flex bg-black rounded-md text-white px-3 py-1">
                     {i.name}
                   </span>
-                  <div className="flex flex-wrap gap-2 pl-8">
+                  <div className="flex flex-wrap gap-1 pl-8">
                     {i.categories.map((j) => {
                       return (
                         <Option
@@ -169,7 +169,7 @@ export default function CategoryFilter() {
                           onClick={() =>
                             clickHandle(`incomingADAVRA${i.name}ADAVRA${j}`)
                           }
-                          className="p-1 px-2 text-sm duration-500 flex space-x-3 items-center rounded-lg bg-white border-2 border-stone-400 "
+                          className="p-[3px] px-[6px] text-xs duration-500 flex space-x-3 items-center rounded-md bg-white border-[1.5px] border-stone-400 "
                         >
                           <span>{j}</span>
                         </Option>

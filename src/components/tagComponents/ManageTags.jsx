@@ -150,111 +150,111 @@ export default function ManageTags() {
   }
 
   return (
-    <div className="w-[90%] mt-16 flex flex-col mx-auto bg-white rounded-3xl p-4">
-      <div className="w-full bg-slate-100 py-4 uppercase text-3xl text-center rounded-xl font-bold text-stone-700">
+    <div className="w-[90%] mt-12 flex flex-col mx-auto bg-white rounded-2xl p-3">
+      <div className="w-full bg-slate-100 py-3 uppercase text-2xl text-center rounded-lg font-bold text-stone-700">
         Manage Tags
       </div>
 
-      <div className="flex w-full flex-col flex-grow bg-slate-100 rounded-xl mt-4">
-        <div className="flex m-4 space-x-4">
-          <div className="flex space-x-6 px-4 items-center">
-            <span className="font-semibold text-xl ">SEARCH TAGS</span>
-            <div className="rounded-full border-2 border-neutral-200 flex items-center pl-4 p-1 bg-[#fff]">
-              <img src={search} className="w-[25px] h-[25px] mr-2" alt="" />
+      <div className="flex w-full flex-col flex-grow bg-slate-100 rounded-xl mt-3">
+        <div className="flex m-3 space-x-3">
+          <div className="flex space-x-4 px-3 items-center">
+            <span className="font-semibold text-base ">SEARCH TAGS</span>
+            <div className="rounded-full border-[1.5px] border-neutral-200 flex items-center pl-3 p-1 bg-[#fff]">
+              <img src={search} className="w-[20px] h-[20px] mr-2" alt="" />
               <input
                 type="text"
                 ref={inputRef}
                 disabled={loading}
                 onChange={(event) => searchChange(event)}
-                className=" focus:outline-none disabled:opacity-50  mr-6 font-medium bg-inherit py-1 px-2 text-lg"
+                className=" focus:outline-none disabled:opacity-50  mr-4 font-medium bg-inherit py-1 px-2 text-xs"
               />
             </div>
           </div>
-          <div className="flex space-x-6 px-4 items-center">
-            <span className="font-semibold text-xl ">ADD A TAG</span>
-            <div className="rounded-full border-2 border-neutral-200 flex items-center pl-4 p-1 bg-[#fff]">
+          <div className="flex space-x-4 px-3 items-center">
+            <span className="font-semibold text-base ">ADD A TAG</span>
+            <div className="rounded-full border-[1.5px] border-neutral-200 flex items-center pl-4 p-1 bg-[#fff]">
               <input
                 type="text"
                 ref={addTagRef}
                 disabled={loading}
                 onChange={(event) => setAddInput(event.target.value)}
-                className=" focus:outline-none disabled:opacity-50  mr-6 font-medium bg-inherit py-1 px-2 text-lg"
+                className=" focus:outline-none disabled:opacity-50  mr-4 font-medium bg-inherit py-1 px-2 text-xs"
               />
             </div>
             <button
               disabled={!addInput || loading}
               onClick={addConfirm}
-              className="rounded-lg border-2 disabled:pointer-events-none disabled:opacity-50 border-[#9d4edd] duration-500 hover:scale-105 hover:bg-white hover:text-[#9d4edd] py-1 px-4 font-medium text-lg bg-[#9d4edd] text-white "
+              className="rounded-md border-[1.5px] disabled:pointer-events-none disabled:opacity-50 border-[#9d4edd] duration-500 hover:scale-105 hover:bg-white hover:text-[#9d4edd] py-[2px] px-3 font-medium text-[14px] bg-[#9d4edd] text-white "
             >
               ADD
             </button>
           </div>
         </div>
 
-        <div className="h-[70px] border-y-4 border-white flex items-center">
+        <div className="h-[50px] text-xs border-y-2 border-white flex items-center">
           {confirmation != null ? (
-            <div className="ml-6">
+            <div className="ml-4 text-xs">
               <span>
                 Deleting a Tag will result in deletion of that Tag from all the
                 documents as well. Are you sure you want to continue?
               </span>
               <button
                 onClick={() => deleteConfirm()}
-                className="rounded-lg uppercase border-2 mx-4 border-[#9d4edd] duration-500 hover:scale-105 hover:bg-white hover:text-[#9d4edd] py-[0.5px] px-2 font-medium text-base bg-[#9d4edd] text-white"
+                className="rounded-md uppercase border-[1.5px] mx-2 border-[#9d4edd] duration-500 hover:scale-105 hover:bg-white hover:text-[#9d4edd] py-[0.5px] px-1 font-medium text-xs bg-[#9d4edd] text-white"
               >
                 Yes
               </button>
               <button
                 onClick={() => setConfirmation(null)}
-                className="rounded-lg uppercase border-2  border-[#9d4edd] duration-500 hover:scale-105 hover:bg-white hover:text-[#9d4edd] py-[0.5px] px-2 font-medium text-base bg-[#9d4edd] text-white"
+                className="rounded-md uppercase border-[1.5px]  border-[#9d4edd] duration-500 hover:scale-105 hover:bg-white hover:text-[#9d4edd] py-[0.5px] px-1 font-medium text-xs bg-[#9d4edd] text-white"
               >
                 No
               </button>
             </div>
           ) : loading ? (
-            <div className="ml-8 flex">
-              <div className="flex mr-8 items-center">
+            <div className="ml-6 flex">
+              <div className="flex mr-6 items-center">
                 <img
                   src={load}
-                  className="w-[25px] h-[25px] flex justify-center items-center"
+                  className="w-[20px] h-[20px] flex justify-center items-center"
                   alt=""
                 />
               </div>
               <span>Please wait.</span>
             </div>
           ) : error ? (
-            <div className="ml-8 flex">
-              <div className="flex mr-4 items-center">
+            <div className="ml-6 flex">
+              <div className="flex mr-3 items-center">
                 <img
                   src={exclamation}
-                  className="w-[20px] h-[20px] flex justify-center items-center"
+                  className="w-[15px] h-[15px] flex justify-center items-center"
                   alt=""
                 />
               </div>
               <span className="text-red-500">{error}</span>
             </div>
           ) : msg ? (
-            <div className="ml-8 flex">
+            <div className="ml-6 flex">
               <span className="text-green-500 capitalize">{msg}</span>
             </div>
           ) : null}
         </div>
 
-        <div className="mx-6 mt-6 h-[500px] overflow-auto customScrollThin">
+        <div className="mx-4 mt-4 h-[400px] overflow-auto customScrollThin">
           {fetchedData === null ? (
-            <div className="mt-44 flex justify-center">
-              <img src={load} className="w-[50px] h-[50px]" alt="" />
+            <div className="mt-32 flex justify-center">
+              <img src={load} className="w-[40px] h-[40px]" alt="" />
             </div>
           ) : null}
 
           {fetchedData === false ? (
-            <div className="flex flex-col mt-20 items-center">
-              <img src={errorIcon} className="w-[80px] h-[80px] mb-4" alt="" />
-              <p className="text-center">Failed to load resources.</p>
-              <div className="mt-8">
+            <div className="flex flex-col mt-16 items-center">
+              <img src={errorIcon} className="w-[50px] h-[50px] mb-3" alt="" />
+              <p className="text-center text-sm">Failed to load resources.</p>
+              <div className="mt-4">
                 <button
                   onClick={loadTags}
-                  className="px-4 py-2 w-[120px] rounded-lg bg-blue-500 text-white border-2 border-blue-500 hover:scale-105 hover:text-blue-500 hover:bg-white hover hover:shadow-lg duration-500"
+                  className="px-3 py-[6px] w-[100px] text-xs rounded-md bg-blue-500 text-white border-[1.5px] border-blue-500 hover:scale-105 hover:text-blue-500 hover:bg-white hover hover:shadow-lg duration-500"
                 >
                   Retry
                 </button>
@@ -266,10 +266,10 @@ export default function ManageTags() {
           fetchedData != false &&
           filteredData != null &&
           filteredData.length > 0 ? (
-            <div className="flex flex-wrap gap-4 justify-center">
+            <div className="flex flex-wrap gap-3 justify-center">
               {filteredData.map((i) => {
                 return (
-                  <div className="py-1 px-4 rounded-lg h-fit flex items-center text-lg capitalize bg-[#dc93f6] text-black">
+                  <div className="py-1 px-3 pr-2 rounded-md h-fit flex items-center text-sm capitalize bg-[#dc93f6] text-black">
                     <span>{i}</span>
                     <button
                       disabled={loading}
@@ -278,7 +278,7 @@ export default function ManageTags() {
                       <img
                         src={cross}
                         onClick={() => deleteTag(i)}
-                        className="w-[20px] h-[20px] flex justify-center items-center"
+                        className="w-[15px] h-[15px] flex justify-center items-center"
                         alt=""
                       />
                     </button>
@@ -290,7 +290,9 @@ export default function ManageTags() {
             fetchedData != false &&
             filteredData != null &&
             filteredData.length === 0 ? (
-            <div className="flex justify-center mt-20">No Tags Found</div>
+            <div className="flex justify-center mt-16 text-sm">
+              No Tags Found
+            </div>
           ) : null}
         </div>
       </div>

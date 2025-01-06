@@ -39,32 +39,34 @@ export default function RecievedRequests() {
   }, []);
 
   return (
-    <div className="flex relative flex-grow p-3 rounded-xl bg-white mt-4 ">
+    <div className="flex flex-col space-y-2 relative flex-grow p-3 rounded-xl bg-white mt-3 ">
+      {/* <div className="flex justify-end"> */}
       <button
         onClick={fetchRequests}
         disabled={loading}
-        className="disabled:pointer-events-none disabled:opacity-50 absolute top-1 p-2 rounded-full hover:bg-slate-100 duration-500  right-2"
+        className="disabled:pointer-events-none disabled:opacity-50 absolute top-[-56px] p-2 bg-white rounded-full hover:bg-slate-100 duration-500 z-[1]  left-[145px] translate-x-[50%]"
       >
         <img
           src={reload}
-          className="w-[20px] h-[20px] flex justify-center items-center"
+          className="w-[15px] h-[15px] flex justify-center items-center"
           alt=""
         />
       </button>
-      <div className=" flex flex-grow flex-col p-4 py-8 overflow-auto customScrollThin h-[830px] space-y-6 ">
+      {/* </div> */}
+      <div className=" flex flex-grow flex-col p-4 py-8 pt-2 overflow-auto customScrollThin h-[500px] space-y-6 ">
         {loading ? (
           <div className="flex justify-center items-center mt-20 ">
             <img
               src={load}
-              className="w-[40px] h-[40px] flex justify-center items-center"
+              className="w-[30px] h-[30px] flex justify-center items-center"
               alt=""
             />
           </div>
         ) : error ? (
-          <div className="flex flex-col justify-center items-center mt-24 ">
+          <div className="flex flex-col justify-center text-sm items-center mt-24 ">
             <img
               src={errorIcon}
-              className="w-[50px] h-[50px] mb-4 flex justify-center items-center"
+              className="w-[40px] h-[40px] mb-4 flex justify-center items-center"
               alt=""
             />
             <span>Something went wrong.</span>
@@ -79,10 +81,10 @@ export default function RecievedRequests() {
                 })}
               </>
             ) : (
-              <div className="flex justify-center flex-col text-slate-500 space-y-6 items-center mt-32">
+              <div className="flex justify-center flex-col text-slate-500 space-y-4 text-sm items-center mt-32">
                 <img
                   src={noEntries}
-                  className="w-[100px] h-[100px] flex justify-center items-center"
+                  className="w-[80px] h-[80px] flex justify-center items-center"
                   alt=""
                 />
                 <span>No Requests Found</span>

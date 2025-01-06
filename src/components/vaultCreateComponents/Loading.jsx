@@ -52,7 +52,7 @@ export default function Loading({ retry, changeMode, mode }) {
 
   return (
     <div className="absolute top-0 bottom-0 right-0 left-0 z-50 w-[100vw] h-[100vh] bg-black/50">
-      <div className="flex flex-col h-screen items-center justify-center">
+      <div className="flex flex-col scale-75 h-screen items-center justify-center">
         <div className="w-[400px] text-xl sm:text-2xl text-center p-3 bg-white flex flex-col space-y-5 px-[50px] py-[40px] rounded-xl text-black font-semibold">
           {mode === "load" ? (
             <div className="flex flex-col items-center">

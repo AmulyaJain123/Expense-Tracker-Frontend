@@ -95,14 +95,14 @@ export default function DashBoard() {
         <title> Dashboard | BILLBUD</title>
         <meta name="description" content="Friends" />
       </Helmet>
-      <div className="h-full w-full bg-white overflow-auto pb-[200px]  text-stone-700 rounded-l-xl">
-        <div className=" hidden 2xl:flex max-w-[1500px] mx-auto flex-col space-y-4">
-          <div className="flex mx-4 relative mt-4 p-2 px-6 justify-center items-center uppercase text-[35px] font-bold rounded-xl bg-[#9f21e3] text-white">
+      <div className="h-full w-full bg-white overflow-auto pb-[150px]  text-stone-700 rounded-l-xl">
+        <div className=" flex max-w-[1100px] mx-auto flex-col space-y-3">
+          <div className="flex mx-3 relative mt-3 p-2 px-4 justify-center items-center uppercase text-[27px] font-bold rounded-xl bg-[#9f21e3] text-white">
             <span>Dashboard</span>
             <select
               value={count}
               onChange={(event) => selectChange(event)}
-              className="bg-white absolute top-[50%] -translate-y-[50%] right-[15px] rounded-lg p-1 px-3 text-lg text-stone-500 font-normal"
+              className="bg-white absolute top-[50%] -translate-y-[50%] right-[15px] rounded-lg p-1 px-2 text-sm text-stone-500 font-normal"
               name=""
               id=""
             >
@@ -115,7 +115,7 @@ export default function DashBoard() {
               <option value="5">All Time</option>
             </select>
           </div>
-          <div className="flex space-x-4 mx-4 mt-4">
+          <div className="flex space-x-3 mx-3 mt-3">
             <WidgetSquare />
             <ExpensePattern />
           </div>
@@ -125,7 +125,7 @@ export default function DashBoard() {
           <CategoricalHeirarchy />
         </div>
 
-        <div className="flex flex-col mt-[200px] items-center 2xl:hidden">
+        {/* <div className="flex flex-col mt-[200px] items-center 2xl:hidden">
           <div className="relative">
             <img className="w-[200px] opacity-75" src={responsive} alt="" />
             <img
@@ -137,7 +137,7 @@ export default function DashBoard() {
           <p className="mx-auto px-16 mt-8 text-center text-sm sm:text-base">
             Please switch to a screen size bigger than 1500px
           </p>
-        </div>
+        </div> */}
       </div>
     </>
   );

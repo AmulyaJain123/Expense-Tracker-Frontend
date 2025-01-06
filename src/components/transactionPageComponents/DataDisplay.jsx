@@ -21,17 +21,25 @@ export default function DataDisplay({ data }) {
     arr.sort((a, b) => {
       if (sorter.field === "name") {
         if (sorter.order === "decreasing") {
-          if (a.transactionName === b.transactionName) {
+          if (
+            a.transactionName.toLowerCase() === b.transactionName.toLowerCase()
+          ) {
             return 0;
-          } else if (a.transactionName > b.transactionName) {
+          } else if (
+            a.transactionName.toLowerCase() > b.transactionName.toLowerCase()
+          ) {
             return -1;
           } else {
             return 1;
           }
         } else {
-          if (a.transactionName === b.transactionName) {
+          if (
+            a.transactionName.toLowerCase() === b.transactionName.toLowerCase()
+          ) {
             return 0;
-          } else if (a.transactionName > b.transactionName) {
+          } else if (
+            a.transactionName.toLowerCase() > b.transactionName.toLowerCase()
+          ) {
             return 1;
           } else {
             return -1;
@@ -40,17 +48,17 @@ export default function DataDisplay({ data }) {
       }
       if (sorter.field === "to") {
         if (sorter.order === "decreasing") {
-          if (a.to === b.to) {
+          if (a.to.toLowerCase() === b.to.toLowerCase()) {
             return 0;
-          } else if (a.to > b.to) {
+          } else if (a.to.toLowerCase() > b.to.toLowerCase()) {
             return -1;
           } else {
             return 1;
           }
         } else {
-          if (a.to === b.to) {
+          if (a.to.toLowerCase() === b.to.toLowerCase()) {
             return 0;
-          } else if (a.to > b.to) {
+          } else if (a.to.toLowerCase() > b.to.toLowerCase()) {
             return 1;
           } else {
             return -1;
@@ -59,17 +67,17 @@ export default function DataDisplay({ data }) {
       }
       if (sorter.field === "from") {
         if (sorter.order === "decreasing") {
-          if (a.from === b.from) {
+          if (a.from.toLowerCase() === b.from.toLowerCase()) {
             return 0;
-          } else if (a.from > b.from) {
+          } else if (a.from.toLowerCase() > b.from.toLowerCase()) {
             return -1;
           } else {
             return 1;
           }
         } else {
-          if (a.from === b.from) {
+          if (a.from.toLowerCase() === b.from.toLowerCase()) {
             return 0;
-          } else if (a.from > b.from) {
+          } else if (a.from.toLowerCase() > b.from.toLowerCase()) {
             return 1;
           } else {
             return -1;
@@ -269,10 +277,10 @@ export default function DataDisplay({ data }) {
 
   return (
     <>
-      <header className="flex border-b-[2px] border-stone-500 pb-2 mr-4 space-x-3 flex-grow text-md font-semibold text-stone-500 p-1 px-4">
+      <header className="flex border-b-[1.5px] border-stone-500 pb-2 mr-3 space-x-3 flex-grow text-xs font-semibold text-stone-500 p-1 px-3">
         <div className="flex-[0.14] flex space-x-3  ">
           <span className="flex justify-center items-center">Name</span>
-          <div className="flex flex-col pl-1">
+          <div className="flex flex-col justify-center pl-0">
             <button
               onClick={() => setSorter({ field: "name", order: "increasing" })}
               className=""
@@ -282,7 +290,7 @@ export default function DataDisplay({ data }) {
                   sorter.field === "name" && sorter.order === "increasing"
                     ? "fi fi-sr-sort-down"
                     : "fi fi-rr-sort-down"
-                } rotate-180 text-base flex justify-center items-center`}
+                } rotate-180 text-xs flex justify-center items-center`}
               ></i>
             </button>
             <button
@@ -294,14 +302,14 @@ export default function DataDisplay({ data }) {
                   sorter.field === "name" && sorter.order === "decreasing"
                     ? "fi fi-sr-sort-down"
                     : "fi fi-rr-sort-down"
-                }  text-base flex justify-center items-center`}
+                }  text-xs flex justify-center items-center`}
               ></i>
             </button>
           </div>
         </div>
         <div className="flex-[0.14]  flex space-x-3 ">
           <span className="flex justify-center items-center">From</span>
-          <div className="flex flex-col pl-1">
+          <div className="flex flex-col justify-center pl-0">
             <button
               onClick={() => setSorter({ field: "from", order: "increasing" })}
               className=""
@@ -311,7 +319,7 @@ export default function DataDisplay({ data }) {
                   sorter.field === "from" && sorter.order === "increasing"
                     ? "fi fi-sr-sort-down"
                     : "fi fi-rr-sort-down"
-                } rotate-180 text-base flex justify-center items-center`}
+                } rotate-180 text-xs flex justify-center items-center`}
               ></i>
             </button>
             <button
@@ -323,14 +331,14 @@ export default function DataDisplay({ data }) {
                   sorter.field === "from" && sorter.order === "decreasing"
                     ? "fi fi-sr-sort-down"
                     : "fi fi-rr-sort-down"
-                }  text-base flex justify-center items-center`}
+                }  text-xs flex justify-center items-center`}
               ></i>
             </button>
           </div>
         </div>
         <div className="flex-[0.12]  flex space-x-3 ">
           <span className="flex justify-center items-center">Amt</span>
-          <div className="flex flex-col pl-1">
+          <div className="flex flex-col justify-center pl-0">
             <button
               onClick={() =>
                 setSorter({ field: "amount", order: "increasing" })
@@ -342,7 +350,7 @@ export default function DataDisplay({ data }) {
                   sorter.field === "amount" && sorter.order === "increasing"
                     ? "fi fi-sr-sort-down"
                     : "fi fi-rr-sort-down"
-                } rotate-180 text-base flex justify-center items-center`}
+                } rotate-180 text-xs flex justify-center items-center`}
               ></i>
             </button>
             <button
@@ -356,14 +364,14 @@ export default function DataDisplay({ data }) {
                   sorter.field === "amount" && sorter.order === "decreasing"
                     ? "fi fi-sr-sort-down"
                     : "fi fi-rr-sort-down"
-                }  text-base flex justify-center items-center`}
+                }  text-xs flex justify-center items-center`}
               ></i>
             </button>
           </div>
         </div>
         <div className=" flex-[0.14] flex space-x-3 ">
           <span className="flex justify-center items-center">To</span>
-          <div className="flex flex-col pl-1">
+          <div className="flex flex-col justify-center pl-0">
             <button
               onClick={() => setSorter({ field: "to", order: "increasing" })}
               className=""
@@ -373,7 +381,7 @@ export default function DataDisplay({ data }) {
                   sorter.field === "to" && sorter.order === "increasing"
                     ? "fi fi-sr-sort-down"
                     : "fi fi-rr-sort-down"
-                } rotate-180 text-base flex justify-center items-center`}
+                } rotate-180 text-xs flex justify-center items-center`}
               ></i>
             </button>
             <button
@@ -385,14 +393,14 @@ export default function DataDisplay({ data }) {
                   sorter.field === "to" && sorter.order === "decreasing"
                     ? "fi fi-sr-sort-down"
                     : "fi fi-rr-sort-down"
-                }  text-base flex justify-center items-center`}
+                }  text-xs flex justify-center items-center`}
               ></i>
             </button>
           </div>
         </div>
         <div className=" flex-[0.13] flex space-x-3 ">
           <span className="flex justify-center items-center">Date</span>
-          <div className="flex flex-col pl-1">
+          <div className="flex flex-col justify-center pl-0">
             <button
               onClick={() => setSorter({ field: "date", order: "increasing" })}
               className=""
@@ -402,7 +410,7 @@ export default function DataDisplay({ data }) {
                   sorter.field === "date" && sorter.order === "increasing"
                     ? "fi fi-sr-sort-down"
                     : "fi fi-rr-sort-down"
-                } rotate-180 text-base flex justify-center items-center`}
+                } rotate-180 text-xs flex justify-center items-center`}
               ></i>
             </button>
             <button
@@ -414,14 +422,14 @@ export default function DataDisplay({ data }) {
                   sorter.field === "date" && sorter.order === "decreasing"
                     ? "fi fi-sr-sort-down"
                     : "fi fi-rr-sort-down"
-                }  text-base flex justify-center items-center`}
+                }  text-xs flex justify-center items-center`}
               ></i>
             </button>
           </div>
         </div>
         <div className=" flex-[0.13] flex space-x-3 ">
           <span className="flex justify-center items-center">Created</span>
-          <div className="flex flex-col pl-1">
+          <div className="flex flex-col justify-center pl-0">
             <button
               onClick={() =>
                 setSorter({ field: "created", order: "increasing" })
@@ -433,7 +441,7 @@ export default function DataDisplay({ data }) {
                   sorter.field === "created" && sorter.order === "increasing"
                     ? "fi fi-sr-sort-down"
                     : "fi fi-rr-sort-down"
-                } rotate-180 text-base flex justify-center items-center`}
+                } rotate-180 text-xs flex justify-center items-center`}
               ></i>
             </button>
             <button
@@ -447,7 +455,7 @@ export default function DataDisplay({ data }) {
                   sorter.field === "created" && sorter.order === "decreasing"
                     ? "fi fi-sr-sort-down"
                     : "fi fi-rr-sort-down"
-                }  text-base flex justify-center items-center`}
+                }  text-xs flex justify-center items-center`}
               ></i>
             </button>
           </div>
@@ -455,17 +463,17 @@ export default function DataDisplay({ data }) {
         <div className="flex-[0.22]  flex space-x-3 ">
           <span className="flex justify-center items-center">Category</span>
         </div>
-        <div className="w-[30px] flex space-x-3">Type</div>
+        <div className="w-[30px] flex items-center space-x-3">Type</div>
       </header>
-      <div className="flex flex-col pt-4 space-y-3 h-[700px] overflow-auto customScrollThin pr-2">
+      <div className="flex flex-col pt-3 space-y-2 h-[500px] overflow-auto customScrollThin pr-[6px]">
         {sortedData.length === 0 ? (
           <div className="flex flex-col mt-24 items-center space-y-4">
             <img
               src={empty}
-              className="h-[150px] w-[150px] flex justify-center items-center"
+              className="h-[100px] w-[100px] flex justify-center items-center"
               alt=""
             />
-            <p className="text-center text-stone-500 mt-16 text-lg font-medium">
+            <p className="text-center text-stone-500 mt-16 text-[13px] font-medium">
               No Transactions Found
             </p>
           </div>
@@ -493,7 +501,7 @@ export default function DataDisplay({ data }) {
                 <div
                   key={ind}
                   onClick={() => navigate(`view/${i.transactionId}`)}
-                  className="flex hover:opacity-60 cursor-pointer rounded-sm text-sm border-b-2 border-[#adb5bd] bg-[#f8f9fa] text-black space-x-3 p-1 py-2 px-4"
+                  className="flex hover:opacity-60 cursor-pointer rounded-sm text-[11px] border-b-[1.5px] border-[#adb5bd] bg-[#f8f9fa] text-black space-x-[10px] p-1 py-[6px] px-3"
                 >
                   <span className="flex-[0.14]  ">
                     {transactionName.length > 15

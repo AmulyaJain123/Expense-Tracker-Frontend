@@ -11,12 +11,12 @@ export default function FriendsPage() {
         <meta name="description" content="Friends" />
       </Helmet>
       <div className="h-full w-full bg-white pb-[100px] overflow-auto text-stone-700 rounded-l-xl rounded-r-xl lg:rounded-r-none">
-        <div className="max-w-[1500px] mx-auto">
-          <h1 className="text-center text-[50px] font-extrabold mt-12">
+        <div className="max-w-[1200px] mx-auto">
+          <h1 className="text-center text-[35px] font-extrabold mt-8">
             My Friends
           </h1>
-          <div className="flex flex-col mt-24 mx-16">
-            <div className="flex min-h-[1000px]">
+          <div className="flex flex-col mt-16 mx-12">
+            <div className="flex min-h">
               <Inbox />
             </div>
           </div>

@@ -46,35 +46,37 @@ export default function Friends() {
 
   return (
     <div className="w-[450px] bg-slate-100 flex flex-col rounded-xl flex-grow">
-      <div className="text-3xl font-bold uppercase p-2 py-4 rounded-xl bg-white text-center">
+      <div className="text-2xl font-bold uppercase p-2 py-3 rounded-xl bg-white text-center">
         <span>Friends</span>
       </div>
-      <div className="relative flex-grow">
+      <div className="relative flex flex-col p-3 space-y-2 rounded-xl mt-3 bg-white flex-grow">
+        {/* <div className="flex justify-end"> */}
         <button
           onClick={fetchFriends}
           disabled={loading}
-          className="disabled:pointer-events-none disabled:opacity-50 absolute top-5 p-2 rounded-full hover:bg-slate-100 duration-500  right-2"
+          className="disabled:pointer-events-none disabled:opacity-50 absolute top-[-56px] p-2 bg-white rounded-full hover:bg-slate-100 duration-500 z-[1]  right-0 translate-x-[-50%] "
         >
           <img
             src={reload}
-            className="w-[20px] h-[20px] flex justify-center items-center"
+            className="w-[15px] h-[15px] flex justify-center items-center"
             alt=""
           />
         </button>
-        <div className="p-6 py-10 flex h-[845px] overflow-auto customScrollThin flex-col space-y-6 rounded-xl bg-white mt-4 ">
+        {/* </div> */}
+        <div className="p-4 py-6 pt-2 flex h-[500px] overflow-auto customScrollThin flex-col space-y-4  mt-3 ">
           {loading ? (
             <div className="flex justify-center items-center mt-20 ">
               <img
                 src={load}
-                className="w-[40px] h-[40px] flex justify-center items-center"
+                className="w-[30px] h-[30px] flex justify-center items-center"
                 alt=""
               />
             </div>
           ) : error ? (
-            <div className="flex flex-col justify-center items-center mt-24 ">
+            <div className="flex flex-col justify-center text-sm items-center mt-24 ">
               <img
                 src={errorIcon}
-                className="w-[50px] h-[50px] mb-4 flex justify-center items-center"
+                className="w-[40px] h-[40px] mb-4 flex justify-center items-center"
                 alt=""
               />
               <span>Something went wrong.</span>
@@ -89,10 +91,10 @@ export default function Friends() {
                   })}
                 </>
               ) : (
-                <div className="flex justify-center flex-col text-slate-500 space-y-6 items-center mt-32">
+                <div className="flex justify-center text-sm flex-col text-slate-500 space-y-4 items-center mt-32">
                   <img
                     src={noEntries}
-                    className="w-[100px] h-[100px] flex justify-center items-center"
+                    className="w-[80px] h-[80px] flex justify-center items-center"
                     alt=""
                   />
                   <span>No Friends Found</span>

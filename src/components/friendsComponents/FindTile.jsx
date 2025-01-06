@@ -48,70 +48,70 @@ export default function FindTile({ i }) {
 
   return (
     <>
-      <div className="flex group duration-500 rounded-full justify-between p-2 space-x-6 bg-slate-200">
-        <div className="space-x-12 flex ">
+      <div className="flex group duration-500 rounded-full justify-between p-1 space-x-6 bg-slate-200">
+        <div className="space-x-8 flex text-xs ">
           <Link to={`/profile/public/${i.userId}`}>
             <img
               src={i.profilePic || user}
-              className="w-[60px] h-[60px] rounded-full"
+              className="w-[50px] h-[50px] rounded-full"
               alt=""
             />
           </Link>
           <div className="flex flex-col justify-center">
             <span className="italic">Name</span>
-            <span className="w-[250px] bg-slate-100 px-2 rounded-md flex items-center">
-              <span className="flex max-w-[300px] text-lg overflow-clip flex-grow font-medium items-center">
-                <OnlyXChars x={30} text={i.username} />
+            <span className="w-[200px] bg-slate-100 px-2 rounded-[4px] flex items-center">
+              <span className="flex text-sm overflow-clip flex-grow font-medium items-center">
+                <OnlyXChars x={20} text={i.username} />
               </span>
             </span>
           </div>
 
           <div className="flex flex-col justify-center">
             <span className="italic">User ID</span>
-            <span className="flex bg-slate-100 px-2 rounded-md w-[150px] items-center font-medium text-lg">
+            <span className="flex bg-slate-100 px-2 rounded-[4px] w-[140px] items-center font-medium text-sm">
               <span className="font-semibold mr-2">#</span>{" "}
               <span>{i.userId}</span>
             </span>
           </div>
 
-          <div className="flex flex-col w-[140px] justify-center">
+          <div className="flex flex-col w-[120px] justify-center">
             <span className="italic">Status</span>
             <span
               style={{
                 color: i.status === "User" ? "blue" : "green",
               }}
-              className="flex bg-slate-100 px-2 rounded-md items-center font-medium text-lg"
+              className="flex bg-slate-100 px-2 rounded-[4px] items-center font-medium text-sm"
             >
               {i.status}
             </span>
           </div>
         </div>
 
-        <div className="flex items-center space-x-4">
+        <div className="flex items-center space-x-3">
           {error ? (
-            <div className="text-red-500 font-medium flex space-x-2 items-center">
-              <img src={exclamation} className="w-[17px] h-[17px]" alt="" />
+            <div className="text-red-500 font-medium flex space-x-[6px] text-xs items-center">
+              <img src={exclamation} className="w-[13px] h-[13px]" alt="" />
               <span className="">{error}</span>
             </div>
           ) : null}
           <div className="flex items-center pr-2">
             {loading ? (
-              <div className="p-3">
+              <div className="p-2">
                 <img
                   src={load}
-                  className="flex justify-center items-center w-[30px] h-[30px]"
+                  className="flex justify-center items-center w-[25px] h-[25px]"
                   alt=""
                 />
               </div>
             ) : i.status === "User" && sent ? (
               <>
-                <span className="capitalize flex items-center text-lg mr-4 font-medium">
+                <span className="capitalize flex items-center text-sm mr-3 font-medium">
                   {sent}
                 </span>
-                <div className="p-3">
+                <div className="p-2">
                   <img
                     src={waiting}
-                    className="flex justify-center items-center w-[25px] h-[25px]"
+                    className="flex justify-center items-center w-[20px] h-[20px]"
                     alt=""
                   />
                 </div>
@@ -119,11 +119,11 @@ export default function FindTile({ i }) {
             ) : i.status === "User" && !sent ? (
               <button
                 onClick={sendRequest}
-                className="rounded-2xl p-3 hover:bg-slate-100 duration-500"
+                className="rounded-xl p-2 hover:bg-slate-100 duration-500"
               >
                 <img
                   src={addFriend}
-                  className="flex justify-center items-center w-[25px] h-[25px]"
+                  className="flex justify-center items-center w-[20px] h-[20px]"
                   alt=""
                 />
               </button>

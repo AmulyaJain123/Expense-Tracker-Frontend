@@ -8,15 +8,15 @@ const Button = styled.button`
   position: absolute;
   bottom: 2rem; /* bottom-8 */
   right: 2rem; /* right-8 */
-  padding-left: 1rem; /* px-4 */
-  padding-right: 1rem; /* px-4 */
-  padding-top: 0.5rem; /* py-2 */
-  padding-bottom: 0.5rem; /* py-2 */
-  border-radius: 0.75rem; /* rounded-xl */
-  font-size: 1.125rem; /* text-lg */
+  padding-left: 0.8rem; /* px-4 */
+  padding-right: 0.8rem; /* px-4 */
+  padding-top: 0.4rem; /* py-2 */
+  padding-bottom: 0.4rem; /* py-2 */
+  border-radius: 0.6rem; /* rounded-xl */
+  font-size: 0.9rem; /* text-lg */
   font-weight: 800; /* font-semibold */
   box-shadow: 0 10px 15px rgba(0, 0, 0, 0.1); /* shadow-xl */
-  border-width: 2px; /* border-[3px] */
+  border-width: 1.5px; /* border-[3px] */
   border-color: #38a3a5; /* border-[#2dc653] */
   background-color: #38a3a5; /* bg-[#2dc653] */
   color: #fff; /* text-[#f0fff1] */
@@ -102,14 +102,14 @@ export default function AmountFilter() {
 
   return (
     <>
-      <div className="flex relative flex-col flex-grow bg-[#fefae0] mr-4 rounded-r-xl p-4 px-16">
-        <div className="font-semibold flex flex-col mt-[8px] mb-[40px] text-xl text-black text-center"></div>
-        <div className="text-xl font-semibold mx-auto mb-[20px] uppercase">
+      <div className="flex relative flex-col flex-grow bg-[#fefae0] mr-3 rounded-r-lg p-4 px-16">
+        <div className="font-semibold flex flex-col mt-[8px] mb-[25px] text-xl text-black text-center"></div>
+        <div className="text-md font-semibold mx-auto mb-[10px] uppercase">
           add a constraint
         </div>
-        <div className="flex space-x-6 my-[30px] justify-center">
+        <div className="flex space-x-4  text-xs my-[20px] mb-[20px] justify-center">
           <select
-            className=" px-3 rounded-md  bg-white text-base"
+            className=" px-2 rounded-md  bg-white text-xs"
             name="constraint"
             defaultValue={"=="}
             id=""
@@ -122,7 +122,7 @@ export default function AmountFilter() {
             <option value=">=">More than or Equal to</option>
           </select>
           <input
-            className="  disableScroll px-4  rounded-md bg-white "
+            className="focus:outline-none  disableScroll px-4 pr-2 rounded-md bg-white "
             min={"0"}
             ref={inputRef}
             type="number"
@@ -133,33 +133,33 @@ export default function AmountFilter() {
           <button
             onClick={addClick}
             ref={addRef}
-            className="rounded-lg p-2 py-1 px-4 text-center bg-black font-semibold text-lg text-white duration-500 border-2 border-black hover:bg-white hover:text-black"
+            className="rounded-md p-[6px] py-1 px-3 text-center bg-black font-semibold text-sm text-white duration-500 border-[1.5px] border-black hover:bg-white hover:text-black"
           >
             ADD
           </button>
         </div>
 
-        <div className="flex h-[30px] mx-[70px] ">
+        <div className="flex h-[20px] mx-[50px]">
           {amountError != null ? (
-            <div className="min-h-[30px] my-2 py-1 flex flex-grow text-sm items-center px-3 rounded-md mx-4 bg-red-300 text-black font-medium">
-              <i className="fi fi-rs-exclamation mr-4 text-lg flex justify-center items-center"></i>
+            <div className="min-h-[25px] my-[6px] py-1 flex flex-grow text-[11px] items-center px-2 rounded-md mx-3 bg-red-300 text-black font-medium">
+              <i className="fi fi-rs-exclamation mr-3 text-[14px] flex justify-center items-center"></i>
               <span>{amountError}</span>
             </div>
           ) : null}
         </div>
 
-        <div className="flex  mt-8 border-t-2 p-4 border-black mx-16">
-          <div className="flex flex-grow flex-wrap max-h-[250px] justify-center overflow-auto customScrollThin px-6 gap-2 mt-4">
+        <div className="flex mt-6 border-t-[1.5px] p-4 border-black mx-8">
+          <div className="flex text-xs flex-grow flex-wrap max-h-[200px] justify-center overflow-auto customScrollThin px-4 gap-[6px] mt-3">
             {constraints.length != 0 ? (
               constraints.map((name, index) => {
                 return (
                   <span
                     key={Math.random()}
-                    className=" px-4 pr-2 h-fit flex items-center space-x-3 rounded-lg text-white bg-[#9d4edd]"
+                    className=" px-3 pr-[6px] py-[5px] h-fit flex items-center space-x-2 rounded-md text-white bg-[#9d4edd]"
                   >
                     <span>{name}</span>
                     <button onClick={() => removeClick(index)}>
-                      <i className="fi fi-ss-cross-circle text-xl flex h-[35px] justify-center items-center"></i>
+                      <i className="fi fi-ss-cross-circle text-[16px] flex  justify-center items-center"></i>
                     </button>
                   </span>
                 );

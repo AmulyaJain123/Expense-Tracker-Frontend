@@ -96,37 +96,37 @@ export default function ProfilePic({ data }) {
   return (
     <>
       <div className="    ">
-        <div className="bg-neutral-100 relative p-8 rounded-full">
+        <div className="bg-neutral-100 relative p-5 rounded-full">
           <div className={profilePicUploadLoading ? "blur-sm" : ""}>
             {data.profilePic && !profilePicUrl ? (
               <img
                 src={data.profilePic}
                 onLoad={() => setProfilePicUploadLoading(false)}
-                className="w-[250px] h-[250px] rounded-full"
+                className="w-[190px] h-[190px] rounded-full"
                 alt=""
               />
             ) : profilePicUrl === null ? (
               <img
                 src={user}
                 onLoad={() => setProfilePicUploadLoading(false)}
-                className="w-[250px] h-[250px] blur-sm rounded-full"
+                className="w-[190px] h-[190px] blur-sm rounded-full"
                 alt=""
               />
             ) : (
               <img
                 src={profilePicUrl}
                 onLoad={() => setProfilePicUploadLoading(false)}
-                className="w-[250px] h-[250px] object-cover object-center rounded-full"
+                className="w-[190px] h-[190px] object-cover object-center rounded-full"
                 alt=""
               />
             )}
           </div>
           {profilePicUploadLoading === true ? (
             <>
-              <div className="absolute top-[50%] p-2 bg-neutral-100 right-[50%] rounded-full translate-x-[50%] translate-y-[-50%]">
+              <div className="absolute top-[50%] p-1 bg-neutral-100 right-[50%] rounded-full translate-x-[50%] translate-y-[-50%]">
                 <img
                   src={load}
-                  className="w-[40px] h-[40px]  flex justify-center items-center"
+                  className="w-[30px] h-[30px]  flex justify-center items-center"
                   alt=""
                 />
               </div>
@@ -134,7 +134,7 @@ export default function ProfilePic({ data }) {
           ) : null}
           {profilePicUrl ? (
             <>
-              <div className="absolute top-[-10px] flex space-x-6 right-[-80px] translate-y-[-100%]">
+              <div className="absolute top-[-10px] flex space-x-4 right-[-40px] translate-y-[-100%]">
                 <button
                   disabled={profilePicUploadLoading}
                   className="disabled:pointer-events-none disabled:opacity-50"
@@ -142,7 +142,7 @@ export default function ProfilePic({ data }) {
                 >
                   <img
                     src={cross}
-                    className="w-[25px] hover:opacity-50 opacity-100 h-[25px] flex justify-center items-center"
+                    className="w-[20px] hover:opacity-50 opacity-100 h-[20px] flex justify-center items-center"
                     alt=""
                   />
                 </button>
@@ -153,7 +153,7 @@ export default function ProfilePic({ data }) {
                 >
                   <img
                     src={tick}
-                    className="w-[25px] hover:opacity-50 opacity-100 h-[25px] flex justify-center items-center"
+                    className="w-[20px] hover:opacity-50 opacity-100 h-[20px] flex justify-center items-center"
                     alt=""
                   />
                 </button>
@@ -163,11 +163,11 @@ export default function ProfilePic({ data }) {
             <button
               onClick={profilePicClick}
               disabled={profilePicUploadLoading}
-              className="absolute bottom-[10px] disabled:pointer-events-none disabled:opacity-50 scale-90 hover:scale-100 border-neutral-300 border-2 duration-700 text-xl flex justify-center items-center p-3 h-[50px] bg-[#fff] rounded-full font-extrabold text-white tracking-widest right-[30px]"
+              className="absolute bottom-[10px] disabled:pointer-events-none disabled:opacity-50 scale-90 hover:scale-100 border-neutral-300 border-[1.5px] duration-700 text-base flex justify-center items-center p-2  bg-[#fff] rounded-full font-extrabold text-white tracking-wider right-[30px]"
             >
               <img
                 src={pencil}
-                className="w-[25px] h-[25px] flex justify-center items-center"
+                className="w-[20px] h-[20px] flex justify-center items-center"
                 alt=""
               />
             </button>
@@ -175,7 +175,7 @@ export default function ProfilePic({ data }) {
             <button
               onClick={profilePicClick}
               disabled={profilePicUploadLoading}
-              className="absolute bottom-[50px] scale-90 disabled:opacity-50 disabled:pointer-events-none hover:scale-100 duration-700 text-xl flex  justify-center items-center px-5 h-[50px] bg-[#9F21E3] rounded-full font-extrabold text-white tracking-widest right-[50%] translate-x-[50%] "
+              className="absolute bottom-[40px] scale-90 disabled:opacity-50 disabled:pointer-events-none hover:scale-100 duration-700 text-base flex  justify-center items-center px-4 h-[40px] bg-[#9F21E3] rounded-full font-extrabold text-white tracking-wider right-[50%] translate-x-[50%] "
             >
               UPLOAD
             </button>

@@ -45,63 +45,63 @@ export default function FriendTile({ i, removeFriend }) {
 
   return (
     <>
-      <div className="flex group duration-500 justify-between rounded-full p-2 space-x-4 bg-slate-200">
-        <div className="space-x-12 flex ">
+      <div className="flex group duration-500 justify-between rounded-full p-1 space-x-3 bg-slate-200">
+        <div className="space-x-6 flex ">
           <Link to={`/profile/public/${i.userId}`}>
             <img
               src={i.profilePic || user}
-              className="w-[60px] h-[60px] rounded-full"
+              className="w-[45px] h-[45px] rounded-full"
               alt=""
             />
           </Link>
           <div className="flex flex-col justify-center">
-            <span className="italic">Name</span>
-            <span className="w-[250px] bg-slate-100 px-2 rounded-md flex items-center">
-              <span className="flex max-w-[300px] text-lg overflow-clip flex-grow font-medium items-center">
-                <OnlyXChars x={30} text={i.username} />
+            <span className="italic text-xs">Name</span>
+            <span className="w-[200px] bg-slate-100 px-2 rounded-[4px] flex items-center">
+              <span className="flex  text-sm overflow-clip flex-grow font-medium items-center">
+                <OnlyXChars x={20} text={i.username} />
               </span>
             </span>
           </div>
 
-          <div className="flex flex-col w-[180px] justify-center">
-            <span className="italic">User ID</span>
-            <span className="flex bg-slate-100 px-2 rounded-md items-center font-medium text-lg">
+          <div className="flex flex-col w-[130px] justify-center">
+            <span className="italic text-xs">User ID</span>
+            <span className="flex bg-slate-100 px-2 rounded-[4px] items-center font-medium text-sm">
               <span className="font-semibold mr-2">#</span>{" "}
               <span>{i.userId}</span>
             </span>
           </div>
 
-          <div className="flex flex-col w-[200px] justify-center">
-            <span className="italic">Became Friends On</span>
-            <span className="flex bg-slate-100 px-2 rounded-md items-center font-medium text-lg">
+          <div className="flex flex-col w-[150px] justify-center">
+            <span className="italic text-xs">Became Friends On</span>
+            <span className="flex bg-slate-100 px-2 rounded-[4px] items-center font-medium text-sm">
               {new Date(i.friendsAt).toDateString()}
             </span>
           </div>
         </div>
-        <div className="flex items-center pr-4">
+        <div className="flex items-center pr-2">
           {error ? (
-            <div className="text-red-500 font-medium flex space-x-2 items-center">
-              <img src={exclamation} className="w-[19px] h-[19px]" alt="" />
+            <div className="text-red-500 text-xs font-medium flex space-x-2 items-center">
+              <img src={exclamation} className="w-[14px] h-[14px]" alt="" />
               <span>{error}</span>
             </div>
           ) : null}
           {loading ? (
-            <div className="p-3">
+            <div className="p-2">
               <img
                 src={load}
-                className="flex justify-center items-center w-[30px] h-[30px]"
+                className="flex justify-center items-center w-[20px] h-[20px]"
                 alt=""
               />
             </div>
           ) : null}
-          <div className=" ml-4">
+          <div className=" ml-3">
             {showStage === 0 ? (
-              <div className="flex items-center  duration-500 space-x-6 pr-2 ">
+              <div className="flex items-center  duration-500 space-x-3 pr-2 ">
                 <Link to={`/profile/public/${i.userId}`}>
-                  <button className="h-fit m p-2 rounded-xl duration-500 hover:bg-slate-100">
+                  <button className="h-fit m p-[6px] rounded-lg duration-500 hover:bg-slate-100">
                     <img
                       src={eye}
-                      className="w-[25px] h-[25px] flex justify-center items-center"
+                      className="w-[20px] h-[20px] flex justify-center items-center"
                       alt=""
                     />
                   </button>
@@ -109,28 +109,28 @@ export default function FriendTile({ i, removeFriend }) {
                 <button
                   onClick={() => setShowStage(1)}
                   disabled={loading}
-                  className="h-fit disabled:pointer-events-none disabled:opacity-50 p-2 rounded-xl duration-500 hover:bg-slate-100"
+                  className="h-fit disabled:pointer-events-none disabled:opacity-50 p-[6px] rounded-lg duration-500 hover:bg-slate-100"
                 >
                   <img
                     src={remove}
-                    className="w-[25px] h-[25px] flex justify-center items-center"
+                    className="w-[20px] h-[20px] flex justify-center items-center"
                     alt=""
                   />
                 </button>
               </div>
             ) : (
-              <div className="flex items-center space-x-4 pr-2 ">
+              <div className="flex text-xs items-center space-x-4 pr-2 ">
                 <span>Are You Sure?</span>
-                <div className="flex space-x-3 items-center">
+                <div className="flex space-x-2 items-center">
                   <button
                     onClick={removeClick}
-                    className="rounded-md bg-red-500 px-2 text-white border-2 border-red-500 duration-500 hover:text-red-500 hover:bg-white"
+                    className="rounded-md bg-red-500 px-[6px] text-white border-[1.5px] border-red-500 duration-500 hover:text-red-500 hover:bg-white"
                   >
                     Yes
                   </button>
                   <button
                     onClick={() => setShowStage(0)}
-                    className="rounded-md bg-blue-500 px-2 text-white border-2 border-blue-500 duration-500 hover:text-blue-500 hover:bg-white"
+                    className="rounded-md bg-blue-500 px-[6px] text-white border-[1.5px] border-blue-500 duration-500 hover:text-blue-500 hover:bg-white"
                   >
                     No
                   </button>

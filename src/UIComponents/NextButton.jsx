@@ -1,16 +1,16 @@
 import styled from "styled-components";
 
 export const Button = styled.button`
-  font-size: 1.25rem; /* text-xl */
-  padding: 0.75rem; /* p-3 */
-  padding-left: 1.25rem; /* px-5 */
-  padding-right: 1.25rem; /* px-5 */
-  border-width: 2px; /* border-2 */
+  font-size: 1rem; /* text-xl */
+  padding: 0.5rem; /* p-3 */
+  padding-left: 1.1rem; /* px-5 */
+  padding-right: 1.1rem; /* px-5 */
+  border-width: 1.5px; /* border-2 */
   border-color: #9d4edd; /* border-[#9d4edd] */
   display: flex; /* flex */
   align-items: flex-end; /* flex-end */
   font-weight: bold; /* font-bold */
-  border-radius: 0.75rem; /* rounded-xl */
+  border-radius: 0.6rem; /* rounded-xl */
   background-color: #9d4edd; /* bg-[#9d4edd] */
   color: #f7ebfd; /* text-[#f7ebfd] */
   width: fit-content; /* w-fit */

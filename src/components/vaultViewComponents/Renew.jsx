@@ -80,7 +80,7 @@ export default function Renew({ earlyExpDate, warId }) {
       {modalOpen ? (
         <>
           <div className="fixed top-0 right-0 left-0 bottom-0 bg-black/40 z-10"></div>
-          <div className="rounded-2xl fixed top-[50%] translate-y-[-50%] right-[50%] z-10 translate-x-[50%] translate scale-[70%] md:scale-[80%] xl:scale-100">
+          <div className="rounded-2xl fixed top-[50%] translate-y-[-50%] right-[50%] z-10 translate-x-[50%] translate scale-75">
             {modalOpen === 1 ? (
               <div className="rounded-xl sm:w-[500px] bg-stone-100">
                 <h1 className="p-8  text-center text-lg sm:text-xl font-medium">
@@ -91,7 +91,7 @@ export default function Renew({ earlyExpDate, warId }) {
                     <div className="text-xl relative font-semibold flex justify-center">
                       Expiration Date
                     </div>
-                    <div className="p-2 px-4 relative flex flex-grow w-[320px] justify-between mx-4 mt-3 bg-slate-200">
+                    <div className="p-2 px-4 relative flex flex-grow w-[320px] justify-between mx-3 mt-3 bg-slate-200">
                       <input
                         ref={expDateRef}
                         value={expDate}
@@ -109,8 +109,15 @@ export default function Renew({ earlyExpDate, warId }) {
                       </span>
                     </div>
 
-                    <div className="max-w-[350px] h-[50px]">
-                      <ErrorElement error={expDateError} />
+                    <div className="max-w-[343px] pleaseNullifyTheScale h-[50px]">
+                      {expDateError != null ? (
+                        <div className="min-h-[20px] my-[6px] py-1 flex text-[14px] items-center px-3 rounded-sm mx-3 bg-red-200 text-black font-medium">
+                          <i className="fi fi-rs-exclamation mr-3 text-[18px] flex justify-center items-center"></i>
+                          <span className="pt-[0.5px]">{expDateError}</span>
+                        </div>
+                      ) : (
+                        <div className="h-[25px] my-[6px] flex items-center px-3 rounded-sm mx-3 text-black font-medium"></div>
+                      )}
                     </div>
                   </div>
                 </div>

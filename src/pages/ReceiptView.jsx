@@ -74,53 +74,58 @@ export default function ReceiptView() {
       {modalOpen ? (
         <>
           <div className="fixed top-0 right-0 left-0 bottom-0 bg-black/40 z-10"></div>
-          <div className="rounded-2xl fixed top-[50%] translate-y-[-50%] right-[50%] z-10 translate-x-[50%] translate scale-[70%] md:scale-[80%] xl:scale-100">
+          <div className="rounded-2xl fixed top-[50%] translate-y-[-50%] right-[50%] z-10 translate-x-[50%] translate scale-75">
             {modalOpen === 1 ? (
               <div className="rounded-xl sm:w-[500px] bg-stone-100">
-                <h1 className="p-8  text-center text-lg sm:text-xl font-medium">
+                <h1 className="p-8 pb-4 text-center text-lg sm:text-xl font-medium">
                   Are you sure you want to delete the following Receipt?
                 </h1>
                 <div className="flex  justify-center mb-[10px] mt-2 sm:mb-0 sm:space-x-[120px] px-[50px]">
-                  <div className="flex scale-75 origin-top shadow-xl duration-500 flex-col rounded-xl bg-slate-100 ">
-                    <div className="p-4  flex space-x-4 ">
-                      <div className="p-3 rounded-2xl bg-slate-200">
-                        <img
-                          src={recIcon}
-                          className="w-[150px] h-[150px] flex justify-center items-center"
-                          alt=""
-                        />
-                      </div>
-                      <div className="flex flex-col w-[150px] justify-center space-y-2">
-                        <div className="flex flex-col">
-                          <span className="font-semibold">Receipt Name</span>{" "}
-                          <span className="pl-1">
-                            <OnlyXChars x={15} text={data.details.recName} />
-                          </span>
+                  <div className="h-[210px] overflow-hidden mb-4">
+                    <div className="flex scale-75 origin-top shadow-xl duration-500 flex-col rounded-xl bg-slate-100 ">
+                      <div className="p-4  flex space-x-4 ">
+                        <div className="p-3 rounded-2xl bg-slate-200">
+                          <img
+                            src={recIcon}
+                            className="w-[150px] h-[150px] flex justify-center items-center"
+                            alt=""
+                          />
                         </div>
+                        <div className="flex flex-col w-[150px] justify-center space-y-2">
+                          <div className="flex flex-col">
+                            <span className="font-semibold">Receipt Name</span>{" "}
+                            <span className="pl-1">
+                              <OnlyXChars x={15} text={data.details.recName} />
+                            </span>
+                          </div>
 
-                        <div className="flex flex-col">
-                          <span className="font-semibold">Created On</span>{" "}
-                          <span className="pl-1">
-                            <OnlyXChars x={15} text={data.details.createdOn} />
-                          </span>
-                        </div>
+                          <div className="flex flex-col">
+                            <span className="font-semibold">Created On</span>{" "}
+                            <span className="pl-1">
+                              <OnlyXChars
+                                x={15}
+                                text={data.details.createdOn}
+                              />
+                            </span>
+                          </div>
 
-                        <div className="flex flex-col">
-                          <span className="font-semibold text-nowrap">
-                            Receipt Date
-                          </span>{" "}
-                          <span className="pl-1">
-                            <OnlyXChars x={15} text={data.details.recDate} />
-                          </span>
+                          <div className="flex flex-col">
+                            <span className="font-semibold text-nowrap">
+                              Receipt Date
+                            </span>{" "}
+                            <span className="pl-1">
+                              <OnlyXChars x={15} text={data.details.recDate} />
+                            </span>
+                          </div>
                         </div>
                       </div>
-                    </div>
-                    <div className="flex flex-col p-4 pt-0 space-y-2">
-                      <div className="flex space-x-4 ">
-                        <span className="font-semibold">Description</span>{" "}
-                        <span className="pl-1">
-                          <OnlyXChars x={20} text={data.details.recDesc} />
-                        </span>
+                      <div className="flex flex-col p-4 pt-0 space-y-2">
+                        <div className="flex space-x-4 ">
+                          <span className="font-semibold">Description</span>{" "}
+                          <span className="pl-1">
+                            <OnlyXChars x={20} text={data.details.recDesc} />
+                          </span>
+                        </div>
                       </div>
                     </div>
                   </div>
@@ -139,13 +144,13 @@ export default function ReceiptView() {
                     </div>
                   ) : null}
                   {error ? (
-                    <div className="flex items-center space-x-4">
+                    <div className="flex items-center space-x-[10px]">
                       <img
                         src={exclamation}
                         className="w-[20px] h-[20px] flex justify-center items-center"
                         alt=""
                       />{" "}
-                      <span className="text-red-500 tetx-lg ">{error}</span>
+                      <span className="text-red-500 text-base ">{error}</span>
                     </div>
                   ) : null}
                   <button
@@ -188,20 +193,22 @@ export default function ReceiptView() {
       ) : null}
 
       <div className="h-full w-full billViewBg overflow-auto pb-[200px] text-stone-700 rounded-l-xl">
-        <div className="flex-col space-y-8">
-          <div className=" flex-col items-center xl:items-stretch space-y-20 xl:space-y-0  xl:flex-row justify-center xl:space-x-[50px] mt-[50px] px-2 p-4 text-stone-600 flex">
-            <Receipt data={data} />
-            <FileView data={data} />
+        <div className="flex flex-col max-w-[1200px] mx-auto">
+          <div className="flex-col space-y-6">
+            <div className=" flex-col items-center xl:items-stretch space-y-20 xl:space-y-0  xl:flex-row justify-center xl:space-x-[30px] mt-[30px] px-2 p-4 text-stone-600 flex">
+              <Receipt data={data} />
+              <FileView data={data} />
+            </div>
+            <TagView data={data.tags} />
           </div>
-          <TagView data={data.tags} />
-        </div>
-        <div className="mx-[10px] px-16  scale-[90%] sm:scale-100 sm:mx-[50px] flex flex-col sm:flex-row justify-between items-center mt-[100px]">
-          <Link to={"/vault/protected/view/receipt"}>
-            <NiceButton text={"Go Back"} />
-          </Link>
-          <button onClick={deleteHandle}>
-            <RedButton text={"Delete"} />
-          </button>
+          <div className="mx-[10px] px-16  scale-[90%] sm:scale-100 sm:mx-[50px] flex flex-col sm:flex-row justify-between items-center mt-[80px]">
+            <Link to={"/vault/protected/view/receipt"}>
+              <NiceButton text={"Go Back"} />
+            </Link>
+            <button onClick={deleteHandle}>
+              <RedButton text={"Delete"} />
+            </button>
+          </div>
         </div>
       </div>
     </>

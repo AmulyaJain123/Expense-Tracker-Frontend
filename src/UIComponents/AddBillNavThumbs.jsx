@@ -28,25 +28,25 @@ export default function AddBillNavThumbs({
   }
 
   return (
-    <Button $status={status} onClick={clickHandle} className="min-w-[60px]">
+    <Button $status={status} onClick={clickHandle} className="min-w-[50px]">
       <div
         style={{
           backgroundColor: status === "true" ? "#9d4edd" : "white",
           border:
             status != "true"
-              ? `2px solid ${styling.backColor}`
-              : `2px solid ${"#9d4edd"}`,
+              ? `1.5px solid ${styling.backColor}`
+              : `1.5px solid ${"#9d4edd"}`,
           color: status != "true" ? "black" : "#f7ebfd",
         }}
-        className="rounded-md p-1 justify-center flex-grow text-black px-2 sm:px-3 flex items-center"
+        className="rounded-[5px] p-[2px] justify-center flex-grow text-black px-[6px] flex items-center"
       >
         <span>{children}</span>
         {viewOnly == "false" && status === "true" ? (
           <button
             onClick={removeClick}
-            className="ml-3 hover:scale-125 duration-500"
+            className="ml-2 hover:scale-125 duration-500"
           >
-            <i className="fi fi-ss-cross-circle flex justify-center items-center text-base sm:text-xl"></i>
+            <i className="fi fi-ss-cross-circle flex justify-center items-center text-md"></i>
           </button>
         ) : null}
       </div>

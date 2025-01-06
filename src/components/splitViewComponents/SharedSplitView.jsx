@@ -78,11 +78,11 @@ export default function SharedSplitView() {
         <title>{data.splitInfo.splitName} | Shared SPLIT | BILLBUD</title>
         <meta name="description" content="Friends" />
       </Helmet>
-      <div className="h-full w-full interlaced overflow-auto pb-[200px] text-stone-700 rounded-r-2xl lg:rounded-r-none rounded-l-2xl">
+      <div className="h-full w-full interlaced overflow-auto pb-[150px] text-stone-700 rounded-r-2xl lg:rounded-r-none rounded-l-2xl">
         {modalOpen ? (
           <>
             <div className="fixed top-0 right-0 left-0 bottom-0 bg-black/40 z-10"></div>
-            <div className="rounded-2xl fixed top-[50%] translate-y-[-50%] right-[50%] z-10 translate-x-[50%] translate scale-[70%] md:scale-[80%] xl:scale-100">
+            <div className="rounded-2xl fixed top-[50%] translate-y-[-50%] right-[50%] z-10 translate-x-[50%] translate scale-75">
               {modalOpen === 1 ? (
                 <div className="rounded-xl sm:w-[500px] bg-stone-100">
                   <h1 className="p-8  text-center text-lg sm:text-xl font-medium">
@@ -237,84 +237,86 @@ export default function SharedSplitView() {
           </>
         ) : null}
 
-        <div className="flex-grow flex mt-8 justify-center">
-          <div className="flex p-4  rounded-2xl max-w-[1200px] mx-8 flex-grow flex-col">
-            <h1 className="py-[8px] text-[35px] font-bold text-center rounded-2xl bg-[#9d4edd] text-white ">
-              SPLIT Result
-            </h1>
-            <div className="text-3xl font-bold min-h-[800px] flex text-center bg-white rounded-2xl p-4 mt-6 flex-grow">
-              <div className="flex flex-col flex-grow">
-                <div className="flex space-x-4 p-4">
-                  <button
-                    style={{
-                      color: status === 0 ? "white" : "black",
-                      backgroundColor: status === 0 ? "#9d4edd" : "#d393f6",
-                    }}
-                    disabled={status === 0}
-                    onClick={() => setStatus(0)}
-                    className="uppercase py-1 disabled:pointer-events-none hover:scale-110 duration-700 font-medium text-base rounded-lg px-4"
-                  >
-                    General
-                  </button>
-                  <button
-                    style={{
-                      color: status === 1 ? "white" : "black",
-                      backgroundColor: status === 1 ? "#9d4edd" : "#d393f6",
-                    }}
-                    disabled={status === 1}
-                    onClick={() => setStatus(1)}
-                    className="uppercase py-1 disabled:pointer-events-none hover:scale-110 duration-700 font-medium text-base rounded-lg px-4"
-                  >
-                    Transactions
-                  </button>
-                  <button
-                    style={{
-                      color: status === 2 ? "white" : "black",
-                      backgroundColor: status === 2 ? "#9d4edd" : "#d393f6",
-                    }}
-                    disabled={status === 2}
-                    onClick={() => setStatus(2)}
-                    className="uppercase py-1 disabled:pointer-events-none hover:scale-110 duration-700 font-medium text-base rounded-lg px-4"
-                  >
-                    Stats
-                  </button>
-                  <button
-                    style={{
-                      color: status === 3 ? "white" : "black",
-                      backgroundColor: status === 3 ? "#9d4edd" : "#d393f6",
-                    }}
-                    disabled={status === 3}
-                    onClick={() => setStatus(3)}
-                    className="uppercase py-1 disabled:pointer-events-none hover:scale-110 duration-700 font-medium text-base rounded-lg px-4"
-                  >
-                    Bills
-                  </button>
-                </div>
-
-                <div className="flex bg-slate-100 p-4 mt-2 rounded-3xl flex-grow flex-col">
-                  {status === 0 ? (
-                    <SharedGeneral
-                      data={{
-                        splitInfo: data.splitInfo,
-                        friends: data.friends,
+        <div className="flex flex-col max-w-[1200px] mx-auto">
+          <div className="flex-grow flex mt-6 justify-center">
+            <div className="flex p-3  rounded-2xl max-w-[900px] mx-8 flex-grow flex-col">
+              <h1 className="py-[4px] text-[27px] font-bold text-center rounded-xl bg-[#9d4edd] text-white ">
+                SPLIT Result
+              </h1>
+              <div className="text-2xl font-bold min-h-[400px] flex text-center bg-white rounded-xl p-3 mt-4 flex-grow">
+                <div className="flex flex-col flex-grow">
+                  <div className="flex space-x-3 p-3">
+                    <button
+                      style={{
+                        color: status === 0 ? "white" : "black",
+                        backgroundColor: status === 0 ? "#9d4edd" : "#d393f6",
                       }}
-                    />
-                  ) : null}
-                  {status === 3 ? <Bills data={data.bills} /> : null}
-                  {status === 2 ? <Stats data={data.split} /> : null}
-                  {status === 1 ? <Transactions data={data.split} /> : null}
+                      disabled={status === 0}
+                      onClick={() => setStatus(0)}
+                      className="uppercase py-1 disabled:pointer-events-none hover:scale-110 duration-700 font-medium text-xs rounded-md px-3"
+                    >
+                      General
+                    </button>
+                    <button
+                      style={{
+                        color: status === 1 ? "white" : "black",
+                        backgroundColor: status === 1 ? "#9d4edd" : "#d393f6",
+                      }}
+                      disabled={status === 1}
+                      onClick={() => setStatus(1)}
+                      className="uppercase py-1 disabled:pointer-events-none hover:scale-110 duration-700 font-medium text-xs rounded-md px-3"
+                    >
+                      Transactions
+                    </button>
+                    <button
+                      style={{
+                        color: status === 2 ? "white" : "black",
+                        backgroundColor: status === 2 ? "#9d4edd" : "#d393f6",
+                      }}
+                      disabled={status === 2}
+                      onClick={() => setStatus(2)}
+                      className="uppercase py-1 disabled:pointer-events-none hover:scale-110 duration-700 font-medium text-xs rounded-md px-3"
+                    >
+                      Stats
+                    </button>
+                    <button
+                      style={{
+                        color: status === 3 ? "white" : "black",
+                        backgroundColor: status === 3 ? "#9d4edd" : "#d393f6",
+                      }}
+                      disabled={status === 3}
+                      onClick={() => setStatus(3)}
+                      className="uppercase py-1 disabled:pointer-events-none hover:scale-110 duration-700 font-medium text-xs rounded-md px-3"
+                    >
+                      Bills
+                    </button>
+                  </div>
+
+                  <div className="flex bg-slate-100 p-3 mt-2 rounded-3xl flex-grow flex-col">
+                    {status === 0 ? (
+                      <SharedGeneral
+                        data={{
+                          splitInfo: data.splitInfo,
+                          friends: data.friends,
+                        }}
+                      />
+                    ) : null}
+                    {status === 3 ? <Bills data={data.bills} /> : null}
+                    {status === 2 ? <Stats data={data.split} /> : null}
+                    {status === 1 ? <Transactions data={data.split} /> : null}
+                  </div>
                 </div>
               </div>
             </div>
           </div>
-        </div>
-        <div className="flex mt-16 justify-between mx-16">
-          <Link to={"/split/protected/view/shared"}>
-            <NiceButton text={"Go Back"} />
-          </Link>
-          <button onClick={deleteHandle}>
-            <RedButton text={"Delete"} />
-          </button>
+          <div className="flex mt-16 justify-between mx-16">
+            <Link to={"/split/protected/view/shared"}>
+              <NiceButton text={"Go Back"} />
+            </Link>
+            <button onClick={deleteHandle}>
+              <RedButton text={"Delete"} />
+            </button>
+          </div>
         </div>
       </div>
     </>

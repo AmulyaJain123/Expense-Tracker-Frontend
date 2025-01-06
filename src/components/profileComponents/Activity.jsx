@@ -45,8 +45,8 @@ export default function Activity({ data }) {
     });
     const formattedDate = date.toDateString();
     setToolTip({
-      x: temp.x - temp2.x + 15,
-      y: temp.y - temp2.y - 40,
+      x: temp.x - temp2.x + 10,
+      y: temp.y - temp2.y - 30,
       content: day.date,
       day: day,
       date: formattedDate,
@@ -54,9 +54,9 @@ export default function Activity({ data }) {
   }
 
   return (
-    <div className="p-24 w-[80%] px-16 pt-6 bg-neutral-100 rounded-lg">
-      <div className="flex justify-between text-sm">
-        <div className="flex space-x-8">
+    <div className="p-16 w-[80%] px-12 pt-4 bg-neutral-100 rounded-lg">
+      <div className="flex justify-between text-[11px]">
+        <div className="flex space-x-6">
           <div className="flex space-x-3">
             <span>Total Active Days: </span>
             <span>{data.totalActiveDays}</span>
@@ -73,7 +73,7 @@ export default function Activity({ data }) {
             <span>{data.maxStreak}</span>
           </div>
         </div>
-        <div className="text-base flex items-center space-x-4">
+        <div className="text-xs flex items-center space-x-3">
           <button
             className="disabled:pointer-events-none disabled:opacity-50"
             disabled={selectedYear === data.list[0].year}
@@ -81,11 +81,11 @@ export default function Activity({ data }) {
           >
             <img
               src={left}
-              className="w-[25px] h-[25px] flex justify-center items-center"
+              className="w-[20px] h-[20px] flex justify-center items-center"
               alt=""
             />
           </button>
-          <span className="w-[40px] text-center">{selectedYear}</span>
+          <span className="w-[30px] text-center">{selectedYear}</span>
           <button
             className="disabled:pointer-events-none disabled:opacity-50"
             disabled={selectedYear === data.list[data.list.length - 1].year}
@@ -93,29 +93,29 @@ export default function Activity({ data }) {
           >
             <img
               src={right}
-              className="w-[25px] h-[25px] flex justify-center items-center"
+              className="w-[20px] h-[20px] flex justify-center items-center"
               alt=""
             />
           </button>
         </div>
       </div>
-      <div className="flex  pt-28 justify-center flex-wrap gap-x-6 gap-y-16">
-        <div className="flex relative flex-col items-start text-xs text-neutral-500 mr-2 rounded-sm flex-wrap h-[140px] gap-1">
-          <div className=" h-[15px]">Mon</div>
-          <div className=" h-[15px]">Tue</div>
-          <div className=" h-[15px]">Wed</div>
-          <div className=" h-[15px]">Thu</div>
-          <div className=" h-[15px]">Fri</div>
-          <div className=" h-[15px]">Sat</div>
-          <div className=" h-[15px]">Sun</div>
+      <div className="flex  pt-24 justify-center flex-wrap gap-x-6 gap-y-14">
+        <div className="flex relative flex-col items-start text-[9px] text-neutral-500 mr-1 rounded-sm h-[110px] gap-[3px]">
+          <div className=" h-[12px]">Mon</div>
+          <div className=" h-[12px]">Tue</div>
+          <div className=" h-[12px]">Wed</div>
+          <div className=" h-[12px]">Thu</div>
+          <div className=" h-[12px]">Fri</div>
+          <div className=" h-[12px]">Sat</div>
+          <div className=" h-[12px]">Sun</div>
         </div>
         {selectedData.map((month, ind) => {
           return (
             <div className={`relative ${"month" + ind}`}>
-              <div className="flex  flex-col flex-wrap h-[140px] gap-1">
+              <div className="flex  flex-col flex-wrap h-[110px] gap-[3px]">
                 {month.map((day) => {
                   if (day === null) {
-                    return <div className="w-[15px] h-[15px]"></div>;
+                    return <div className="w-[12px] h-[12px]"></div>;
                   } else {
                     return (
                       <>
@@ -135,7 +135,7 @@ export default function Activity({ data }) {
                           }}
                           onMouseEnter={(event) => showToolTip(event, day)}
                           onMouseLeave={(event) => setToolTip(null)}
-                          className="w-[15px]  h-[15px] hover:opacity-50 rounded-[4px] "
+                          className="w-[12px]  h-[12px] hover:opacity-50 rounded-[3px] "
                         ></div>
                         {toolTip &&
                         toolTip.day.monthNo === day.monthNo &&
@@ -146,7 +146,7 @@ export default function Activity({ data }) {
                               top: toolTip.y,
                               left: toolTip.x,
                             }}
-                            className="absolute text-nowrap z-[1] h-[35px]  bg-white shadow-md rounded-lg flex items-center p-1 px-4"
+                            className="absolute text-nowrap z-[1] h-[25px]  bg-white shadow-md text-xs rounded-md flex items-center p-1 px-3"
                           >
                             {toolTip.date}
                           </div>
@@ -156,7 +156,7 @@ export default function Activity({ data }) {
                   }
                 })}
               </div>
-              <span className="absolute top-[-40px] right-[50%] text-sm translate-x-[50%] text-neutral-500">
+              <span className="absolute top-[-30px] right-[50%] text-[11px] translate-x-[50%] text-neutral-500">
                 {month[month.length - 1]?.monthName}
               </span>
             </div>

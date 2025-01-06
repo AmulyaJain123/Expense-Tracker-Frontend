@@ -28,23 +28,23 @@ export default function SplitResultStage() {
   );
 
   return (
-    <div className="flex=grow flex justify-center">
-      <div className="flex p-4  rounded-2xl max-w-[1200px] mx-8 flex-grow flex-col">
-        <h1 className="py-[8px] text-[35px] font-bold text-center rounded-2xl bg-[#9d4edd] text-white ">
+    <div className="flex=grow  flex justify-center">
+      <div className="flex p-3  rounded-2xl max-w-[900px] mx-6 flex-grow flex-col">
+        <h1 className="py-[6px] text-[25px] font-bold text-center rounded-xl bg-[#9d4edd] text-white ">
           SPLIT Result
         </h1>
-        <div className="text-3xl font-bold min-h-[800px] flex text-center bg-white rounded-2xl p-4 mt-6 flex-grow">
+        <div className="text-sm font-bold min-h-[600px] flex text-center bg-white rounded-xl p-4 mt-4 flex-grow">
           {split === null ? (
-            <div className="mt-64 flex justify-center flex-grow">
+            <div className="mt-48 flex justify-center flex-grow">
               <img
                 src={load}
-                className="w-[50px] h-[50px] flex justify-center items-center"
+                className="w-[40px] h-[40px] flex justify-center items-center"
                 alt=""
               />
             </div>
           ) : (
             <div className="flex flex-col flex-grow">
-              <div className="flex space-x-4 p-4">
+              <div className="flex space-x-[10px] p-[10px] items-center ">
                 <button
                   style={{
                     color: status === 0 ? "white" : "black",
@@ -52,7 +52,7 @@ export default function SplitResultStage() {
                   }}
                   disabled={status === 0}
                   onClick={() => setStatus(0)}
-                  className="uppercase py-1 disabled:pointer-events-none hover:scale-110 duration-700 font-medium text-base rounded-lg px-4"
+                  className="uppercase py-[1px] disabled:pointer-events-none hover:scale-110 duration-700 font-medium  text-[12px] rounded-md px-3"
                 >
                   General
                 </button>
@@ -63,7 +63,7 @@ export default function SplitResultStage() {
                   }}
                   disabled={status === 1}
                   onClick={() => setStatus(1)}
-                  className="uppercase py-1 disabled:pointer-events-none hover:scale-110 duration-700 font-medium text-base rounded-lg px-4"
+                  className="uppercase  py-[1px] disabled:pointer-events-none hover:scale-110 duration-700 font-medium  text-[12px] rounded-md px-3"
                 >
                   Transactions
                 </button>
@@ -74,7 +74,7 @@ export default function SplitResultStage() {
                   }}
                   disabled={status === 2}
                   onClick={() => setStatus(2)}
-                  className="uppercase py-1 disabled:pointer-events-none hover:scale-110 duration-700 font-medium text-base rounded-lg px-4"
+                  className="uppercase  py-[1px] disabled:pointer-events-none hover:scale-110 duration-700 font-medium  text-[12px] rounded-md px-3"
                 >
                   Stats
                 </button>
@@ -85,13 +85,13 @@ export default function SplitResultStage() {
                   }}
                   disabled={status === 3}
                   onClick={() => setStatus(3)}
-                  className="uppercase py-1 disabled:pointer-events-none hover:scale-110 duration-700 font-medium text-base rounded-lg px-4"
+                  className="uppercase  py-[1px] disabled:pointer-events-none hover:scale-110 duration-700 font-medium  text-[12px] rounded-md px-3"
                 >
                   Bills
                 </button>
               </div>
 
-              <div className="flex bg-slate-100 p-4 mt-2 rounded-3xl flex-grow flex-col">
+              <div className="flex bg-slate-100 p-3 mt-2 rounded-2xl flex-grow flex-col">
                 {status === 0 ? (
                   <General data={{ splitInfo, friends }} />
                 ) : null}

@@ -6,7 +6,7 @@ import FeaturesMenu from "./FeaturesMenu";
 const Button = styled.button`
   font-weight: 600;
   border-bottom: ${(props) => {
-    return props.$status === true ? "solid black 4px" : "solid white 4px";
+    return props.$status === true ? "solid black 2px" : "solid white 2px";
   }};
   transition: all 200ms;
   padding: 0 1px;
@@ -23,8 +23,8 @@ export default function SplitHomeMenu() {
   }
 
   return (
-    <div id="menu">
-      <div className="flex sm:text-lg justify-center space-x-10 mt-[175px]">
+    <div id="menu" className="max-w-[900px] mx-auto">
+      <div className="flex sm:text-sm justify-center space-x-10 mt-[125px]">
         <Button
           $status={selectedMenu === 1}
           onClick={(event) => menuClick(event)}
@@ -42,10 +42,7 @@ export default function SplitHomeMenu() {
           How it works
         </Button>
       </div>
-      <div
-        id="menuContent"
-        className="mt-8 min-h-[300px]  mx-[50px] lg:mx-[100px]"
-      >
+      <div id="menuContent" className="mt-6 min-h-[200px]  ">
         {selectedMenu === 0 ? <HowItWorksMenu /> : null}
         {selectedMenu === 1 ? <FeaturesMenu /> : null}
       </div>

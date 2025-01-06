@@ -248,10 +248,10 @@ export default function SignUp({ login, disableButton, enableButton }) {
   }
 
   return (
-    <div className="flex flex-col sm:mx-4 p-2 sm:p-4 flex-grow justify-between">
-      <div className="flex flex-col flex-grow">
-        <div className="flex relative justify-center mb-8 ">
-          <div className="space-x-4 flex ">
+    <div className="flex flex-col sm:mx-3 p-2 sm:p-3 flex-grow justify-between">
+      <div className="flex flex-col text-xs flex-grow">
+        <div className="flex relative justify-center mb-4 ">
+          <div className="space-x-3 flex ">
             {stage > 1 && stage < 4 ? (
               <button
                 onClick={() => cancel()}
@@ -262,32 +262,32 @@ export default function SignUp({ login, disableButton, enableButton }) {
             ) : null}
             <div
               style={{ backgroundColor: stage === 1 ? "#9f21e3" : "white" }}
-              className="w-[10px] h-[10px] duration-700 border-2 border-[#9f21e3] rounded-full"
+              className="w-[7px] h-[7px] duration-700 border border-[#9f21e3] rounded-full"
             ></div>
             <div
               style={{ backgroundColor: stage === 2 ? "#9f21e3" : "white" }}
-              className="w-[10px] h-[10px] duration-700 border-2 border-[#9f21e3] rounded-full"
+              className="w-[7px] h-[7px] duration-700 border border-[#9f21e3] rounded-full"
             ></div>
             <div
               style={{ backgroundColor: stage === 3 ? "#9f21e3" : "white" }}
-              className="w-[10px] h-[10px] duration-700 border-2 border-[#9f21e3] rounded-full"
+              className="w-[7px] h-[7px] duration-700 border border-[#9f21e3] rounded-full"
             ></div>
             <div
               style={{ backgroundColor: stage === 4 ? "#9f21e3" : "white" }}
-              className="w-[10px] h-[10px] duration-700 border-2 border-[#9f21e3] rounded-full"
+              className="w-[7px] h-[7px] duration-700 border border-[#9f21e3] rounded-full"
             ></div>
           </div>
         </div>
 
         {stage === 1 ? (
           <>
-            <p>Enter Email to Continue</p>
-            <div className="flex flex-col space-y-2 mt-8 rounded-xl">
-              <span className="text-sm sm:text-lg text-black rounded-lg font-semibold p-1 px-2 w-fit">
+            <p className="text-xs">Enter Email to Continue</p>
+            <div className="flex flex-col space-y-1 mt-6 rounded-xl">
+              <span className="text-sm sm:text-sm text-black rounded-lg font-semibold p-1 px-2 w-fit">
                 Email
               </span>
               <input
-                className="p-2 px-3 bg-stone-100 mx-1 duration-700 focus:outline-none flex rounded-lg pl-4 sm:pl-8 text-sm sm:text-lg flex-grow "
+                className="p-2 px-3 bg-stone-100 mx-1 duration-700 focus:outline-none flex rounded-lg pl-4 sm:pl-6 text-sm sm:text-sm flex-grow "
                 placeholder="JohnDoe123@gmail.com"
                 type="text"
                 ref={signUpEmailRef}
@@ -305,13 +305,13 @@ export default function SignUp({ login, disableButton, enableButton }) {
                 {email}
               </span>
             </p>
-            <div className="flex relative flex-col mt-8 rounded-xl">
-              <span className="text-sm sm:text-lg mb-2 text-black rounded-lg font-semibold p-1 px-2 w-fit">
+            <div className="flex relative flex-col mt-6 rounded-xl">
+              <span className="text-sm sm:text-sm mb-1 text-black rounded-lg font-semibold p-1 px-2 w-fit">
                 Enter OTP
               </span>
               <div className="relative flex">
                 <input
-                  className="p-2 px-3 bg-stone-100 mx-1 duration-700 focus:outline-none flex rounded-lg pl-4 sm:pl-8 text-sm sm:text-lg flex-grow "
+                  className="p-2 px-3 bg-stone-100 mx-1 duration-700 focus:outline-none flex rounded-lg pl-4 sm:pl-6 text-sm sm:text-sm flex-grow "
                   placeholder="OTP"
                   type={seePass3 ? "text" : "password"}
                   ref={otpRef}
@@ -323,22 +323,22 @@ export default function SignUp({ login, disableButton, enableButton }) {
                 >
                   <img
                     src={seePass3 ? noEye : eye}
-                    className="w-[25px] h-[25px] flex justify-center items-center"
+                    className="w-[20px] h-[20px] flex justify-center items-center"
                     alt=""
                   />
                 </button>
               </div>
             </div>
-            <div className="flex relative select-none justify-end mt-4">
+            <div className="flex relative select-none justify-end mt-3">
               <div className="relative flex">
                 <button
                   disabled={!resendActive || resendLoading}
                   onClick={resendOtp}
-                  className=" disabled:pointer-events-none disabled:opacity-50 font-medium hover:text-blue-600  mr-4"
+                  className=" disabled:pointer-events-none disabled:opacity-50 font-medium hover:text-blue-600  mr-2"
                 >
                   Resend OTP
                 </button>
-                <span className="min-w-[30px] text-neutral-400">
+                <span className="min-w-[25px] text-neutral-400">
                   {resendTime}
                 </span>
                 {resendLoading ? (
@@ -364,40 +364,40 @@ export default function SignUp({ login, disableButton, enableButton }) {
                 . Enter Details to Create Account
               </p>
             </div>
-            <div className="overflow-auto mt-8 customScrollThinLight  pr-4 loginHeight">
-              <div className="flex flex-col space-y-3  rounded-xl">
-                <span className="text-sm sm:text-lg text-black rounded-lg font-semibold p-1 px-2 w-fit">
+            <div className="overflow-auto mt-6 customScrollThinLight  pr-4 loginHeight">
+              <div className="flex flex-col space-y-1  rounded-xl">
+                <span className="text-sm sm:text-sm text-black rounded-lg font-semibold p-1 px-2 w-fit">
                   Username{" "}
-                  <span className="text-base ml-8 font-normal">
+                  <span className="text-xs ml-6 font-normal">
                     *Cannot be changed afterwards
                   </span>
                 </span>
                 <input
-                  className="p-2 px-3 bg-stone-100  duration-700 focus:outline-none mx-1 flex rounded-lg pl-4 sm:pl-8 text-sm sm:text-lg flex-grow "
+                  className="p-2 px-3 bg-stone-100  duration-700 focus:outline-none mx-1 flex rounded-lg pl-4 sm:pl-6 text-sm sm:text-sm flex-grow "
                   placeholder="John Doe"
                   type="text"
                   ref={usernameRef}
                   onChange={() => setSignUpError(null)}
                 />
               </div>
-              <div className="flex flex-col mt-4 space-y-2 rounded-xl">
-                <span className="text-sm sm:text-lg text-black rounded-lg font-semibold p-1 px-2 w-fit">
+              <div className="flex flex-col mt-3 space-y-1 rounded-xl">
+                <span className="text-sm sm:text-sm text-black rounded-lg font-semibold p-1 px-2 w-fit">
                   Email
                 </span>
                 <input
                   disabled={true}
-                  className="p-2 px-3 bg-stone-100 disabled:opacity-50 mx-1 duration-700 focus:outline-none flex rounded-lg pl-4 sm:pl-8 text-sm sm:text-lg flex-grow "
+                  className="p-2 px-3 bg-stone-100 disabled:opacity-50 mx-1 duration-700 focus:outline-none flex rounded-lg pl-4 sm:pl-6 text-sm sm:text-sm flex-grow "
                   value={email}
                   type="text"
                 />
               </div>
-              <div className="flex relative flex-col mt-4 rounded-xl">
-                <span className="text-sm sm:text-lg mb-2 text-black rounded-lg font-semibold p-1 px-2 w-fit">
+              <div className="flex relative flex-col mt-3 rounded-xl">
+                <span className="text-sm sm:text-sm mb-1 text-black rounded-lg font-semibold p-1 px-2 w-fit">
                   Password
                 </span>
                 <div className="relative flex">
                   <input
-                    className="p-2 px-3 bg-stone-100 mx-1 duration-700 focus:outline-none flex rounded-lg pl-4 sm:pl-8 text-sm sm:text-lg flex-grow "
+                    className="p-2 px-3 bg-stone-100 mx-1 duration-700 focus:outline-none flex rounded-lg pl-4 sm:pl-6 text-sm sm:text-sm flex-grow "
                     placeholder="Password"
                     type={seePass1 ? "text" : "password"}
                     ref={signUpPasswordRef}
@@ -409,19 +409,19 @@ export default function SignUp({ login, disableButton, enableButton }) {
                   >
                     <img
                       src={seePass1 ? noEye : eye}
-                      className="w-[25px] h-[25px] flex justify-center items-center"
+                      className="w-[20px] h-[20px] flex justify-center items-center"
                       alt=""
                     />
                   </button>
                 </div>
               </div>
-              <div className="flex flex-col mt-4 mb-4 space-y-2 rounded-xl">
-                <span className="text-sm sm:text-lg text-black rounded-lg font-semibold p-1 px-2 w-fit">
+              <div className="flex flex-col mt-3 mb-4 space-y-1 rounded-xl">
+                <span className="text-sm sm:text-sm text-black rounded-lg font-semibold p-1 px-2 w-fit">
                   Confirm Password
                 </span>
                 <div className="relative flex">
                   <input
-                    className="p-2 px-3 bg-stone-100 mx-1 duration-700 focus:outline-none flex rounded-lg pl-4 sm:pl-8 text-sm sm:text-lg flex-grow "
+                    className="p-2 px-3 bg-stone-100 mx-1 duration-700 focus:outline-none flex rounded-lg pl-4 sm:pl-6 text-sm sm:text-sm flex-grow "
                     placeholder="Password"
                     type={seePass2 ? "text" : "password"}
                     ref={confirmPassRef}
@@ -433,7 +433,7 @@ export default function SignUp({ login, disableButton, enableButton }) {
                   >
                     <img
                       src={seePass2 ? noEye : eye}
-                      className="w-[25px] h-[25px] flex justify-center items-center"
+                      className="w-[20px] h-[20px] flex justify-center items-center"
                       alt=""
                     />
                   </button>
@@ -445,16 +445,16 @@ export default function SignUp({ login, disableButton, enableButton }) {
 
         {stage === 4 ? (
           <>
-            <div className="flex flex-col mt-16">
-              <h1 className="text-3xl font-semibold text-[#9f21e3] text-center">
+            <div className="flex flex-col mt-12">
+              <h1 className="text-xl font-semibold text-[#9f21e3] text-center">
                 Welcome to BillBud!!
               </h1>
               <img
                 src={welcome}
-                className="w-[80px] my-4 h-[80px] flex justify-center items-center mx-auto"
+                className="w-[60px] my-4 h-[60px] flex justify-center items-center mx-auto"
                 alt=""
               />
-              <p className="mt-4 text-center text-lg">
+              <p className="mt-3 text-center text-sm">
                 Congraturations!! You have{" "}
                 <span className="text-green-500 font-medium">successfully</span>{" "}
                 SignedUp! <br />
@@ -467,11 +467,11 @@ export default function SignUp({ login, disableButton, enableButton }) {
       </div>
 
       <div className="pt-[20px] mb-2 flex flex-col sm:flex-row space-y-4 sm:space-y-0 justify-between">
-        <p className="text-red-500 flex items-center justify-center text-center sm:text-start text-xs sm:text-base p-1 h-[60px] px-4">
+        <p className="text-red-500 flex items-center justify-center text-center sm:text-start text-xs sm:text-xs p-1 h-[40px] px-4">
           {signUpError ? (
             <img
               src={exclamation}
-              className="w-[20px] h-[20px] flex justify-center items-center mr-4"
+              className="w-[15px] h-[15px] flex justify-center items-center mr-3"
               alt=""
             />
           ) : null}{" "}
@@ -481,7 +481,7 @@ export default function SignUp({ login, disableButton, enableButton }) {
           <button
             onClick={signUp}
             disabled={signUpLoading}
-            className="p-2 px-6 bg-[#9f21e3] disabled:pointer-events-none disabled:opacity-50 border-2 border-[#9f21e3] min-w-[130px] text-white sm:text-xl font-bold rounded-lg duration-500 hover:shadow-xl hover:scale-110 hover:bg-white hover:text-[#9f21e3]"
+            className="p-1 px-4 bg-[#9f21e3] disabled:pointer-events-none disabled:opacity-50 border-[1.5px] border-[#9f21e3] min-w-[100px] text-white sm:text-base font-bold rounded-md duration-500 hover:shadow-xl hover:scale-110 hover:bg-white hover:text-[#9f21e3]"
           >
             {stage === 1
               ? "Continue"
@@ -492,8 +492,8 @@ export default function SignUp({ login, disableButton, enableButton }) {
               : "Continue to Login"}
           </button>
           {signUpLoading ? (
-            <div className="absolute left-[-30px] top-[50%] translate-x-[-100%] translate-y-[-50%]">
-              <img src={load} className="w-[25px] h-[25px]" alt="" />
+            <div className="absolute left-[-20px] top-[50%] translate-x-[-100%] translate-y-[-50%]">
+              <img src={load} className="w-[20px] h-[20px]" alt="" />
             </div>
           ) : null}
         </div>

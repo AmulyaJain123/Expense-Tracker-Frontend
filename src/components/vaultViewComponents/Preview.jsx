@@ -17,22 +17,22 @@ export default function Preview({ file }) {
   return (
     <div>
       {file != null ? (
-        <div className="flex justify-center mt-24">
+        <div className="flex justify-center mt-16">
           {file.metaData.type != "application/pdf" ? (
-            <div className="flex space-x-16">
+            <div className="flex space-x-12">
               <div className="flex flex-col">
                 <button onClick={previewClick}>
                   <img
                     src={image}
-                    className="w-[200px] hover:opacity-75 h-[200px] flex justify-center items-center"
+                    className="w-[150px] hover:opacity-75 h-[150px] flex justify-center items-center"
                     alt=""
                   />
                 </button>
-                <p className="text-center mt-4">Click to Preview</p>
+                <p className="text-center mt-3 text-xs">Click to Preview</p>
               </div>
-              <div className="flex flex-col gap-y-4 py-4">
+              <div className="flex flex-col text-xs gap-y-3 py-2">
                 <div className="flex flex-col">
-                  <span className="font-semibold text-lg">Name</span>
+                  <span className="font-semibold text-xs">Name</span>
                   <p className="">
                     {file.metaData.name.length > 30
                       ? `${file.metaData.name.substr(0, 30)}......`
@@ -40,31 +40,33 @@ export default function Preview({ file }) {
                   </p>
                 </div>
                 <div className="flex flex-col">
-                  <span className="font-semibold text-lg">Size</span>
+                  <span className="font-semibold text-xs">Size</span>
                   <p>{Number(file.metaData.size / 1024).toFixed(2)} KB</p>
                 </div>
                 <div className="flex flex-col">
-                  <span className="font-semibold text-lg">Type</span>
+                  <span className="font-semibold text-xs">Type</span>
                   <p>{file.metaData.type}</p>
                 </div>
               </div>
             </div>
           ) : (
             <div className="flex flex-col">
-              <div className="flex space-x-16">
+              <div className="flex space-x-12">
                 <div className="flex flex-col">
                   <button onClick={previewClick}>
                     <img
                       src={pdf}
-                      className="w-[200px] hover:opacity-75 h-[200px] flex justify-center items-center"
+                      className="w-[150px] hover:opacity-75 h-[150px] flex justify-center items-center"
                       alt=""
                     />
                   </button>
-                  <p className="text-center mt-4 ml-8">Click to Preview</p>
+                  <p className="text-center mt-3 ml-6 text-xs">
+                    Click to Preview
+                  </p>
                 </div>
-                <div className="flex flex-col gap-y-4 py-4">
+                <div className="flex text-xs flex-col gap-y-3 py-2">
                   <div className="flex flex-col">
-                    <span className="font-semibold text-lg">Name</span>
+                    <span className="font-semibold text-xs">Name</span>
                     <p className="">
                       {file.metaData.name.length > 30
                         ? `${file.metaData.name.substr(0, 30)}......`
@@ -72,25 +74,25 @@ export default function Preview({ file }) {
                     </p>
                   </div>
                   <div className="flex flex-col">
-                    <span className="font-semibold text-lg">Size</span>
+                    <span className="font-semibold text-xs">Size</span>
                     <p>{Number(file.metaData.size / 1024).toFixed(2)} KB</p>
                   </div>
                   <div className="flex flex-col">
-                    <span className="font-semibold text-lg">Type</span>
+                    <span className="font-semibold text-xs">Type</span>
                     <p>{file.metaData.type}</p>
                   </div>
                 </div>
               </div>
-              <p className="mt-24 text-center">
+              <p className="mt-16 text-xs text-center">
                 For PDF's only the first page is available for preview
               </p>
             </div>
           )}
         </div>
       ) : (
-        <div className="mt-[100px]">
+        <div className="mt-[100px] text-xs">
           <p className="text-center">No File Selected</p>
-          <p className="text-center mt-4 px-3">
+          <p className="text-center mt-2 px-3">
             NOTE: Browser Extensions might delay or cancel Upload{" "}
           </p>
         </div>
@@ -112,7 +114,7 @@ export default function Preview({ file }) {
           )}
         </div>
         <button
-          className="fixed top-8 right-8 rounded-lg px-4 py-2 text-xl text-white font-semibold bg-[#9d4edd]"
+          className="fixed top-6 right-6 rounded-md px-3 py-[6px] text-base text-white font-semibold bg-[#9d4edd]"
           onClick={() => dialogRef.current.close()}
         >
           Close

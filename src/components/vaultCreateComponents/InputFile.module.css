@@ -3,6 +3,7 @@
   position: relative; /* Set relative positioning to use pseudo-elements for zigzag */
   min-height: 800px; /* equivalent to min-h-[900px] */
   padding-bottom: 100px; /* equivalent to pb-[100px] */
+  width: 650px;
 }
 
 /* Responsive widths for different breakpoints */
@@ -10,20 +11,6 @@
   /* sm breakpoint */
   .main {
     width: 600px; /* equivalent to sm:w-[600px] */
-  }
-}
-
-@media (min-width: 1280px) {
-  /* xl breakpoint */
-  .main {
-    width: 500px; /* equivalent to xl:w-[500px] */
-  }
-}
-
-@media (min-width: 1536px) {
-  /* 2xl breakpoint */
-  .main {
-    width: 750px; /* equivalent to 2xl:w-[750px] */
   }
 }
 

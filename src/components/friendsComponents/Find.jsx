@@ -61,34 +61,34 @@ export default function Find() {
 
   return (
     <div className="flex flex-grow flex-col">
-      <div className="bg-white p-4 rounded-xl px-6 flex items-center">
+      <div className="bg-white p-3 rounded-xl px-4 flex items-center">
         <img
           src={search}
-          className="w-[30px] h-[30px] mr-6 flex justify-center items-center"
+          className="w-[25px] h-[25px] mr-4 flex justify-center items-center"
           alt=""
         />
         <input
           type="text"
           placeholder="Search Username or UserID"
           onChange={(event) => searchChange(event)}
-          className="py-1 px-2 text-lg border-b border-neutral-400 focus:outline-none flex-grow"
+          className="py-1 px-2 text-sm border-b border-neutral-400 focus:outline-none flex-grow"
         />
       </div>
-      <div className="mt-4 bg-white  p-4  rounded-xl flex flex-col">
-        <div className="overflow-auto space-y-4 customScrollThin p-4 h-[800px]">
+      <div className="mt-3 bg-white  p-4  rounded-xl flex flex-col">
+        <div className="overflow-auto space-y-3 customScrollThin p-4 h-[500px]">
           {loading ? (
-            <div className="flex justify-center items-center mt-48 ">
+            <div className="flex justify-center items-center mt-20 ">
               <img
                 src={load}
-                className="w-[40px] h-[40px] flex justify-center items-center"
+                className="w-[30px] h-[30px] flex justify-center items-center"
                 alt=""
               />
             </div>
           ) : error ? (
-            <div className="flex flex-col justify-center items-center mt-44 ">
+            <div className="flex flex-col justify-center text-sm items-center mt-44 ">
               <img
                 src={errorIcon}
-                className="w-[50px] h-[50px] mb-4 flex justify-center items-center"
+                className="w-[40px] h-[40px] mb-3 flex justify-center items-center"
                 alt=""
               />
               <span>Something went wrong.</span>
@@ -96,10 +96,10 @@ export default function Find() {
           ) : (
             <>
               {results === null ? (
-                <div className="flex justify-center space-y-6 flex-col text-slate-400  items-center mt-32">
+                <div className="flex justify-center space-y-4 text-sm flex-col text-slate-400  items-center mt-32">
                   <img
                     src={people}
-                    className="w-[100px] h-[100px] flex justify-center items-center"
+                    className="w-[80px] h-[80px] flex justify-center items-center"
                     alt=""
                   />
                   <span>Search People by Username or UserID</span>
@@ -111,10 +111,10 @@ export default function Find() {
                   })}
                 </>
               ) : (
-                <div className="flex justify-center flex-col text-slate-500 space-y-6 items-center mt-32">
+                <div className="flex justify-center text-sm flex-col text-slate-500 space-y-4 items-center mt-32">
                   <img
                     src={noEntries}
-                    className="w-[100px] h-[100px] flex justify-center items-center"
+                    className="w-[80px] h-[80px] flex justify-center items-center"
                     alt=""
                   />
                   <span>No Users Found</span>

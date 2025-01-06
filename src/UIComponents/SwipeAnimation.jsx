@@ -100,29 +100,29 @@ export default function SwipeAnimation() {
     };
   }, []);
   return (
-    <div className="my-24 mt-4 pb-[80px] rounded-xl mx-auto w-full">
+    <div className="my-20 mb-10 mt-2 pb-[80px] rounded-lg mx-auto w-full">
       <div className=" relative p-4   w-full flex flex-col justify-center items-center">
-        <div className="h-[600px] w-[1000px] relative flex justify-center items-center">
+        <div className="h-[450px] w-[800px] relative flex justify-center items-center">
           {config.map((i, index) => {
             return (
               <img
                 src={i.image}
                 style={{ opacity: ind === index ? "1" : "0" }}
-                className="absolute max-w-[1100px] rounded-3xl duration-700 border-2 border-stone-200 max-h-[500px] right-[50%] translate-x-[50%] top-[50%] translate-y-[-50%]"
+                className="absolute max-w-[800px] rounded-xl duration-700 border-2 border-stone-200 max-h-[400px] right-[50%] translate-x-[50%] top-[50%] translate-y-[-50%]"
                 alt=""
               />
             );
           })}
         </div>
-        <span className="absolute bottom-[-10px] right-[50%] translate-x-[50%] text-xl font-bold">
+        <span className="absolute bottom-[-5px] right-[50%] translate-x-[50%] text-base font-bold">
           {config[ind].name}
         </span>
-        <div className="absolute bottom-[-40px] flex space-x-4 right-[50%] translate-x-[50%]">
+        <div className="absolute bottom-[-25px] flex space-x-3 right-[50%] translate-x-[50%]">
           {new Array(config.length).fill(0).map((i, index) => {
             return (
               <div
                 style={{ backgroundColor: index === ind ? "black" : "" }}
-                className="w-[10px] h-[10px] rounded-full duration-700 border-2 border-black"
+                className="w-[7px] h-[7px] rounded-full duration-700 border border-black"
               ></div>
             );
           })}

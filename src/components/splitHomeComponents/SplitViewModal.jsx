@@ -9,14 +9,14 @@ import AddBillNavThumbs from "../../UIComponents/AddBillNavThumbs";
 export const Thumb = styled.button`
   transition: all 500ms;
   font-weight: 400;
-  font-size: medium;
-  border-radius: 6px;
-  padding: 2px 12px;
+  font-size: 12px;
+  border-radius: 4px;
+  padding: 2px 8px;
   justify-content: center;
   border: ${(props) =>
     props.$status === "true"
-      ? `2px solid ${"#9d4edd"}`
-      : `2px solid ${styling.backColor}`};
+      ? `1.5px solid ${"#9d4edd"}`
+      : `1.5px solid ${styling.backColor}`};
   display: flex;
   align-items: center;
   color: ${(props) => (props.$status === "true" ? "#f5f5f4" : "black")};

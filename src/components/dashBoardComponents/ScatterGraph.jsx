@@ -40,16 +40,14 @@ export default function ScatterGraph() {
 
   return (
     <>
-      <div className="flex flex-grow flex-col mx-4 space-y-4">
-        <div className="flex flex-col space-y-4 flex-grow rounded-xl p-4 bg-[#f7ebfd]">
-          <header className="flex p-2 px-4 pr-2 h-fit justify-center rounded-xl bg-[#9f21e3] text-white">
-            <span className="text-2xl font-semibold ">
-              Expense Distribution
-            </span>
+      <div className="flex flex-grow flex-col mx-3 space-y-3">
+        <div className="flex flex-col space-y-3 flex-grow rounded-xl p-3 bg-[#f7ebfd]">
+          <header className="flex p-[6px] px-4 pr-2 h-fit justify-center rounded-md bg-[#9f21e3] text-white">
+            <span className="text-lg font-semibold ">Expense Distribution</span>
           </header>
 
-          <div className="flex flex-col flex-grow  space-y-3">
-            <div className="flex space-x-3 pr-4 text-sm xl:text-base justify-end items-center">
+          <div className="flex flex-col flex-grow  space-y-2">
+            <div className="flex space-x-2 pr-4 text-xs justify-end items-center">
               <button
                 onClick={() => setYear((p) => p - 1)}
                 className="hover:scale-110 disabled:pointer-events-none disabled:opacity-50 duration-500"
@@ -63,11 +61,11 @@ export default function ScatterGraph() {
               >
                 <img
                   src={right}
-                  className="w-[20px] rotate-180 h-[20px] flex justify-center items-center"
+                  className="w-[15px] rotate-180 h-[15px] flex justify-center items-center"
                   alt=""
                 />
               </button>
-              <div className="py-1 px-3 capitalize rounded-lg bg-white font-medium">
+              <div className="py-1 px-3 capitalize rounded-md bg-white font-medium">
                 {year}
               </div>
               <button
@@ -80,29 +78,29 @@ export default function ScatterGraph() {
               >
                 <img
                   src={right}
-                  className="w-[20px]  h-[20px] flex justify-center items-center"
+                  className="w-[15px]  h-[15px] flex justify-center items-center"
                   alt=""
                 />
               </button>
             </div>
 
             {val && (val.incoming.length != 0 || val.outgoing.length != 0) ? (
-              <div className="flex normal-case flex-grow flex-col space-y-2  p-4 ">
+              <div className="flex normal-case flex-grow flex-col space-y-[6px]  p-3 ">
                 {val ? (
                   <>
-                    <div className="flex space-x-8 pl-8">
-                      <div className="flex space-x-4">
+                    <div className="flex space-x-6 pl-6">
+                      <div className="flex space-x-2 text-xs">
                         <div className="flex items-center">
-                          <div className="w-[20px] h-[20px] bg-[#ffba49] rounded-full border mr-2 border-stone-500"></div>
+                          <div className="w-[15px] h-[15px] bg-[#ffba49] rounded-full border mr-[6px] border-stone-500"></div>
                           <span>Outgoing</span>
                         </div>
                         <div className="flex items-center">
-                          <div className="w-[20px] h-[20px] bg-[#20a39e] rounded-full border mr-2 border-stone-500"></div>
+                          <div className="w-[15px] h-[15px] bg-[#20a39e] rounded-full border mr-[6px] border-stone-500"></div>
                           <span>Incoming</span>
                         </div>
                       </div>
-                      <div className="flex space-x-4">
-                        <div className="flex space-x-4 items-center">
+                      <div className="flex space-x-3">
+                        <div className="flex space-x-3 text-xs items-center">
                           <button
                             style={{
                               color: mode === 0 ? "white" : "black",
@@ -111,7 +109,7 @@ export default function ScatterGraph() {
                             }}
                             onClick={() => setMode(0)}
                             disabled={mode === 0}
-                            className="p-1 px-4 rounded-lg font-medium  hover:scale-105 duration-500  disabled:pointer-events-none "
+                            className="p-1 px-3 rounded-md font-medium  hover:scale-105 duration-500  disabled:pointer-events-none "
                           >
                             Both
                           </button>
@@ -123,7 +121,7 @@ export default function ScatterGraph() {
                             }}
                             onClick={() => setMode(1)}
                             disabled={mode === 1}
-                            className="p-1 px-4 rounded-lg font-medium  hover:scale-105 duration-500  disabled:pointer-events-none "
+                            className="p-1 px-3 rounded-md font-medium  hover:scale-105 duration-500  disabled:pointer-events-none "
                           >
                             Only Outgoing
                           </button>
@@ -135,7 +133,7 @@ export default function ScatterGraph() {
                             }}
                             onClick={() => setMode(2)}
                             disabled={mode === 2}
-                            className="p-1 px-4 rounded-lg font-medium  hover:scale-105 duration-500  disabled:pointer-events-none "
+                            className="p-1 px-3 rounded-md font-medium  hover:scale-105 duration-500  disabled:pointer-events-none "
                           >
                             Only Incoming
                           </button>
@@ -149,8 +147,8 @@ export default function ScatterGraph() {
                 ) : null}
               </div>
             ) : (
-              <div className="flex flex-grow flex-col min-h-[500px] justify-center items-center space-y-3">
-                <img src={noEntries} className="w-[80px] h-[80px]" alt="" />
+              <div className="flex flex-grow text-sm flex-col min-h-[500px] justify-center items-center space-y-2">
+                <img src={noEntries} className="w-[60px] h-[60px]" alt="" />
                 <span>No Transactions Found</span>
               </div>
             )}

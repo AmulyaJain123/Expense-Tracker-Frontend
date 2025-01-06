@@ -297,7 +297,7 @@ export default function DatePicker() {
 
   return (
     <>
-      <div className="p-8 rounded-xl scale-90  bg-[white] shadow-lg">
+      <div className="p-8 rounded-xl scale-[65%] origin-top-left bg-[white] shadow-lg">
         <header className="flex space-x-2">
           <div className="flex space-x-3">
             <button

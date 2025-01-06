@@ -1,5 +1,7 @@
 import { useState } from "react";
 import selected from "../../assets/selected.png";
+import decIcon from "../../assets/decreasing.png";
+import incIcon from "../../assets/increasing.png";
 
 export default function SortWarranty({ data, changeSorting }) {
   const [modalOpen, setModalOpen] = useState(false);
@@ -37,7 +39,7 @@ export default function SortWarranty({ data, changeSorting }) {
         <div className="fixed top-0 bottom-0 right-0 left-0 bg-black/40 z-10"></div>
       ) : null}
       {modalOpen ? (
-        <div className="fixed flex z-10 space-x-8 top-[50%] left-[50%] translate-y-[-50%] translate-x-[-50%] bg-white rounded-2xl p-6">
+        <div className="fixed scale-75 flex z-10 space-x-8 top-[50%] left-[50%] translate-y-[-50%] translate-x-[-50%] bg-white rounded-2xl p-6">
           <div className="flex rounded-2xl bg-slate-100 p-4 flex-col w-[250px]">
             <p className="text-xl font-semibold mx-auto p-2 bg-white w-full rounded-xl text-center">
               Sort By{" "}
@@ -106,16 +108,16 @@ export default function SortWarranty({ data, changeSorting }) {
             </div>
           </div>
           <div className="flex flex-col justify-between space-y-4">
-            <div className="flex rounded-2xl bg-slate-100 p-4 flex-col w-[230px] ">
+            <div className="flex rounded-2xl bg-slate-100 p-4 flex-col w-[200px] ">
               <p className="text-xl font-semibold mx-auto p-2 bg-white w-full rounded-xl text-center">
                 Order
               </p>
               <div className="p-2 bg-white flex py-4 space-x-4 items-center justify-center w-full rounded-xl  mt-4">
                 <button
                   onClick={() => changeOrder(1)}
-                  className="rounded-lg relative w-fit font-medium  text-lg bg-[#dc93f6] text-black py-1 px-4 "
+                  className="rounded-lg relative w-fit font-medium  text-lg bg-[#dc93f6] text-black py-2 px-4 "
                 >
-                  Asc
+                  <img src={incIcon} className="w-[25px] h-[25px] " alt="" />
                   {1 === selectedOrder ? (
                     <div className="absolute -right-2 -top-2 ">
                       <img
@@ -128,9 +130,9 @@ export default function SortWarranty({ data, changeSorting }) {
                 </button>
                 <button
                   onClick={() => changeOrder(2)}
-                  className="rounded-lg relative w-fit font-medium  text-lg bg-[#dc93f6] text-black py-1 px-4 "
+                  className="rounded-lg relative w-fit font-medium  text-lg bg-[#dc93f6] text-black py-2 px-4 "
                 >
-                  Desc
+                  <img src={decIcon} className="w-[25px] h-[25px] " alt="" />
                   {2 === selectedOrder ? (
                     <div className="absolute -right-2 -top-2 ">
                       <img
@@ -163,7 +165,7 @@ export default function SortWarranty({ data, changeSorting }) {
       ) : null}
       <button
         onClick={sortClick}
-        className="py-1 px-3 h-fit text-lg font-semibold bg-[#9d4edd] rounded-xl text-white border-2 border-[#9d4edd] hover:text-[#9d4edd] hover:scale-105 hover:bg-white duration-500"
+        className="py-1 px-3 h-fit text-sm font-semibold bg-[#9d4edd] rounded-lg text-white border-[1.5px] border-[#9d4edd] hover:text-[#9d4edd] hover:scale-105 hover:bg-white duration-500"
       >
         Sort
       </button>

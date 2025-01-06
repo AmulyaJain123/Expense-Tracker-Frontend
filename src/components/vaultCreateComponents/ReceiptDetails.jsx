@@ -104,24 +104,24 @@ const ReceiptDetails = forwardRef(function ReceiptDetails({ ...prop }, ref) {
 
   return (
     <div className={`zigzag ${styles.main}`}>
-      <div className="bg-slate-100  m-4 rounded-lg flex text-black justify-center items-center uppercase font-bold">
+      <div className="bg-slate-100 m-[10px] rounded-md flex text-black justify-center items-center uppercase font-bold">
         Create Receipt
       </div>
 
-      <div className="flex h-[20px]">
-        <div className="billCuts h-[20px] w-[20px] rounded-r-full"></div>
+      <div className="flex h-[15px]">
+        <div className="billCuts h-[15px] w-[15px] rounded-r-full"></div>
         <div className="flex flex-col h-full flex-grow">
-          <div className="h-1/2 w-full  border-b-[3px] border-dashed border-stone-200"></div>
-          <div className="h-1/2 w-full  border-stone-300"></div>
+          <div className="h-[10px] w-full  border-b-[2.5px] border-dashed border-stone-200"></div>
+          <div className=" w-full "></div>
         </div>
-        <div className="billCuts h-[20px] w-[20px] rounded-l-full"></div>
+        <div className="billCuts h-[15px] w-[15px] rounded-l-full"></div>
       </div>
 
       <div className="flex flex-col mt-[60px]">
         <div className="flex flex-col">
-          <div className="text-xl relative font-semibold flex justify-center">
+          <div className="text-base relative font-semibold flex justify-center">
             Receipt Name
-            <span className="px-2 py-1 text-sm absolute left-[10px] font-medium text-neutral-500 bg-neutral-100 rounded-md mx-1">
+            <span className="px-2 py-1 text-xs absolute left-[7px] font-medium text-neutral-500 bg-neutral-100 rounded-md mx-1">
               REQ
             </span>
           </div>
@@ -132,14 +132,14 @@ const ReceiptDetails = forwardRef(function ReceiptDetails({ ...prop }, ref) {
             ref={recNameRef}
             value={name}
             onChange={(event) => recNameChange(event)}
-            className="flex p-2 px-4 text-center mx-4 mt-2 bg-slate-100"
+            className="flex p-2 px-3 text-center mx-3 mt-[6px] text-xs bg-slate-100"
           />
           <ErrorElement error={nameError} />
         </div>
-        <div className="flex flex-col mb-[40px]">
-          <div className="text-xl relative font-semibold flex justify-center">
+        <div className="flex flex-col mb-[35px]">
+          <div className="text-base relative font-semibold flex justify-center">
             Created On
-            <span className="px-2 py-1 text-sm absolute left-[10px] font-medium text-neutral-500 bg-neutral-100 rounded-md mx-1">
+            <span className="px-2 py-1 text-xs absolute left-[7px] font-medium text-neutral-500 bg-neutral-100 rounded-md mx-1">
               REQ
             </span>
           </div>
@@ -147,17 +147,17 @@ const ReceiptDetails = forwardRef(function ReceiptDetails({ ...prop }, ref) {
             type="text"
             value={currDate}
             disabled
-            className="flex p-2 px-4 text-center mx-4 mt-2 bg-slate-100"
+            className="flex p-2 px-3 text-xs text-center mx-3 mt-[6px] bg-slate-100"
           />
         </div>
         <div className="flex flex-col">
-          <div className="text-xl relative font-semibold flex justify-center">
+          <div className="text-base relative font-semibold flex justify-center">
             Receipt Date
-            <span className="px-2 py-1 text-sm absolute left-[10px] font-medium text-neutral-500 bg-neutral-100 rounded-md mx-1">
+            <span className="px-2 py-1 text-xs absolute left-[7px] font-medium text-neutral-500 bg-neutral-100 rounded-md mx-1">
               REQ
             </span>
           </div>
-          <div className="p-2 px-4 relative flex flex-grow justify-between mx-4 mt-2 bg-slate-100">
+          <div className="p-2 px-3 relative text-xs flex flex-grow justify-between mx-3 mt-[6px] bg-slate-100">
             <input
               ref={recDateRef}
               value={recdate}
@@ -167,7 +167,7 @@ const ReceiptDetails = forwardRef(function ReceiptDetails({ ...prop }, ref) {
             />
             <span
               style={{ color: recdate ? "#000" : "#737373" }}
-              className="absolute left-0 h-auto p-2 px-4 pl-8 flex items-center top-0 w-[70%] bg-slate-100"
+              className="absolute left-0 h-auto p-2 px-4 pl-6 flex items-center top-0 w-[70%] bg-slate-100"
             >
               {recdate ? new Date(recdate).toDateString() : "NOT ENTERED"}
             </span>
@@ -176,7 +176,7 @@ const ReceiptDetails = forwardRef(function ReceiptDetails({ ...prop }, ref) {
           <ErrorElement error={dateError} />
         </div>
         <div className="flex flex-col">
-          <div className="text-xl relative font-semibold flex justify-center">
+          <div className="text-base relative font-semibold flex justify-center">
             Receipt Total
           </div>
           <input
@@ -185,9 +185,9 @@ const ReceiptDetails = forwardRef(function ReceiptDetails({ ...prop }, ref) {
             ref={recTotalRef}
             value={total}
             onChange={recTotalChange}
-            className="p-2 px-4 text-center disableScroll overflow-hidden mx-4 mt-2 bg-slate-100"
+            className="p-2 px-3 text-center disableScroll overflow-hidden mx-3 mt-[6px] bg-slate-100"
           />
-          <div className="flex justify-between px-4 py-1 bg-stone-100 rounded-lg mx-4 mt-2">
+          <div className="flex justify-between px-3 text-xs py-1 bg-stone-100 rounded-md mx-3 mt-[6px]">
             <span className="font-medium text-neutral-500">Value Entered:</span>
             <span className="text-neutral-500">
               {total === "" ? "NULL" : total}
@@ -195,18 +195,18 @@ const ReceiptDetails = forwardRef(function ReceiptDetails({ ...prop }, ref) {
           </div>
           <ErrorElement error={AmountError} />
         </div>
-        <div className="flex flex-col mb-[30px]">
-          <div className="text-xl font-semibold flex justify-center">
+        <div className="flex flex-col mb-[20px]">
+          <div className="text-base font-semibold flex justify-center">
             Description
           </div>
           <textarea
             placeholder="Description"
             ref={recDescRef}
-            className="p-2 px-4 text-center resize-none h-[150px] mx-4 mt-2 bg-slate-100"
+            className="p-2 px-3 text-center text-xs resize-none h-[110px] mx-3 mt-[6px] bg-slate-100"
           />
         </div>
       </div>
-      <p className="px-4 mt-8 text-center">
+      <p className="px-4 mt-6 text-xs text-center">
         *Fields marked with{" "}
         <span className="px-2 py-1 font-medium text-neutral-500 bg-neutral-100 rounded-md mx-1">
           REQ

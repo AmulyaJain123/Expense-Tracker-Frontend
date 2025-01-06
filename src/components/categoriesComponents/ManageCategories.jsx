@@ -72,15 +72,15 @@ export default function ManageCategories() {
 
   return (
     <>
-      <div className="w-[90%] mt-16 flex flex-col mx-auto bg-white rounded-3xl p-4">
+      <div className="w-[90%]  mt-12 flex flex-col mx-auto bg-white rounded-2xl p-3">
         <div
           id="categoryTop"
-          className="w-full bg-slate-100 py-4 uppercase text-3xl text-center rounded-xl font-bold text-stone-700"
+          className="w-full bg-slate-100 py-[10px] uppercase text-2xl text-center rounded-xl font-bold text-stone-700"
         >
           Manage Categories
         </div>
 
-        <div className="flex w-full flex-col gap-y-4 flex-grow min-h-[800px] pb-[200px] bg-slate-100 rounded-xl p-6 mt-4">
+        <div className="flex w-full flex-col gap-y-4 flex-grow min-h-[800px] pb-[200px] bg-slate-100 rounded-xl p-4 mt-3">
           {loading ? (
             <div className="flex justify-center mt-44 flex-grow">
               <img src={load} className="w-[50px] h-[50%]" alt="" />
@@ -92,7 +92,7 @@ export default function ManageCategories() {
             </div>
           ) : (
             <>
-              <div className="flex px-4 py-2 justify-end space-x-4">
+              <div className="flex px-3 py-[6px] text-xs justify-end space-x-3">
                 <button
                   style={{
                     backgroundColor: selected === 0 ? "#9d4edd" : "#dc93f6",
@@ -100,7 +100,7 @@ export default function ManageCategories() {
                   }}
                   disabled={loading || selected === 0}
                   onClick={() => setSelected(0)}
-                  className="py-2 disabled:pointer-events-none px-4 font-medium rounded-lg duration-500  hover:scale-110 "
+                  className="py-[6px] disabled:pointer-events-none px-3 font-medium rounded-md duration-500  hover:scale-110 "
                 >
                   Outgoing
                 </button>
@@ -111,7 +111,7 @@ export default function ManageCategories() {
                   }}
                   disabled={loading || selected === 1}
                   onClick={() => setSelected(1)}
-                  className="py-2 disabled:pointer-events-none px-4 font-medium rounded-lg duration-500 hover:scale-110 "
+                  className="py-[6px] disabled:pointer-events-none px-3 font-medium rounded-md duration-500 hover:scale-110 "
                 >
                   Incoming
                 </button>

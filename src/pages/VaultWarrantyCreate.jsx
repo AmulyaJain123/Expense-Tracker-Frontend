@@ -9,7 +9,9 @@ export default function VaultWarrantyCreate() {
         <meta name="description" content="Friends" />
       </Helmet>
       <div className="h-full w-full bg-white whiteScr overflow-auto pb-[80px] rounded-r-xl lg:rounded-r-none rounded-l-xl">
-        <WarrantyCreate />
+        <div className="mx-auto max-w-[1200px] flex flex-col">
+          <WarrantyCreate />
+        </div>
       </div>
     </>
   );

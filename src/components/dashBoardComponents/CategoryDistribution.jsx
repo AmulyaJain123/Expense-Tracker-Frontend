@@ -104,20 +104,20 @@ export default function CategoryDistribution() {
 
   return (
     <>
-      <div className="flex flex-grow flex-col mx-4 space-y-4">
-        <div className="flex flex-col space-y-4 flex-grow rounded-xl p-4 bg-[#f7ebfd]">
-          <header className="flex p-2 px-4 pr-2 h-fit justify-center rounded-xl bg-[#9f21e3] text-white">
-            <span className="text-2xl font-semibold ">
+      <div className="flex flex-grow flex-col mx-3 space-y-3">
+        <div className="flex flex-col space-y-3 flex-grow rounded-lg p-3 bg-[#f7ebfd]">
+          <header className="flex p-[6px] px-4 pr-2 h-fit justify-center rounded-lg bg-[#9f21e3] text-white">
+            <span className="text-lg font-semibold ">
               Categorical Distribution
             </span>
           </header>
-          <div className="flex flex-grow py-4 pb-0">
+          <div className="flex flex-grow py-3 pb-0">
             {val != null ? <PieCharts data={val} /> : null}
           </div>
           <div className="flex flex-col  flex-grow">
             {open ? <Pallate /> : null}
             <div className="flex flex-grow flex-col items-center">
-              <span className="uppercase text-lg font-medium mb-1">
+              <span className="uppercase text-sm font-medium mb-1">
                 {open ? "close legend" : "Open Legend"}
               </span>
               <button
@@ -129,7 +129,7 @@ export default function CategoryDistribution() {
                   style={{
                     transform: !open ? "rotate(90deg)" : "rotate(-90deg)",
                   }}
-                  className="w-[25px] h-[25px] "
+                  className="w-[20px] h-[20px] "
                   alt=""
                 />
               </button>

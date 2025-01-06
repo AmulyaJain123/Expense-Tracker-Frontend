@@ -56,9 +56,9 @@ export default function LineGraph({ data }) {
           hidden: true,
         },
       }}
-      width={800}
-      height={320}
-      borderRadius={5}
+      width={610}
+      height={260}
+      borderRadius={3}
       margin={{ top: 10 }}
     />
   );

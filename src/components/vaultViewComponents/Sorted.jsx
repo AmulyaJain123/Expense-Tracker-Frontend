@@ -153,15 +153,15 @@ export default function Sorted({ filteredData, sorting }) {
                   to={`${i.recId}`}
                   className="flex hover:scale-105 hover:shadow-lg duration-500 flex-col rounded-xl bg-slate-100 "
                 >
-                  <div className="p-4  flex space-x-4 ">
-                    <div className="p-3 rounded-2xl bg-slate-200">
+                  <div className="p-3  flex space-x-3 ">
+                    <div className="p-2 rounded-xl bg-slate-200">
                       <img
                         src={recIcon}
-                        className="w-[150px] h-[150px] flex justify-center items-center"
+                        className="w-[110px] h-[110px] flex justify-center items-center"
                         alt=""
                       />
                     </div>
-                    <div className="flex flex-col w-[150px] justify-center space-y-2">
+                    <div className="flex flex-col w-[120px] text-xs justify-center space-y-[6px]">
                       <div className="flex flex-col">
                         <span className="font-semibold">Receipt Name</span>{" "}
                         <span className="pl-1">
@@ -186,8 +186,8 @@ export default function Sorted({ filteredData, sorting }) {
                       </div>
                     </div>
                   </div>
-                  <div className="flex flex-col p-4 pt-0 space-y-2">
-                    <div className="flex space-x-4 ">
+                  <div className="flex flex-col p-3 pt-0 text-xs space-y-[6px]">
+                    <div className="flex space-x-3 ">
                       <span className="font-semibold">Description</span>{" "}
                       <span className="pl-1">
                         <OnlyXChars x={20} text={i.details.recDesc} />
@@ -198,13 +198,13 @@ export default function Sorted({ filteredData, sorting }) {
               );
             })
           ) : (
-            <div className="flex flex-col mt-12 space-y-4">
+            <div className="flex flex-col mt-8 items-center space-y-2">
               <img
                 src={empty}
-                className="h-[150px] w-[150px] flex justify-center items-center"
+                className="h-[90px] w-[90px] flex justify-center items-center"
                 alt=""
               />
-              <p className="text-center text-stone-500 mt-16 text-lg font-medium">
+              <p className="text-center text-stone-500 mt-12 text-sm font-medium">
                 No Receipts Found
               </p>
             </div>

@@ -78,7 +78,7 @@ export default function InOut({ type, data }) {
     const name = event.target.value.trim();
     setToName(name);
     if (name === "") {
-      setToNameError("Reciever Name cannot be empty");
+      setToNameError("Reciever/Sender Name cannot be empty");
     } else {
       setToNameError(null);
     }
@@ -172,52 +172,52 @@ export default function InOut({ type, data }) {
   return (
     <>
       <div className={`${styles.main} flex-col xl:flex-row flex-grow w-full`}>
-        <div className="p-4 h-fit bg-white w-[50%] flex flex-col space-y-4  rounded-xl">
+        <div className="p-3 h-fit bg-white w-[50%] flex flex-col space-y-3  rounded-xl">
           {loading != false ? (
             <Loading retry={retry} changeMode={changeMode} mode={loading} />
           ) : null}
           <div
             id={styles.largeTitle}
-            className="rounded-lg font-bold text-center bg-slate-100 p-3 uppercase"
+            className="rounded-lg font-bold text-center bg-slate-100 p-2 uppercase"
           >
             Transaction Info
           </div>
           <div className="flex flex-col">
-            <div className="flex flex-col space-y-4 p-4 rounded-lg bg-slate-100">
+            <div className="flex flex-col space-y-3 p-3 rounded-lg bg-slate-100">
               <span
                 id={styles.mediumTitle}
-                className="p-2 px-6 font-semibold text-white bg-black rounded-lg"
+                className="p-[6px] px-4 font-semibold text-white bg-black rounded-md"
               >
                 Transaction Name
               </span>
               <Input
                 id={styles.inputBox}
-                className="flex-grow p-2 px-4  bg-white  text-stone-600 rounded-lg"
+                className="flex-grow p-[6px] px-3  bg-white  text-stone-600 rounded-md"
                 placeholder="Name"
                 onChange={(event) => nameChange(event)}
                 type="text"
                 ref={nameRef}
               />
             </div>
-            <div className="flex-grow  flex items-center my-2 h-[25px]">
+            <div className="flex-grow  flex items-center my-[6px] h-[20px]">
               {nameError != null ? (
-                <div className="min-h-[30px] mx-2 my-2 py-1 flex-grow flex text-sm text-center items-center px-3 rounded-md bg-red-300 text-black ">
-                  <i className="fi fi-rs-exclamation mr-3 text-base flex justify-center items-center"></i>
+                <div className="min-h-[20px] mx-[4px] my-[6px] py-1 flex-grow flex text-xs text-center items-center px-2 rounded-md bg-red-200 text-black ">
+                  <i className="fi fi-rs-exclamation mr-3 text-sm flex justify-center items-center"></i>
                   <span className={`${styles.error}`}>{nameError}</span>
                 </div>
               ) : null}
             </div>
-            <div className="flex flex-col space-y-4 p-4 rounded-lg bg-slate-100">
+            <div className="flex flex-col space-y-3 p-3 rounded-lg bg-slate-100">
               <span
                 id={styles.mediumTitle}
-                className="p-2 px-6 font-semibold text-white bg-black rounded-lg"
+                className="p-[6px] px-4 font-semibold text-white bg-black rounded-md"
               >
                 Transaction Amount
               </span>
               <div className="flex space-x-4">
                 <Input
                   id={styles.inputBox}
-                  className="flex-grow disableScroll p-2 pl-4 bg-white  text-stone-600 rounded-lg"
+                  className="flex-grow disableScroll p-[6px] pl-3 bg-white  text-stone-600 rounded-md"
                   type="number"
                   onChange={(event) => amountChange(event)}
                   placeholder="Amount"
@@ -225,73 +225,73 @@ export default function InOut({ type, data }) {
                   ref={amountRef}
                 />
               </div>
-              <div className="flex bg-slate-200 rounded-lg justify-between py-1 px-3 text-slate-400 font-medium">
+              <div className="flex bg-slate-200 rounded-md text-xs justify-between py-1 px-3 text-slate-400 font-medium">
                 <span>Value Entered</span>
                 <span>{isNaN(amt) || amt === "" ? "NULL" : amt}</span>
               </div>
             </div>
-            <div className="flex-grow  flex items-center my-2 h-[30px]">
+            <div className="flex-grow  flex items-center my-[6px] h-[20px]">
               {amountError != null ? (
-                <div className="min-h-[30px] mx-2 my-2 py-1 flex-grow flex text-sm text-center items-center px-3 rounded-md bg-red-300 text-black ">
-                  <i className="fi fi-rs-exclamation mr-3 text-base flex justify-center items-center"></i>
+                <div className="min-h-[20px] mx-[4px] my-[6px] py-1 flex-grow flex text-xs text-center items-center px-2 rounded-md bg-red-200 text-black  ">
+                  <i className="fi fi-rs-exclamation mr-3 text-sm flex justify-center items-center"></i>
                   <span>{amountError}</span>
                 </div>
               ) : null}
             </div>
-            <div className="flex flex-col space-y-4">
+            <div className="flex flex-col space-y-3">
               {type === 1 ? (
-                <div className="flex flex-col 2xl:flex-row space-y-4 2xl:space-y-0 2xl:space-x-4">
-                  <div className="flex flex-col flex-auto space-y-4 p-4 rounded-lg bg-slate-100">
+                <div className="flex flex-col 2xl:flex-row space-y-3">
+                  <div className="flex flex-col flex-auto space-y-3 p-3 rounded-lg bg-slate-100">
                     <span
                       id={styles.mediumTitle}
-                      className="p-2 px-6 font-semibold text-lg text-white bg-black  rounded-lg"
+                      className="p-[6px] px-4 font-semibold text-[15px] text-white bg-black  rounded-md"
                     >
                       From
                     </span>
                     <Input
                       id={styles.inputBox}
-                      className="flex-grow p-2 pl-4 bg-white rounded-lg text-lg"
+                      className="flex-grow p-[6px] pl-3 bg-white rounded-md text-xs"
                       onChange={(event) => toNameChange(event)}
                       ref={toNameRef}
                       placeholder="Name"
                       type="text"
                     />
                   </div>
-                  <div className="flex flex-col flex-auto space-y-4 p-4 rounded-lg bg-slate-100">
+                  <div className="flex flex-col flex-auto space-y-3 p-3 rounded-lg bg-slate-100">
                     <span
                       id={styles.mediumTitle}
-                      className="p-2 px-3 font-semibold text-lg text-white bg-black text-center rounded-lg"
+                      className="p-[6px] px-3 font-semibold text-[15px] text-white bg-black text-center rounded-md"
                     >
                       To
                     </span>
-                    <span className="flex-grow p-2 text-center pl-4 bg-white  text-stone-600 rounded-lg">
+                    <span className="flex-grow p-[6px] text-xs text-center pl-4 bg-white  text-stone-600 rounded-md">
                       Me
                     </span>
                   </div>
                 </div>
               ) : (
-                <div className="flex flex-col 2xl:flex-row space-y-4 2xl:space-y-0 2xl:space-x-4">
-                  <div className="flex flex-col flex-auto space-y-4 p-4 rounded-lg bg-slate-100">
+                <div className="flex flex-col 2xl:flex-row space-y-3 ">
+                  <div className="flex flex-col  flex-auto space-y-3 p-3 rounded-lg bg-slate-100">
                     <span
                       id={styles.mediumTitle}
-                      className="p-2 px-3 font-semibold text-white bg-black text-center rounded-lg"
+                      className="p-[6px] px-3 text-[15px] font-semibold text-white bg-black text-center rounded-md"
                     >
                       From
                     </span>
-                    <span className="flex-grow p-2 text-center pl-4 bg-white  text-stone-600 rounded-lg">
+                    <span className="flex-grow p-[6px] text-xs text-center pl-3 bg-white  text-stone-600 rounded-md">
                       Me
                     </span>
                   </div>
-                  <div className="flex flex-col flex-auto space-y-4 p-4 rounded-lg bg-slate-100">
+                  <div className="flex flex-col flex-auto space-y-3 p-3 rounded-lg bg-slate-100">
                     <span
                       id={styles.mediumTitle}
-                      className="p-2 px-6 font-semibold text-white bg-black rounded-lg"
+                      className="p-[6px] px-4 font-semibold text-white bg-black rounded-md"
                     >
                       To
                     </span>
                     <Input
                       id={styles.inputBox}
-                      className="flex-grow p-2 pl-4 bg-white  text-stone-600 rounded-lg"
+                      className="flex-grow p-[6px] pl-3 bg-white  text-stone-600 rounded-md"
                       $error={toNameError != null ? "true" : "false"}
                       onChange={(event) => toNameChange(event)}
                       type="text"
@@ -302,28 +302,28 @@ export default function InOut({ type, data }) {
                 </div>
               )}
             </div>
-            <div className="flex-grow  flex items-center my-2 h-[30px]">
+            <div className="flex-grow  flex items-center my-[6px] h-[20px]">
               {toNameError != null ? (
-                <div className="min-h-[30px] mx-2 my-2 py-1 flex-grow flex text-sm text-center items-center px-3 rounded-md bg-red-300 text-black ">
-                  <i className="fi fi-rs-exclamation mr-3 text-base flex justify-center items-center"></i>
+                <div className="min-h-[20px] mx-[4px] my-[6px] py-1 flex-grow flex text-xs text-center items-center px-2 rounded-md bg-red-200 text-black  ">
+                  <i className="fi fi-rs-exclamation mr-3 text-sm flex justify-center items-center"></i>
                   <span>{toNameError}</span>
                 </div>
               ) : null}
             </div>
             <div className="flex flex-col space-y-4">
-              <div className="flex flex-col 2xl:flex-row space-y-4 2xl:space-y-0 2xl:space-x-4">
-                <div className="flex flex-col flex-1 space-y-4 p-4 rounded-lg bg-slate-100">
+              <div className="flex flex-col 2xl:flex-row space-y-4 2xl:space-y-0 2xl:space-x-3">
+                <div className="flex flex-col flex-1 space-y-3 p-3 rounded-lg bg-slate-100">
                   <span
                     id={styles.mediumTitle}
-                    className="p-2 px-3 font-semibold text-white bg-black text-center rounded-lg"
+                    className="p-[6px] px-3 font-semibold text-white bg-black text-center rounded-md"
                   >
                     Date & Time
                   </span>
-                  <div className="flex relative">
+                  <div className="flex text-xs relative">
                     <Input
                       id={styles.inputBox}
                       ref={dateRef}
-                      className="flex-grow focus:outline-none p-2 pl-4 bg-white text-stone-600 rounded-lg"
+                      className="flex-grow focus:outline-none p-[6px] pl-3 bg-white text-stone-600 rounded-lg"
                       value={
                         date === ""
                           ? ""
@@ -344,24 +344,24 @@ export default function InOut({ type, data }) {
                 </div>
               </div>
             </div>
-            <div className="flex-grow  flex items-center my-2 h-[30px]">
+            <div className="flex-grow  flex items-center my-[6px] h-[20px]">
               {dateError != null ? (
-                <div className="min-h-[30px] mx-2 my-2 py-1 flex-grow flex text-sm text-center items-center px-3 rounded-md bg-red-300 text-black">
-                  <i className="fi fi-rs-exclamation mr-3 text-base flex justify-center items-center"></i>
+                <div className="min-h-[20px] mx-[4px] my-[6px] py-1 flex-grow flex text-xs text-center items-center px-2 rounded-md bg-red-200 text-black ">
+                  <i className="fi fi-rs-exclamation mr-3 text-sm flex justify-center items-center"></i>
                   <span>{dateError}</span>
                 </div>
               ) : null}
             </div>
           </div>
         </div>
-        <div className="p-4 h-fit bg-white w-1/2 flex flex-col space-y-4 rounded-xl ">
+        <div className="p-3 h-fit bg-white w-1/2 flex flex-col space-y-3 rounded-xl ">
           <div
             id={styles.largeTitle}
-            className="rounded-lg  font-bold text-center bg-slate-100 p-3 uppercase"
+            className="rounded-lg  font-bold text-center bg-slate-100 p-2 uppercase"
           >
             Category
           </div>
-          <div className="flex flex-col space-y-4 p-4 rounded-lg bg-slate-100">
+          <div className="flex flex-col text-xs space-y-3 p-3 rounded-lg bg-slate-100">
             <div>
               <button
                 style={{
@@ -371,7 +371,7 @@ export default function InOut({ type, data }) {
                 }}
                 disabled={category.length === 1}
                 onClick={() => setCategory(["null"])}
-                className="capitalize hover:scale-105 disabled:pointer-events-none duration-500 rounded-lg py-1 px-3 font-medium"
+                className="capitalize hover:scale-105 disabled:pointer-events-none duration-500 rounded-md py-[3px] px-[8px] font-medium"
               >
                 NULL
               </button>
@@ -379,10 +379,10 @@ export default function InOut({ type, data }) {
             {data[typeArr[type]].map((i) => {
               return (
                 <div className="flex flex-col ">
-                  <span className="rounded-lg py-1 text-lg font-medium bg-black text-white px-3 text-center">
+                  <span className="rounded-md py-1 text-sm font-medium bg-black text-white px-3 text-center">
                     {i.name}
                   </span>
-                  <div className="mt-2 p-2 flex flex-wrap gap-2">
+                  <div className="mt-2 p-1 flex flex-wrap gap-[6px]">
                     {i.categories.map((j) => {
                       return (
                         <button
@@ -406,7 +406,7 @@ export default function InOut({ type, data }) {
                             category[0] === i.name &&
                             category[1] === j
                           }
-                          className="capitalize hover:scale-105 disabled:pointer-events-none duration-500 rounded-lg py-1 px-3 font-medium"
+                          className="capitalize hover:scale-105 disabled:pointer-events-none duration-500 rounded-md py-[3px] px-[8px] font-medium"
                         >
                           {j}
                         </button>

@@ -21,19 +21,22 @@ a.active div {
 }
 
 tspan {
-  font-size: 14px;
+  font-size: 11px;
   font-weight: 500;
   font-family: "Poppins";
 }
 
 .MuiChartsTooltip-root {
+  font-size: 12px;
   text-transform: capitalize;
   font-family: "Poppins";
 }
 .css-rizt0-MuiTypography-root {
+  font-size: 12px !important;
   font-family: "Poppins" !important;
 }
 .MuiTypography-root {
+  font-size: 12px !important;
   font-family: "Poppins" !important;
 }
 
@@ -61,7 +64,7 @@ customScrollThinLight
 
 .customScrollThin::-webkit-scrollbar {
   width: 4px;
-  height: 8px;
+  height: 6px;
   border-radius: 20px;
 }
 
@@ -134,10 +137,10 @@ customScrollThinLight
   display: block;
   background: linear-gradient(45deg, white 25%, transparent 25%),
     linear-gradient(-45deg, white 25%, transparent 25%);
-  background-size: 15px 15px;
-  height: 15px;
+  background-size: 12px 12px;
+  height: 12px;
   width: 100%;
-  top: -15px;
+  top: -12px;
 }
 .zigzag::after {
   position: absolute;
@@ -145,10 +148,10 @@ customScrollThinLight
   display: block;
   background: linear-gradient(45deg, white 25%, transparent 25%),
     linear-gradient(-45deg, white 25%, transparent 25%);
-  background-size: 15px 15px;
-  height: 15px;
+  background-size: 12px 12px;
+  height: 12px;
   width: 100%;
-  bottom: -15px;
+  bottom: -12px;
   transform: rotateX(180deg);
 }
 .billCuts {
@@ -208,7 +211,7 @@ input[type="file"] {
 }
 
 .loginHeight {
-  height: calc(90vh - 350px);
+  height: calc(90vh - 250px);
 }
 
 .Toastify__toast {

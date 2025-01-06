@@ -9,7 +9,9 @@ export default function VaultReceiptCreate() {
         <meta name="description" content="Friends" />
       </Helmet>
       <div className="h-full w-full bg-white whiteScr overflow-auto pb-[80px] rounded-r-xl lg:rounded-r-none rounded-l-xl">
-        <ReceiptCreate />
+        <div className="flex flex-col mx-auto max-w-[1200px]">
+          <ReceiptCreate />
+        </div>
       </div>
     </>
   );

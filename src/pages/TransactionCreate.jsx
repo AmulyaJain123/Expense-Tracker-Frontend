@@ -20,25 +20,25 @@ export default function TransactionCreate() {
         <meta name="description" content="Friends" />
       </Helmet>
       <div className="h-full w-full flex-grow whiteScr  overflow-auto sm:px-16 pt-8 pb-[200px] text-stone-700 rounded-l-xl">
-        <div className="flex flex-grow mx-auto max-w-[1200px]">
+        <div className="flex flex-grow mx-auto max-w-[900px]">
           {userDetails ? (
             <div className="flex flex-grow flex-col">
-              <div className="flex flex-col text-center sm:text-start xl:flex-row space-y-6 xl:space-y-0 justify-between bg-white rounded-xl m-4 mx-0 items-center flex-grow p-3">
-                <div className="text-xl sm:text-2xl 2xl:text-3xl font-bold xl:ml-4">
+              <div className="flex flex-col text-center sm:text-start xl:flex-row space-y-4 xl:space-y-0 justify-between bg-white rounded-xl m-3 mx-0 items-center flex-grow p-2">
+                <div className="text-xl font-bold xl:ml-4">
                   <span>Create</span>{" "}
-                  <span className="mx-[10px] rounded-xl capitalize bg-purple-500 px-4 pb-1 text-white">
+                  <span className="mx-[6px] rounded-lg capitalize bg-purple-500 px-4 pb-[2px] pt-[1px] text-white">
                     {typeArr[type]}
                   </span>{" "}
                   <span>Transaction</span>
                 </div>
-                <div className="flex space-x-3 pr-4 text-sm xl:text-base items-center">
+                <div className="flex space-x-2 pr-3  xl:text-xs items-center">
                   <button
                     onClick={() => setType((p) => (p + 1) % 2)}
                     className="hover:scale-110 duration-500"
                   >
                     <img
                       src={right}
-                      className="w-[20px] rotate-180 h-[20px] flex justify-center items-center"
+                      className="w-[15px] rotate-180 h-[15px] flex justify-center items-center"
                       alt=""
                     />
                   </button>
@@ -51,13 +51,13 @@ export default function TransactionCreate() {
                   >
                     <img
                       src={right}
-                      className="w-[20px]  h-[20px] flex justify-center items-center"
+                      className="w-[15px]  h-[15px] flex justify-center items-center"
                       alt=""
                     />
                   </button>
                 </div>
               </div>
-              <div className="mt-[10px] flex flex-col flex-grow items-center">
+              <div className="mt-[6px] flex flex-col flex-grow items-center">
                 <InOut data={data} type={type} />
               </div>
             </div>

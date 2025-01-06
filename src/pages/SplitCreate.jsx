@@ -22,49 +22,54 @@ export default function SplitCreate() {
         <meta name="description" content="Friends" />
       </Helmet>
       <div className="h-full w-full  bg-white whiteScr overflow-auto pb-[80px] rounded-l-xl">
-        {userDetails ? (
-          <>
-            <span id="Top"></span>
-            <div className="flex space-x-4 justify-center items-center mt-12">
-              <div
-                style={{
-                  backgroundColor: stage === 0 ? "#9d4edd" : "",
-                  border: stage === 0 ? "2px solid #9d4edd" : "2px solid black",
-                }}
-                className=" w-[10px] h-[10px] rounded-full"
-              ></div>
-              <div
-                style={{
-                  backgroundColor: stage === 1 ? "#9d4edd" : "",
-                  border: stage === 1 ? "2px solid #9d4edd" : "2px solid black",
-                }}
-                className="border-2 border-black w-[10px] h-[10px] rounded-full"
-              ></div>
-              <div
-                style={{
-                  backgroundColor: stage === 2 ? "#9d4edd" : "",
-                  border: stage === 2 ? "2px solid #9d4edd" : "2px solid black",
-                }}
-                className="border-2 border-black w-[10px] h-[10px] rounded-full"
-              ></div>
-            </div>
-            <div className="pt-12 flex flex-col flex-grow">
-              <div className="flex flex-grow px-16">
-                <TopButtons num={stage} />
+        <div className="flex flex-col max-w-[1200px] mx-auto">
+          {userDetails ? (
+            <>
+              <span id="Top"></span>
+              <div className="flex space-x-4 justify-center items-center mt-8">
+                <div
+                  style={{
+                    backgroundColor: stage === 0 ? "#9d4edd" : "",
+                    border:
+                      stage === 0 ? "1px solid #9d4edd" : "1px solid black",
+                  }}
+                  className=" w-[7px] h-[7px] rounded-full"
+                ></div>
+                <div
+                  style={{
+                    backgroundColor: stage === 1 ? "#9d4edd" : "",
+                    border:
+                      stage === 1 ? "1px solid #9d4edd" : "1px solid black",
+                  }}
+                  className="border-2 border-black w-[7px] h-[7px] rounded-full"
+                ></div>
+                <div
+                  style={{
+                    backgroundColor: stage === 2 ? "#9d4edd" : "",
+                    border:
+                      stage === 2 ? "1px solid #9d4edd" : "1px solid black",
+                  }}
+                  className="border-2 border-black w-[7px] h-[7px] rounded-full"
+                ></div>
               </div>
-              <div>
-                {stage === 0 ? <CreateSplitStage /> : null}
-                {stage === 1 ? <AddBillStage /> : null}
-                {stage === 2 ? <SplitResultStage /> : null}
+              <div className="pt-8 flex flex-col flex-grow">
+                <div className="flex flex-grow px-16">
+                  <TopButtons num={stage} />
+                </div>
+                <div>
+                  {stage === 0 ? <CreateSplitStage /> : null}
+                  {stage === 1 ? <AddBillStage /> : null}
+                  {stage === 2 ? <SplitResultStage /> : null}
+                </div>
+                <div className="flex flex-grow mt-12 px-16">
+                  <BottomButtons num={stage} />
+                </div>
               </div>
-              <div className="flex flex-grow mt-12 px-16">
-                <BottomButtons num={stage} />
-              </div>
-            </div>
-          </>
-        ) : (
-          <LoginRequired />
-        )}
+            </>
+          ) : (
+            <LoginRequired />
+          )}
+        </div>
       </div>
     </>
   );

@@ -6,22 +6,13 @@
 }
 
 .main input {
-  font-size: medium;
+  font-size: 12px;
 }
 .main textarea {
-  font-size: medium;
+  font-size: 12px;
 }
-
-@media (max-width: 1280px) {
-  .main input {
-    font-size: medium;
-  }
-  .main textarea {
-    font-size: medium;
-  }
-  .main select {
-    font-size: medium;
-  }
+.main select {
+  font-size: 12px;
 }
 
 @media (max-width: 1024px) {

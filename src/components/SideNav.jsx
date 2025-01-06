@@ -29,13 +29,13 @@ const Main = styled.div`
 `;
 const Logo = styled.div`
   padding: 10px;
-  font-size: 40px;
+  font-size: 30px;
   font-weight: 900;
   font-family: ${styling.logoFont};
   text-align: center;
 `;
 const Tiles = styled.div`
-  margin-top: 50px;
+  margin-top: 40px;
 `;
 
 const pages = [
@@ -124,39 +124,13 @@ export default function SideNav() {
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
-  // useEffect(() => {
-  //   if (location.pathname === "/") {
-  //     const arr = pages.find((i) => {
-  //       return i.name === "Home";
-  //     }).children;
-  //     setJump([...arr]);
-  //   } else if (location.pathname.includes("/split")) {
-  //     const arr = pages.find((i) => {
-  //       return i.name === "BillSplit";
-  //     }).children;
-  //     setJump([...arr]);
-  //   } else if (location.pathname.includes("/vault")) {
-  //     const arr = pages.find((i) => {
-  //       return i.name === "BillVault";
-  //     }).children;
-  //     setJump([...arr]);
-  //   } else if (location.pathname.includes("/track")) {
-  //     const arr = pages.find((i) => {
-  //       return i.name === "BillTrack";
-  //     }).children;
-  //     setJump([...arr]);
-  //   }
-  // }, [location]);
-
-  // console.log(jump);
-
   function logOutClick() {
     document.cookie = `token=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;`;
     navigate("/auth");
   }
 
   return (
-    <Main className="min-w-[250px] rounded-r-xl overflow-y-auto hidden lg:flex flex-col">
+    <Main className="min-w-[190px] rounded-r-xl overflow-y-auto hidden lg:flex flex-col">
       <Logo>
         <Link to={""}>BILLBUD</Link>
       </Logo>
@@ -169,45 +143,26 @@ export default function SideNav() {
           }
         })}
       </Tiles>
-      {/* <div
-        style={{
-          right: jump.length != 0 ? "0px" : "250px",
-          transition: "right ease-in-out 1000ms",
-          opacity: jump.length != 0 ? "1" : "0",
-        }}
-        className="flex flex-col relative mt-[50px] mb-[20px] px-6 text-black bg-slate-200 mr-6 py-3 rounded-r-lg"
-      >
-        <div className="text-xl font-semibold mb-3">Jump to</div>
-        <div className="flex flex-col pl-2 space-y-2">
-          {jump.map((link) => {
-            return (
-              <Link key={link.name} to={link.path}>
-                {link.name}
-              </Link>
-            );
-          })}
-        </div>
-      </div> */}
 
       <div className="flex flex-grow justify-end flex-col">
         {userDetails ? (
-          <div className="flex flex-col space-y-4 mb-[20px]  ">
+          <div className="flex flex-col space-y-4 mb-[10px]  ">
             <button
               onClick={logOutClick}
-              className="rounded-lg hover:bg-slate-200 flex space-x-6 mx-4  p-2 duration-500"
+              className="rounded-lg hover:bg-slate-200 flex space-x-4 mx-3  p-2 duration-500"
             >
-              <img src={logOut} className=" w-[25px]" alt="" />
-              <span className="font-medium">Logout</span>
+              <img src={logOut} className=" w-[19px]" alt="" />
+              <span className="font-medium text-xs">Logout</span>
             </button>
           </div>
         ) : (
-          <div className="flex flex-col space-y-4  mb-[20px] mt-auto">
+          <div className="flex flex-col space-y-4  mb-[10px] mt-auto">
             <Link
               to={"/auth"}
-              className="rounded-lg space-x-6 flex mx-4 hover:bg-slate-200 p-2 duration-500"
+              className="rounded-lg space-x-4 flex mx-3 hover:bg-slate-200 p-2 duration-500"
             >
-              <img src={logIn} className=" w-[25px]" alt="" />
-              <span className="font-medium">Login</span>
+              <img src={logIn} className=" w-[19px]" alt="" />
+              <span className="font-medium text-xs">Login</span>
             </Link>
           </div>
         )}

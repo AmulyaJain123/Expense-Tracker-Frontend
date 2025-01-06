@@ -8,15 +8,15 @@ const Button = styled.button`
   position: absolute;
   bottom: 2rem; /* bottom-8 */
   right: 2rem; /* right-8 */
-  padding-left: 1rem; /* px-4 */
-  padding-right: 1rem; /* px-4 */
-  padding-top: 0.5rem; /* py-2 */
-  padding-bottom: 0.5rem; /* py-2 */
-  border-radius: 0.75rem; /* rounded-xl */
-  font-size: 1.125rem; /* text-lg */
+  padding-left: 0.8rem; /* px-4 */
+  padding-right: 0.8rem; /* px-4 */
+  padding-top: 0.4rem; /* py-2 */
+  padding-bottom: 0.4rem; /* py-2 */
+  border-radius: 0.6rem; /* rounded-xl */
+  font-size: 0.9rem; /* text-lg */
   font-weight: 800; /* font-semibold */
   box-shadow: 0 10px 15px rgba(0, 0, 0, 0.1); /* shadow-xl */
-  border-width: 2px; /* border-[3px] */
+  border-width: 1.5px; /* border-[3px] */
   border-color: #38a3a5; /* border-[#2dc653] */
   background-color: #38a3a5; /* bg-[#2dc653] */
   color: #fff; /* text-[#f0fff1] */
@@ -56,20 +56,20 @@ export default function TypeFilter() {
 
   return (
     <div className="flex relative flex-col flex-grow bg-[#fefae0] mr-4 rounded-r-xl p-4 px-16">
-      <div className="font-semibold flex flex-col mt-[8px] mb-[40px] text-xl text-black text-center"></div>
+      <div className="font-semibold flex flex-col mt-[8px] mb-[20px] text-xl text-black text-center"></div>
 
-      <div className="text-xl font-semibold mx-auto mb-[20px] uppercase">
+      <div className="text-base font-semibold mx-auto mb-[10px] uppercase">
         Select a Type
       </div>
-      <div className="flex mt-8 space-x-4 scale-90 justify-center">
+      <div className="flex mt-6 space-x-2 scale-90 justify-center">
         <button
           onClick={(event) => clickHandle(event)}
           style={{
             backgroundColor: selectedType === "Outgoing" ? "#9d4edd" : "#fff",
             color: selectedType === "Outgoing" ? "#fff" : "#78716c",
-            border: selectedType === "Outgoing" ? "0px" : "2px solid #a8a29e",
+            border: selectedType === "Outgoing" ? "0px" : "1.5px solid #a8a29e",
           }}
-          className="p-1 px-3 rounded-lg text-lg font-medium "
+          className="p-1 px-2 rounded-md text-sm font-medium "
         >
           Outgoing
         </button>
@@ -78,9 +78,9 @@ export default function TypeFilter() {
           style={{
             backgroundColor: selectedType === "Incoming" ? "#9d4edd" : "#fff",
             color: selectedType === "Incoming" ? "#fff" : "#78716c",
-            border: selectedType === "Incoming" ? "0px" : "2px solid #a8a29e",
+            border: selectedType === "Incoming" ? "0px" : "1.5px solid #a8a29e",
           }}
-          className="p-1 px-3 rounded-lg text-lg font-medium "
+          className="p-1 px-2 rounded-md text-sm font-medium "
         >
           Incoming
         </button>
@@ -89,9 +89,9 @@ export default function TypeFilter() {
           style={{
             backgroundColor: selectedType === "Both" ? "#9d4edd" : "#fff",
             color: selectedType === "Both" ? "#fff" : "#78716c",
-            border: selectedType === "Both" ? "0px" : "2px solid #a8a29e",
+            border: selectedType === "Both" ? "0px" : "1.5px solid #a8a29e",
           }}
-          className="p-1 px-3 rounded-lg text-lg font-medium "
+          className="p-1 px-2 rounded-md text-sm font-medium "
         >
           Both
         </button>

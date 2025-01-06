@@ -12,8 +12,8 @@ import errorIcon from "../../assets/error.png";
 import noEntries from "../../assets/noEntries.png";
 import user from "../../assets/user.png";
 import OnlyXChars from "../../UIComponents/OnlyXChars";
-import selectedIcon from "../../assets/selected.png";
-import add from "../../assets/add.png";
+import selectedIcon from "../../assets/extras/tick.png";
+import add from "../../assets/extras/send.png";
 import { useNavigate } from "react-router-dom";
 
 const ShareModal = forwardRef(function ShareModal({ data }, ref) {
@@ -116,32 +116,32 @@ const ShareModal = forwardRef(function ShareModal({ data }, ref) {
 
   return (
     <>
-      <dialog className="rounded-3xl h-[80%]" ref={dialog}>
-        <div className="bg-white flex rounded-3xl w-[600px] h-full  max-h-[600px]">
-          <div className="p-6 flex flex-col flex-grow">
-            <h1 className="py-2 bg-slate-100 rounded-2xl text-center text-3xl font-bold">
+      <dialog className="rounded-2xl max-h-[80%]" ref={dialog}>
+        <div className="bg-white flex rounded-2xl w-[450px] h-full  max-h-[450px]">
+          <div className="p-3 flex flex-col flex-grow">
+            <h1 className="py-[6px] bg-slate-100 rounded-xl text-center text-2xl font-bold">
               Share To Friends
             </h1>
-            <div className="flex flex-col flex-grow bg-slate-100 rounded-2xl p-4 pr-2 mt-6">
-              <div className="flex flex-col  h-[350px]  space-y-4 pr-2 overflow-auto customScrollThin">
+            <div className="flex flex-col flex-grow bg-slate-100 rounded-xl p-3 pr-2 mt-3">
+              <div className="flex flex-col  h-[250px]  space-y-2 pr-2 overflow-auto customScrollThin">
                 {loading ? (
                   <div className="flex flex-grow justify-center items-center">
-                    <img src={load} className="w-[50px] h-[50px]" alt="" />
+                    <img src={load} className="w-[40px] h-[40px]" alt="" />
                   </div>
                 ) : friends === null ? (
-                  <div className="flex flex-grow flex-col justify-center space-y-4  items-center">
+                  <div className="flex flex-grow text-sm flex-col justify-center space-y-3  items-center">
                     <img
                       src={errorIcon}
-                      className="w-[50px] h-[50px] flex justify-center items-center"
+                      className="w-[40px] h-[40px] flex justify-center items-center"
                       alt=""
                     />
                     <span>Something went wrong</span>
                   </div>
                 ) : friends.length === 0 ? (
-                  <div className="flex justify-center flex-col text-slate-500 space-y-6 items-center mt-32">
+                  <div className="flex justify-center text-sm flex-col text-slate-500 space-y-4 items-center mt-28">
                     <img
                       src={noEntries}
-                      className="w-[80px] h-[80px] flex justify-center items-center"
+                      className="w-[60px] h-[60px] flex justify-center items-center"
                       alt=""
                     />
                     <span>No Friends Found</span>
@@ -151,30 +151,32 @@ const ShareModal = forwardRef(function ShareModal({ data }, ref) {
                     {friends.map((i) => {
                       return (
                         <>
-                          <div className="flex group  justify-between rounded-full p-2 space-x-4 bg-slate-200">
-                            <div className="space-x-6 flex items-center">
+                          <div className="flex group  justify-between rounded-full p-[6px] space-x-3 bg-slate-200">
+                            <div className="space-x-4 flex items-center">
                               <div>
                                 <img
                                   src={i.profilePic || user}
-                                  className="w-[50px] h-[50px] rounded-full"
+                                  className="w-[40px] h-[40px] rounded-full"
                                   alt=""
                                 />
                               </div>
-                              <span className="justify-center w-[250px] px-2 flex-col rounded-md flex ">
-                                <span className="flex max-w-[300px] text-lg overflow-clip flex-grow font-medium items-center">
+                              <span className="justify-center w-[200px] px-[6px] flex-col rounded-md flex ">
+                                <span className="flex max-w-[300px] text-xs overflow-clip flex-grow font-medium items-center">
                                   <OnlyXChars x={20} text={i.username} />
                                 </span>
                                 <div className="flex flex-grow border border-slate-400"></div>
-                                <span className="flex  px-2 rounded-md items-center font-medium text-base">
-                                  <span className="font-semibold mr-2">#</span>{" "}
+                                <span className="flex  px-[6px]  rounded-md items-center font-medium text-xs">
+                                  <span className="font-semibold mr-[6px]">
+                                    #
+                                  </span>{" "}
                                   <span>{i.userId}</span>
                                 </span>
                               </span>
                             </div>
-                            <div className="flex">
+                            <div className="flex items-center">
                               <button
                                 onClick={() => selectClick(i.userId)}
-                                className="p-3 rounded-full hover:bg-slate-100 duration-700"
+                                className="p-[8px] rounded-full hover:bg-slate-100 duration-700"
                               >
                                 <img
                                   src={
@@ -182,7 +184,7 @@ const ShareModal = forwardRef(function ShareModal({ data }, ref) {
                                       ? selectedIcon
                                       : add
                                   }
-                                  className="flex justify-center items-center w-[30px] h-[30px] "
+                                  className="flex justify-center items-center w-[20px] h-[20px] "
                                   alt=""
                                 />
                               </button>
@@ -195,22 +197,22 @@ const ShareModal = forwardRef(function ShareModal({ data }, ref) {
                 )}
               </div>
             </div>
-            <div className="flex justify-end mt-1 h-[15px]">
+            <div className="flex justify-end mt-1 pr-2 h-[15px] text-xs">
               {friends && selected.length > 0
                 ? `${selected.length} Friends Selected`
                 : null}
             </div>
-            <div className="flex justify-between mt-4">
-              <div className="flex space-x-3 items-center pl-4">
+            <div className="flex justify-between mt-3">
+              <div className="flex space-x-2 text-xs items-center pl-3">
                 {loading2 ? (
                   <div>
-                    <img src={load} className="w-[25px] h-[25px]" alt="" />
+                    <img src={load} className="w-[20px] h-[20px]" alt="" />
                   </div>
                 ) : error ? (
                   <>
                     <img
                       src={exclamation}
-                      className="w-[20px] h-[20px] flex justify-center items-center"
+                      className="w-[15px] h-[15px] flex justify-center items-center"
                       alt=""
                     />
                     <span className="text-red-500">Something went wrong</span>
@@ -219,12 +221,12 @@ const ShareModal = forwardRef(function ShareModal({ data }, ref) {
                   <span className="text-green-500 font-medium">Shared</span>
                 ) : null}
               </div>
-              <div className="flex space-x-4 items-center">
+              <div className="flex space-x-3 items-center">
                 <form method="dialog">
                   <button
                     disabled={loading2}
                     ref={closeButton}
-                    className="text-lg disabled:pointer-events-none disabled:opacity-50 font-medium text-white bg-red-500 border-2 border-red-500 hover:text-red-500 hover:bg-white duration-500 rounded-lg py-1 px-4"
+                    className="text-sm disabled:pointer-events-none disabled:opacity-50 font-medium text-white bg-red-500 border-[1.5px] border-red-500 hover:text-red-500 hover:bg-white duration-500 rounded-md py-1 px-3"
                   >
                     Cancel
                   </button>
@@ -232,7 +234,7 @@ const ShareModal = forwardRef(function ShareModal({ data }, ref) {
                 <button
                   onClick={shareClick}
                   disabled={loading2 || selected.length === 0}
-                  className="text-lg disabled:pointer-events-none disabled:opacity-50 font-medium text-white bg-green-500 border-2 border-green-500 hover:text-green-500 hover:bg-white duration-500 rounded-lg py-1 px-4"
+                  className="text-sm disabled:pointer-events-none disabled:opacity-50 font-medium text-white bg-green-500 border-[1.5px] border-green-500 hover:text-green-500 hover:bg-white duration-500 rounded-md py-1 px-3"
                 >
                   Share
                 </button>

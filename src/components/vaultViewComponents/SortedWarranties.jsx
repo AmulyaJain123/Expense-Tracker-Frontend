@@ -141,15 +141,15 @@ export default function SortedWarranties({ filteredData, sorting }) {
                   to={`${i.warId}`}
                   className="flex relative hover:scale-105 hover:shadow-lg duration-500 flex-col rounded-xl bg-slate-100 "
                 >
-                  <div className="p-4  flex space-x-4 ">
-                    <div className="p-3 flex justify-center items-center w-[170px] h-[170px] rounded-2xl bg-slate-200">
+                  <div className="p-3  flex space-x-3 ">
+                    <div className="p-2 flex justify-center items-center w-[130px] h-[130px] rounded-xl bg-slate-200">
                       <img
                         src={warIcon}
-                        className="w-[135px] h-[135px] flex justify-center items-center"
+                        className="w-[105px] h-[105px] flex justify-center items-center"
                         alt=""
                       />
                     </div>
-                    <div className="flex flex-col w-[150px] justify-center space-y-2">
+                    <div className="flex flex-col w-[120px] justify-center space-y-[6px] text-xs">
                       <div className="flex flex-col">
                         <span className="font-semibold">Warranty Name</span>{" "}
                         <span className="pl-1">
@@ -174,14 +174,14 @@ export default function SortedWarranties({ filteredData, sorting }) {
                       </div>
                     </div>
                   </div>
-                  <div className="flex flex-col p-4 pt-0 space-y-2">
-                    <div className="flex space-x-4 ">
+                  <div className="flex flex-col p-3 pt-0 text-xs space-y-[6px]">
+                    <div className="flex space-x-3 ">
                       <span className="font-semibold">Description</span>{" "}
                       <span className="pl-1">
                         <OnlyXChars x={20} text={i.details.warDesc} />
                       </span>
                     </div>
-                    <div className="flex space-x-8 ">
+                    <div className="flex space-x-6 ">
                       <div className="flex flex-col ">
                         <span className="font-semibold">Expiry Date</span>{" "}
                         <span className="">
@@ -207,19 +207,21 @@ export default function SortedWarranties({ filteredData, sorting }) {
                   i.details.expiry.till.months === 0 &&
                   i.details.expiry.till.years === 0 &&
                   i.details.expiry.till.days > 0 ? (
-                    <span className="absolute rotate-[-15deg] shadow-sm py-1 px-4 rounded-lg bg-yellow-100 text-lg font-semibold text-yellow-500 top-0 -left-4">
+                    <span className="absolute rotate-[-15deg] shadow-sm py-1 px-3 rounded-md bg-yellow-100 text-xs font-semibold text-yellow-500 top-0 -left-2">
                       Expiring Soon !!
                     </span>
                   ) : null}
                   {i.details.expiry.till === null ? (
-                    <span className="absolute rotate-[-15deg] shadow-sm py-1 px-4 rounded-lg bg-red-100 text-lg font-semibold text-red-500 top-0 -left-4">
+                    <span className="absolute rotate-[-15deg] shadow-sm py-1 px-3 rounded-md bg-red-100 text-xs font-semibold text-red-500 top-0 -left-2">
                       Expired
                     </span>
                   ) : null}
                   {i.details.expiry.renewedOn ? (
-                    <span className="absolute rotate-[90deg] py-1 px-4 pb-0 rounded-lg rounded-b-none bg-blue-100 text-lg font-semibold text-blue-500 top-[50%] -right-[14px] scale-90 translate-y-[-50%] translate-x-[50%]">
-                      <span className="font-semibold mr-2">Renewed On </span>{" "}
-                      <span className="text-base font-normal">
+                    <span className="absolute rotate-[90deg] py-1 px-3 pb-0 rounded-md rounded-b-none bg-blue-100 text-xs font-semibold text-blue-500 top-[50%] -right-[8px] scale-90 translate-y-[-50%] translate-x-[50%]">
+                      <span className="font-semibold mr-[6px]">
+                        Renewed On{" "}
+                      </span>{" "}
+                      <span className="text-xs font-normal">
                         {i.details.expiry.renewedOn}
                       </span>
                     </span>
@@ -228,13 +230,13 @@ export default function SortedWarranties({ filteredData, sorting }) {
               );
             })
           ) : (
-            <div className="flex flex-col mt-12 space-y-4">
+            <div className="flex flex-col mt-8 items-center space-y-2">
               <img
                 src={empty}
-                className="h-[150px] w-[150px] flex justify-center items-center"
+                className="h-[90px] w-[90px] flex justify-center items-center"
                 alt=""
               />
-              <p className="text-center text-stone-500 mt-16 text-lg font-medium">
+              <p className="text-center text-stone-500 mt-12 text-sm font-medium">
                 No Warranty Found
               </p>
             </div>

@@ -8,7 +8,7 @@ import TransactionMenu from "./TransactionMenu";
 const Button = styled.button`
   font-weight: 600;
   border-bottom: ${(props) => {
-    return props.$status === true ? "solid black 4px" : "solid white 4px";
+    return props.$status === true ? "solid black 2px" : "solid white 2px";
   }};
   transition: all 200ms;
   padding: 0 1px;
@@ -25,8 +25,8 @@ export default function TrackHomeMenu() {
   }
 
   return (
-    <div id="menu">
-      <div className="flex justify-center items-center text-base md:text-lg  sm:items-start mx-[50px] flex-col sm:flex-row sm:flex-wrap gap-x-10 gap-y-4 mt-[100px] md:mt-[175px]">
+    <div id="menu" className="max-w-[900px] mx-auto">
+      <div className="flex justify-center items-center  text-base md:text-sm  sm:items-start mx-[50px] flex-col sm:flex-row sm:flex-wrap gap-x-10 gap-y-4 mt-[100px] md:mt-[125px]">
         <Button
           $status={selectedMenu === 0}
           onClick={(event) => menuClick(event)}
@@ -60,10 +60,7 @@ export default function TrackHomeMenu() {
           Transaction Page
         </Button>
       </div>
-      <div
-        id="menuContent"
-        className="mt-8 min-h-[500px] mx-[20px] lg:mx-[100px]"
-      >
+      <div id="menuContent" className="mt-6 min-h-[300px] mx-auto ">
         {selectedMenu === 0 ? <WhatIsMenu /> : null}
         {selectedMenu === 1 ? <AddingTransactions /> : null}
         {selectedMenu === 2 ? <DashboardMenu /> : null}

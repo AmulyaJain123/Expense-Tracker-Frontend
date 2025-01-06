@@ -7,9 +7,9 @@
 #menuContent > div > div {
   display: flex; /* equivalent to flex */
   background-color: #f5f5f5; /* equivalent to bg-stone-100 */
-  padding-top: 1rem; /* equivalent to py-4 (assuming base unit of 1rem) */
+  padding-top: 0.5rem; /* equivalent to py-4 (assuming base unit of 1rem) */
   padding-bottom: 1rem; /* equivalent to py-4 */
-  padding-left: 0.5rem; /* equivalent to px-2 (assuming base unit of 0.5rem) */
+  padding-left: 0.25rem; /* equivalent to px-2 (assuming base unit of 0.5rem) */
   padding-right: 0.5rem; /* equivalent to px-2 */
   border-bottom: 2px solid #d1d5db; /* equivalent to border-b-2 border-stone-300 */
   margin-left: 100px; /* equivalent to mx-[100px] */
@@ -18,11 +18,11 @@
 }
 
 #menuContent p {
-  font-size: 16px;
+  font-size: 12px;
 }
 
 #menuContent > div > div > div {
-  font-size: large;
+  font-size: small;
 }
 
 @media (max-width: 1280px) {

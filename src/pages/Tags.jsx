@@ -11,12 +11,14 @@ export default function Tags() {
         <meta name="description" content="Friends" />
       </Helmet>
       <div className="h-full w-full bg-white whiteScr overflow-auto pb-[80px] rounded-r-xl lg:rounded-r-none rounded-l-xl">
-        <div className="flex my-12 mx-16">
-          <Link to={"/vault"}>
-            <RedButton text={"Go Back To VAULT"} />
-          </Link>
+        <div className="flex flex-col max-w-[1200px] mx-auto">
+          <div className="flex my-8 mx-12">
+            <Link to={"/vault"}>
+              <RedButton text={"Go Back To VAULT"} />
+            </Link>
+          </div>
+          <ManageTags />
         </div>
-        <ManageTags />
       </div>
     </>
   );

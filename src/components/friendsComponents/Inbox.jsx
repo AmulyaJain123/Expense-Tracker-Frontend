@@ -10,15 +10,15 @@ export default function Inbox() {
 
   return (
     <>
-      <div className="flex flex-col flex-grow space-y-4">
-        <div className="flex space-x-4">
+      <div className="flex flex-col flex-grow space-y-2">
+        <div className="flex space-x-3">
           <button
             style={{
               backgroundColor: selectedMode === 0 ? "#9d4edd" : "#dc93f6",
               color: selectedMode != 0 ? "black" : "#fff",
             }}
             onClick={() => setSelectedMode(0)}
-            className="py-1 px-6 rounded-lg text-lg  font-semibold "
+            className="py-1 px-4 rounded-md text-sm  font-semibold "
           >
             Friends
           </button>
@@ -28,7 +28,7 @@ export default function Inbox() {
               color: selectedMode != 1 ? "black" : "#fff",
             }}
             onClick={() => setSelectedMode(1)}
-            className="py-1 px-6 rounded-lg text-lg  font-semibold "
+            className="py-1 px-4 rounded-md text-sm  font-semibold "
           >
             Requests
           </button>
@@ -38,13 +38,13 @@ export default function Inbox() {
               color: selectedMode != 2 ? "black" : "#fff",
             }}
             onClick={() => setSelectedMode(2)}
-            className="py-1 px-6 rounded-lg text-lg  font-semibold "
+            className="py-1 px-4 rounded-md text-sm  font-semibold "
           >
             Find People
           </button>
         </div>
 
-        <div className="flex flex-grow bg-slate-100 p-4 rounded-xl">
+        <div className="flex  bg-slate-100 p-3 rounded-xl">
           {selectedMode === 0 ? (
             <Friends />
           ) : selectedMode === 1 ? (

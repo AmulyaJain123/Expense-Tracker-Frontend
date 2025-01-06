@@ -35,7 +35,15 @@ export default function Root() {
         const res = await fetch(
           import.meta.env.VITE_BACKEND_API + "/auth/getdetails",
           {
-            method: "GET",
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json",
+            },
+            body: JSON.stringify({
+              date: new Date().toDateString(),
+              now: Date.now(),
+              offset: new Date().getTimezoneOffset() * 60 * 1000,
+            }),
             credentials: "include",
           }
         );
@@ -82,7 +90,7 @@ export default function Root() {
             className="flex h-screen relative max-w-screen overflow-auto"
           >
             {navigate.state === "loading" ? (
-              <div className="w-[100vw] h-[40px] z-[100] uppercase absolute flex top-0 left-0 justify-center text-lg font-semibold items-center bg-[#dc93f6]">
+              <div className="w-[100vw] h-[30px] z-[100] uppercase absolute flex top-0 left-0 justify-center text-sm font-semibold items-center bg-[#dc93f6]">
                 Loading
               </div>
             ) : null}

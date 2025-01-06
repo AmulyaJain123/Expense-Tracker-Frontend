@@ -248,24 +248,24 @@ const WarrantyDetails = forwardRef(function WarrantyDetails({ ...prop }, ref) {
 
   return (
     <div className={`zigzag ${styles.main}`}>
-      <div className="bg-slate-100  m-4 rounded-lg flex text-black justify-center items-center uppercase font-bold">
+      <div className="bg-slate-100  m-[10px] rounded-md flex text-black justify-center items-center uppercase font-bold">
         Create Warranty
       </div>
 
-      <div className="flex h-[20px]">
-        <div className="billCuts h-[20px] w-[20px] rounded-r-full"></div>
+      <div className="flex h-[15px]">
+        <div className="billCuts h-[15px] w-[15px] rounded-r-full"></div>
         <div className="flex flex-col h-full flex-grow">
-          <div className="h-1/2 w-full  border-b-[3px] border-dashed border-stone-200"></div>
-          <div className="h-1/2 w-full  border-stone-300"></div>
+          <div className="h-[10px] w-full  border-b-[2.5px] border-dashed border-stone-200"></div>
+          <div className=" w-full "></div>
         </div>
-        <div className="billCuts h-[20px] w-[20px] rounded-l-full"></div>
+        <div className="billCuts h-[15px] w-[15px] rounded-l-full"></div>
       </div>
 
       <div className="flex flex-col mt-[60px]">
         <div className="flex flex-col">
-          <div className="text-xl relative font-semibold flex justify-center">
+          <div className="text-base relative font-semibold flex justify-center">
             Warranty Name
-            <span className="px-2 py-1 text-sm absolute left-[10px] font-medium text-neutral-500 bg-neutral-100 rounded-md mx-1">
+            <span className="px-2 py-1 text-xs absolute left-[7px] font-medium text-neutral-500 bg-neutral-100 rounded-md mx-1">
               REQ
             </span>
           </div>
@@ -276,14 +276,14 @@ const WarrantyDetails = forwardRef(function WarrantyDetails({ ...prop }, ref) {
             ref={warNameRef}
             value={name}
             onChange={(event) => warNameChange(event)}
-            className="flex p-2 px-4 text-center mx-4 mt-2 bg-slate-100"
+            className="flex p-2 px-3 text-center mx-3 mt-[6px] bg-slate-100"
           />
           <ErrorElement error={nameError} />
         </div>
-        <div className="flex flex-col mb-[40px]">
-          <div className="text-xl relative font-semibold flex justify-center">
+        <div className="flex flex-col mb-[35px]">
+          <div className="text-base relative font-semibold flex justify-center">
             Created On
-            <span className="px-2 py-1 text-sm absolute left-[10px] font-medium text-neutral-500 bg-neutral-100 rounded-md mx-1">
+            <span className="px-2 py-1 text-xs absolute left-[7px] font-medium text-neutral-500 bg-neutral-100 rounded-md mx-1">
               REQ
             </span>
           </div>
@@ -291,17 +291,17 @@ const WarrantyDetails = forwardRef(function WarrantyDetails({ ...prop }, ref) {
             type="text"
             value={currDate}
             disabled
-            className="flex p-2 px-4 text-center mx-4 mt-2 bg-slate-100"
+            className="flex p-2 px-3 text-xs text-center mx-3 mt-[6px] bg-slate-100"
           />
         </div>
         <div className="flex flex-col">
-          <div className="text-xl relative font-semibold flex justify-center">
+          <div className="text-base relative font-semibold flex justify-center">
             Warranty Date
-            <span className="px-2 py-1 text-sm absolute left-[10px] font-medium text-neutral-500 bg-neutral-100 rounded-md mx-1">
+            <span className="px-2 py-1 text-xs absolute left-[7px] font-medium text-neutral-500 bg-neutral-100 rounded-md mx-1">
               REQ
             </span>
           </div>
-          <div className="p-2 px-4 relative flex flex-grow justify-between mx-4 mt-2 bg-slate-100">
+          <div className="p-2 px-3 relative flex text-xs flex-grow justify-between mx-3 mt-[6px] bg-slate-100">
             <input
               ref={warDateRef}
               value={wardate}
@@ -311,7 +311,7 @@ const WarrantyDetails = forwardRef(function WarrantyDetails({ ...prop }, ref) {
             />
             <span
               style={{ color: wardate ? "#000" : "#737373" }}
-              className="absolute left-0 h-auto p-2 px-4 pl-8 flex items-center top-0 w-[70%] bg-slate-100"
+              className="absolute left-0 h-auto p-2 px-4 pl-6 flex items-center top-0 w-[70%] bg-slate-100"
             >
               {wardate ? new Date(wardate).toDateString() : "NOT ENTERED"}
             </span>
@@ -320,7 +320,7 @@ const WarrantyDetails = forwardRef(function WarrantyDetails({ ...prop }, ref) {
           <ErrorElement error={dateError} />
         </div>
         <div className="flex flex-col">
-          <div className="text-xl relative font-semibold flex justify-center">
+          <div className="text-base relative font-semibold flex justify-center">
             Warranty Total
           </div>
           <input
@@ -329,9 +329,9 @@ const WarrantyDetails = forwardRef(function WarrantyDetails({ ...prop }, ref) {
             ref={warTotalRef}
             value={total}
             onChange={warTotalChange}
-            className="p-2 px-4 text-center disableScroll overflow-hidden mx-4 mt-2 bg-slate-100"
+            className="p-2 px-3 text-center disableScroll overflow-hidden mx-3 mt-[6px] bg-slate-100"
           />
-          <div className="flex justify-between px-4 py-1 bg-stone-100 rounded-lg mx-4 mt-2">
+          <div className="flex justify-between px-3 text-xs py-1 bg-stone-100 rounded-md mx-3 mt-[6px]">
             <span className="font-medium text-neutral-500">Value Entered:</span>
             <span className="text-neutral-500">
               {total === "" ? "NULL" : total}
@@ -339,22 +339,22 @@ const WarrantyDetails = forwardRef(function WarrantyDetails({ ...prop }, ref) {
           </div>
           <ErrorElement error={AmountError} />
         </div>
-        <div className="flex flex-col mb-[30px]">
-          <div className="text-xl font-semibold flex justify-center">
+        <div className="flex flex-col mb-[20px]">
+          <div className="text-base font-semibold flex justify-center">
             Description
           </div>
           <textarea
             placeholder="Description"
             ref={warDescRef}
-            className="p-2 px-4 text-center resize-none h-[150px] mx-4 mt-2 bg-slate-100"
+            className="p-2 px-3 text-center text-xs resize-none h-[110px] mx-3 mt-[6px] bg-slate-100"
           />
         </div>
 
         <div className="flex flex-col space-y-4">
-          <span className="text-xl relative font-semibold flex justify-center">
+          <span className="text-base relative font-semibold flex justify-center">
             Warranty Mode
           </span>
-          <div className="flex mt-4 justify-center">
+          <div className="flex mt-3 justify-center">
             <button
               disabled={warrantyStatus}
               onClick={() => setWarrantyMode((p) => (p - 1 + 2) % 2)}
@@ -362,13 +362,13 @@ const WarrantyDetails = forwardRef(function WarrantyDetails({ ...prop }, ref) {
             >
               <img
                 src={left}
-                className="w-[25px] h-[25px] flex justify-center items-center"
+                className="w-[20px] h-[20px] flex justify-center items-center"
                 alt=""
               />
             </button>
             <span
               style={{ opacity: !warrantyStatus ? "100%" : "40%" }}
-              className="py-2 px-4 rounded-lg uppercase bg-black text-center text-lg text-white font-semibold w-[150px] mx-4"
+              className="py-[6px] px-4 rounded-md uppercase bg-black text-center text-sm text-white font-semibold w-[120px] mx-2"
             >
               {warrantyMode === 0 ? "Duration" : "Date"}
             </span>
@@ -379,23 +379,23 @@ const WarrantyDetails = forwardRef(function WarrantyDetails({ ...prop }, ref) {
             >
               <img
                 src={right}
-                className="w-[25px] h-[25px] flex justify-center items-center"
+                className="w-[20px] h-[20px] flex justify-center items-center"
                 alt=""
               />
             </button>
           </div>
 
           {!warrantyStatus ? (
-            <div className="pt-8 flex flex-col">
+            <div className="pt-6 flex flex-col">
               {warrantyMode === 1 ? (
                 <div className="flex flex-col">
-                  <div className="text-xl relative font-semibold flex justify-center">
+                  <div className="text-base relative font-semibold flex justify-center">
                     Expiration Date
-                    <span className="px-2 py-1 text-sm absolute left-[10px] font-medium text-neutral-500 bg-neutral-100 rounded-md mx-1">
+                    <span className="px-2 py-1 text-xs absolute left-[7px] font-medium text-neutral-500 bg-neutral-100 rounded-md mx-1">
                       REQ
                     </span>
                   </div>
-                  <div className="p-2 px-4 relative flex flex-grow justify-between mx-4 mt-3 bg-slate-100">
+                  <div className="p-2 px-3 relative flex text-xs flex-grow justify-between mx-3 mt-[6px] bg-slate-100">
                     <input
                       ref={expDateRef}
                       value={expDate}
@@ -405,7 +405,7 @@ const WarrantyDetails = forwardRef(function WarrantyDetails({ ...prop }, ref) {
                     />
                     <span
                       style={{ color: expDate ? "#000" : "#737373" }}
-                      className="absolute left-0 h-auto p-2 px-4 pl-8 flex items-center top-0 w-[70%] bg-slate-100"
+                      className="absolute left-0 h-auto p-2 px-3 pl-6 flex items-center top-0 w-[70%] bg-slate-100"
                     >
                       {expDate
                         ? new Date(expDate).toDateString()
@@ -417,47 +417,47 @@ const WarrantyDetails = forwardRef(function WarrantyDetails({ ...prop }, ref) {
                 </div>
               ) : (
                 <div className="flex flex-col">
-                  <div className="text-xl relative font-semibold flex justify-center">
+                  <div className="text-base relative font-semibold flex justify-center">
                     Expiration Duration
-                    <span className="px-2 py-1 text-sm absolute left-[10px] font-medium text-neutral-500 bg-neutral-100 rounded-md mx-1">
+                    <span className="px-2 py-1 text-xs absolute left-[7px] font-medium text-neutral-500 bg-neutral-100 rounded-md mx-1">
                       REQ
                     </span>
                   </div>
                   <div
                     ref={durationRef}
-                    className="flex justify-between mt-3 mx-4"
+                    className="flex justify-between text-xs mt-3 mx-4"
                   >
-                    <div className="flex flex-col items-center space-y-2">
+                    <div className="flex flex-col items-center space-y-1">
                       <span className="font-medium">Years</span>
                       <input
                         type="number"
                         onChange={(event) => durationChange(event)}
-                        className="rounded-lg disableScroll2 bg-slate-100 py-1 px-3  w-[80px]"
+                        className="rounded-[5px]  disableScroll2 bg-slate-100 py-1 px-2  w-[65px]"
                       />
                     </div>
-                    <div className="flex flex-col items-center space-y-2">
+                    <div className="flex flex-col items-center space-y-1">
                       <span className="font-medium">Months</span>
                       <input
                         type="number"
                         onChange={(event) => durationChange(event)}
-                        className="rounded-lg disableScroll2 bg-slate-100 py-1 px-3  w-[80px]"
+                        className="rounded-[5px]  disableScroll2 bg-slate-100 py-1 px-2  w-[65px]"
                       />
                     </div>
-                    <div className="flex flex-col items-center space-y-2">
+                    <div className="flex flex-col items-center space-y-1">
                       <span className="font-medium">Days</span>
                       <input
                         type="number"
                         onChange={(event) => durationChange(event)}
-                        className="rounded-lg disableScroll2 bg-slate-100 py-1 px-3  w-[80px]"
+                        className="rounded-[5px]  disableScroll2 bg-slate-100 py-1 px-2  w-[65px]"
                       />
                     </div>
                   </div>
 
-                  <div className="flex flex-col px-4 py-1 bg-stone-100 rounded-lg mx-4 mt-2">
+                  <div className="flex flex-col text-xs px-4 py-1 bg-stone-100 rounded-md mx-4 mt-2">
                     <span className="font-medium text-center text-neutral-500">
                       Value Entered
                     </span>
-                    <div className="flex mt-2 space-x-3 justify-center">
+                    <div className="flex mt-1 space-x-3 justify-center">
                       <span>
                         {expDuration === ""
                           ? "0 Y"
@@ -483,7 +483,7 @@ const WarrantyDetails = forwardRef(function WarrantyDetails({ ...prop }, ref) {
           ) : null}
         </div>
       </div>
-      <p className="px-4 mt-8 text-center">
+      <p className="px-3 text-xs mt-4 text-center">
         *Fields marked with{" "}
         <span className="px-2 py-1 font-medium text-neutral-500 bg-neutral-100 rounded-md mx-1">
           REQ

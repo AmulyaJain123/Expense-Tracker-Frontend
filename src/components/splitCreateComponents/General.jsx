@@ -4,27 +4,27 @@ export default function General({ data }) {
   return (
     <>
       <div className="flex flex-col flex-grow">
-        <h1 className="py-3 text-center uppercase font-bold text-3xl bg-white rounded-2xl">
+        <h1 className="py-2 text-center uppercase font-bold text-[22px] bg-white rounded-xl">
           General
         </h1>
-        <div className="flex flex-grow  mt-4 rounded-2xl">
-          <div className="flex flex-col flex-grow max-w-[550px]">
-            <div className="flex flex-grow bg-slate-100 border-r-4 border-white flex-col  p-4 ">
-              <h1 className="font-semibold uppercase text-xl text-center py-2 bg-white rounded-xl">
+        <div className="flex flex-grow  mt-[10px] rounded-2xl">
+          <div className="flex flex-col w-1/2 max-w-[550px]">
+            <div className="flex flex-grow bg-slate-100 border-r-[3px] border-white flex-col  p-3 ">
+              <h1 className="font-semibold uppercase text-base text-center py-[6px] bg-white rounded-lg">
                 SPLIT Info
               </h1>
-              <div className="bg-white rounded-xl flex flex-col mt-4 p-4 space-y-4 flex-grow">
-                <div className="flex text-base text-start p-2 flex-col font-normal">
-                  <span className="font-medium text-lg mb-1">SPLIT Name</span>
-                  <span className="bg-stone-100 p-1 rounded-md pl-4">
+              <div className="bg-white rounded-lg flex flex-col mt-3 p-3 space-y-3 flex-grow">
+                <div className="flex text-xs text-start p-[6px] flex-col font-normal">
+                  <span className="font-medium text-sm mb-1">SPLIT Name</span>
+                  <span className="bg-stone-100 p-1 rounded-[5px] pl-3">
                     <OnlyXChars x={20} text={data.splitInfo.splitName} />
                   </span>
                 </div>
-                <div className="flex text-base text-start p-2 flex-col font-normal">
-                  <span className="font-medium text-lg mb-1">
+                <div className="flex text-xs text-start p-[6px] flex-col font-normal">
+                  <span className="font-medium text-sm mb-1">
                     SPLIT Created on
                   </span>
-                  <span className="bg-stone-100 p-1 rounded-md pl-4">
+                  <span className="bg-stone-100 p-1 rounded-[5px] pl-3">
                     <OnlyXChars
                       x={30}
                       text={
@@ -35,12 +35,12 @@ export default function General({ data }) {
                     />
                   </span>
                 </div>
-                <div className="flex text-base text-start p-2 flex-col font-normal">
-                  <span className="font-medium text-lg mb-1">
+                <div className="flex text-xs text-start p-[6px] flex-col font-normal">
+                  <span className="font-medium text-sm mb-1">
                     SPLIT Description
                   </span>
                   <span className="bg-stone-100  p-1 rounded-md pl-2">
-                    <span className="flex h-[150px] break-words p-2">
+                    <span className="flex h-[100px] break-words p-[6px]">
                       <OnlyXChars
                         x={200}
                         text={data.splitInfo.description || "None"}
@@ -51,19 +51,19 @@ export default function General({ data }) {
               </div>
             </div>
           </div>
-          <div className="flex  bg-slate-100 flex-grow flex-col rounded-2xl p-4 ">
-            <h1 className="font-semibold uppercase text-xl text-center py-2 bg-white rounded-xl">
+          <div className="flex  bg-slate-100 flex-grow flex-col rounded-2xl p-3 ">
+            <h1 className="font-semibold uppercase text-base text-center py-[6px] bg-white rounded-lg">
               Participants
             </h1>
-            <div className="flex flex-grow bg-white p-4 mt-4 rounded-xl">
-              <div className="flex flex-col text-base font-normal flex-grow space-y-4 ">
+            <div className="flex flex-grow bg-white p-3 mt-3 rounded-lg">
+              <div className="flex flex-col text-xs font-normal flex-grow space-y-3 ">
                 {data.friends.map((i, index) => {
                   return (
-                    <div className="flex space-x-4">
-                      <span className="w-[35px] rounded-lg bg-stone-100 h-[35px] flex justify-center items-center">
+                    <div className="flex space-x-3">
+                      <span className="w-[27px] rounded-md bg-stone-100 h-[27px] flex justify-center items-center">
                         {index + 1}
                       </span>
-                      <span className="flex rounded-lg bg-stone-100 flex-grow items-center pl-4">
+                      <span className="flex rounded-md bg-stone-100 flex-grow items-center pl-3">
                         {i.name}
                       </span>
                     </div>

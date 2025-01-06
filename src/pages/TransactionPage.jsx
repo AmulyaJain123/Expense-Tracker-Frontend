@@ -181,24 +181,24 @@ export default function TransactionPage() {
         <title>Transactions | BILLBUD</title>
         <meta name="description" content="Friends" />
       </Helmet>
-      <div className="h-full w-full bg-white overflow-auto pb-[200px] text-stone-700 rounded-l-xl">
-        <div className="bg-[#f7ebfd] hidden 2xl:block rounded-xl  pb-[40px] m-4 mt-[30px] p-4">
+      <div className="h-full w-full bg-white overflow-auto pb-[150px] text-stone-700 rounded-l-xl">
+        <div className="bg-[#f7ebfd]  rounded-xl  pb-[40px] m-3 mt-[20px] p-3">
           <div className="relative flex flex-col overflow-hidden  h-fit ">
             <Filter />
 
             <div className="flex flex-col">
-              <div className=" flex justify-between mb-16 z-20 rounded-xl  p-4 px-8 bg-[#9f21e3] ">
-                <span className="text-3xl text-white font-semibold">
+              <div className=" flex justify-between mb-12 z-20 rounded-lg  p-[10px] px-6 pr-4 bg-[#9f21e3] ">
+                <span className="text-[22px] text-white font-semibold">
                   Transaction History
                 </span>
                 {filters.length != 0 ? (
-                  <div className="flex space-x-4">
-                    <span className="rounded-lg p-1 px-3 bg-white text-[#9f21e3] flex items-center font-semibold">
+                  <div className="flex space-x-3 items-center text-xs">
+                    <span className="rounded-md p-[6px] px-2 bg-white text-[#9f21e3] flex items-center font-semibold">
                       Filters Applied !!
                     </span>
                     <button
                       onClick={clearAll}
-                      className="rounded-lg p-1 hover:scale-110 duration-500 px-3 bg-white text-[#9f21e3]  font-semibold"
+                      className="rounded-md p-[6px] hover:scale-110 duration-500 px-2 bg-white text-[#9f21e3]  font-semibold"
                     >
                       Clear All
                     </button>
@@ -206,7 +206,7 @@ export default function TransactionPage() {
                 ) : null}
               </div>
 
-              <div className="p-4 px-8 rounded-t-sm space-y-2 rounded-b-xl bg-[#f7ebfd] flex-grow">
+              <div className="p-4 px-6 rounded-t-sm space-y-2 rounded-b-xl bg-[#f7ebfd] flex-grow">
                 {filteredData === null ? (
                   <DataDisplay
                     data={JSON.parse(JSON.stringify(data.transactions))}
@@ -220,7 +220,7 @@ export default function TransactionPage() {
             </div>
           </div>
         </div>
-        <div className="hidden 2xl:flex justify-between">
+        <div className="flex justify-between">
           <Link to="/track/protected/dashboard">
             <Button>Back to Dashboard</Button>
           </Link>
@@ -230,7 +230,7 @@ export default function TransactionPage() {
           </Link>
         </div>
 
-        <div className="flex flex-col mt-[200px] items-center 2xl:hidden">
+        {/* <div className="flex flex-col mt-[200px] items-center 2xl:hidden">
           <div className="relative">
             <img className="w-[200px] opacity-75" src={responsive} alt="" />
             <img
@@ -242,7 +242,7 @@ export default function TransactionPage() {
           <p className="mx-auto px-16 mt-8 text-center text-sm sm:text-base">
             Please switch to a screen size bigger than 1500px
           </p>
-        </div>
+        </div> */}
       </div>
     </>
   );

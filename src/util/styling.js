@@ -2,7 +2,7 @@
 export const styling = {
     navColor: "white",
     backColor: "rgb(231 229 228)",
-    spacing: 8,
+    spacing: 6,
     pageTileHover: '#dc93f6',
     logoFont: 'Fredoka',
     friendsBoxBgCol: '#e9ecef',

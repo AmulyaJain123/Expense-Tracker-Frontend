@@ -118,7 +118,7 @@ const Tags = forwardRef(function Tags({ closeClick, applyFilter }, ref) {
       <div className="flex justify-between ">
         {" "}
         <div className="p-4 w-full">
-          <div className="flex space-x-6 w-full">
+          <div className="flex space-x-3 w-full">
             <div className="p-2 rounded-lg mx-2 w-[900px] pb-4 bg-slate-100">
               <div className="font-bold rounded-xl bg-white py-2 m-2 mb-4  text-2xl uppercase text-center">
                 Search Tags

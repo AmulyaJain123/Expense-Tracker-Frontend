@@ -34,33 +34,33 @@ export default function WidgetSquare() {
   }, [transactions]);
 
   return (
-    <section className="flex w-[500px]  aspect-square flex-col space-y-4">
-      <div className="flex flex-col space-y-4  rounded-xl p-4 bg-[#f7ebfd]">
-        <header className="flex p-2 px-4 pr-2 h-fit justify-center rounded-xl bg-[#9f21e3] text-white">
-          <span className="text-2xl font-semibold ">Financial Summary</span>
+    <section className="flex w-[380px]  aspect-square flex-col space-y-3">
+      <div className="flex flex-col space-y-3  rounded-xl p-3 bg-[#f7ebfd]">
+        <header className="flex p-[6px] px-3 pr-2 h-fit justify-center rounded-lg bg-[#9f21e3] text-white">
+          <span className="text-lg font-semibold ">Financial Summary</span>
         </header>
         {transactions && transactions.length != 0 ? (
-          <div className="flex flex-col space-y-2 px-4 py-2 text-center">
+          <div className="flex flex-col space-y-[6px] px-2 py-[6px] text-xs text-center">
             <div className="flex flex-col  space-y-2">
-              <span className=" rounded-lg bg-black text-white  p-[6px] font-medium">
+              <span className=" rounded-md bg-black text-white  p-[6px] font-medium">
                 Outgoing Expense
               </span>
-              <span className="text-blue-700 bg-[#f8f9fa] border-[#adb5bd] border-b-2 p-1 font-medium">
+              <span className="text-blue-700 bg-[#f8f9fa] border-[#adb5bd] border-b-[1.5px] p-1 font-medium">
                 {val && formatVal(val.neg)}
               </span>
             </div>
 
             <div className="flex flex-col  space-y-2">
-              <span className="rounded-lg bg-black text-white p-[6px] font-medium">
+              <span className="rounded-md bg-black text-white p-[6px] font-medium">
                 Incoming Expense
               </span>
-              <span className="text-green-500 bg-[#f8f9fa] border-[#adb5bd] border-b-2 p-1 font-medium">
+              <span className="text-green-500 bg-[#f8f9fa] border-[#adb5bd] border-b-[1.5px] p-1 font-medium">
                 {val && formatVal(val.pos)}
               </span>
             </div>
 
             <div className="flex flex-col  space-y-2">
-              <span className="rounded-lg bg-black text-white p-[6px] font-medium">
+              <span className="rounded-md bg-black text-white p-[6px] font-medium">
                 Net Expense
               </span>
               {val ? (
@@ -69,7 +69,7 @@ export default function WidgetSquare() {
                     color:
                       val.net < 0 ? "blue" : val.net > 0 ? "#22c55e" : "black",
                   }}
-                  className="flex justify-center bg-[#f8f9fa] border-[#adb5bd] border-b-2 space-x-2 p-1 font-medium"
+                  className="flex justify-center bg-[#f8f9fa] border-[#adb5bd] border-b-[1.5px] space-x-2 p-1 font-medium"
                 >
                   <span className="">
                     {val.net > 0 ? "(+)" : val.net < 0 ? "(-)" : ""}
@@ -80,8 +80,8 @@ export default function WidgetSquare() {
             </div>
           </div>
         ) : (
-          <div className="flex flex-grow h-[265px] flex-col justify-center items-center space-y-3">
-            <img src={noEntries} className="w-[80px] h-[80px]" alt="" />
+          <div className="flex flex-grow text-sm h-[205px] flex-col justify-center items-center space-y-2">
+            <img src={noEntries} className="w-[60px] h-[60px]" alt="" />
             <span>No Transactions Found</span>
           </div>
         )}

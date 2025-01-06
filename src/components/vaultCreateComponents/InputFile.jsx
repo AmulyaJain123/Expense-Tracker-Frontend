@@ -135,26 +135,26 @@ const InputFile = forwardRef(function InputFile({ ...props }, ref) {
   return (
     <>
       <div className={`${styles.main} zigzag`}>
-        <div className="bg-slate-100 m-4  rounded-lg flex text-black justify-center items-center  h-[50px] sm:h-[60px] text-xl sm:text-2xl uppercase font-bold">
+        <div className="bg-slate-100 m-[10px]  rounded-md flex text-black justify-center items-center  h-[50px] sm:h-[50px] text-xl sm:text-lg uppercase font-bold">
           Add Files
         </div>
-        <div className="flex h-[20px] mb-[20px]">
-          <div className="billCuts h-[20px] w-[20px] rounded-r-full"></div>
+        <div className="flex h-[15px]">
+          <div className="billCuts h-[15px] w-[15px] rounded-r-full"></div>
           <div className="flex flex-col h-full flex-grow">
-            <div className="h-1/2 w-full  border-b-[3px] border-dashed border-stone-200"></div>
-            <div className="h-1/2 w-full  border-stone-300"></div>
+            <div className="h-[10px] w-full  border-b-[2.5px] border-dashed border-stone-200"></div>
+            <div className=" w-full "></div>
           </div>
-          <div className="billCuts h-[20px] w-[20px] rounded-l-full"></div>
+          <div className="billCuts h-[15px] w-[15px] rounded-l-full"></div>
         </div>
         {fileError != null ? (
-          <div className="flex ml-6 text-red-500 items-center">
-            <img src={exclamation} className="w-[18px] h-[18px] mr-4" alt="" />
+          <div className="flex ml-5 py-2 pb-0  mt-2 text-xs text-red-500 items-center">
+            <img src={exclamation} className="w-[14px] h-[14px] mr-3" alt="" />
             <p>{fileError}</p>
           </div>
         ) : (
-          <div className="h-[20px] flex"></div>
+          <div className="h-[15px] flex"></div>
         )}
-        <div className="flex mt-4 mx-3 items-center flex-wrap text-xs sm:text-base gap-y-2 gap-x-2 sm:gap-x-4 p-2">
+        <div className="flex mt-2 mx-3 items-center flex-wrap text-xs sm:text-base gap-y-2 gap-x-2 sm:gap-x-3 p-2">
           {fileURLs.map((file, index) => {
             return (
               <div className="relative">
@@ -165,18 +165,20 @@ const InputFile = forwardRef(function InputFile({ ...props }, ref) {
                       activeFile?.name === file.name ? "#9d4edd" : "#dc93f6",
                     color: activeFile?.name === file.name ? "#fff" : "#000",
                   }}
-                  className="py-[5px] relative text-black flex items-center font-medium capitalize   rounded-md bg-[#dc93f6]"
+                  className="py-[5.5px] relative text-black flex items-center font-medium capitalize  rounded-[4px] bg-[#dc93f6]"
                 >
-                  <span className="px-4">{"File " + file.name.at(-1)}</span>
+                  <span className="px-3 text-xs">
+                    {"File " + file.name.at(-1)}
+                  </span>
                 </button>
                 {activeFile?.name === file.name ? (
                   <button
-                    className="absolute bottom-[-10px] right-[50%] translate-y-[100%] translate-x-[50%]"
+                    className="absolute bottom-[-7px] right-[50%] translate-y-[100%] translate-x-[50%]"
                     onClick={() => removeClick(file)}
                   >
                     <img
                       src={cancel}
-                      className="w-[20px]  h-[20px] flex justify-center items-center"
+                      className="w-[15px] h-[15px] flex justify-center items-center"
                       alt=""
                     />
                   </button>
@@ -196,7 +198,7 @@ const InputFile = forwardRef(function InputFile({ ...props }, ref) {
                 id="billImg1"
               />
               <label
-                className="p-[6px] px-2 border-dashed cursor-pointer border-2 border-stone-300 rounded-lg bg-stone-100"
+                className="p-[4px] px-2 border-dashed cursor-pointer border-[1.5px] border-stone-300 rounded-md text-xs bg-stone-100"
                 htmlFor="billImg1"
               >
                 + Add
@@ -204,12 +206,12 @@ const InputFile = forwardRef(function InputFile({ ...props }, ref) {
             </form>
           ) : null}
         </div>
-        <div className="flex justify-center items-center mt-8">
+        <div className="flex justify-center items-center mt-6">
           {fileLoading ? (
-            <div className="flex justify-center mt-60">
+            <div className="flex justify-center mt-48">
               <img
                 src={load}
-                className="w-[60px] h-[60px] flex justify-center items-center"
+                className="w-[45px] h-[45px] flex justify-center items-center"
                 alt=""
               />
             </div>

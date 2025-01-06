@@ -1,8 +1,8 @@
 .main {
   display: flex; /* equivalent to flex */
   flex-direction: column; /* equivalent to flex-col */
-  margin-top: 60px; /* equivalent to mt-[60px] */
-  gap: 40px; /* equivalent to space-y-[40px] */
+  margin-top: 50px; /* equivalent to mt-[60px] */
+  gap: 30px; /* equivalent to space-y-[40px] */
 }
 
 .main > div > div:nth-of-type(2) {

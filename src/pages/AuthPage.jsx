@@ -67,11 +67,11 @@ export default function AuthPage() {
         <title> LogIn | SignUp | BILLBUD</title>
         <meta name="description" content="Friends" />
       </Helmet>
-      <div className="flex gradient  h-screen w-screen p-8">
-        <div className="flex w-full justify-center h-full space-x-8">
+      <div className="flex gradient  h-screen w-screen p-6">
+        <div className="flex w-full justify-center h-full space-x-6">
           <div className="flex w-full max-w-600px sm:w-[500px] lg:w-[600px] xl:w-[40%] h-full overflow-auto scrollbar-hidden bg-white sm:scale-90 rounded-2xl items-center justify-center">
-            <div className="rounded-3xl flex flex-col space-y-2 sm:space-y-4  py-2 sm:py-4 p-4   h-full w-full">
-              <div className="flex justify-center m-4 mx-2 sm:mx-8 space-x-4 sm:space-x-8">
+            <div className="rounded-3xl flex flex-col space-y-2 sm:space-y-2  py-2 sm:py-3 p-3   h-full w-full">
+              <div className="flex justify-center m-3 mx-2 sm:mx-6 space-x-4 sm:space-x-6">
                 <Button
                   disabled={selected === 1 || disable1}
                   style={{
@@ -80,7 +80,7 @@ export default function AuthPage() {
                   }}
                   $status={selected === 1 ? "true" : "false"}
                   onClick={() => clickHandle(1)}
-                  className="p-1 sm:p-2 px-4 flex sm:min-w-[170px] justify-center rounded-lg bg-[#9f21e3] border-2 border-[#9f21e3] text-white text-base sm:text-2xl font-semibold"
+                  className="p-1 sm:p-1 px-4 flex sm:min-w-[130px] justify-center rounded-lg bg-[#9f21e3] border-[1.5px] border-[#9f21e3] text-white text-base sm:text-lg font-semibold"
                 >
                   Log In
                 </Button>
@@ -92,7 +92,7 @@ export default function AuthPage() {
                     opacity: disable2 ? "70%" : "",
                   }}
                   onClick={() => clickHandle(2)}
-                  className="p-1 sm:p-2 px-4 flex sm:min-w-[170px] justify-center rounded-lg bg-[#9f21e3] border-2 border-[#9f21e3] text-white  text-base sm:text-2xl font-semibold"
+                  className="p-1 sm:p-1 px-4 flex sm:min-w-[130px] justify-center rounded-lg bg-[#9f21e3] border-[1.5px] border-[#9f21e3] text-white  text-base sm:text-lg font-semibold"
                 >
                   Sign Up
                 </Button>
@@ -113,10 +113,10 @@ export default function AuthPage() {
               )}
             </div>
           </div>
-          <div className="w-[60%] hidden xl:flex relative h-full rounded-3xl bgLogin">
+          <div className="w-[60%] hidden xl:flex relative h-full rounded-2xl bgLogin">
             <div
               style={{ fontFamily: styling.logoFont }}
-              className="text-[50px] font-bold text-black font p-4 pt-2 px-6 bg-white rounded-b-3xl absolute top-p right-[100px]"
+              className="text-[40px] font-bold text-black font p-2 pt-1 px-4 bg-white rounded-b-2xl absolute top-p right-[80px]"
             >
               BILLBUD
             </div>
