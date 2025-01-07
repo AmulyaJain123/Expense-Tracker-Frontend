@@ -491,10 +491,10 @@ export default function DataDisplay({ data }) {
                 transactionType,
               } = i;
 
-              const date = format(new Date(dateTime), "hh:mm dd-MM-yy");
+              const date = format(new Date(dateTime), "HH:mm dd-MM-yy");
               const createdOnDate = format(
                 new Date(createdOn),
-                "hh:mm dd-MM-yy"
+                "HH:mm dd-MM-yy"
               );
 
               return (

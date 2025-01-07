@@ -240,7 +240,7 @@ export default function InOut({ type, data }) {
             </div>
             <div className="flex flex-col space-y-3">
               {type === 1 ? (
-                <div className="flex flex-col 2xl:flex-row space-y-3">
+                <div className="flex  space-x-3">
                   <div className="flex flex-col flex-auto space-y-3 p-3 rounded-lg bg-slate-100">
                     <span
                       id={styles.mediumTitle}
@@ -270,7 +270,7 @@ export default function InOut({ type, data }) {
                   </div>
                 </div>
               ) : (
-                <div className="flex flex-col 2xl:flex-row space-y-3 ">
+                <div className="flex  space-x-3 ">
                   <div className="flex flex-col  flex-auto space-y-3 p-3 rounded-lg bg-slate-100">
                     <span
                       id={styles.mediumTitle}

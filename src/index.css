@@ -35,6 +35,10 @@ tspan {
   font-size: 12px !important;
   font-family: "Poppins" !important;
 }
+.css-1f57y8b {
+  font-family: "Poppins" !important;
+  text-transform: capitalize;
+}
 .MuiTypography-root {
   font-size: 12px !important;
   font-family: "Poppins" !important;
