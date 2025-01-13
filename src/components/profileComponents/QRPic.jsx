@@ -95,27 +95,27 @@ export default function QRPic({ data }) {
   return (
     <>
       <div className="    ">
-        <div className="bg-neutral-100 relative p-4 rounded-lg ">
+        <div className="bg-neutral-100 relative p-3 tab:p-4 rounded-lg ">
           <div className={profilePicUploadLoading ? "blur-sm" : ""}>
             {data.qrCode && !profilePicUrl ? (
               <img
                 src={data.qrCode}
                 onLoad={() => setProfilePicUploadLoading(false)}
-                className="w-[170px] h-[170px] "
+                className="w-[150px] h-[150px] tab:w-[170px] tab:h-[170px] "
                 alt=""
               />
             ) : profilePicUrl === null ? (
               <img
                 src={qr}
                 onLoad={() => setProfilePicUploadLoading(false)}
-                className="w-[170px] h-[170px] blur-sm "
+                className="w-[150px] h-[150px] tab:w-[170px] tab:h-[170px] blur-sm "
                 alt=""
               />
             ) : (
               <img
                 src={profilePicUrl}
                 onLoad={() => setProfilePicUploadLoading(false)}
-                className="w-[170px] h-[170px] object-cover object-center"
+                className="w-[150px] h-[150px] tab:w-[170px] tab:h-[170px] object-cover object-center"
                 alt=""
               />
             )}
@@ -125,7 +125,7 @@ export default function QRPic({ data }) {
               <div className="absolute top-[50%] p-1 bg-neutral-100 right-[50%] rounded-full translate-x-[50%] translate-y-[-50%]">
                 <img
                   src={load}
-                  className="w-[30px] h-[30px]  flex justify-center items-center"
+                  className="w-[25px] h-[25px] tab:w-[30px] tab:h-[30px]  flex justify-center items-center"
                   alt=""
                 />
               </div>
@@ -133,7 +133,7 @@ export default function QRPic({ data }) {
           ) : null}
           {profilePicUrl ? (
             <>
-              <div className="absolute top-[-10px] flex space-x-4 right-[-60px] translate-y-[-100%]">
+              <div className="absolute top-[-10px] flex space-x-3 tab:space-x-4 right-[-60px] translate-y-[-100%]">
                 <button
                   disabled={profilePicUploadLoading}
                   className="disabled:pointer-events-none disabled:opacity-50"
@@ -166,7 +166,7 @@ export default function QRPic({ data }) {
             >
               <img
                 src={pencil}
-                className="w-[20px] h-[20px] flex justify-center items-center"
+                className="w-[17px] h-[17px] tab:w-[20px] tab:h-[20px] flex justify-center items-center"
                 alt=""
               />
             </button>
@@ -181,12 +181,12 @@ export default function QRPic({ data }) {
           )}
         </div>
 
-        <div className="flex items-center justify-center h-[40px] mt-4 text-red-500">
+        <div className="flex items-center justify-center h-[40px] mt-2 tab:mt-4 text-red-500">
           {profilePicError ? (
             <>
               <img
                 src={exclamation}
-                className="w-[15px] h-[15px] mr-2 flex justify-center items-center"
+                className="w-[14px] h-[14px] tab:w-[15px] tab:h-[15px] mr-[6px] tab:mr-2 flex justify-center items-center"
                 alt=""
               />
               <p className="font-normal text-xs">{profilePicError}</p>

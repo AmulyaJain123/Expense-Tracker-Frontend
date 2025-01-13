@@ -109,19 +109,19 @@ export default function ProfilePage() {
       </Helmet>
       <div className="h-full w-full bg-white pb-[100px] overflow-auto text-stone-700 rounded-l-xl rounded-r-xl lg:rounded-r-none">
         <div className="flex flex-col max-w-[1200px] mx-auto">
-          <h1 className="text-[30px] py-1 text-white text-center bg-[#9d4edd] rounded-xl mx-16 mt-8 font-bold uppercase">
+          <h1 className="text-[25px] tab:text-[30px] py-1 text-white text-center bg-[#9d4edd] rounded-lg mob:rounded-xl mx-6 mob:mx-12 tab:mx-16 mt-6 mob:mt-8 font-bold uppercase">
             My Profile
           </h1>
-          <div className="flex justify-center text-sm space-x-16 mt-16 ">
-            <div className="flex flex-col gap-y-[40px] items-center mb-16">
+          <div className="flex flex-col sm:flex-row items-center sm:justify-center text-sm sm:space-x-8 tab:space-x-16 mt-6 mob:mt-12 tab:mt-16 ">
+            <div className="flex flex-col gap-y-[20px] sm:gap-y-[40px] items-center mb-16">
               <div className="mt-8">
                 <p className="font-semibold mb-3 text-center">Profile Pic</p>
                 <ProfilePic data={data} />
               </div>
-              <div className="flex text-xs flex-col">
+              <div className="flex text-[11px] tab:text-xs flex-col">
                 <span className="font-bold mb-2 text-base mx-auto">STATS</span>
                 <div className="flex flex-col">
-                  <div className="flex text-neutral-500 flex-col space-y-6 bg-neutral-100 px-6 rounded-lg  py-4 w-[300px]">
+                  <div className="flex text-neutral-500 flex-col space-y-4 tab:space-y-6 bg-neutral-100 px-4 tab:px-6 rounded-lg py-3 tab:py-4 w-[250px] tab:w-[300px]">
                     <div className="flex justify-between rounded-md ">
                       <span className="font-semibold flex items-center uppercase">
                         <img
@@ -170,41 +170,43 @@ export default function ProfilePage() {
                 </div>
               </div>
             </div>
-            <div className="flex text-xs flex-col gap-y-8 max-w-[900px]">
-              <div className="flex flex-col space-y-1 w-[350px]">
+            <div className="flex text-[11px] tab:text-[11px] tab:text-xs flex-col gap-y-8 max-w-[900px]">
+              <div className="flex flex-col space-y-1 w-[280px] tab:w-[350px]">
                 <span className="font-semibold ">Username</span>
                 <div className="relative ">
-                  <div className="px-6 py-[6px] w-full text-neutral-500 text-xs font-medium rounded-sm bg-neutral-100 ">
+                  <div className="px-4 tab:px-6 py-1 tab:py-[6px] w-full text-neutral-500 text-[11px] tab:text-xs font-medium rounded-sm bg-neutral-100 ">
                     {data.username}
                   </div>
                 </div>
               </div>
-              <div className="flex flex-col space-y-1 w-[350px]]">
+              <div className="flex flex-col space-y-1 w-[280px] tab:w-[350px]">
                 <span className="font-semibold ">Email</span>
-                <div className="px-6 py-[6px] text-neutral-500 text-xs font-medium rounded-sm bg-neutral-100 ">
+                <div className="px-4 tab:px-6 py-1 tab:py-[6px] text-neutral-500 text-[11px] tab:text-xs font-medium rounded-sm bg-neutral-100 ">
                   {data.email}
                 </div>
               </div>
-              <div className="flex flex-col space-y-1 w-[350px]]">
+              <div className="flex flex-col space-y-1 w-[280px] tab:w-[350px]">
                 <span className="font-semibold ">User ID</span>
-                <div className="px-6 py-[6px] text-neutral-500 text-xs font-medium rounded-sm bg-neutral-100 ">
+                <div className="px-4 tab:px-6 py-1 tab:py-[6px] text-neutral-500 text-[11px] tab:text-xs font-medium rounded-sm bg-neutral-100 ">
                   <span className="text-neutral-400 mr-2">#</span>
-                  <span className="text-xs">{data.userId}</span>
+                  <span className="text-[11px] tab:text-xs">{data.userId}</span>
                 </div>
               </div>
-              <div className="flex flex-col space-y-1 w-[350px]]">
+              <div className="flex flex-col space-y-1 w-[280px] tab:w-[350px]">
                 <span className="font-semibold ">Joined On</span>
-                <div className="px-6 py-[6px] text-neutral-500 text-xs font-medium rounded-sm bg-neutral-100 ">
+                <div className="px-4 tab:px-6 py-1 tab:py-[6px] text-neutral-500 text-[11px] tab:text-xs font-medium rounded-sm bg-neutral-100 ">
                   {formatDate(data.joinedOn)}
                 </div>
               </div>
-              <div className="flex flex-col space-y-1 w-[350px]]">
+              <div className="flex flex-col space-y-1 w-[280px] tab:w-[350px]">
                 <span className="font-semibold ">UPI ID</span>
                 <div
                   style={{ outline: !editUpi ? "none" : "1.5px solid black" }}
-                  className="pl-6 items-center text-sm font-medium rounded-sm flex bg-neutral-100 "
+                  className="pl-4 tab:pl-6 items-center text-[13px] tab:text-sm font-medium rounded-sm flex bg-neutral-100 "
                 >
-                  <span className="text-neutral-400 mr-2">UPI</span>
+                  <span className="text-neutral-400 mr-[6px] tab:mr-2">
+                    UPI
+                  </span>
 
                   <div className="relative flex flex-grow">
                     <input
@@ -215,7 +217,7 @@ export default function ProfilePage() {
                         cursor: !editUpi ? "default" : "auto",
                       }}
                       type="text"
-                      className="px-4 py-[8px] w-full focus:outline-none disabled:text-neutral-500 text-xs font-medium rounded-sm bg-neutral-100 "
+                      className="px-4 py-[8px] w-full focus:outline-none disabled:text-neutral-500 text-[11px] tab:text-xs font-medium rounded-sm bg-neutral-100 "
                     />
 
                     {!editUpi ? (
@@ -225,12 +227,12 @@ export default function ProfilePage() {
                       >
                         <img
                           src={pencil}
-                          className="w-[15px] h-[15px] flex justify-center items-center"
+                          className="w-[14px] h-[14px] tab:w-[15px] tab:h-[15px] flex justify-center items-center"
                           alt=""
                         />
                       </button>
                     ) : (
-                      <div className="absolute top-[-10px] flex space-x-4 right-2 translate-y-[-100%]">
+                      <div className="absolute top-[-10px] flex space-x-3 tab:space-x-4 right-2 translate-y-[-100%]">
                         <button
                           disabled={upiEditLoading === true}
                           className="disabled:pointer-events-none disabled:opacity-50"
@@ -263,10 +265,10 @@ export default function ProfilePage() {
                           </div>
                         ) : upiEditLoading != true &&
                           upiEditLoading != false ? (
-                          <div className="absolute flex text-nowrap text-red-500 text-xs font-normal items-center left-[-55px] translate-x-[-100%]">
+                          <div className="absolute flex text-nowrap text-red-500 text-[11px] tab:text-xs font-normal items-center left-[-55px] translate-x-[-100%]">
                             <img
                               src={exclamation}
-                              className="w-[12px] h-[12px] mr-2 flex justify-center items-center"
+                              className="w-[12px] h-[12px] mr-[6px] tab:mr-2 flex justify-center items-center"
                               alt=""
                             />
                             {upiEditLoading}
@@ -277,9 +279,9 @@ export default function ProfilePage() {
                   </div>
                 </div>
               </div>
-              <div className="flex flex-col space-y-1 w-[200px]">
+              <div className="flex flex-col space-y-1 w-[180px] tab:w-[200px]">
                 <span className="font-semibold ">QR Code</span>
-                <div className="py-2 text-sm aspect-square flex justify-center items-center font-medium">
+                <div className="py-[6px] tab:py-2 text-sm aspect-square flex justify-center items-center font-medium">
                   <QRPic data={data} />
                 </div>
               </div>

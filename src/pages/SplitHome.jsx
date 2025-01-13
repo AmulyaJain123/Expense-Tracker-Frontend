@@ -92,9 +92,9 @@ export default function SplitHome() {
                   </Link>
                   <Link
                     to={"protected/view/saved"}
-                    className="bg-black p-2 sm:p-3 rounded-lg sm:rounded-xl w-[120px] h-[120px] sm:w-[150px] sm:h-[150px] text-white group hover:text-black hover:bg-white border-[1.5px] border-black hover:scale-110 duration-500 hover:shadow-lg"
+                    className="bg-black p-2 sm:p-3 rounded-lg text-sm sm:text-lg sm:rounded-xl w-[120px] h-[120px] sm:w-[150px] sm:h-[150px] text-white group hover:text-black hover:bg-white border-[1.5px] border-black hover:scale-110 duration-500 hover:shadow-lg"
                   >
-                    <span className=" font-semibold text-sm sm:text-lg leading-tight">
+                    <span className=" font-semibold  leading-tight">
                       Go To
                       <br /> Saved SPLITS
                     </span>
@@ -102,9 +102,9 @@ export default function SplitHome() {
                   </Link>
                   <Link
                     to={"protected/view/shared"}
-                    className="bg-black p-2 sm:p-3 px-2 rounded-lg sm:rounded-xl w-[120px] h-[120px] sm:w-[150px] sm:h-[150px] text-white group hover:text-black hover:bg-white border-[1.5px] border-black hover:scale-110 duration-500 hover:shadow-lg"
+                    className="bg-black p-2 sm:p-3 px-2 rounded-lg text-sm sm:text-lg sm:rounded-xl w-[125px] h-[120px] sm:w-[155px] sm:h-[150px] text-white group hover:text-black hover:bg-white border-[1.5px] border-black hover:scale-110 duration-500 hover:shadow-lg"
                   >
-                    <span className=" font-semibold text-sm sm:text-lg leading-tight">
+                    <span className=" font-semibold leading-tight">
                       Go To
                       <br /> Shared SPLITS
                     </span>

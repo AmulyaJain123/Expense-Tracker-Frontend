@@ -134,7 +134,7 @@ export default function ProfilePic({ data }) {
           ) : null}
           {profilePicUrl ? (
             <>
-              <div className="absolute top-[-10px] flex space-x-4 right-[-40px] translate-y-[-100%]">
+              <div className="absolute top-[-10px] flex space-x-4 right-[-20px] tab:right-[-40px] translate-y-[-100%]">
                 <button
                   disabled={profilePicUploadLoading}
                   className="disabled:pointer-events-none disabled:opacity-50"
@@ -182,12 +182,12 @@ export default function ProfilePic({ data }) {
           )}
         </div>
 
-        <div className="flex items-center justify-center h-[50px] mt-8 text-red-500">
+        <div className="flex items-center justify-center h-[50px] mt-4 tab:mt-8 text-red-500">
           {profilePicError ? (
             <>
               <img
                 src={exclamation}
-                className="w-[20px] h-[20px] mr-2 flex justify-center items-center"
+                className="w-[17px] h-[17px] tab:w-[20px] tab:h-[20px] mr-2 flex justify-center items-center"
                 alt=""
               />
               <p className="">{profilePicError}</p>

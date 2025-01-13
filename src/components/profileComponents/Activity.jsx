@@ -54,26 +54,26 @@ export default function Activity({ data }) {
   }
 
   return (
-    <div className="p-16 w-[80%] px-12 pt-4 bg-neutral-100 rounded-lg">
-      <div className="flex justify-between text-[11px]">
-        <div className="flex space-x-6">
-          <div className="flex space-x-3">
+    <div className="p-16 w-[90%] sm:w-[80%] px-6 tab:px-12 pt-6 tab:pt-4 bg-neutral-100 rounded-lg">
+      <div className="flex flex-col-reverse tab:flex-row items-center tab:justify-between text-[11px]">
+        <div className="tab:flex flex-col  mt-6 tab:mt-0 space-y-1 tab:space-y-0 tab:flex-row tab:space-x-6">
+          <div className="flex justify-center space-x-3">
             <span>Total Active Days: </span>
             <span>{data.totalActiveDays}</span>
           </div>
-          <div className="flex space-x-3">
+          <div className="flex justify-center space-x-3">
             <span>
               Total Active Days in{" "}
               <span className="font-medium">{selectedYear}</span> :{" "}
             </span>
             <span>{data.list[ind].totalActiveDays}</span>
           </div>
-          <div className="flex space-x-3">
+          <div className="flex justify-center space-x-3">
             <span>Max Streak: </span>
             <span>{data.maxStreak}</span>
           </div>
         </div>
-        <div className="text-xs flex items-center space-x-3">
+        <div className="text-xs flex items-center space-x-2 sm:space-x-3">
           <button
             className="disabled:pointer-events-none disabled:opacity-50"
             disabled={selectedYear === data.list[0].year}
@@ -81,7 +81,7 @@ export default function Activity({ data }) {
           >
             <img
               src={left}
-              className="w-[20px] h-[20px] flex justify-center items-center"
+              className="w-[17px] sm:w-[20px] h-[17px] sm:h-[20px] flex justify-center items-center"
               alt=""
             />
           </button>
@@ -93,14 +93,14 @@ export default function Activity({ data }) {
           >
             <img
               src={right}
-              className="w-[20px] h-[20px] flex justify-center items-center"
+              className="w-[17px] sm:w-[20px] h-[17px] sm:h-[20px] flex justify-center items-center"
               alt=""
             />
           </button>
         </div>
       </div>
-      <div className="flex  pt-24 justify-center flex-wrap gap-x-6 gap-y-14">
-        <div className="flex relative flex-col items-start text-[9px] text-neutral-500 mr-1 rounded-sm h-[110px] gap-[3px]">
+      <div className="flex pt-20 tab:pt-24 justify-center flex-wrap gap-x-6 gap-y-14">
+        <div className="sm:flex hidden relative flex-col items-start text-[9px] text-neutral-500 mr-1 rounded-sm h-[110px] gap-[3px]">
           <div className=" h-[12px]">Mon</div>
           <div className=" h-[12px]">Tue</div>
           <div className=" h-[12px]">Wed</div>
@@ -146,7 +146,7 @@ export default function Activity({ data }) {
                               top: toolTip.y,
                               left: toolTip.x,
                             }}
-                            className="absolute text-nowrap z-[1] h-[25px]  bg-white shadow-md text-xs rounded-md flex items-center p-1 px-3"
+                            className="absolute text-nowrap z-[1] h-[25px]  bg-white shadow-md text-xs rounded-md hidden sm:flex items-center p-1 px-3"
                           >
                             {toolTip.date}
                           </div>
