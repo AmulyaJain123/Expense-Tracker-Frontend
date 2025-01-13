@@ -113,7 +113,7 @@ export default function ProfilePage() {
             My Profile
           </h1>
           <div className="flex flex-col sm:flex-row items-center sm:justify-center text-sm sm:space-x-8 tab:space-x-16 mt-6 mob:mt-12 tab:mt-16 ">
-            <div className="flex flex-col gap-y-[20px] sm:gap-y-[40px] items-center mb-16">
+            <div className="flex flex-col gap-y-[20px] sm:gap-y-[40px] items-center mb-12 sm:mb-16">
               <div className="mt-8">
                 <p className="font-semibold mb-3 text-center">Profile Pic</p>
                 <ProfilePic data={data} />
@@ -170,7 +170,7 @@ export default function ProfilePage() {
                 </div>
               </div>
             </div>
-            <div className="flex text-[11px] tab:text-[11px] tab:text-xs flex-col gap-y-8 max-w-[900px]">
+            <div className="flex text-[11px] tab:text-[11px] tab:text-xs flex-col gap-y-6 sm:gap-y-8 max-w-[900px]">
               <div className="flex flex-col space-y-1 w-[280px] tab:w-[350px]">
                 <span className="font-semibold ">Username</span>
                 <div className="relative ">
@@ -287,7 +287,7 @@ export default function ProfilePage() {
               </div>
             </div>
           </div>
-          <div className="flex flex-col items-center mt-8">
+          <div className="flex flex-col items-center mt-4 sm:mt-8">
             <p className="uppercase font-bold text-base mb-2 ">Activity</p>
             <Activity data={data.pActivity} />
           </div>

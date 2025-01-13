@@ -95,7 +95,7 @@ export default function ProfilePic({ data }) {
   }
   return (
     <>
-      <div className="    ">
+      <div className="flex flex-col items-center">
         <div className="bg-neutral-100 relative p-5 rounded-full">
           <div className={profilePicUploadLoading ? "blur-sm" : ""}>
             {data.profilePic && !profilePicUrl ? (
@@ -182,7 +182,7 @@ export default function ProfilePic({ data }) {
           )}
         </div>
 
-        <div className="flex items-center justify-center h-[50px] mt-4 tab:mt-8 text-red-500">
+        <div className="flex items-center justify-center h-[40px] mt-4 tab:mt-8 text-red-500">
           {profilePicError ? (
             <>
               <img

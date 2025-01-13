@@ -99,7 +99,7 @@ export default function Activity({ data }) {
           </button>
         </div>
       </div>
-      <div className="flex pt-20 tab:pt-24 justify-center flex-wrap gap-x-6 gap-y-14">
+      <div className="flex pt-16 sm:pt-20 tab:pt-24 justify-center flex-wrap gap-x-6 gap-y-14">
         <div className="sm:flex hidden relative flex-col items-start text-[9px] text-neutral-500 mr-1 rounded-sm h-[110px] gap-[3px]">
           <div className=" h-[12px]">Mon</div>
           <div className=" h-[12px]">Tue</div>
