@@ -100,29 +100,29 @@ export default function SwipeAnimation() {
     };
   }, []);
   return (
-    <div className="my-20 mb-10 mt-2 pb-[80px] rounded-lg mx-auto w-full">
+    <div className="mob:mb-6 tab:mb-8 lap:mb-10 mt-2 mob:pb-[45px] tab:pb-[60px] lap:pb-[80px] rounded-lg mx-auto w-full">
       <div className=" relative p-4   w-full flex flex-col justify-center items-center">
-        <div className="h-[450px] w-[800px] relative flex justify-center items-center">
+        <div className="mob:h-[350px] tab:h-[400px] lap:h-[450px] mob:w-[600px] tab:w-[700px] lap:w-[800px] relative flex justify-center items-center">
           {config.map((i, index) => {
             return (
               <img
                 src={i.image}
                 style={{ opacity: ind === index ? "1" : "0" }}
-                className="absolute max-w-[800px] rounded-xl duration-700 border-2 border-stone-200 max-h-[400px] right-[50%] translate-x-[50%] top-[50%] translate-y-[-50%]"
+                className="absolute mob:max-w-[600px] tab:max-w-[700px] lap:max-w-[800px] rounded-xl duration-700 border-2 border-stone-200 mob:max-h-[300px] tab:max-h-[350px] lap:max-h-[400px] right-[50%] translate-x-[50%] top-[50%] translate-y-[-50%]"
                 alt=""
               />
             );
           })}
         </div>
-        <span className="absolute bottom-[-5px] right-[50%] translate-x-[50%] text-base font-bold">
+        <span className="absolute mob:bottom-[5px] tab:bottom-[5px] lap:bottom-[-5px text-nowrap right-[50%] translate-x-[50%] mob:text-sm tab:text-base font-bold">
           {config[ind].name}
         </span>
-        <div className="absolute bottom-[-25px] flex space-x-3 right-[50%] translate-x-[50%]">
+        <div className="absolute mob:bottom-[-12px] tab:bottom-[-15px] lap:bottom-[-25px] flex mob:space-x-[10px] tab:space-x-3 right-[50%] translate-x-[50%]">
           {new Array(config.length).fill(0).map((i, index) => {
             return (
               <div
                 style={{ backgroundColor: index === ind ? "black" : "" }}
-                className="w-[7px] h-[7px] rounded-full duration-700 border border-black"
+                className="w-[6px] h-[6px] tab:w-[7px] tab:h-[7px] rounded-full duration-700 border border-black"
               ></div>
             );
           })}
