@@ -1,6 +1,8 @@
 import { styling } from "../util/styling";
 import styled from "styled-components";
 import { NavLink, useLocation, Link } from "react-router-dom";
+import { universalActions } from "../store/main";
+import { useDispatch } from "react-redux";
 
 const Main = styled.div`
   background-color: ${styling.navColor};
@@ -30,11 +32,13 @@ export default function PageTile({ details }) {
   const { name, path, iconClass, iconClassBold } = details;
   const location = useLocation();
   const active = setActive(location, name, path);
+  const dispatch = useDispatch();
 
   return (
     <div className="">
       <NavLink
         to={path}
+        onClick={() => dispatch(universalActions.closeMenu())}
         className={({ isActive }) => {
           return isActive ? "active" : undefined;
         }}

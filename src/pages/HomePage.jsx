@@ -39,18 +39,20 @@ export default function HomePage() {
         <meta name="description" content="Home" />
       </Helmet>
       <div className="h-full w-full pb-[150px] bg-white overflow-auto text-stone-700 rounded-l-xl rounded-r-xl lg:rounded-r-none">
-        <header className="flex flex-col pt-[40px] mob:pt-[45px] tab:pt-[60px] lap:pt-[80px]  justify-center items-center space-y-[3px] mob:space-y-[4px] tab:space-y-[6px] lap:space-y-[10px]">
-          <h2 className="text-[32px] mob:text-[35px] tab:text-[45px] lap:text-[55px] mx-[20px] text-center font-bold text-stone-700">
-            Welcome to{" "}
+        <header className="flex flex-col pt-[40px] mob:pt-[45px] tab:pt-[60px] lap:pt-[80px]  justify-center items-center space-y-3 mob:space-y-[4px] tab:space-y-[6px] lap:space-y-[10px]">
+          <h2 className="text-[32px] text-nowrap mob:text-[35px] tab:text-[45px] lap:text-[55px] mx-[20px] text-center font-bold text-stone-700">
+            Welcome To{" "}
             <span style={{ fontFamily: "fredoka" }} className="uppercase">
               BillBud
             </span>
           </h2>
-          <p className="font-medium text-[12px] mob:text-[12px] tab:text-[13px] lap:text-[14px]  text-center mx-[20px]">
+          <p className=" flex flex-col gap-1 mob:flex-row font-medium text-[14px] mob:text-[14px] tab:text-[13px] lap:text-[14px]  text-center mx-[20px]">
             The{" "}
-            <span className="text-[#9d4edd] font-medium">Expense Tracker</span>,{" "}
-            <span className="text-[#9d4edd] font-medium">Digital Storage</span>,{" "}
-            <span className="text-[#9d4edd] font-medium">Bill Splitter</span> -
+            <span className="text-[#9d4edd] font-medium">Expense Tracker,</span>{" "}
+            <span className="text-[#9d4edd] font-medium">Digital Storage,</span>{" "}
+            <span className="text-[#9d4edd] font-medium">
+              Bill Splitter <span className="mob:inline hidden">-</span>
+            </span>
             ALL IN ONE
           </p>
         </header>
@@ -60,8 +62,8 @@ export default function HomePage() {
         </div>
 
         <div className={`${styles.wrapper}`}>
-          <div className="flex flex-col mt-12 mob:mt-16 smTab:mt-0 px-[40px] smTab:mx-[50px] tab:mx-[100px] lap:mx-[150px] ">
-            <p className="text-center flex flex-col space-y-2 font-medium text-[12px] mob:text-xs tab:text-sm">
+          <div className="flex flex-col mt-12 mob:mt-16 smTab:mt-0 px-[20px] smTab:mx-[50px] tab:mx-[100px] lap:mx-[150px] ">
+            <p className="text-center flex flex-col space-y-2 font-medium text-[14px]  tab:text-sm">
               <p>
                 Managing finances can often be a daunting task, but with{" "}
                 <span
@@ -87,7 +89,7 @@ export default function HomePage() {
               </p>
             </p>
 
-            <menu className="flex flex-col mob:flex-row  mx-auto mt-[60px] sm:mt-[80px] gap-y-4 mob:gap-x-5 justify-between">
+            <menu className="flex flex-col mob:flex-row  mx-auto mt-[80px] sm:mt-[80px] gap-y-4 mob:gap-x-5 justify-between">
               <div className="flex flex-col relative">
                 <div className="rounded-2xl bg-slate-100 w-[90px] tab:w-[110px]  aspect-square mob:p-3 tab:p-4 flex justify-center items-center">
                   <i className="fi fi-ss-vault flex justify-center items-center text-[50px] tab:text-[60px]  text-neutral-600"></i>
@@ -95,7 +97,7 @@ export default function HomePage() {
                 <div className="absolute hidden mob:flex bottom-[10px] mob:bottom-[-10px] scale-110 left-[-10px] mob:left-[-20px] tab:left-[-50px] translate-x-[-100%] mob:translate-x-[-50%] translate-y-[100%]">
                   <img src={vault} className="" alt="" />
                 </div>
-                <div className="absolute flex mob:hidden top-[-5px] scale-[125%] right-[-15px] translate-x-[100%] translate-y-[-100%]">
+                <div className="absolute flex mob:hidden top-[0px] scale-110 right-[-5px] translate-x-[100%] translate-y-[-100%]">
                   <img src={vault2} className="" alt="" />
                 </div>
               </div>
@@ -106,7 +108,7 @@ export default function HomePage() {
                 <div className="absolute mob:flex hidden bottom-[-10px]  mob:left-[-20px] tab:left-[-30px]  translate-y-[100%]">
                   <img src={track} className="" alt="" />
                 </div>
-                <div className="absolute flex mob:hidden top-[20%] scale-110 left-[-20px] translate-x-[-100%] translate-y-[50%]">
+                <div className="absolute flex mob:hidden top-[20%] scale-110 left-[-8px] translate-x-[-100%] translate-y-[50%]">
                   <img src={track2} className="" alt="" />
                 </div>
               </div>
@@ -117,7 +119,7 @@ export default function HomePage() {
                 <div className="absolute hidden mob:flex bottom-[-5px]  mob:right-[-30px] tab:right-[-50px] translate-x-[40%] translate-y-[100%]">
                   <img src={split} className="" alt="" />
                 </div>
-                <div className="absolute flex mob:hidden top-[0%] scale-110 right-[-20px] translate-x-[100%] translate-y-[-50%]">
+                <div className="absolute flex mob:hidden top-[30%] scale-90 right-[-2px] translate-x-[100%] translate-y-[-50%]">
                   <img src={split2} className="" alt="" />
                 </div>
               </div>
@@ -139,7 +141,7 @@ export default function HomePage() {
               />
               <span className="items-center  absolute bottom-[-5px] translate-y-[100%] right-[50%] translate-x-[50%] min-w-[110px] justify-center bg-white rounded-xl px-2  h-fit flex w-fit tab:py-1">
                 {copyStatus ? (
-                  <span className="mob:rounded-md tab:rounded-lg rounded-md px-[4px] mob:px-[6px] tab:px-2 flex items-center py-1">
+                  <span className="mob:rounded-md tab:rounded-lg rounded-md  mob:px-[6px] px-[5px] tab:px-2 flex items-center mob:py-[1px] tab:py-1">
                     <span
                       ref={copyRef}
                       className="opacity-[0.1] text-[9px] mob:text-[11px] tab:text-xs font-medium text-green-600 duration-[2500ms]"

@@ -51,7 +51,7 @@ export default function TopNav() {
         className="flex p-2 mr-4 ml-2 rounded-lg lg:hidden hover:bg-slate-200"
       >
         <div>
-          <i className="fi fi-rs-burger-menu flex justify-center items-center text-xl sm:text-2xl"></i>
+          <i className="fi fi-rs-burger-menu flex justify-center items-center text-lg "></i>
         </div>
       </button>
 
