@@ -31,9 +31,9 @@ export default function TrackHome() {
           >
             TRACK
           </h2>
-          <div className=" mt-4 flex md:flex-row flex-col space-y-4 justify-center md:space-y-0 mx-[50px] sm:mx-[100px] items-center md:space-x-[20px]">
-            <div className="flex flex-col max-w-[900px] lg:text-base text-sm xl:text-sm space-y-4 my-auto">
-              <p className=" font-medium justify-center items-center text-center ">
+          <div className=" mt-4 flex smTab:flex-row flex-col space-y-4 justify-center md:space-y-0 mx-[30px] tab:mx-[100px] items-center md:space-x-[20px]">
+            <div className="flex flex-col max-w-[900px] text-center sm:text-start text-xs lg:text-sm space-y-4 my-auto">
+              <p className=" font-medium justify-center items-center ">
                 With <span className="font-medium text-[#9d4edd]">TRACK</span>,
                 you can seamlessly monitor and manage your expenses in one
                 convenient place. Whether it's daily spending, monthly bills, or
@@ -41,7 +41,7 @@ export default function TrackHome() {
                 <span className="font-medium text-[#9d4edd]">TRACK</span> helps
                 you stay on top of your finances with ease.
               </p>
-              <p className=" font-medium flex justify-center items-center text-center ">
+              <p className=" font-medium flex justify-center items-center ">
                 Track your expenses, analyze spending patterns, and gain
                 insights into your financial habits to make informed decisions!!
               </p>
@@ -54,11 +54,13 @@ export default function TrackHome() {
           </div>
           <TrackHomeMenu />
 
-          <div className="flex flex-col mt-[100px]">
-            <div className="flex justify-between items-center p-2 px-4 rounded-xl bg-slate-100 mx-[50px] sm:mx-[80px]">
-              <span className="text-[30px] ml-[15px] font-bold">TRACK</span>
+          <div className="flex flex-col mt-[80px] sm:mt-[100px]">
+            <div className="flex justify-between items-center p-2 px-4 rounded-xl bg-slate-100 mx-[30px] sm:mx-[80px]">
+              <span className="text-[25px] sm:text-[30px] ml-[15px] font-bold">
+                TRACK
+              </span>
             </div>
-            <div className="flex mt-[15px] p-6 rounded-xl pb-12 space-x-6 bg-slate-100 mx-[50px] sm:mx-[80px]">
+            <div className="flex mt-[15px] p-6 rounded-xl pb-12 space-x-6 bg-slate-100 mx-[30px] sm:mx-[80px]">
               {!userDetails ? (
                 <div className="flex flex-col flex-grow justify-center items-center">
                   <img
@@ -82,9 +84,9 @@ export default function TrackHome() {
                   </p>
                 </div>
               ) : (
-                <>
+                <div className="flex flex-grow flex-wrap gap-6 justify-center sm:justify-start">
                   <Link
-                    className="py-2 px-3 w-[150px] h-[150px]  group rounded-lg text-lg  text-[#fff] hover:text-[#9d4edd] hover:scale-110 hover:bg-[#fff] border-[1.5px] border-[#9d4edd] duration-500 font-semibold bg-[#9d4edd]"
+                    className="py-[6px] sm:py-2 px-2 sm:px-3 w-[120px] h-[120px] sm:w-[150px] sm:h-[150px]  group rounded-lg sm:rounded-xl text-sm sm:text-lg  text-[#fff] hover:text-[#9d4edd] hover:scale-110 hover:bg-[#fff] border-[1.5px] border-[#9d4edd] duration-500 font-semibold bg-[#9d4edd]"
                     to={"protected/dashboard"}
                   >
                     <p className="pb-[6px] border-b-[1.5px] leading-tight border-white group-hover:border-[#9d4edd] ">
@@ -92,19 +94,19 @@ export default function TrackHome() {
                     </p>
                   </Link>
                   <Link
-                    className="py-2 px-3 w-[150px] h-[150px]  group justify-center items-center rounded-lg text-lg  text-[#fff] hover:text-[#000] hover:scale-110 hover:bg-[#fff] border-[1.5px] border-[#000] duration-500 font-semibold bg-[#000]"
+                    className="py-[6px] sm:py-2 px-2 sm:px-3 w-[120px] h-[120px] sm:w-[150px] sm:h-[150px]  group justify-center items-center rounded-lg sm:rounded-xl text-sm sm:text-lg  text-[#fff] hover:text-[#000] hover:scale-110 hover:bg-[#fff] border-[1.5px] border-[#000] duration-500 font-semibold bg-[#000]"
                     to={"protected/create"}
                   >
                     <p className="pb-[6px] border-b-[1.5px] leading-tight border-white group-hover:border-[#000] ">
                       <span className="flex items-center mr-3">
-                        <i className="fi fi-br-plus flex justify-center mr-2 text-base items-center"></i>
+                        <i className="fi fi-br-plus flex justify-center mr-[6px] sm:mr-2 text-xs sm:text-base items-center"></i>
                         <span>Create</span>
                       </span>
                       <span className="flex items-center">Transaction</span>
                     </p>
                   </Link>
                   <Link
-                    className="py-2 px-3 w-[150px] h-[150px] leading-tight group justify-center items-center rounded-lg text-lg text-[#fff] hover:text-[#000] hover:scale-110 hover:bg-[#fff] border-[1.5px] border-[#000] duration-500 font-semibold bg-[#000]"
+                    className="py-[6px] sm:py-2 px-2 sm:px-3 w-[120px] h-[120px] sm:w-[150px] sm:h-[150px] leading-tight group justify-center items-center rounded-lg sm:rounded-xl text-sm sm:text-lg text-[#fff] hover:text-[#000] hover:scale-110 hover:bg-[#fff] border-[1.5px] border-[#000] duration-500 font-semibold bg-[#000]"
                     to={"protected/transactions"}
                   >
                     <p className="pb-[6px] border-b-[1.5px] border-white group-hover:border-[#000] ">
@@ -112,14 +114,14 @@ export default function TrackHome() {
                     </p>
                   </Link>
                   <Link
-                    className="py-2 px-3 w-[150px] h-[150px] leading-tight group justify-center items-center rounded-lg text-lg  text-[#fff] hover:text-[#000] hover:scale-110 hover:bg-[#fff] border-[1.5px] border-[#000] duration-500 font-semibold bg-[#000]"
+                    className="py-[6px] sm:py-2 px-2 sm:px-3 w-[120px] h-[120px] sm:w-[150px] sm:h-[150px] leading-tight group justify-center items-center rounded-lg sm:rounded-xl text-sm sm:text-lg  text-[#fff] hover:text-[#000] hover:scale-110 hover:bg-[#fff] border-[1.5px] border-[#000] duration-500 font-semibold bg-[#000]"
                     to={"protected/categories"}
                   >
                     <p className="pb-[6px] border-b-[1.5px] border-white group-hover:border-[#000] ">
                       Manage Categories
                     </p>
                   </Link>
-                </>
+                </div>
               )}
             </div>
           </div>

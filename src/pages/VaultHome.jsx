@@ -28,15 +28,15 @@ export default function VaultHome() {
           >
             VAULT
           </h2>
-          <div className=" mt-8 flex flex-col space-y-[30px] sm:space-y-0 items-center sm:flex-row mx-[50px] md:mx-[100px] justify-center space-x-[20px] 2xl:space-x-[80px]">
+          <div className=" mt-8 flex flex-col space-y-[30px] sm:space-y-0 items-center sm:flex-row mx-[35px] sm:mx-[50px] md:mx-[100px] justify-center sm:space-x-[20px] 2xl:space-x-[80px]">
             <div className="flex text-xs sm:text-xs lg:text-sm xl:text-sm flex-col max-w-[900px] space-y-4  my-auto">
-              <p className=" font-medium  text-center ">
+              <p className=" font-medium  text-center sm:text-start ">
                 This is your personal digital archive for all your important
                 Documents like Bills, Receipts, Invoices and Warranties. With{" "}
                 <span className=" font-medium text-[#9d4edd]">VAULT</span>, you
                 can effortlessly:
               </p>
-              <ul className="flex flex-col list-disc mx-auto">
+              <ul className="flex flex-col sm:list-disc text-center sm:text-start mx-auto">
                 <li className="list-item">ADD Text Details</li>
 
                 <li className="list-item">
@@ -46,7 +46,7 @@ export default function VaultHome() {
                   ADD Tags for better identification and classification
                 </li>
               </ul>
-              <p className=" font-medium  text-center ">
+              <p className=" font-medium  text-center sm:text-start ">
                 Whether it's for tracking expenses or keeping records for future
                 reference,{" "}
                 <span className=" font-medium text-[#9d4edd]">VAULT</span> can
@@ -62,13 +62,13 @@ export default function VaultHome() {
               </p>
             </div>
             <img
-              className="h-fit my-auto w-[200px]  sm:w-[300px] xl:w-[300px]"
+              className="h-fit my-auto w-[200px]  tab:w-[250px] lap:w-[300px]"
               src={vault}
               alt=""
             />
           </div>
           <div id="menu" className="flex flex-col items-center">
-            <div className="flex justify-center space-x-10 mt-[100px] sm:mt-[125px]">
+            <div className="flex justify-center space-x-10 mt-[80px] sm:mt-[125px]">
               <Span className="text-base sm:text-base border-b-[1.5px] sm:border-b-2 border-black">
                 How to Use <span className=" ">VAULT</span>
               </Span>
@@ -147,31 +147,13 @@ export default function VaultHome() {
               </div>
             </div>
           </div>
-          <div className="flex flex-col mt-[100px]">
-            <div className="flex justify-between items-center p-2 px-4 rounded-xl bg-slate-100 mx-[50px] sm:mx-[80px]">
+          <div className="flex flex-col mt-[80px] sm:mt-[100px]">
+            <div className="flex justify-between items-center p-2 px-4 rounded-xl bg-slate-100 mx-[30px] sm:mx-[80px]">
               <span className="text-[25px] sm:text-[30px] lg:text-[30px] ml-[10px] sm:ml-[15px] font-bold">
                 VAULT
               </span>
-              <div className="flex space-x-4 h-fit items-center">
-                {!userDetails ? null : (
-                  <>
-                    <Link
-                      className="p-1 uppercase sm:p-2 px-2 sm:px-3 py-[2px] h-fit text-sm sm:text-xs rounded-md font-semibold bg-[#9d4edd] border-[1.5px] border-[#9d4edd] text-[#f7ebfd] hover:bg-[#f7ebfd] duration-500 hover:text-[#9d4edd] hover:scale-105 hover:shadow-md"
-                      to={"protected/create/receipt"}
-                    >
-                      Add Receipt
-                    </Link>
-                    <Link
-                      className="p-1 uppercase sm:p-2 px-2 sm:px-3 py-[2px] h-fit text-sm sm:text-xs rounded-md font-semibold bg-[#9d4edd] border-[1.5px] border-[#9d4edd] text-[#f7ebfd] hover:bg-[#f7ebfd] duration-500 hover:text-[#9d4edd] hover:scale-105 hover:shadow-md"
-                      to={"protected/create/warranty"}
-                    >
-                      Add Warranty
-                    </Link>
-                  </>
-                )}
-              </div>
             </div>
-            <div className="flex mt-[15px] p-6 rounded-xl pb-12 space-x-6 bg-slate-100 mx-[50px] sm:mx-[80px]">
+            <div className="flex mt-[15px] p-6 rounded-xl pb-12 space-x-6 bg-slate-100 mx-[30px] sm:mx-[80px]">
               {!userDetails ? (
                 <div className="flex flex-col flex-grow justify-center items-center">
                   <img
@@ -195,35 +177,59 @@ export default function VaultHome() {
                   </p>
                 </div>
               ) : (
-                <>
+                <div className="flex flex-grow flex-wrap gap-6 justify-center sm:justify-start">
                   <Link
-                    to={"protected/view/receipt"}
-                    className="bg-black w-[150px] p-3 rounded-lg h-[150px] text-white group hover:text-black hover:bg-white border-[1.5px] border-black hover:scale-110 duration-500 hover:shadow-lg"
+                    className="py-[6px] sm:py-2 px-2 sm:px-3 w-[120px] h-[120px] sm:w-[150px] sm:h-[150px]  group justify-center items-center rounded-lg sm:rounded-xl text-sm sm:text-lg  text-[#fff] hover:text-[#000] hover:scale-110 hover:bg-[#fff] border-[1.5px] border-[#000] duration-500 font-semibold bg-[#000]"
+                    to={"protected/create/receipt"}
                   >
-                    <span className=" font-semibold leading-tight text-lg ">
+                    <p className="pb-[6px] border-b-[1.5px] leading-tight border-white group-hover:border-[#000] ">
+                      <span className="flex items-center mr-3">
+                        <i className="fi fi-br-plus flex justify-center mr-[6px] sm:mr-2 text-xs sm:text-base items-center"></i>
+                        <span>Create</span>
+                      </span>
+                      <span className="flex items-center">Receipt</span>
+                    </p>
+                  </Link>
+                  <Link
+                    className="py-[6px] sm:py-2 px-2 sm:px-3 w-[120px] h-[120px] sm:w-[150px] sm:h-[150px]  group justify-center items-center rounded-lg sm:rounded-xl text-sm sm:text-lg  text-[#fff] hover:text-[#000] hover:scale-110 hover:bg-[#fff] border-[1.5px] border-[#000] duration-500 font-semibold bg-[#000]"
+                    to={"protected/create/warranty"}
+                  >
+                    <p className="pb-[6px] border-b-[1.5px] leading-tight border-white group-hover:border-[#000] ">
+                      <span className="flex items-center mr-3">
+                        <i className="fi fi-br-plus flex justify-center mr-[6px] sm:mr-2 text-xs sm:text-base items-center"></i>
+                        <span>Create</span>
+                      </span>
+                      <span className="flex items-center">Warranty</span>
+                    </p>
+                  </Link>
+                  <Link
+                    className="py-[6px] sm:py-2 px-2 sm:px-3 w-[120px] h-[120px] sm:w-[150px] sm:h-[150px] leading-tight group justify-center items-center rounded-lg sm:rounded-xl text-sm sm:text-lg text-[#fff] hover:text-[#000] hover:scale-110 hover:bg-[#fff] border-[1.5px] border-[#000] duration-500 font-semibold bg-[#000]"
+                    to={"protected/view/receipt"}
+                  >
+                    <span className=" font-semibold leading-tight ">
                       Go To <br /> Receipts
                     </span>
                     <div className="mt-2 border border-white group-hover:border-black duration-500 rounded-full"></div>
                   </Link>
                   <Link
+                    className="py-[6px] sm:py-2 px-2 sm:px-3 w-[120px] h-[120px] sm:w-[150px] sm:h-[150px] leading-tight group justify-center items-center rounded-lg sm:rounded-xl text-sm sm:text-lg text-[#fff] hover:text-[#000] hover:scale-110 hover:bg-[#fff] border-[1.5px] border-[#000] duration-500 font-semibold bg-[#000]"
                     to={"protected/view/warranty"}
-                    className="bg-black w-[150px]  p-3 rounded-lg h-[150px] text-white group hover:text-black hover:bg-white border-[1.5px] border-black hover:scale-110 duration-500 hover:shadow-lg"
                   >
-                    <span className=" font-semibold leading-tight text-lg ">
+                    <span className=" font-semibold leading-tight  ">
                       Go To <br /> Warranties
                     </span>
                     <div className="mt-2 border border-white group-hover:border-black duration-500 rounded-full"></div>
                   </Link>
                   <Link
+                    className="py-[6px] sm:py-2 px-2 sm:px-3 w-[120px] h-[120px] sm:w-[150px] sm:h-[150px] leading-tight group justify-center items-center rounded-lg sm:rounded-xl text-sm sm:text-lg text-[#fff] hover:text-[#000] hover:scale-110 hover:bg-[#fff] border-[1.5px] border-[#000] duration-500 font-semibold bg-[#000]"
                     to={"protected/tags"}
-                    className="bg-black w-[150px] p-3 rounded-lg h-[150px] text-white group hover:text-black hover:bg-white border-[1.5px] border-black hover:scale-110 duration-500 hover:shadow-lg"
                   >
-                    <span className=" font-semibold leading-tight text-lg ">
+                    <span className=" font-semibold leading-tight  ">
                       Manage <br /> Tags
                     </span>
                     <div className="mt-2 border border-white group-hover:border-black duration-500 rounded-full"></div>
                   </Link>
-                </>
+                </div>
               )}
             </div>
           </div>

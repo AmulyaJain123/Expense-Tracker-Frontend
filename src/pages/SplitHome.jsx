@@ -24,10 +24,14 @@ export default function SplitHome() {
           >
             SPLIT
           </h2>
-          <div className=" mt-4 flex flex-col justify-center  items-center  flex-grow sm:flex-row space-y-4 sm:space-y-0 mx-[50px] md:mx-[100px] sm:space-x-[20px]">
-            <img className="w-[320px] h-fit self-center " src={split} alt="" />
-            <div className="flex text-sm max-w-[900px] self-center md:text-base xl:text-sm flex-col space-y-4 my-auto">
-              <p className=" font-medium text-center ">
+          <div className=" mt-4 flex flex-col justify-center  items-center  flex-grow sm:flex-row space-y-4 sm:space-y-0 mx-[30px] md:mx-[100px] sm:space-x-[20px]">
+            <img
+              className="w-[250px] sm:w-[250px] h-fit lg:w-[300px] xl:w-[320px] self-center "
+              src={split}
+              alt=""
+            />
+            <div className="flex max-w-[900px] self-center text-xs lg:text-sm flex-col space-y-4 my-auto">
+              <p className=" font-medium text-center sm:text-start ">
                 Introducing{" "}
                 <span className="text-green-500 font-medium">SPLIT</span>, the
                 ultimate solution for managing shared expenses effortlessly.
@@ -37,7 +41,7 @@ export default function SplitHome() {
                 number of transactions required, ensuring an optimal settlement
                 process.{" "}
               </p>
-              <p className=" font-medium flex justify-center items-center text-center ">
+              <p className=" font-medium flex justify-center items-center text-center sm:text-start ">
                 Save your splits to retain all details, including bills,
                 expenditures, and transactions, and revisit them anytime. Share
                 saved splits seamlessly with your friends on the platform to
@@ -47,13 +51,13 @@ export default function SplitHome() {
           </div>
           <SplitHomeMenu />
 
-          <div className="flex flex-col mt-[100px]">
-            <div className="flex justify-between items-center p-2 px-4 rounded-xl bg-slate-100 mx-[50px] sm:mx-[80px]">
-              <span className="text-[30px] ml-[10px] sm:ml-[20px] font-bold">
+          <div className="flex flex-col mt-[80px] sm:mt-[100px]">
+            <div className="flex justify-between items-center p-2 px-4 rounded-xl bg-slate-100 mx-[30px] sm:mx-[80px]">
+              <span className="text-[25px] sm:text-[30px] ml-[10px] sm:ml-[20px] font-bold">
                 SPLITS
               </span>
             </div>
-            <div className="flex mt-[15px] p-6 rounded-xl pb-12 space-x-6 bg-slate-100 mx-[50px] sm:mx-[80px]">
+            <div className="flex mt-[15px] p-6 rounded-xl pb-12 space-x-6 bg-slate-100 mx-[30px] sm:mx-[80px]">
               {!userDetails ? (
                 <div className="flex flex-col flex-grow justify-center items-center">
                   <img
@@ -77,10 +81,10 @@ export default function SplitHome() {
                   </p>
                 </div>
               ) : (
-                <>
+                <div className="flex flex-grow gap-6 flex-wrap justify-center sm:justify-start">
                   <Link
                     to={"create"}
-                    className="rounded-xl  border-[1.5px] group border-[white] hover:border-stone-600  w-[150px] h-[150px] hover:shadow-xl duration-500  hover:scale-105  flex justify-center text-center items-center p-4 striped"
+                    className="rounded-lg sm:rounded-xl  border-[1.5px] group border-[white] hover:border-stone-600  w-[120px] h-[120px] sm:w-[150px] sm:h-[150px] hover:shadow-xl duration-500  hover:scale-105  flex justify-center text-center items-center p-4 striped"
                   >
                     <div className="w-[30px] rounded-full h-[30px]  bg-white flex items-center justify-center">
                       <img src={add} className="w-[30px] h-[30px]" alt="" />
@@ -88,9 +92,9 @@ export default function SplitHome() {
                   </Link>
                   <Link
                     to={"protected/view/saved"}
-                    className="bg-black w-[150px] p-3 rounded-xl h-[150px] text-white group hover:text-black hover:bg-white border-[1.5px] border-black hover:scale-110 duration-500 hover:shadow-lg"
+                    className="bg-black p-2 sm:p-3 rounded-lg sm:rounded-xl w-[120px] h-[120px] sm:w-[150px] sm:h-[150px] text-white group hover:text-black hover:bg-white border-[1.5px] border-black hover:scale-110 duration-500 hover:shadow-lg"
                   >
-                    <span className=" font-semibold text-lg leading-tight">
+                    <span className=" font-semibold text-sm sm:text-lg leading-tight">
                       Go To
                       <br /> Saved SPLITS
                     </span>
@@ -98,15 +102,15 @@ export default function SplitHome() {
                   </Link>
                   <Link
                     to={"protected/view/shared"}
-                    className="bg-black w-[150px] p-3 px-2 rounded-xl h-[150px] text-white group hover:text-black hover:bg-white border-[1.5px] border-black hover:scale-110 duration-500 hover:shadow-lg"
+                    className="bg-black p-2 sm:p-3 px-2 rounded-lg sm:rounded-xl w-[120px] h-[120px] sm:w-[150px] sm:h-[150px] text-white group hover:text-black hover:bg-white border-[1.5px] border-black hover:scale-110 duration-500 hover:shadow-lg"
                   >
-                    <span className=" font-semibold text-lg leading-tight">
+                    <span className=" font-semibold text-sm sm:text-lg leading-tight">
                       Go To
                       <br /> Shared SPLITS
                     </span>
                     <div className="mt-2 border border-white group-hover:border-black duration-500 rounded-full"></div>
                   </Link>
-                </>
+                </div>
               )}
             </div>
           </div>

@@ -6,7 +6,7 @@
 }
 
 .main > div > div:first-child {
-  font-size: 13px;
+  font-size: 14px;
 }
 .main > div {
   flex-direction: row;
@@ -15,7 +15,7 @@
 }
 
 .main > div > div:nth-of-type(2) {
-  font-size: 12px;
+  font-size: 13px;
 }
 
 @media (max-width: 768px) {

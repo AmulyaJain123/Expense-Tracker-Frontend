@@ -12,7 +12,7 @@ import { useNavigate } from "react-router-dom";
 import TopNavButton from "../UIComponents/TopNavButton";
 import HamburgerMenu from "./HamburgerMenu";
 import { useSelector } from "react-redux";
-import responsive from "../assets/responsive-website.png";
+import OnlyXChars from "../UIComponents/OnlyXChars";
 
 export default function TopNav() {
   const location = useLocation();
@@ -62,11 +62,11 @@ export default function TopNav() {
               <div className="flex  rounded-full p-1 items-center space-x-2 sm:space-x-4 bg-slate-200 pr-4 sm:pr-4">
                 <img
                   src={userDetails.profilePic || userIcon}
-                  className="rounded-full w-[17px] h-[17px] sm:h-[25px] sm:w-[25px] bg-white"
+                  className="rounded-full w-[25px] h-[25px] sm:h-[25px] sm:w-[25px] bg-white"
                   alt=""
                 />
                 <span className=" text-xs sm:text-xs font-medium">
-                  {userDetails.username}
+                  <OnlyXChars x={25} text={userDetails.username} />
                 </span>
               </div>
             </Link>
@@ -76,7 +76,7 @@ export default function TopNav() {
             >
               <img
                 src={logOut}
-                className="w-[17px] h-[17px] sm:h-[20px] sm:w-[20px]"
+                className="w-[20px] h-[20px] sm:h-[20px] sm:w-[20px]"
                 alt=""
               />
             </button>
@@ -89,7 +89,7 @@ export default function TopNav() {
             >
               <img
                 src={logIn}
-                className=" w-[17px] h-[17px] sm:h-[20px] sm:w-[20px]"
+                className=" w-[20px] h-[20px] sm:h-[20px] sm:w-[20px]"
                 alt=""
               />
             </Link>

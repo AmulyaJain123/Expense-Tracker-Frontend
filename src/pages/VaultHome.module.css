@@ -38,9 +38,19 @@
   }
 }
 
+@media (max-width: 768px) {
+  #menuContent > div > div > div + div > p {
+    font-size: small;
+  }
+
+  #menuContent > div > div > div {
+    font-size: small;
+  }
+}
+
 @media (max-width: 640px) {
   #menuContent > div > div > div {
-    font-size: medium;
+    font-size: 14px;
   }
 
   #menuContent > div > div > div + div {
@@ -53,8 +63,8 @@
   }
 
   #menuContent > div > div {
-    margin-left: 20px; /* equivalent to mx-[100px] */
-    margin-right: 20px; /* equivalent to mx-[100px] */
+    margin-left: 10px; /* equivalent to mx-[100px] */
+    margin-right: 10px; /* equivalent to mx-[100px] */
     gap: 10px;
     display: flex;
     flex-direction: column;
@@ -69,15 +79,5 @@
 
   #menuContent > div > div > div {
     text-align: center;
-  }
-}
-
-@media (max-width: 768px) {
-  #menuContent > div > div > div + div > p {
-    font-size: small;
-  }
-
-  #menuContent > div > div > div {
-    font-size: medium;
   }
 }
