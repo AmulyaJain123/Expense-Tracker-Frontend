@@ -35,6 +35,9 @@ const Logo = styled.div`
 
 const Tiles = styled.div`
   margin-top: 30px;
+  min-height: 150px;
+  margin-bottom: 40px;
+  overflow: auto;
 `;
 
 const pages = [
