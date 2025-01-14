@@ -10,7 +10,8 @@ export default {
         lap: '1250px',
         tab: '800px',
         smTab: '650px',
-        mob: '500px'
+        mob: '500px',
+        smMob: '450px'
       }
     },
   },

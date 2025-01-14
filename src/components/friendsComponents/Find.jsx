@@ -61,21 +61,21 @@ export default function Find() {
 
   return (
     <div className="flex flex-grow flex-col">
-      <div className="bg-white p-3 rounded-xl px-4 flex items-center">
+      <div className="bg-white p-2 sm:p-3 rounded-xl px-3 sm:px-4 flex items-center">
         <img
           src={search}
-          className="w-[25px] h-[25px] mr-4 flex justify-center items-center"
+          className="w-[20px] h-[20px] sm:w-[25px] sm:h-[25px] mr-3 sm:mr-4 flex justify-center items-center"
           alt=""
         />
         <input
           type="text"
           placeholder="Search Username or UserID"
           onChange={(event) => searchChange(event)}
-          className="py-1 px-2 text-sm border-b border-neutral-400 focus:outline-none flex-grow"
+          className="py-1 px-[6px] sm:px-2 text-xs sm:text-sm border-b border-neutral-400 focus:outline-none flex-grow"
         />
       </div>
-      <div className="mt-3 bg-white  p-4  rounded-xl flex flex-col">
-        <div className="overflow-auto space-y-3 customScrollThin p-4 h-[500px]">
+      <div className="mt-3 bg-white  p-2 mob:p-4  rounded-xl flex flex-col">
+        <div className="overflow-auto space-y-3 customScrollThin p-1 mob:p-4 max-tab:min-h-[500px] tab:h-[500px]">
           {loading ? (
             <div className="flex justify-center items-center mt-20 ">
               <img
@@ -85,7 +85,7 @@ export default function Find() {
               />
             </div>
           ) : error ? (
-            <div className="flex flex-col justify-center text-sm items-center mt-44 ">
+            <div className="flex flex-col justify-center text-sm items-center mt-28 ">
               <img
                 src={errorIcon}
                 className="w-[40px] h-[40px] mb-3 flex justify-center items-center"
@@ -96,13 +96,15 @@ export default function Find() {
           ) : (
             <>
               {results === null ? (
-                <div className="flex justify-center space-y-4 text-sm flex-col text-slate-400  items-center mt-32">
+                <div className="flex justify-center space-y-3 sm:space-y-4 text-xs sm:text-sm flex-col text-slate-400  items-center mt-24 sm:mt-32">
                   <img
                     src={people}
-                    className="w-[80px] h-[80px] flex justify-center items-center"
+                    className="w-[60px] h-[60px] sm:w-[80px] sm:h-[80px] flex justify-center items-center"
                     alt=""
                   />
-                  <span>Search People by Username or UserID</span>
+                  <span className="text-center">
+                    Search People by Username or UserID
+                  </span>
                 </div>
               ) : results.length != 0 ? (
                 <>
@@ -111,10 +113,10 @@ export default function Find() {
                   })}
                 </>
               ) : (
-                <div className="flex justify-center text-sm flex-col text-slate-500 space-y-4 items-center mt-32">
+                <div className="flex justify-center text-xs sm:text-sm flex-col text-slate-500 space-y-3 sm:space-y-4 items-center mt-24 sm:mt-32">
                   <img
                     src={noEntries}
-                    className="w-[80px] h-[80px] flex justify-center items-center"
+                    className="w-[60px] h-[60px] sm:w-[80px] sm:h-[80px] flex justify-center items-center"
                     alt=""
                   />
                   <span>No Users Found</span>

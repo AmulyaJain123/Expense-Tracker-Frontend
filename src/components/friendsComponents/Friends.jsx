@@ -45,16 +45,16 @@ export default function Friends() {
   }
 
   return (
-    <div className="w-[450px] bg-slate-100 flex flex-col rounded-xl flex-grow">
-      <div className="text-2xl font-bold uppercase p-2 py-3 rounded-xl bg-white text-center">
+    <div className="sm:w-[450px] bg-slate-100 flex flex-col rounded-xl flex-grow">
+      <div className="text-xl mob:text-2xl font-bold uppercase p-[6px] lg:p-2 py-2 lg:py-3 rounded-xl bg-white text-center">
         <span>Friends</span>
       </div>
-      <div className="relative flex flex-col p-3 space-y-2 rounded-xl mt-3 bg-white flex-grow">
+      <div className="relative flex flex-col p-1 sm:p-3 space-y-2 rounded-xl mt-3 bg-white flex-grow">
         {/* <div className="flex justify-end"> */}
         <button
           onClick={fetchFriends}
           disabled={loading}
-          className="disabled:pointer-events-none disabled:opacity-50 absolute top-[-56px] p-2 bg-white rounded-full hover:bg-slate-100 duration-500 z-[1]  right-0 translate-x-[-50%] "
+          className="disabled:pointer-events-none disabled:opacity-50 absolute top-[-48px] mob:top-[-52px] lg:top-[-56px] p-2 bg-white rounded-full hover:bg-slate-100 duration-500 z-[1]  right-0 translate-x-[-50%] "
         >
           <img
             src={reload}
@@ -63,7 +63,7 @@ export default function Friends() {
           />
         </button>
         {/* </div> */}
-        <div className="p-4 py-6 pt-2 flex h-[500px] overflow-auto customScrollThin flex-col space-y-4  mt-3 ">
+        <div className="p-2 sm:p-4 py-3 sm:py-6 pt-0 sm:pt-2 flex max-tab:min-h-[500px] tab:h-[500px] overflow-auto customScrollThin flex-col space-y-[10px] sm:space-y-4  mt-2 sm:mt-3 ">
           {loading ? (
             <div className="flex justify-center items-center mt-20 ">
               <img
@@ -87,14 +87,18 @@ export default function Friends() {
                 <>
                   {friends.map((i) => {
                     console.log(i);
-                    return <FriendTile i={i} removeFriend={removeFriend} />;
+                    return (
+                      <>
+                        <FriendTile i={i} removeFriend={removeFriend} />
+                      </>
+                    );
                   })}
                 </>
               ) : (
-                <div className="flex justify-center text-sm flex-col text-slate-500 space-y-4 items-center mt-32">
+                <div className="flex justify-center text-xs sm:text-sm flex-col text-slate-500 space-y-3 sm:space-y-4 items-center mt-24 sm:mt-32">
                   <img
                     src={noEntries}
-                    className="w-[80px] h-[80px] flex justify-center items-center"
+                    className="w-[60px] h-[60px] sm:w-[80px] sm:h-[80px] flex justify-center items-center"
                     alt=""
                   />
                   <span>No Friends Found</span>

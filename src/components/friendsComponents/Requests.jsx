@@ -8,18 +8,19 @@ export default function Requests() {
   return (
     <>
       <div className="flex flex-col flex-grow">
-        <div className="text-2xl font-bold flex items-center justify-between p-3 pl-6 pr-4 bg-white rounded-xl ">
+        <div className="text-xl mob:text-2xl font-bold flex items-center justify-between p-2 lg:p-3 pl-4 lg:pl-6 pr-2 mob:pr-4 bg-white rounded-xl ">
           <span className="uppercase">Requests</span>
-          <div className="flex space-x-3">
+          <div className="flex space-x-[6px] mob:space-x-3">
             <button
               style={{
                 backgroundColor: selectedMode === 0 ? "#9d4edd" : "#dc93f6",
                 color: selectedMode != 0 ? "black" : "#fff",
               }}
               onClick={() => setSelectedMode(0)}
-              className="py-1 px-2 rounded-md text-xs font-medium "
+              className="py-1 px-[6px] mob:px-2 rounded-md text-xs font-medium "
             >
-              Sent
+              <span className="hidden mob:flex">Sent</span>
+              <i class="fi fi-ss-paper-plane flex mob:hidden"></i>
             </button>
             <button
               style={{
@@ -27,9 +28,10 @@ export default function Requests() {
                 color: selectedMode != 1 ? "black" : "#fff",
               }}
               onClick={() => setSelectedMode(1)}
-              className="py-1 px-2 rounded-md text-xs font-medium "
+              className="py-1 px-[6px] mob:px-2 rounded-md text-xs font-medium "
             >
-              Received
+              <span className="hidden mob:flex">Received</span>
+              <i class="fi fi-ss-paper-plane flex mob:hidden rotate-180"></i>
             </button>
           </div>
         </div>

@@ -33,9 +33,9 @@ export default function SplitHome() {
             <div className="flex max-w-[900px] self-center text-xs lg:text-sm flex-col space-y-4 my-auto">
               <p className=" font-medium text-center sm:text-start ">
                 Introducing{" "}
-                <span className="text-green-500 font-medium">SPLIT</span>, the
+                <span className="text-[#9d4edd] font-medium">SPLIT</span>, the
                 ultimate solution for managing shared expenses effortlessly.
-                With <span className="text-green-500 font-medium">SPLIT</span>,
+                With <span className="text-[#9d4edd] font-medium">SPLIT</span>,
                 you can create expense splits by adding bills and assigning
                 participant shares. Our intelligent algorithm minimizes the
                 number of transactions required, ensuring an optimal settlement

@@ -40,8 +40,8 @@ export default function HomePage() {
       </Helmet>
       <div className="h-full w-full pb-[150px] bg-white overflow-auto text-stone-700 rounded-l-xl rounded-r-xl lg:rounded-r-none">
         <header className="flex flex-col pt-[40px] mob:pt-[45px] tab:pt-[60px] lap:pt-[80px]  justify-center items-center space-y-3 mob:space-y-[4px] tab:space-y-[6px] lap:space-y-[10px]">
-          <h2 className="text-[32px] text-nowrap mob:text-[35px] tab:text-[45px] lap:text-[55px] mx-[20px] text-center font-bold text-stone-700">
-            Welcome To{" "}
+          <h2 className="text-[32px] mob:text-[35px] tab:text-[45px] lap:text-[55px] mx-[20px] text-center font-bold text-stone-700">
+            Welcome to{" "}
             <span style={{ fontFamily: "fredoka" }} className="uppercase">
               BillBud
             </span>
@@ -108,7 +108,7 @@ export default function HomePage() {
                 <div className="absolute mob:flex hidden bottom-[-10px]  mob:left-[-20px] tab:left-[-30px]  translate-y-[100%]">
                   <img src={track} className="" alt="" />
                 </div>
-                <div className="absolute flex mob:hidden top-[20%] scale-110 left-[-8px] translate-x-[-100%] translate-y-[50%]">
+                <div className="absolute flex mob:hidden top-[20px] scale-110 left-[-12px] translate-x-[-100%] translate-y-[-50%]">
                   <img src={track2} className="" alt="" />
                 </div>
               </div>
@@ -132,7 +132,7 @@ export default function HomePage() {
             Find me here
           </h1>
 
-          <div className="flex flex-col mob:flex-row justify-center  w-[80%] rounded-3xl mx-auto pt-[30px] pb-[70px] items-center mt-2 mob:mt-3 tab:mt-4 lap:mt-6 gap-[30px] mob:gap-[50px] tab:gap-[70px] lap:gap-20">
+          <div className="flex  justify-center  w-[80%] rounded-3xl mx-auto pt-[30px] pb-[70px] items-center mt-2 mob:mt-3 tab:mt-4 lap:mt-6 gap-[40px] mob:gap-[50px] tab:gap-[70px] lap:gap-20">
             <div className="text-lg relative flex justify-center items-center ">
               <img
                 src={email}
@@ -163,7 +163,7 @@ export default function HomePage() {
             </div>
             <a
               target="_blank"
-              className="hover:scale-110 duration-500 pt-3 mob:pt-0"
+              className="hover:scale-110 duration-500"
               href="https://www.linkedin.com/in/amulya-jain-a31180255/"
             >
               <img
