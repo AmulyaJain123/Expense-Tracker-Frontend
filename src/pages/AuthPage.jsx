@@ -69,7 +69,7 @@ export default function AuthPage() {
       </Helmet>
       <div className="flex gradient  h-screen w-screen p-6">
         <div className="flex w-full justify-center h-full space-x-6">
-          <div className="flex w-full max-w-600px sm:w-[500px] lg:w-[600px] xl:w-[40%] h-full overflow-auto scrollbar-hidden bg-white sm:scale-90 rounded-2xl items-center justify-center">
+          <div className="flex w-full max-w-[500px] sm:w-[500px] lg:w-[500px] xl:w-[40%] h-full overflow-auto scrollbar-hidden bg-white sm:scale-90 rounded-2xl items-center justify-center">
             <div className="rounded-3xl flex flex-col space-y-2 sm:space-y-2  py-2 sm:py-3 p-3   h-full w-full">
               <div className="flex justify-center m-3 mx-2 sm:mx-6 space-x-4 sm:space-x-6">
                 <Button

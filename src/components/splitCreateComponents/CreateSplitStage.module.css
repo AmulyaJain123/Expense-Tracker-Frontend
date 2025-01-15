@@ -1,10 +1,10 @@
 .main {
-  width: 700px; /* equivalent to w-[700px] */
+  width: 530px; /* equivalent to w-[700px] */
   background-color: #fff; /* equivalent to bg-[#fff] */
   display: flex; /* equivalent to flex */
   flex-direction: column; /* equivalent to flex-col */
-  padding: 1rem; /* equivalent to p-4 (assuming 1rem = 16px, so 1rem = 16px) */
-  border-radius: 0.75rem; /* equivalent to rounded-xl (assuming 1rem = 16px, so 0.75rem = 12px) */
+  padding: 12px; /* equivalent to p-4 (assuming 1rem = 16px, so 1rem = 16px) */
+  border-radius: 0.6rem; /* equivalent to rounded-xl (assuming 1rem = 16px, so 0.75rem = 12px) */
   margin-top: 2rem; /* equivalent to mt-8 (assuming 1rem = 16px, so 2rem = 32px) */
   margin-left: auto; /* equivalent to mx-auto */
   margin-right: auto; /* equivalent to mx-auto */
@@ -12,12 +12,15 @@
 
 @media (max-width: 1024px) {
   .main {
-    width: 600px;
+    width: 450px;
   }
 }
 
 @media (max-width: 640px) {
   .main {
-    width: 320px;
+    width: 90%;
+    max-width: 360px;
+    padding: 8px;
+    margin-top: 1rem;
   }
 }

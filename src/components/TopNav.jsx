@@ -48,7 +48,7 @@ export default function TopNav() {
 
       <button
         onClick={menuClick}
-        className="flex p-2 mr-4 ml-2 rounded-lg lg:hidden hover:bg-slate-200"
+        className="flex p-2 mr-4 ml-[2px] rounded-lg lg:hidden hover:bg-slate-200"
       >
         <div>
           <i className="fi fi-rs-burger-menu flex justify-center items-center text-lg "></i>

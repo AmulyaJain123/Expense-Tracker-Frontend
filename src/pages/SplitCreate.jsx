@@ -26,7 +26,7 @@ export default function SplitCreate() {
           {userDetails ? (
             <>
               <span id="Top"></span>
-              <div className="flex space-x-4 justify-center items-center mt-8">
+              <div className="flex space-x-3 sm:space-x-4 justify-center items-center mt-6 sm:mt-8">
                 <div
                   style={{
                     backgroundColor: stage === 0 ? "#9d4edd" : "",
@@ -53,7 +53,7 @@ export default function SplitCreate() {
                 ></div>
               </div>
               <div className="pt-8 flex flex-col flex-grow">
-                <div className="flex flex-grow px-16">
+                <div className="flex flex-grow px-8 sm:px-16">
                   <TopButtons num={stage} />
                 </div>
                 <div>
@@ -61,7 +61,7 @@ export default function SplitCreate() {
                   {stage === 1 ? <AddBillStage /> : null}
                   {stage === 2 ? <SplitResultStage /> : null}
                 </div>
-                <div className="flex flex-grow mt-12 px-16">
+                <div className="flex flex-grow mt-6 sm:mt-12 px-8 sm:px-16">
                   <BottomButtons num={stage} />
                 </div>
               </div>

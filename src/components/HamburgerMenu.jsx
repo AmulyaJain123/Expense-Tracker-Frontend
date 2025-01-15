@@ -161,7 +161,7 @@ export default function HamburgerMenu() {
                 className="rounded-lg hover:bg-slate-200 flex space-x-4 mx-3  p-2 duration-500"
               >
                 <img src={logOut} className=" w-[19px]" alt="" />
-                <span className="font-medium text-xs">Logout</span>
+                <span className="font-medium text-sm">Logout</span>
               </button>
             </div>
           ) : (
@@ -171,7 +171,7 @@ export default function HamburgerMenu() {
                 className="rounded-lg space-x-4 flex mx-3 hover:bg-slate-200 p-2 duration-500"
               >
                 <img src={logIn} className=" w-[19px]" alt="" />
-                <span className="font-medium text-xs">Login</span>
+                <span className="font-medium text-sm">Login</span>
               </Link>
             </div>
           )}

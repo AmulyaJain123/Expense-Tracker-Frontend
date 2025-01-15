@@ -10,7 +10,7 @@ const Main = styled.div`
 
 const Div = styled.div`
   &::-webkit-scrollbar {
-    width: 8px;
+    width: 5px;
     border-radius: 30px;
   }
 
@@ -91,27 +91,27 @@ export default function Friends() {
   }
 
   return (
-    <Main className="rounded-lg flex flex-col min-w-[250px] bg-slate-100 p-3  h-[500px]">
-      <span className="w-full py-2 bg-black text-white flex justify-center items-center rounded-lg  text-sm sm:text-base xl:text-lg font-semibold uppercase">
+    <Main className="rounded-lg flex flex-col min-w-[250px] bg-slate-100 p-2 sm:p-3  h-[350px] sm:h-[400px]">
+      <span className="w-full py-[6px] bg-black text-white flex justify-center items-center rounded-md  text-[11px] sm:text-xs lg:text-sm font-semibold uppercase">
         Participants
       </span>
 
-      <Div className="w-full text-stone-500 mt-4 rounded-lg  flex-grow p-3 sm:p-6 overflow-auto">
+      <Div className="w-full text-stone-500 mt-3 rounded-lg  flex-grow p-2 sm:p-4 overflow-auto">
         {friends.length != 0 ? (
           <ul>
             {friends.map((obj, index) => {
               return (
                 <li
-                  className="mb-4 flex w-full text-sm sm:text-base xl:text-lg"
+                  className="mb-2 sm:mb-3 flex w-full text-[11px] sm:text-xs lg:text-sm"
                   key={obj.name}
                 >
-                  <div className="min-w-[40px] sm:min-w-[50px]">
-                    <span className="bg-[white] flex justify-center items-center w-[30px] sm:w-[35px] h-[30px] sm:h-[35px] rounded-lg ">{`${
+                  <div className="min-w-[26px] sm:min-w-[35px]">
+                    <span className="bg-[white] flex justify-center items-center w-[21px] sm:w-[26px] h-[21px] sm:h-[26px] rounded-[4px] sm:rounded-md ">{`${
                       index + 1
                     }`}</span>
                   </div>
 
-                  <span className="bg-[white] flex-grow mr-4 flex px-4 items-center h-[30px] sm:h-[35px] rounded-lg ">
+                  <span className="bg-[white] flex-grow mr-1 flex px-3 pr-1 items-center w-[21px] sm:w-[26px] h-[21px] sm:h-[26px] rounded-[4px] sm:rounded-md ">
                     <span>{obj.name}</span>
                     <button
                       onClick={() => {
@@ -119,7 +119,7 @@ export default function Friends() {
                       }}
                       className="ml-auto "
                     >
-                      <i className="fi fi-ss-cross-circle text-lg sm:text-xl flex h-[30px] sm:h-[35px] justify-center items-center"></i>
+                      <i className="fi fi-ss-cross-circle text-xs sm:text-sm flex w-[21px] sm:w-[26px] h-[21px] sm:h-[26px] justify-center items-center"></i>
                     </button>
                   </span>
                 </li>
@@ -127,7 +127,7 @@ export default function Friends() {
             })}
           </ul>
         ) : (
-          <p className="text-sm sm:text-base xl:text-lg">
+          <p className="text-[11px] sm:text-xs lg:text-sm">
             No Participants added
           </p>
         )}
@@ -136,25 +136,25 @@ export default function Friends() {
         style={{
           display: `${error === null ? "none" : "flex"}`,
         }}
-        className="bg-red-300 items-center rounded-lg p-2 px-4"
+        className="bg-red-300 items-center rounded-md p-[6px] px-3"
       >
-        <i className="fi fi-rs-exclamation mr-2 text-sm sm:text-base xl:text-lg flex justify-center items-center"></i>
-        <p className="sm:text-sm text-xs">{error}</p>
+        <i className="fi fi-rs-exclamation mr-[6px] text-[10px] sm:text-[11px] lg:text-xs flex justify-center items-center"></i>
+        <p className="sm:text-[11px] text-[9px]">{error}</p>
       </div>
-      <div className="flex mt-4 sm:text-base text-sm xl:text-lg ">
+      <div className="flex mt-3 sm:text-xs text-[11px] lg:text-sm ">
         <input
           ref={friendName}
           onChange={changeHandler}
           onKeyDown={(event) => keyDownHandle(event)}
           maxLength={20}
           placeholder="Write Name"
-          className="rounded-lg px-4 py-2 w-full mr-2"
+          className="rounded-md px-3 py-[4px] sm:py-[6px] w-full mr-[6px]"
           type="text"
         />
         <button
           onClick={addFriendClick}
           ref={buttonRef}
-          className="bg-[#9d4edd] rounded-lg border-2 border-[#9d4edd] hover:bg-white hover:text-[#9d4edd] duration-500 text-white font-semibold text-lg py-1 w-[90px]"
+          className="bg-[#9d4edd] rounded-md border-[1.5px] border-[#9d4edd] hover:bg-white hover:text-[#9d4edd] duration-500 text-white font-semibold text-xs sm:text-sm py-1 w-[60px] sm:w-[70px]"
         >
           ADD
         </button>

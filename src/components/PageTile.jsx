@@ -54,7 +54,7 @@ export default function PageTile({ details }) {
               fontWeight: details.hard ? "600" : "",
               textTransform: details.hard ? "uppercase" : "",
               fontFamily: details.hard ? "Fredoka" : "",
-              fontSize: details.hard ? "12px" : "",
+              fontSize: details.hard ? "13px" : "",
             }}
             className="text-sm  lg:text-xs"
           >
