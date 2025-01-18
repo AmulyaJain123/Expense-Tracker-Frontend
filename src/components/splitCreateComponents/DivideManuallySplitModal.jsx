@@ -75,8 +75,8 @@ export default function DivideManuallySplitModal() {
       amountInRange(amountRef.current.value) === false
     ) {
       for (let i of checkboxRef.current.children) {
-        i.children[0].children[2].value = "";
-        i.children[0].children[2].placeholder = "";
+        i.children[0].children[1].children[1].value = "";
+        i.children[0].children[1].children[1].placeholder = "";
         let NAme = i.children[0].children[0].innerText;
         setLockedStates((preval) => {
           return {
@@ -93,10 +93,10 @@ export default function DivideManuallySplitModal() {
       const name = i.children[0].children[0].innerText;
       if (
         (lockedStates[name] === false || name === Name) &&
-        i.children[0].children[2].value != "" &&
-        amountInRange(i.children[0].children[2].value) === true
+        i.children[0].children[1].children[1].value != "" &&
+        amountInRange(i.children[0].children[1].children[1].value) === true
       ) {
-        totalVal -= parseFloat(i.children[0].children[2].value);
+        totalVal -= parseFloat(i.children[0].children[1].children[1].value);
         ++totalCount;
       } else if (i.children[1].children[0].checked === false) {
         ++totalCount;
@@ -111,9 +111,10 @@ export default function DivideManuallySplitModal() {
         (lockedStates[name] === true || name === Name) &&
         i.children[1].children[0].checked
       ) {
-        i.children[0].children[2].placeholder = parseFloat(finalVal);
+        i.children[0].children[1].children[1].placeholder =
+          parseFloat(finalVal);
       } else {
-        i.children[0].children[2].placeholder = "";
+        i.children[0].children[1].children[1].placeholder = "";
       }
     }
     checkValidShareInput();
@@ -137,16 +138,18 @@ export default function DivideManuallySplitModal() {
       let totalCount = 0;
       for (let i of checkboxRef.current.children) {
         if (
-          i.children[0].children[2].value === "" &&
-          i.children[0].children[2].placeholder != "" &&
-          parseFloat(i.children[0].children[2].placeholder) != 0
+          i.children[0].children[1].children[1].value === "" &&
+          i.children[0].children[1].children[1].placeholder != "" &&
+          parseFloat(i.children[0].children[1].children[1].placeholder) != 0
         ) {
           totalCount++;
         } else if (
           i.children[1].children[0].checked &&
-          i.children[0].children[2].value != ""
+          i.children[0].children[1].children[1].value != ""
         ) {
-          totalEnteredAmount += parseFloat(i.children[0].children[2].value);
+          totalEnteredAmount += parseFloat(
+            i.children[0].children[1].children[1].value
+          );
         }
       }
       const singleVal =
@@ -156,11 +159,11 @@ export default function DivideManuallySplitModal() {
         if (lockedStates[name] === false) {
           shares.push({
             name: name,
-            share: parseFloat(i.children[0].children[2].value),
+            share: parseFloat(i.children[0].children[1].children[1].value),
           });
         } else if (
-          i.children[0].children[2].placeholder != "" &&
-          parseFloat(i.children[0].children[2].placeholder) != 0
+          i.children[0].children[1].children[1].placeholder != "" &&
+          parseFloat(i.children[0].children[1].children[1].placeholder) != 0
         ) {
           shares.push({ name: name, share: singleVal });
         }
@@ -183,7 +186,7 @@ export default function DivideManuallySplitModal() {
   function toggleCheckbox(event) {
     const name = event.target.value;
     if (event.target.checked) {
-      event.target.parentElement.parentElement.children[0].children[2].disabled = false;
+      event.target.parentElement.parentElement.children[0].children[1].children[1].disabled = false;
       resetPreview();
       setCheckedNo((preval) => {
         if (preval === 0) {
@@ -192,12 +195,12 @@ export default function DivideManuallySplitModal() {
         return preval + 1;
       });
     } else {
-      event.target.parentElement.parentElement.children[0].children[2].value =
+      event.target.parentElement.parentElement.children[0].children[1].children[1].value =
         "";
-      event.target.parentElement.parentElement.children[0].children[2].placeholder =
+      event.target.parentElement.parentElement.children[0].children[1].children[1].placeholder =
         "";
-      event.target.parentElement.parentElement.children[0].children[2].disabled = true;
-      event.target.parentElement.parentElement.children[0].children[1].disabled = true;
+      event.target.parentElement.parentElement.children[0].children[1].children[1].disabled = true;
+      event.target.parentElement.parentElement.children[0].children[1].children[0].disabled = true;
       resetPreview(name);
       setLockedStates((preval) => {
         return {
@@ -243,7 +246,7 @@ export default function DivideManuallySplitModal() {
   function checkValidShareInput() {
     let flag = false;
     for (let i of checkboxRef.current.children) {
-      if (i.children[0].children[2].placeholder[0] === "-") {
+      if (i.children[0].children[1].children[1].placeholder[0] === "-") {
         setError("Invalid Share Input");
         flag = true;
         break;
@@ -258,7 +261,7 @@ export default function DivideManuallySplitModal() {
       setError("First set the Total Amount value.");
     }
 
-    const name = event.target.parentElement.children[0].innerText;
+    const name = event.target.parentElement.parentElement.children[0].innerText;
     if (lockedStates[name] && validAmountVal()) {
       setLockedStates((preval) => {
         return {
@@ -296,9 +299,9 @@ export default function DivideManuallySplitModal() {
   function reset() {
     for (let i of checkboxRef.current.children) {
       i.children[1].children[0].checked = true;
-      i.children[0].children[2].value = "";
-      i.children[0].children[2].placeholder = "";
-      i.children[0].children[2].disabled = false;
+      i.children[0].children[1].children[1].value = "";
+      i.children[0].children[1].children[1].placeholder = "";
+      i.children[0].children[1].children[1].disabled = false;
     }
     dispatch(
       splitCreateActions.editBillTempStore({
@@ -325,7 +328,8 @@ export default function DivideManuallySplitModal() {
     } else {
       setLockedNo((preval) => preval + 1);
     }
-    event.target.parentElement.parentElement.children[2].value = "";
+    console.log(event.target.parentElement);
+    event.target.parentElement.parentElement.children[1].value = "";
     resetPreview(name);
     setLockedStates((preval) => {
       const newVal = {
@@ -378,11 +382,18 @@ export default function DivideManuallySplitModal() {
   }
 
   return (
-    <div className={`${styles.main}`}>
-      <div className=" p-3  lg:pr-2 flex flex-col lg:w-1/2 h-fit">
+    <div
+      className={`${styles.main} ${styles.scrollDiv} scrollbar-hidden pb-[36px] lg:pb-0`}
+    >
+      <span className="flex sm:hidden bg-white rounded-[4px] sm:rounded-md mx-2 py-1 justify-center font-semibold my-2 mb-1 mt-2">
+        Divide Manually
+      </span>
+      <div
+        className={`pt-1 sm:pt-3 px-2 sm:px-3 p-3 pb-0 lg:pb-3 lg:pr-2 flex flex-col lg:w-1/2 `}
+      >
         <CommonModalPart />
-        <div className="flex flex-col space-y-3 sm:space-y-0 text-center sm:text-start sm:flex-row mt-3 rounded-lg bg-white p-2">
-          <div className="text-sm sm:text-base text-center xl:text-sm bg-black  font-semibold text-white py-[6px] px-4 rounded-md">
+        <div className="flex mt-2 sm:mt-3 flex-col sm:flex-row space-y-2 sm:space-y-0 rounded-lg bg-white p-2">
+          <div className="text-xs text-center sm:text-sm bg-black  font-semibold text-white py-1 sm:py-[6px] px-4 rounded-[4px] sm:rounded-md">
             Total Amount
           </div>
           <input
@@ -391,17 +402,17 @@ export default function DivideManuallySplitModal() {
             ref={amountRef}
             onChange={(event) => amountChange(event)}
             placeholder="Total Amount"
-            className="rounded-md text-center sm:text-start sm:ml-2 bg-slate-100 flex-grow p-[6px] pl-3 text-md"
+            className="rounded-[4px] sm:rounded-md disableScroll text-center sm:text-start sm:ml-2 bg-slate-100 flex-grow p-1 sm:p-[6px] sm:pl-4 text-md"
           />
         </div>
-        <div className="flex flex-col space-y-3 sm:space-y-0 text-center sm:text-start sm:flex-row mt-3 rounded-lg bg-white p-2">
-          <div className="text-sm sm:text-base xl:text-sm bg-black  font-semibold text-white py-[6px] px-4 rounded-md">
+        <div className="flex mt-2 sm:mt-3 flex-col  sm:flex-row space-y-2 sm:space-y-0 rounded-lg bg-white p-2">
+          <div className=" text-xs  text-center sm:text-sm bg-black  font-semibold text-white py-1 sm:py-[6px] px-4 rounded-[4px] sm:rounded-md">
             Paid by
           </div>
           <select
             ref={selectRef}
             onChange={selectChange}
-            className="rounded-md text-center sm:text-start sm:ml-2 bg-slate-100 flex-grow p-[6px] pl-4 text-md"
+            className="rounded-[4px] sm:rounded-md sm:ml-2 bg-slate-100 flex-grow p-1 sm:p-[6px] pl-2 sm:pl-4 text-md"
           >
             <option value="">Select Payer</option>
             {friends.map((friend) => {
@@ -414,50 +425,52 @@ export default function DivideManuallySplitModal() {
           </select>
         </div>
       </div>
-      <div className=" lg:pl-1 p-3 flex flex-col lg:w-1/2 flex-grow">
-        <div className="flex flex-col rounded-lg bg-white h-[290px] p-2">
-          <div className="text-sm sm:text-base xl:text-sm bg-black flex justify-center items-center font-semibold text-white py-[6px] px-6 rounded-md">
+      <div className=" lg:pl-1 p-2 sm:p-3 flex flex-col lg:w-1/2 flex-grow">
+        <div className="flex  flex-col rounded-lg bg-white h-auto lg:h-[290px] p-2">
+          <div className="text-xs sm:text-sm  bg-black flex justify-center items-center font-semibold text-white py-1 sm:py-[6px] px-6 rounded-[4px] sm:rounded-md">
             Shares
           </div>
           <Div
             ref={checkboxRef}
-            className="rounded-md mt-2 bg-slate-100 h-[500px] p-2 overflow-auto customScrollThin text-xs sm:text-xs"
+            className="rounded-md mt-2 bg-slate-100 flex-grow p-2 overflow-auto customScrollThin text-xs"
           >
             {friends.map((friend) => {
               return (
                 <div
                   key={friend.name}
-                  className="flex mb-2 space-x-2 flex-grow"
+                  className="flex mb-2 space-x-2 flex-grow items-center pr-3 bg-white border-[1.5px] border-stone-200 rounded-md"
                 >
                   <label
                     htmlFor={friend.name}
-                    className="p-1 py-[5px] pl-2 items-center sm:pl-3 bg-white border-[1.5px] flex border-stone-200 rounded-md flex-grow"
+                    className="p-1 sm:p-[6px] pl-2 justify-center sm:pl-2 flex flex-col text-[11px] flex-grow"
                   >
-                    <span className="flex-grow flex items-center">
+                    <span className="flex-grow pb-[2px] pl-1 border-b-[0.5px] border-b-stone-200 flex items-center">
                       {friend.name}
                     </span>
-                    <button
-                      onClick={(event) => lockClick(event, friend.name)}
-                      disabled={lockedStates[friend.name] === true}
-                      className="w-auto text-right flex ml-2 items-center mr-2 text-stone-400"
-                    >
-                      {lockedStates[friend.name] === true ? (
-                        <i className="fi fi-ss-lock-open-alt flex justify-center items-center"></i>
-                      ) : (
-                        <i className="fi fi-ss-lock flex justify-center items-center"></i>
-                      )}
-                    </button>
-                    <input
-                      type="number"
-                      min={0}
-                      disabled={disableInput(friend.name)}
-                      onChange={(event) => weightChange(event)}
-                      className="rounded-[5px] focus:outline-none bg-slate-100 disableScroll p-1 px-2 w-[70px] sm:w-[70px]"
-                    />
+                    <div className="flex justify-end pr-[6px] pt-1 border-t-[0.5px] border-t-stone-200">
+                      <button
+                        onClick={(event) => lockClick(event, friend.name)}
+                        disabled={lockedStates[friend.name] === true}
+                        className="w-auto text-right flex ml-2 items-center mr-2 text-stone-400"
+                      >
+                        {lockedStates[friend.name] === true ? (
+                          <i className="fi fi-ss-lock-open-alt flex justify-center items-center"></i>
+                        ) : (
+                          <i className="fi fi-ss-lock flex justify-center items-center"></i>
+                        )}
+                      </button>
+                      <input
+                        type="number"
+                        min={0}
+                        disabled={disableInput(friend.name)}
+                        onChange={(event) => weightChange(event)}
+                        className="rounded-[3px] focus:outline-none bg-slate-100 text-[11px] sm:text-xs disableScroll p-[2px] px-[6px] w-[80px] sm:w-[100px]"
+                      />
+                    </div>
                   </label>
-                  <div className="p-1 sm:p-2 rounded-md px-2 sm:px-[10px] flex justify-center items-center bg-white border-[1.5px] border-stone-200">
+                  <div className="relative">
                     <input
-                      className="w-[15px] h-[15px] "
+                      className="w-[20px] h-[20px] flex items-center"
                       type="checkbox"
                       value={friend.name}
                       disabled={disableInput(friend.name)}
@@ -476,26 +489,26 @@ export default function DivideManuallySplitModal() {
           style={{
             display: `${error === null ? "none" : "flex"}`,
           }}
-          className="bg-red-300 text-xs sm:text-xs  lg:mt-auto items-center rounded-md p-[6px] px-3"
+          className="bg-red-300 shadow-xl lg:shadow-none absolute w-[268px] sm:w-[470px]  lg:static lg:w-auto bottom-[62px] sm:bottom-[72px] text-[11px] sm:text-xs mt-3 lg:mt-auto items-center rounded-md p-1 pt-[5px] sm:pt-[6px]  sm:p-[6px] px-3"
         >
-          <i className="fi fi-rs-exclamation mr-2 text-sm flex justify-center items-center"></i>
+          <i className="fi fi-rs-exclamation mr-2  text-xs sm:text-sm flex justify-center items-center"></i>
           <p>{error}</p>
         </div>
         <form
           method="dialog"
-          className="flex space-y-2 sm:space-y-0 sm:space-x-3 sm:text-sm text-sm mt-3 flex-col sm:flex-row lg:mt-auto"
+          className="flex space-x-2 sm:space-x-3 absolute lg:static bottom-2 sm:bottom-3 w-[284px] sm:w-[495px] left-2 sm:left-3 lg:w-auto text-xs sm:text-sm mt-2 sm:mt-3 lg:mt-auto"
         >
           <button
             onClick={cancelClick}
             ref={cancelRef}
-            className="flex-grow p-2 sm:p-2 font-semibold uppercase flex justify-center items-center rounded-lg bg-red-500 text-white shadow-md hover:bg-white hover:text-red-500 border-[1.5px] border-red-500 hover:translate-y-[-5px] duration-500 "
+            className="flex-grow p-2 sm:p-2 font-semibold uppercase flex justify-center items-center rounded-md sm:rounded-lg bg-red-500 text-white shadow-md hover:bg-white hover:text-red-500 border-[1.5px] border-red-500 hover:translate-y-[-5px] duration-500"
           >
             Cancel
           </button>
           <button
             onClick={() => reset()}
             type="button"
-            className="flex-grow p-2 sm:p-2 font-semibold uppercase flex justify-center items-center rounded-lg bg-blue-500 text-white shadow-md hover:bg-white hover:text-blue-500 border-[1.5px] border-blue-500 hover:translate-y-[-5px] duration-500 "
+            className="flex-grow p-2 sm:p-2 font-semibold uppercase flex justify-center items-center rounded-md sm:rounded-lg bg-blue-500 text-white shadow-md hover:bg-white hover:text-blue-500 border-[1.5px] border-blue-500 hover:translate-y-[-5px] duration-500 "
           >
             Reset
           </button>

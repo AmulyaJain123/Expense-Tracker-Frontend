@@ -5,7 +5,6 @@ import { formatVal } from "../../util/algo";
 import { amountInRange } from "../../util/algo";
 import { useDispatch } from "react-redux";
 import { splitCreateActions } from "../../store/main";
-import styles from "./DivideEquallySplitModal.module.css";
 
 const Textarea = styled.textarea`
   resize: none;
@@ -17,8 +16,8 @@ export default function CommonModalPart() {
 
   return (
     <>
-      <div className="flex flex-col space-y-3 sm:space-y-0 text-center sm:text-start sm:flex-row rounded-lg bg-white p-[8px]">
-        <div className=" text-sm  bg-black  font-semibold text-white py-[6px] px-3 rounded-md">
+      <div className="flex flex-col space-y-2 sm:space-y-0 text-center sm:text-start sm:flex-row rounded-md sm:rounded-lg bg-white p-[8px]">
+        <div className=" text-xs sm:text-sm  bg-black  font-semibold text-white py-1 sm:py-[6px] px-3 rounded-[4px] sm:rounded-md">
           Bill Name
         </div>
         <input
@@ -33,11 +32,11 @@ export default function CommonModalPart() {
             )
           }
           placeholder="Name"
-          className="rounded-md sm:ml-[8px] bg-slate-100 text-center sm:text-start flex-grow p-[6px] pl-4 text-xs"
+          className="rounded-[4px] sm:rounded-md sm:ml-[8px] bg-slate-100 text-center sm:text-start flex-grow p-[4px] sm:p-[6px] sm:pl-4 text-[11px] sm:text-sm"
         />
       </div>
-      <div className="flex mt-3 flex-col space-y-2 rounded-lg bg-white p-2">
-        <div className="text-sm bg-black flex justify-center items-center font-semibold text-white py-[6px] px-6 rounded-md">
+      <div className="flex mt-2 sm:mt-3 flex-col space-y-2 rounded-lg bg-white p-2">
+        <div className=" text-xs sm:text-sm bg-black flex justify-center items-center font-semibold text-white py-1 sm:py-[6px] px-6 rounded-[4px] sm:rounded-md">
           Description
         </div>
         <Textarea
@@ -52,11 +51,11 @@ export default function CommonModalPart() {
             )
           }
           placeholder="Description"
-          className="text-md rounded-md h-[75px] bg-slate-100 flex-grow p-[6px] pl-3 text-md"
+          className="text-md rounded-[4px] sm:rounded-md h-[60px] sm:h-[75px] bg-slate-100 flex-grow p-[6px] pl-3 text-md"
         ></Textarea>
       </div>
-      <div className="flex space-y-3 sm:space-y-0 text-center sm:text-start flex-col sm:flex-row mt-3 rounded-lg bg-white p-2">
-        <div className="text-sm bg-black  font-semibold text-white py-[6px] px-6 rounded-md">
+      <div className="flex space-y-2 sm:space-y-0 text-center sm:text-start flex-col sm:flex-row mt-2 sm:mt-3 rounded-lg bg-white p-2">
+        <div className=" text-xs sm:text-sm bg-black  font-semibold text-white py-1 sm:py-[6px] px-6 rounded-[4px] sm:rounded-md">
           Bill Date
         </div>
         <div className="flex-grow flex text-xs relative">
@@ -70,13 +69,13 @@ export default function CommonModalPart() {
                 })
               )
             }
-            className="rounded-md focus:outline-none sm:ml-2 bg-slate-100 flex-grow p-2 pl-6 text-xs"
+            className="rounded-[4px] sm:rounded-md focus:outline-none sm:ml-2 bg-slate-100 flex-grow p-1 sm:p-[6px] pr-2 pl-6 text-[11px] sm:text-xs"
           />
           <span
             style={{
               color: !tempInfo.billDate ? "#78716C" : "",
             }}
-            className="rounded-md absolute font-medium left-4 pl-2 bg-slate-100 w-[80%] flex items-center h-[34px]  text-md "
+            className="rounded-[4px]  sm:rounded-md absolute font-medium left-2 sm:left-2 pl-2 bg-slate-100 w-[80%] flex items-center h-[26px] sm:h-[32px]  text-[11px] sm:text-xs "
           >
             {!tempInfo.billDate
               ? "NOT ENTERED"

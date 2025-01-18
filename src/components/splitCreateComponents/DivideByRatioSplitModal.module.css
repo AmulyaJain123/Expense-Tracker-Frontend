@@ -20,16 +20,27 @@
     flex-direction: column;
     /* overflow: scroll; */
   }
+  .scrollDiv {
+    overflow: scroll;
+    height: calc(90vh - 150px);
+    margin-bottom: 50px;
+  }
 }
 
 @media (max-width: 640px) {
   .main input {
-    font-size: small;
+    font-size: 11px;
   }
   .main textarea {
-    font-size: small;
+    font-size: 11px;
   }
   .main select {
-    font-size: small;
+    font-size: 11px;
+  }
+  .main {
+    border-radius: 0.6rem;
+  }
+  .scrollDiv {
+    margin-bottom: 44px;
   }
 }

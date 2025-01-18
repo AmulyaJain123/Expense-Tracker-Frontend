@@ -70,37 +70,42 @@ const BillModal = forwardRef(function BillModal({ ...rest }, ref) {
     return false;
   }
 
-  function navClick(event) {
-    if (event.target.value === navStatus) {
+  function navClick(str) {
+    if (str === navStatus) {
       return;
     } else {
-      dispatch(
-        splitCreateActions.changeAddBillNavStatus(event.target.innerText)
-      );
+      dispatch(splitCreateActions.changeAddBillNavStatus(str));
     }
   }
 
   return (
     <Main
       ref={dialog}
-      className="sm:max-w-[90vw] bg-white  scrollbar-hidden min-w-[300px] xl:w-[750px] max-h-[90vh] p-3 rounded-xl "
+      className="sm:max-w-[90vw] bg-white  min-w-[300px] lg:w-[750px] max-h-[90vh] p-2 sm:p-3 rounded-xl "
     >
-      <div className="w-full h-fit flex flex-col">
-        <div className="rounded-xl mb-3 flex-col sm:flex-row space-y-[6px] sm:space-y-0 flex sm:space-x-[10px]">
+      <div className="flex-grow flex flex-col">
+        <div className="rounded-xl mb-2 sm:mb-3 flex space-x-[8px] sm:space-x-[10px]">
           {addBillHeirarchy.map((text) => {
             return (
               <NavButton
                 key={text}
-                onClick={(event) => navClick(event)}
+                onClick={(event) => navClick(text)}
                 $status={`${evalBool(navStatus, text)}`}
-                className="rounded-lg font-bold xl:text-md py-1 sm:py-2 xl:py-[6px] px-4 flex-auto border-[1.5px] border-stone-300 "
+                className="rounded-lg font-bold xl:text-md py-1 sm:py-[6px] xl:py-[6px] px-4 flex-auto border-[1.5px] border-stone-300 "
               >
-                {text}
+                <span className="hidden sm:block">{text}</span>
+                {text === "Divide Equally" ? (
+                  <i class="fi fi-ss-equality flex justify-center py-[2px] text-xl sm:hidden"></i>
+                ) : text === "Divide Manually" ? (
+                  <i class="fi fi-ss-pen-nib flex justify-center py-[2px] text-xl sm:hidden"></i>
+                ) : (
+                  <i class="fi fi-ss-chart-pie-alt flex justify-center py-[2px] text-xl sm:hidden"></i>
+                )}
               </NavButton>
             );
           })}
         </div>
-        <div className=" overflow-auto">
+        <div className="">
           {navStatus === addBillHeirarchy[0] ? (
             <DivideEquallySplitModal />
           ) : null}

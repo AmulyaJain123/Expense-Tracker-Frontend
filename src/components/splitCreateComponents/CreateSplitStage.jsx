@@ -1,12 +1,8 @@
 import Friends from "./Friends";
 import { useSelector } from "react-redux";
-import { splitAlgo } from "../../util/algo";
 import { useDispatch } from "react-redux";
 import { splitCreateActions } from "../../store/main";
 import { useRef, useState, useEffect } from "react";
-import { createSplitHeirachy } from "../../util/componentNavigation";
-import { Button } from "../../UIComponents/NextButton";
-import DiscardButton from "../../UIComponents/DiscardButton";
 import styles from "./CreateSplitStage.module.css";
 
 export default function CreateSplitStage() {
@@ -46,7 +42,7 @@ export default function CreateSplitStage() {
       </header>
       <div className=" text-xs lg:text-sm mb-2 sm:mb-3 flex flex-col space-y-[10px] sm:space-y-0  items-stretch  sm:flex-row text-stone-500 sm:items-center rounded-lg bg-slate-100 p-2">
         <span className="flex space-x-2">
-          <span className="rounded-md flex-grow bg-[#000] text-white text-center sm:text-start  sm:mr-2 p-[6px] font-semibold px-[16px]">
+          <span className="rounded-md flex-grow bg-[#000] text-white text-center sm:text-start  sm:mr-2 p-[6px] font-semibold text-nowrap px-[16px] sm:px-[8px] smTab:px-[16px]">
             <span>Split Name</span>
           </span>
           <span className="bg-white flex sm:hidden items-center text-stone-500 font-semibold text-xs lg:text-sm py-[4px] lg:py-[6px] px-[10px] sm:ml-2 text-center sm:text-start rounded-md">

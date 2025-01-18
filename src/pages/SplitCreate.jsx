@@ -61,7 +61,7 @@ export default function SplitCreate() {
                   {stage === 1 ? <AddBillStage /> : null}
                   {stage === 2 ? <SplitResultStage /> : null}
                 </div>
-                <div className="flex flex-grow mt-6 sm:mt-12 px-8 sm:px-16">
+                <div className="flex flex-grow mt-6 sm:mt-12 px-6 sm:px-16">
                   <BottomButtons num={stage} />
                 </div>
               </div>

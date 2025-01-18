@@ -439,7 +439,7 @@ export default function Data({ data, changeData, removeData, selected }) {
                   <div className=" flex  pl-[80px] ">
                     <img
                       src={side}
-                      className="w-[40px] h-[40px] flex items-center justify-center"
+                      className="min-w-[40px] h-[40px] flex items-center justify-center"
                       alt=""
                     />
                   </div>

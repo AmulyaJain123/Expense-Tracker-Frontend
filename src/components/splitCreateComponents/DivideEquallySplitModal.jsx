@@ -1,12 +1,15 @@
 import styled from "styled-components";
 import { useSelector } from "react-redux";
-import { useRef, useState } from "react";
+import { useRef, useState, useEffect } from "react";
 import { formatVal } from "../../util/algo";
 import { amountInRange } from "../../util/algo";
 import { useDispatch } from "react-redux";
 import { splitCreateActions } from "../../store/main";
 import styles from "./DivideEquallySplitModal.module.css";
 import CommonModalPart from "./CommonModalPart";
+import handTick from "../../assets/hand-tick.png";
+import handCross from "../../assets/hand-cross.png";
+
 import { v4 } from "uuid";
 
 const Textarea = styled.textarea`
@@ -29,6 +32,7 @@ const Button = styled.button`
 
   &:hover {
     background-color: white;
+    border-radius: 0.375rem;
     color: #38a169; /* text-green-500 */
     transform: translateY(-5px); /* translate-y-[-5px] */
   }
@@ -46,6 +50,20 @@ export default function DivideEquallySplitModal() {
   const amountRef = useRef();
   const cancelRef = useRef();
   const tempInfo = useSelector((state) => state.splitCreate.addBillTempStore);
+
+  useEffect(() => {
+    const inputs = document.querySelectorAll(".disableScroll");
+    inputs.forEach((i) => {
+      i.addEventListener(
+        "wheel",
+        (event) => {
+          event.preventDefault();
+          return;
+        },
+        { passive: false }
+      );
+    });
+  }, []);
 
   function resetPreview(no) {
     if (
@@ -173,12 +191,19 @@ export default function DivideEquallySplitModal() {
   }
 
   return (
-    <div className={`${styles.main}`}>
-      <div className=" p-3 lg:pr-2 flex flex-col lg:w-1/2 h-fit">
+    <div
+      className={`${styles.main} ${styles.scrollDiv} scrollbar-hidden pb-[36px] lg:pb-0 `}
+    >
+      <span className="flex sm:hidden bg-white rounded-[4px] sm:rounded-md mx-2 py-1 justify-center font-semibold my-2 mb-1 mt-2">
+        Divide Equally
+      </span>
+      <div
+        className={` pt-1 sm:pt-3 px-2 sm:px-3 p-3 pb-0 lg:pb-3 lg:pr-2 flex flex-col lg:w-1/2 `}
+      >
         <CommonModalPart />
 
-        <div className="flex mt-3 flex-col sm:flex-row space-y-3 sm:space-y-0 rounded-lg bg-white p-2">
-          <div className="text-sm sm:text-base text-center xl:text-sm bg-black  font-semibold text-white py-[6px] px-4 rounded-md">
+        <div className="flex mt-2 sm:mt-3 flex-col sm:flex-row space-y-2 sm:space-y-0 rounded-lg bg-white p-2">
+          <div className="text-xs text-center sm:text-sm bg-black  font-semibold text-white py-1 sm:py-[6px] px-4 rounded-[4px] sm:rounded-md">
             Total Amount
           </div>
           <input
@@ -187,17 +212,17 @@ export default function DivideEquallySplitModal() {
             ref={amountRef}
             onChange={(event) => amountChange(event)}
             placeholder="Total Amount"
-            className="rounded-md text-center sm:text-start sm:ml-2 bg-slate-100 flex-grow p-[6px] pl-3 text-md"
+            className="rounded-[4px] sm:rounded-md disableScroll text-center sm:text-start sm:ml-2 bg-slate-100 flex-grow p-1 sm:p-[6px] sm:pl-4 text-md"
           />
         </div>
-        <div className="flex mt-3 flex-col  sm:flex-row space-y-3 sm:space-y-0 rounded-lg bg-white p-2">
-          <div className=" text-sm sm:text-base text-center xl:text-sm bg-black  font-semibold text-white py-[6px] px-4 rounded-md">
+        <div className="flex mt-2 sm:mt-3 flex-col  sm:flex-row space-y-2 sm:space-y-0 rounded-lg bg-white p-2">
+          <div className=" text-xs  text-center sm:text-sm bg-black  font-semibold text-white py-1 sm:py-[6px] px-4 rounded-[4px] sm:rounded-md">
             Paid by
           </div>
           <select
             ref={selectRef}
             onChange={selectChange}
-            className="rounded-md sm:ml-2 bg-slate-100 flex-grow p-[6px] pl-4 text-md"
+            className="rounded-[4px] sm:rounded-md sm:ml-2 bg-slate-100 flex-grow p-1 sm:p-[6px] pl-2 sm:pl-4 text-md"
           >
             <option value="">Select Payer</option>
             {friends.map((friend) => {
@@ -210,31 +235,33 @@ export default function DivideEquallySplitModal() {
           </select>
         </div>
       </div>
-      <div className=" lg:pl-1 p-3 flex flex-col lg:w-1/2 flex-grow">
-        <div className="flex flex-col rounded-lg bg-white h-[290px] p-2">
-          <div className=" text-sm  bg-black flex justify-center items-center font-semibold text-white py-[6px] px-6 rounded-md">
+      <div className=" lg:pl-1 p-2 sm:p-3 flex flex-col lg:w-1/2 flex-grow">
+        <div className="flex  flex-col rounded-lg bg-white h-auto lg:h-[290px] p-2">
+          <div className="text-xs sm:text-sm  bg-black flex justify-center items-center font-semibold text-white py-1 sm:py-[6px] px-6 rounded-[4px] sm:rounded-md">
             Shares
           </div>
           <Div
             ref={checkboxRef}
-            className="rounded-md mt-2 bg-slate-100  p-2 overflow-auto customScrollThin text-xs "
+            className="rounded-md mt-2 bg-slate-100 flex-grow  p-2 overflow-auto customScrollThin text-xs "
           >
-            {friends.map((friend) => {
+            {friends.map((friend, index) => {
               return (
                 <div
                   key={friend.name}
-                  className="flex mb-2 space-x-2 flex-grow"
+                  className={`friend-${friend.name} flex mb-2 space-x-2 flex-grow items-center pr-3 bg-white border-[1.5px] border-stone-200 rounded-md `}
                 >
                   <label
                     htmlFor={friend.name}
-                    className="p-1 sm:p-[9px] pl-2 items-center sm:pl-3 bg-white border-[1.5px] flex border-stone-200 rounded-md flex-grow"
+                    className="p-1 sm:p-[6px] pl-2 justify-center sm:pl-2 flex flex-col text-[11px] flex-grow"
                   >
-                    <span className="flex-grow">{friend.name}</span>
-                    <span className="w-auto text-right text-stone-400"></span>
+                    <span className="flex-grow pb-[2px] pl-[2px] border-b-[0.5px]  border-stone-200 justify-start">
+                      {friend.name}
+                    </span>
+                    <span className="w-auto text-right h-[15px] pt-[2px] border-t-[0.5px] border-stone-200 text-stone-400"></span>
                   </label>
-                  <div className="p-2 sm:p-2 rounded-md px-2 sm:px-[10px] flex justify-center items-center bg-white border-[1.5px] border-stone-200">
+                  <div className="relative">
                     <input
-                      className="w-[15px] h-[15px] "
+                      className="w-[20px] h-[20px] flex items-center"
                       type="checkbox"
                       value={friend.name}
                       onClick={(event) => toggleCheckbox(event)}
@@ -252,26 +279,26 @@ export default function DivideEquallySplitModal() {
           style={{
             display: `${error === null ? "none" : "flex"}`,
           }}
-          className="bg-red-300 text-xs mt-3 lg:mt-auto items-center rounded-md p-[6px] px-3"
+          className="bg-red-300 shadow-xl lg:shadow-none absolute w-[268px] sm:w-[470px]  lg:static lg:w-auto bottom-[62px] sm:bottom-[72px] text-[11px] sm:text-xs mt-3 lg:mt-auto items-center rounded-md p-1 pt-[5px] sm:pt-[6px]  sm:p-[6px] px-3"
         >
-          <i className="fi fi-rs-exclamation mr-2  text-sm flex justify-center items-center"></i>
+          <i className="fi fi-rs-exclamation mr-2  text-xs sm:text-sm flex justify-center items-center"></i>
           <p>{error}</p>
         </div>
         <form
           method="dialog"
-          className="flex space-y-2 sm:space-y-0 sm:space-x-3 text-sm mt-3 flex-col sm:flex-row lg:mt-auto"
+          className="flex space-x-2 sm:space-x-3 absolute lg:static bottom-2 sm:bottom-3 w-[284px] sm:w-[495px] left-2 sm:left-3 lg:w-auto text-xs sm:text-sm mt-2 sm:mt-3 lg:mt-auto"
         >
           <button
             onClick={cancelClick}
             ref={cancelRef}
-            className="flex-grow p-2 sm:p-2 font-semibold uppercase flex justify-center items-center rounded-lg bg-red-500 text-white shadow-md hover:bg-white hover:text-red-500 border-[1.5px] border-red-500 hover:translate-y-[-5px] duration-500 "
+            className="flex-grow p-2 sm:p-2 font-semibold uppercase flex justify-center items-center rounded-md sm:rounded-lg bg-red-500 text-white shadow-md hover:bg-white hover:text-red-500 border-[1.5px] border-red-500 hover:translate-y-[-5px] duration-500 "
           >
             Cancel
           </button>
           <button
             onClick={() => reset()}
             type="button"
-            className="flex-grow p-2 sm:p-2 font-semibold uppercase flex justify-center items-center rounded-lg bg-blue-500 text-white shadow-md hover:bg-white hover:text-blue-500 border-[1.5px] border-blue-500 hover:translate-y-[-5px] duration-500 "
+            className="flex-grow p-2 sm:p-2 font-semibold uppercase flex justify-center items-center rounded-md sm:rounded-lg bg-blue-500 text-white shadow-md hover:bg-white hover:text-blue-500 border-[1.5px] border-blue-500 hover:translate-y-[-5px] duration-500 "
           >
             Reset
           </button>

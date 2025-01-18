@@ -10,6 +10,7 @@ import { Button } from "../UIComponents/NextButton";
 import { Link } from "react-router-dom";
 import responsive from "../assets/responsive-website.png";
 import prohibition from "../assets/prohibition.png";
+import { useNavigate } from "react-router-dom";
 import { Helmet } from "react-helmet-async";
 
 export default function TransactionPage() {
@@ -17,6 +18,7 @@ export default function TransactionPage() {
   const dispatch = useDispatch();
   const filteredData = useSelector((state) => state.transactions.filteredData);
   const filters = useSelector((state) => state.transactions.filtersAdded);
+  const navigate = useNavigate();
   // console.log(data);
   useEffect(() => {
     if (filters.length != 0) {
@@ -221,13 +223,11 @@ export default function TransactionPage() {
           </div>
         </div>
         <div className="flex justify-between">
-          <Link to="/track/protected/dashboard">
-            <Button>Back to Dashboard</Button>
-          </Link>
+          <Button onClick={() => navigate("/track/protected/dashboard")}>
+            Back to Dashboard
+          </Button>
 
-          <Link to="/track">
-            <Button>Back to TRACK</Button>
-          </Link>
+          <Button onClick={() => navigate("/track")}>Back to TRACK</Button>
         </div>
 
         {/* <div className="flex flex-col mt-[200px] items-center 2xl:hidden">

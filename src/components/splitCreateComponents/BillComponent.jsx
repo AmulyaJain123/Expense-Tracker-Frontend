@@ -15,18 +15,18 @@ export default function BillComponent({ id }) {
   }
 
   return (
-    <div className="px-2 pt-2 text-[13px] flex flex-col space-y-3 w-full h-full">
+    <div className="px-2 pt-2 text-[13px] flex flex-col space-y-2 sm:space-y-3 w-full h-full">
       <div className="flex flex-col sm:flex-row space-y-2 sm:space-y-0 justify-between">
-        <div className="p-1 px-2 bg-white h-fit  rounded-lg">
-          <span className="text-black mr-3 text-md font-semibold">
+        <div className="p-1 px-2 bg-white h-fit  rounded-md sm:rounded-lg">
+          <span className="text-black mr-1 sm:mr-3 text-md font-semibold">
             Bill Name :
           </span>
           <span className="p-1 text-stone-400 px-2 h-fit ">
             {reqBill.billName}
           </span>
         </div>
-        <div className="p-1 px-2 bg-white h-fit  rounded-lg">
-          <span className="text-black mr-3 text-md font-semibold">
+        <div className="p-1 px-2 bg-white h-fit  rounded-md sm:rounded-lg">
+          <span className="text-black mr-1 sm:mr-3 text-md font-semibold">
             Bill Date :
           </span>
           <span className="p-1 px-2 text-stone-400 h-fit ">
@@ -36,27 +36,27 @@ export default function BillComponent({ id }) {
       </div>
 
       <div className="sm:flex ">
-        <div className="p-1 px-2 bg-white flex-grow flex rounded-lg">
-          <span className="text-black mr-3 min-w-[90px] text-md font-semibold">
+        <div className="p-1 px-2 bg-white flex-grow flex rounded-md sm:rounded-lg">
+          <span className="text-black mr-1 sm:mr-3 min-w-[90px] text-md font-semibold">
             Description :
           </span>
-          <span className="px-2 text-stone-400  h-[60px]">
+          <span className="sm:px-2 text-stone-400  h-[60px]">
             {reqBill.description}
           </span>
         </div>
       </div>
 
       <div className="flex flex-col sm:flex-row space-y-2 sm:space-y-0  sm:space-x-6">
-        <div className="p-1 px-2 bg-white h-fit  rounded-lg">
-          <span className="text-black mr-3 text-md font-semibold">
+        <div className="p-1 px-2 bg-white h-fit  rounded-md sm:rounded-lg">
+          <span className="text-black mr-1 sm:mr-3 text-md font-semibold">
             Paid By :
           </span>
           <span className="p-1 text-stone-400 px-2 h-fit ">
             {reqBill.payedBy}
           </span>
         </div>
-        <div className="p-1 px-2 bg-white h-fit  rounded-lg">
-          <span className="text-black mr-3 text-md font-semibold">
+        <div className="p-1 px-2 bg-white h-fit  rounded-md sm:rounded-lg">
+          <span className="text-black mr-1 sm:mr-3 text-md font-semibold">
             Total Amount :
           </span>
           <span className="p-1 px-2 text-stone-400 h-fit ">
@@ -65,12 +65,12 @@ export default function BillComponent({ id }) {
         </div>
       </div>
 
-      <div className="p-1 px-2 bg-white h-fit   rounded-lg">
+      <div className="p-1 px-2 bg-white h-fit   rounded-md sm:rounded-lg">
         <div className="flex flex-col space-y-1">
           <span className="text-black text-md p-2 px-3 font-semibold">
             Shares :
           </span>
-          <div className="p-5 pt-2 px-4 sm:px-12 h-[170px] overflow-auto text-stone-400 customScrollThin">
+          <div className="p-5 pt-2 px-4 sm:px-12 h-[170px] overflow-auto text-stone-400 customScrollThinLight">
             {reqBill.shares.map((share) => {
               return (
                 <div key={share.name} className="flex justify-between">

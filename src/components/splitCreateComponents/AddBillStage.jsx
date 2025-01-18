@@ -1,4 +1,3 @@
-import { BackButton, Button } from "../../UIComponents/NextButton";
 import AddBillNavThumbs from "../../UIComponents/AddBillNavThumbs";
 import { useSelector } from "react-redux";
 import styled from "styled-components";
@@ -36,12 +35,12 @@ export default function AddBillStage() {
 
   return (
     <>
-      <div className="max-w-[400px] sm:max-w-[700px] sm:w-[600px] xl:w-[700px] bg-[#fff] flex flex-col p-3 rounded-xl mt-8  mx-auto">
+      <div className="max-w-[400px] sm:max-w-[700px]  w-[90%] sm:w-[600px] lg:w-[700px] bg-[#fff] flex flex-col p-2 sm:p-3 rounded-xl mt-4 sm:mt-8  mx-auto">
         <BillModal ref={modalRef} />
         <header
           id="title"
           style={{}}
-          className="sm:text-[25px] text-[20px] xl:text-[22px] font-extrabold uppercase justify-center mb-3 flex items-center rounded-lg bg-slate-100 py-3 px-5"
+          className="text-[18px] sm:text-[20px] lg:text-[24px] font-extrabold uppercase justify-center mb-2 sm:mb-3 flex items-center rounded-lg bg-slate-100 py-2 sm:py-3 lg:py-[14px] px-5"
         >
           Add Bills
         </header>
@@ -52,7 +51,7 @@ export default function AddBillStage() {
               No Bills Added
             </p>
           ) : (
-            <div className="border-b-2 border-white gap-[6px] p-3 flex flex-wrap flex-grow ">
+            <div className="border-b-2 border-white gap-[6px] p-2 sm:p-3 flex flex-wrap flex-grow ">
               {bills.map((bill) => {
                 return (
                   <AddBillNavThumbs
@@ -67,9 +66,9 @@ export default function AddBillStage() {
               })}
             </div>
           )}
-          <div className="p-3 w-full  h-[620px] sm:h-[420px] overflow-auto">
+          <div className="p-[6px] sm:p-3 mb-2 sm:mb-3 w-full min-h-[460px] sm:min-h-[410px]">
             {bills.length === 0 ? null : selectBillNavStatus === null ? (
-              <p className="text-center mt-24">No Bill Selected</p>
+              <p className="text-center mt-8 sm:mt-16">No Bill Selected</p>
             ) : (
               <BillComponent id={selectBillNavStatus} />
             )}
@@ -77,7 +76,7 @@ export default function AddBillStage() {
         </div>
         <button
           onClick={addBillClick}
-          className="rounded-lg hover:bg-white text-sm border-[1.5px] border-black hover:text-black duration-500 bg-black text-white uppercase font-semibold flex flex-grow p-2 sm:p-2 justify-center items-center mt-3 "
+          className="rounded-md sm:rounded-lg hover:bg-white text-xs sm:text-sm border-[1.5px] border-black hover:text-black duration-500 bg-black text-white uppercase font-semibold flex flex-grow p-[6px] sm:p-2 justify-center items-center mt-2 sm:mt-3 "
         >
           Add a Bill
         </button>
