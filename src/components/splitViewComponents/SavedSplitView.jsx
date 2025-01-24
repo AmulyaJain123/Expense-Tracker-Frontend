@@ -85,14 +85,14 @@ export default function SavedSplitView() {
         {modalOpen ? (
           <>
             <div className="fixed top-0 right-0 left-0 bottom-0 bg-black/40 z-10"></div>
-            <div className="rounded-2xl scale-75 fixed top-[50%] translate-y-[-50%] right-[50%] z-10 translate-x-[50%] translate ">
+            <div className="rounded-2xl scale-[60%] sm:scale-75 fixed top-[50%] translate-y-[-50%] right-[50%] z-10 translate-x-[50%] translate ">
               {modalOpen === 1 ? (
-                <div className="rounded-xl sm:w-[500px] bg-stone-100">
-                  <h1 className="p-8  text-center text-lg sm:text-xl font-medium">
+                <div className="rounded-xl w-[500px] bg-stone-100">
+                  <h1 className="p-8  text-center text-xl font-medium">
                     Are you sure you want to delete the following SPLIT?
                   </h1>
-                  <div className="flex  justify-center mb-[10px] mt-2 sm:mb-0 sm:space-x-[120px] px-[50px]">
-                    <div className="origin-top scale-75 shadow-xl">
+                  <div className="flex  justify-center mt-2 mb-0 space-x-[120px] px-[50px]">
+                    <div className="origin-top scale-75 rounded-xl shadow-xl">
                       <div className="flex h-[200px] rounded-xl bg-slate-100 ">
                         <div className="rounded-l-xl w-[100px] striped"></div>
                         <div className="flex flex-col space-y-2 pl-4">
@@ -233,13 +233,13 @@ export default function SavedSplitView() {
 
         <div className="flex flex-col mx-auto max-w-[1200px]">
           <div className="flex-grow flex mt-6 justify-center">
-            <div className="flex p-3  rounded-2xl max-w-[900px] mx-8 flex-grow flex-col">
-              <h1 className="py-[4px] text-[27px] font-bold text-center rounded-xl bg-[#9d4edd] text-white ">
+            <div className="flex p-2 sm:p-3  rounded-2xl max-w-[900px] mx-1 sm:mx-8 flex-grow flex-col">
+              <h1 className="py-1 sm:py-[6px] text-[20px] sm:text-[25px] font-bold text-center rounded-lg sm:rounded-xl bg-[#9d4edd] text-white ">
                 SPLIT Result
               </h1>
-              <div className="text-2xl font-bold min-h-[400px] flex text-center bg-white rounded-xl p-3 mt-4 flex-grow">
+              <div className=" font-bold min-h-[400px] flex text-center bg-white rounded-xl p-3 mt-4 flex-grow">
                 <div className="flex flex-col flex-grow">
-                  <div className="flex space-x-3 p-3">
+                  <div className="flex flex-wrap gap-x-[6px] gap-y-[6px] sm:gap-x-[10px] p-2 sm:p-[10px]">
                     <button
                       style={{
                         color: status === 0 ? "white" : "black",
@@ -247,7 +247,7 @@ export default function SavedSplitView() {
                       }}
                       disabled={status === 0}
                       onClick={() => setStatus(0)}
-                      className="uppercase py-1 disabled:pointer-events-none hover:scale-110 duration-700 font-medium text-xs rounded-md px-3"
+                      className="uppercase py-[2px] disabled:pointer-events-none hover:scale-110 duration-700 font-medium  text-[11px] sm:text-[12px] rounded-[5px] sm:rounded-md px-2 sm:px-3"
                     >
                       General
                     </button>
@@ -258,7 +258,7 @@ export default function SavedSplitView() {
                       }}
                       disabled={status === 1}
                       onClick={() => setStatus(1)}
-                      className="uppercase py-1 disabled:pointer-events-none hover:scale-110 duration-700 font-medium text-xs rounded-md px-3"
+                      className="uppercase py-[2px] disabled:pointer-events-none hover:scale-110 duration-700 font-medium  text-[11px] sm:text-[12px] rounded-[5px] sm:rounded-md px-2 sm:px-3"
                     >
                       Transactions
                     </button>
@@ -269,7 +269,7 @@ export default function SavedSplitView() {
                       }}
                       disabled={status === 2}
                       onClick={() => setStatus(2)}
-                      className="uppercase py-1 disabled:pointer-events-none hover:scale-110 duration-700 font-medium text-xs rounded-md px-3"
+                      className="uppercase py-[2px] disabled:pointer-events-none hover:scale-110 duration-700 font-medium  text-[11px] sm:text-[12px] rounded-[5px] sm:rounded-md px-2 sm:px-3"
                     >
                       Stats
                     </button>
@@ -280,7 +280,7 @@ export default function SavedSplitView() {
                       }}
                       disabled={status === 3}
                       onClick={() => setStatus(3)}
-                      className="uppercase py-1 disabled:pointer-events-none hover:scale-110 duration-700 font-medium text-xs rounded-md px-3"
+                      className="uppercase py-[2px] disabled:pointer-events-none hover:scale-110 duration-700 font-medium  text-[11px] sm:text-[12px] rounded-[5px] sm:rounded-md px-2 sm:px-3"
                     >
                       Bills
                     </button>
@@ -291,13 +291,13 @@ export default function SavedSplitView() {
                       }}
                       disabled={status === 4}
                       onClick={() => setStatus(4)}
-                      className="uppercase py-1 disabled:pointer-events-none hover:scale-110 duration-700 font-medium text-xs rounded-md px-3"
+                      className="uppercase py-[2px] disabled:pointer-events-none hover:scale-110 duration-700 font-medium  text-[11px] sm:text-[12px] rounded-[5px] sm:rounded-md px-2 sm:px-3"
                     >
                       Shared
                     </button>
                   </div>
 
-                  <div className="flex bg-slate-100 p-3 mt-2 rounded-3xl flex-grow flex-col">
+                  <div className="flex bg-slate-100 p-2 sm:p-3 mt-[6px] sm:mt-2  rounded-xl sm:rounded-2xl flex-grow flex-col">
                     {status === 0 ? (
                       <General
                         data={{
@@ -315,7 +315,7 @@ export default function SavedSplitView() {
               </div>
             </div>
           </div>
-          <div className="flex mt-16 justify-between mx-16">
+          <div className="flex mt-6 sm:mt-16 justify-between mx-6 sm:mx-16">
             <Link to={"/split/protected/view/saved"}>
               <NiceButton text={"Go Back"} />
             </Link>
