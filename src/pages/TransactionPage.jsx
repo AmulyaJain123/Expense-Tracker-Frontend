@@ -12,6 +12,7 @@ import responsive from "../assets/responsive-website.png";
 import prohibition from "../assets/prohibition.png";
 import { useNavigate } from "react-router-dom";
 import { Helmet } from "react-helmet-async";
+import NiceButton from "../UIComponents/NiceButton";
 
 export default function TransactionPage() {
   const data = useLoaderData();
@@ -184,13 +185,13 @@ export default function TransactionPage() {
         <meta name="description" content="Friends" />
       </Helmet>
       <div className="h-full w-full bg-white overflow-auto pb-[150px] text-stone-700 rounded-l-xl">
-        <div className="bg-[#f7ebfd]  rounded-xl  pb-[40px] m-3 mt-[20px] p-3">
+        <div className="bg-[#f7ebfd]  rounded-xl  pb-[40px] m-2 sm:m-3 mt-[16px] sm:mt-[20px] p-2 sm:p-3">
           <div className="relative flex flex-col overflow-hidden  h-fit ">
             <Filter />
 
             <div className="flex flex-col">
-              <div className=" flex justify-between mb-12 z-20 rounded-lg  p-[10px] px-6 pr-4 bg-[#9f21e3] ">
-                <span className="text-[22px] text-white font-semibold">
+              <div className=" flex justify-center sm:justify-between mb-3 sm:mb-4 lap:mb-12 z-20 rounded-lg  p-[6px] sm:p-[10px] px-4 sm:px-6 pr-3 sm:pr-4 bg-[#9f21e3] ">
+                <span className="text-[20px]  sm:text-[22px] text-white font-semibold">
                   Transaction History
                 </span>
                 {filters.length != 0 ? (
@@ -208,7 +209,7 @@ export default function TransactionPage() {
                 ) : null}
               </div>
 
-              <div className="p-4 px-6 rounded-t-sm space-y-2 rounded-b-xl bg-[#f7ebfd] flex-grow">
+              <div className="p-2 sm:p-4 px-3 sm:px-6 rounded-t-sm  space-y-2 rounded-b-xl bg-[#f7ebfd] flex-grow">
                 {filteredData === null ? (
                   <DataDisplay
                     data={JSON.parse(JSON.stringify(data.transactions))}
@@ -222,27 +223,15 @@ export default function TransactionPage() {
             </div>
           </div>
         </div>
-        <div className="flex justify-between">
-          <Button onClick={() => navigate("/track/protected/dashboard")}>
-            Back to Dashboard
-          </Button>
+        <div className="flex flex-col smMob:flex-row gap-y-2 text-center mt-8 sm:mt-12 tab:mt-16 px-8 sm:px-16 tab:px-24 justify-between">
+          <button onClick={() => navigate("/track/protected/dashboard")}>
+            <NiceButton text={"Back to Dashboard"}></NiceButton>
+          </button>
 
-          <Button onClick={() => navigate("/track")}>Back to TRACK</Button>
+          <button onClick={() => navigate("/track")}>
+            <NiceButton text={"Back to TRACK"}></NiceButton>
+          </button>
         </div>
-
-        {/* <div className="flex flex-col mt-[200px] items-center 2xl:hidden">
-          <div className="relative">
-            <img className="w-[200px] opacity-75" src={responsive} alt="" />
-            <img
-              src={prohibition}
-              className="absolute top-[50%] right-[50%] translate-x-[50%] opacity-85 translate-y-[-50%] w-[130px]"
-              alt=""
-            />
-          </div>
-          <p className="mx-auto px-16 mt-8 text-center text-sm sm:text-base">
-            Please switch to a screen size bigger than 1500px
-          </p>
-        </div> */}
       </div>
     </>
   );

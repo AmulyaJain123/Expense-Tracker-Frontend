@@ -75,9 +75,9 @@ export default function SingleTransactionPage() {
         {modalOpen ? (
           <>
             <div className="fixed top-0 right-0 left-0 bottom-0 bg-black/40 z-10"></div>
-            <div className="rounded-2xl  fixed top-[50%] translate-y-[-50%] right-[50%] z-10 translate-x-[50%] translate scale-75">
+            <div className="rounded-2xl  fixed top-[50%] translate-y-[-50%] right-[50%] z-10 translate-x-[50%] translate scale-[60%] sm:scale-75">
               {modalOpen === 1 ? (
-                <div className="rounded-xl  sm:w-[500px] bg-stone-100">
+                <div className="rounded-xl w-[400px] sm:w-[500px] bg-stone-100">
                   <h1 className="p-8 pb-0  text-center text-lg sm:text-xl font-medium">
                     Are you sure you want to delete the Transaction?
                   </h1>
@@ -152,83 +152,83 @@ export default function SingleTransactionPage() {
         ) : null}
 
         <div className="max-w-[780px] mx-auto flex flex-col">
-          <div className="flex-grow flex mt-6 justify-center">
-            <div className="flex p-3  rounded-xl max-w-[1000px] mx-4 flex-grow flex-col">
-              <h1 className="py-[6px] text-[23px] uppercase font-bold text-center rounded-xl bg-[#9d4edd] text-white ">
+          <div className="flex-grow flex mt-4 sm:mt-6 justify-center">
+            <div className="flex p-2 sm:p-3 rounded-lg sm:rounded-xl max-w-[1000px] mx-3 sm:mx-4 flex-grow flex-col">
+              <h1 className="py-[6px] text-[16px] sm:text-[23px] uppercase font-bold text-center rounded-lg sm:rounded-xl bg-[#9d4edd] text-white ">
                 Transaction details
               </h1>
-              <div className="text-3xl font-bold capitalize flex text-center bg-white rounded-xl p-8 mt-4 flex-grow">
-                <div className="flex flex-col space-y-4 text-xs flex-grow ">
+              <div className=" font-bold capitalize flex text-center bg-white rounded-lg sm:rounded-xl p-4 sm:p-8 mt-3 sm:mt-4 flex-grow">
+                <div className="flex flex-col space-y-2 sm:space-y-4 text-[11px] sm:text-xs flex-grow ">
                   <div className="flex flex-col space-y-1">
-                    <span className="font-semibold text-stone-600 text-sm">
+                    <span className="font-semibold text-stone-600 text-xs sm:text-sm">
                       Transaction Name
                     </span>
-                    <span className="rounded-md py-1 px-4 normal-case bg-stone-50 text-stone-400 font-medium">
+                    <span className="rounded-md sm:rounded-lg py-1 sm:py-2 px-2 sm:px-4 normal-case bg-stone-50 text-stone-400 font-medium">
                       {data.transactionName}
                     </span>
                   </div>
 
                   <div className="flex flex-col space-y-1">
-                    <span className="font-semibold text-stone-600 text-sm">
+                    <span className="font-semibold text-stone-600 text-xs sm:text-sm">
                       From
                     </span>
-                    <span className="rounded-lg py-2 px-4 normal-case text-stone-400 bg-stone-50 font-medium">
+                    <span className="rounded-md sm:rounded-lg py-1 sm:py-2 px-2 sm:px-4 normal-case text-stone-400 bg-stone-50 font-medium">
                       {data.from}
                     </span>
                   </div>
 
                   <div className="flex flex-col space-y-1">
-                    <span className="font-semibold text-stone-600 text-sm">
+                    <span className="font-semibold text-stone-600 text-xs sm:text-sm">
                       To
                     </span>
-                    <span className="rounded-lg py-2 normal-case px-4 text-stone-400 bg-stone-50 font-medium">
+                    <span className="rounded-md sm:rounded-lg py-1 sm:py-2 normal-case px-4 text-stone-400 bg-stone-50 font-medium">
                       {data.to}
                     </span>
                   </div>
 
                   <div className="flex flex-col space-y-1">
-                    <span className="font-semibold text-stone-600 text-sm">
+                    <span className="font-semibold text-stone-600 text-xs sm:text-sm">
                       Transaction Amount
                     </span>
-                    <span className="rounded-lg py-2 px-4 text-stone-400 bg-stone-50 font-medium">
+                    <span className="rounded-md sm:rounded-lg py-1 sm:py-2 px-2 sm:px-4 text-stone-400 bg-stone-50 font-medium">
                       {formatVal(data.transactionAmount)}
                     </span>
                   </div>
 
                   <div className="flex flex-col space-y-1">
-                    <span className="font-semibold text-stone-600 text-sm">
+                    <span className="font-semibold text-stone-600 text-xs sm:text-sm">
                       Transaction Date
                     </span>
-                    <span className="rounded-lg py-2 px-4 text-stone-400 bg-stone-50 font-medium">
+                    <span className="rounded-md sm:rounded-lg py-1 sm:py-2 px-2 sm:px-4 text-stone-400 bg-stone-50 font-medium">
                       {format(new Date(data.dateTime), "HH:mm a ")} |{" "}
                       {new Date(data.dateTime).toDateString()}
                     </span>
                   </div>
 
                   <div className="flex flex-col space-y-1">
-                    <span className="font-semibold text-stone-600 text-sm">
+                    <span className="font-semibold text-stone-600 text-xs sm:text-sm">
                       Created On
                     </span>
-                    <span className="rounded-lg py-2 px-4 text-stone-400 bg-stone-50 font-medium">
+                    <span className="rounded-md sm:rounded-lg py-1 sm:py-2 px-2 sm:px-4 text-stone-400 bg-stone-50 font-medium">
                       {format(new Date(data.createdOn), "HH:mm a ")} |{" "}
                       {new Date(data.createdOn).toDateString()}
                     </span>
                   </div>
 
                   <div className="flex flex-col space-y-1">
-                    <span className="font-semibold text-stone-600 text-sm">
+                    <span className="font-semibold text-stone-600 text-xs sm:text-sm">
                       Category
                     </span>
-                    <span className="rounded-lg py-2 px-4 text-stone-400 bg-stone-50 font-medium">
+                    <span className="rounded-md sm:rounded-lg py-1 sm:py-2 px-2 sm:px-4 text-stone-400 bg-stone-50 font-medium">
                       {`${data.category[0]} > ${data.category[1]} > ${data.category[2]}`}
                     </span>
                   </div>
 
                   <div className="flex flex-col space-y-1">
-                    <span className="font-semibold text-stone-600 text-sm">
+                    <span className="font-semibold text-stone-600 text-xs sm:text-sm">
                       Transaction Type
                     </span>
-                    <span className="rounded-lg py-2 px-4 text-stone-400 bg-stone-50 font-medium">
+                    <span className="rounded-md sm:rounded-lg py-1 sm:py-2 px-2 sm:px-4 text-stone-400 bg-stone-50 font-medium">
                       {data.transactionType}
                     </span>
                   </div>
@@ -236,7 +236,7 @@ export default function SingleTransactionPage() {
               </div>
             </div>
           </div>
-          <div className="flex mt-12 justify-between mx-12">
+          <div className="flex mt-8 sm:mt-12 justify-between mx-8 sm:mx-12">
             <Link to={"/track/protected/transactions"}>
               <NiceButton text={"Go Back"} />
             </Link>

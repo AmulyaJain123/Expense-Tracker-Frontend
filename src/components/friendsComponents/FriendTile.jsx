@@ -79,16 +79,18 @@ export default function FriendTile({ i, removeFriend }) {
             </div>
 
             <div className="flex flex-col w-[115px] xl:w-[130px] justify-center">
-              <span className="italic text-xs">User ID</span>
-              <span className="flex bg-slate-100 px-[6px] xl:px-2 rounded-[4px] items-center font-medium text-xs xl:text-sm">
+              <span className="italic text-[11px] mob:text-xs">User ID</span>
+              <span className="flex bg-slate-100 px-[6px] xl:px-2 rounded-[4px] items-center font-medium text-[11px] mob:text-xs xl:text-sm">
                 <span className="font-semibold mr-1 sm:mr-2">#</span>{" "}
                 <span>{i.userId}</span>
               </span>
             </div>
 
             <div className="flex flex-col w-[125px] xl:w-[150px] justify-center">
-              <span className="italic text-xs">Became Friends On</span>
-              <span className="flex bg-slate-100 px-[6px] xl:px-2 rounded-[4px] items-center font-medium text-xs xl:text-sm">
+              <span className="italic text-[11px] mob:text-xs">
+                Became Friends On
+              </span>
+              <span className="flex bg-slate-100 px-[6px] xl:px-2 rounded-[4px] items-center font-medium text-[11px] mob:text-xs xl:text-sm">
                 {new Date(i.friendsAt).toDateString()}
               </span>
             </div>

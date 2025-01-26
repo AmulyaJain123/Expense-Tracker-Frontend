@@ -36,7 +36,7 @@ export default function Filter() {
     <>
       <div
         style={{ top: open ? "45px" : "-505px" }}
-        className="mx-auto w-[90%] flex rounded-b-xl  h-[600px] duration-1000 z-10 bg-[#eabffa] absolute right-1 left-1 "
+        className="mx-auto w-[90%] hidden lap:flex rounded-b-xl  h-[600px] duration-1000 z-10 bg-[#eabffa] absolute right-1 left-1 "
       >
         <button
           onClick={clickHandle}

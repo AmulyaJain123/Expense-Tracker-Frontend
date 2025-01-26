@@ -18,7 +18,7 @@
 }
 
 #menuContent p {
-  font-size: 12px;
+  font-size: 13px;
 }
 
 #menuContent > div > div > div {
@@ -75,6 +75,10 @@
     text-align: center;
     padding-left: 10px;
     padding-right: 10px;
+  }
+
+  #menuContent p {
+    font-size: 13px;
   }
 
   #menuContent > div > div > div {

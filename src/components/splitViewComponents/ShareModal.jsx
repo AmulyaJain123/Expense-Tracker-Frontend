@@ -142,7 +142,7 @@ const ShareModal = forwardRef(function ShareModal({ data }, ref) {
                     <span>Something went wrong</span>
                   </div>
                 ) : friends.length === 0 ? (
-                  <div className="flex justify-center text-xs sm:text-sm flex-col text-slate-500 space-y-3 sm:space-y-4 items-center mt-20 sm:mt-28">
+                  <div className="flex justify-center text-xs sm:text-sm flex-col text-slate-500 space-y-3 sm:space-y-4 items-center mt-16 sm:mt-28">
                     <img
                       src={noEntries}
                       className="w-[50px] h-[50px] sm:w-[60px] sm:h-[60px] flex justify-center items-center"

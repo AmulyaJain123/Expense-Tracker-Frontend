@@ -277,8 +277,8 @@ export default function DataDisplay({ data }) {
 
   return (
     <>
-      <header className="flex border-b-[1.5px] border-stone-500 pb-2 mr-3 space-x-3 flex-grow text-xs font-semibold text-stone-500 p-1 px-3">
-        <div className="flex-[0.14] flex space-x-3  ">
+      <header className="flex border-b-[1px] sm:border-b-[1.5px] border-stone-500 pb-[6px] sm:pb-2 mr-2 sm:mr-3 space-x-2 sm:space-x-3 flex-grow text-[11px] tab:text-xs font-semibold text-stone-500 p-1 px-2 sm:px-3">
+        <div className="flex-[14]  flex space-x-2 sm:space-x-3  ">
           <span className="flex justify-center items-center">Name</span>
           <div className="flex flex-col justify-center pl-0">
             <button
@@ -290,7 +290,7 @@ export default function DataDisplay({ data }) {
                   sorter.field === "name" && sorter.order === "increasing"
                     ? "fi fi-sr-sort-down"
                     : "fi fi-rr-sort-down"
-                } rotate-180 text-xs flex justify-center items-center`}
+                } rotate-180 text-[11px] tab:text-xs flex justify-center items-center`}
               ></i>
             </button>
             <button
@@ -302,12 +302,12 @@ export default function DataDisplay({ data }) {
                   sorter.field === "name" && sorter.order === "decreasing"
                     ? "fi fi-sr-sort-down"
                     : "fi fi-rr-sort-down"
-                }  text-xs flex justify-center items-center`}
+                }  text-[11px] tab:text-xs flex justify-center items-center`}
               ></i>
             </button>
           </div>
         </div>
-        <div className="flex-[0.14]  flex space-x-3 ">
+        <div className="flex-[14]  hidden lap:flex space-x-3 ">
           <span className="flex justify-center items-center">From</span>
           <div className="flex flex-col justify-center pl-0">
             <button
@@ -319,7 +319,7 @@ export default function DataDisplay({ data }) {
                   sorter.field === "from" && sorter.order === "increasing"
                     ? "fi fi-sr-sort-down"
                     : "fi fi-rr-sort-down"
-                } rotate-180 text-xs flex justify-center items-center`}
+                } rotate-180 text-[11px] tab:text-xs flex justify-center items-center`}
               ></i>
             </button>
             <button
@@ -331,12 +331,12 @@ export default function DataDisplay({ data }) {
                   sorter.field === "from" && sorter.order === "decreasing"
                     ? "fi fi-sr-sort-down"
                     : "fi fi-rr-sort-down"
-                }  text-xs flex justify-center items-center`}
+                }  text-[11px] tab:text-xs flex justify-center items-center`}
               ></i>
             </button>
           </div>
         </div>
-        <div className="flex-[0.12]  flex space-x-3 ">
+        <div className="flex-[14] flex space-x-3 ">
           <span className="flex justify-center items-center">Amt</span>
           <div className="flex flex-col justify-center pl-0">
             <button
@@ -350,7 +350,7 @@ export default function DataDisplay({ data }) {
                   sorter.field === "amount" && sorter.order === "increasing"
                     ? "fi fi-sr-sort-down"
                     : "fi fi-rr-sort-down"
-                } rotate-180 text-xs flex justify-center items-center`}
+                } rotate-180 text-[11px] tab:text-xs flex justify-center items-center`}
               ></i>
             </button>
             <button
@@ -364,12 +364,12 @@ export default function DataDisplay({ data }) {
                   sorter.field === "amount" && sorter.order === "decreasing"
                     ? "fi fi-sr-sort-down"
                     : "fi fi-rr-sort-down"
-                }  text-xs flex justify-center items-center`}
+                }  text-[11px] tab:text-xs flex justify-center items-center`}
               ></i>
             </button>
           </div>
         </div>
-        <div className=" flex-[0.14] flex space-x-3 ">
+        <div className=" flex-[14] hidden lap:flex space-x-3 ">
           <span className="flex justify-center items-center">To</span>
           <div className="flex flex-col justify-center pl-0">
             <button
@@ -381,7 +381,7 @@ export default function DataDisplay({ data }) {
                   sorter.field === "to" && sorter.order === "increasing"
                     ? "fi fi-sr-sort-down"
                     : "fi fi-rr-sort-down"
-                } rotate-180 text-xs flex justify-center items-center`}
+                } rotate-180 text-[11px] tab:text-xs flex justify-center items-center`}
               ></i>
             </button>
             <button
@@ -393,12 +393,12 @@ export default function DataDisplay({ data }) {
                   sorter.field === "to" && sorter.order === "decreasing"
                     ? "fi fi-sr-sort-down"
                     : "fi fi-rr-sort-down"
-                }  text-xs flex justify-center items-center`}
+                }  text-[11px] tab:text-xs flex justify-center items-center`}
               ></i>
             </button>
           </div>
         </div>
-        <div className=" flex-[0.13] flex space-x-3 ">
+        <div className=" flex-[12] hidden smMob:flex space-x-3 ">
           <span className="flex justify-center items-center">Date</span>
           <div className="flex flex-col justify-center pl-0">
             <button
@@ -410,7 +410,7 @@ export default function DataDisplay({ data }) {
                   sorter.field === "date" && sorter.order === "increasing"
                     ? "fi fi-sr-sort-down"
                     : "fi fi-rr-sort-down"
-                } rotate-180 text-xs flex justify-center items-center`}
+                } rotate-180 text-[11px] tab:text-xs flex justify-center items-center`}
               ></i>
             </button>
             <button
@@ -422,12 +422,12 @@ export default function DataDisplay({ data }) {
                   sorter.field === "date" && sorter.order === "decreasing"
                     ? "fi fi-sr-sort-down"
                     : "fi fi-rr-sort-down"
-                }  text-xs flex justify-center items-center`}
+                }  text-[11px] tab:text-xs flex justify-center items-center`}
               ></i>
             </button>
           </div>
         </div>
-        <div className=" flex-[0.13] flex space-x-3 ">
+        <div className=" flex-[12] hidden md:flex space-x-3 ">
           <span className="flex justify-center items-center">Created</span>
           <div className="flex flex-col justify-center pl-0">
             <button
@@ -441,7 +441,7 @@ export default function DataDisplay({ data }) {
                   sorter.field === "created" && sorter.order === "increasing"
                     ? "fi fi-sr-sort-down"
                     : "fi fi-rr-sort-down"
-                } rotate-180 text-xs flex justify-center items-center`}
+                } rotate-180 text-[11px] tab:text-xs flex justify-center items-center`}
               ></i>
             </button>
             <button
@@ -455,25 +455,27 @@ export default function DataDisplay({ data }) {
                   sorter.field === "created" && sorter.order === "decreasing"
                     ? "fi fi-sr-sort-down"
                     : "fi fi-rr-sort-down"
-                }  text-xs flex justify-center items-center`}
+                }  text-[11px] tab:text-xs flex justify-center items-center`}
               ></i>
             </button>
           </div>
         </div>
-        <div className="flex-[0.22]  flex space-x-3 ">
+        <div className="flex-[20] hidden sm:flex items-center space-x-3 ">
           <span className="flex justify-center items-center">Category</span>
         </div>
-        <div className="w-[30px] flex items-center space-x-3">Type</div>
+        <div className="w-[30px] max-w-[50px] flex items-center space-x-3">
+          Type
+        </div>
       </header>
-      <div className="flex flex-col pt-3 space-y-2 h-[500px] overflow-auto customScrollThin pr-[6px]">
+      <div className="flex flex-col pt-2 sm:pt-3 space-y-2 sm:h-[500px] min-h-[300px] sm:overflow-auto customScrollThin pr-1 sm:pr-[6px]">
         {sortedData.length === 0 ? (
-          <div className="flex flex-col mt-24 items-center space-y-4">
+          <div className="flex flex-col mt-[16px] sm:mt-24 items-center space-y-3 sm:space-y-4">
             <img
               src={empty}
-              className="h-[100px] w-[100px] flex justify-center items-center"
+              className="h-[75px] w-[75px] sm:h-[100px] sm:w-[100px] flex justify-center items-center"
               alt=""
             />
-            <p className="text-center text-stone-500 mt-16 text-[13px] font-medium">
+            <p className="text-center text-stone-500 mt-8 sm:mt-16 text-[11px] sm:text-[13px] font-medium">
               No Transactions Found
             </p>
           </div>
@@ -501,44 +503,51 @@ export default function DataDisplay({ data }) {
                 <div
                   key={ind}
                   onClick={() => navigate(`view/${i.transactionId}`)}
-                  className="flex hover:opacity-60 cursor-pointer rounded-sm text-[11px] border-b-[1.5px] border-[#adb5bd] bg-[#f8f9fa] text-black space-x-[10px] p-1 py-[6px] px-3"
+                  className="flex hover:opacity-60 cursor-pointer rounded-sm text-[10px] tab:text-[11px] border-b-[1px] sm:border-b-[1.5px] border-[#adb5bd] bg-[#f8f9fa] text-black space-x-[8px] sm:space-x-[10px] p-1 py-1 sm:py-[6px] px-2 sm:px-3"
                 >
-                  <span className="flex-[0.14]  ">
-                    {transactionName.length > 15
-                      ? transactionName.substr(0, 15) + "..."
-                      : transactionName}
-                  </span>
-                  <span className="flex-[0.14]   ">
-                    {from.length > 15 ? from.substr(0, 15) + "..." : from}
-                  </span>
-                  <span className="flex-[0.12]   ">
-                    {`${numeral(transactionAmount).format("0")}`.length > 8
-                      ? formatVal(transactionAmount).substr(0, 8) + "..."
-                      : formatVal(transactionAmount)}
-                  </span>
-                  <span className=" flex-[0.14]  ">
-                    {to.length > 15 ? to.substr(0, 15) + "..." : to}
-                  </span>
-                  <span className=" flex-[0.13]  ">{date}</span>
-                  <span className=" flex-[0.13]  ">{createdOnDate}</span>
-                  <span className="flex-[0.22] capitalize">
-                    {category.length === 3
-                      ? `${
-                          category[1].length > 11
-                            ? category[1].substr(0, 11) + "..."
-                            : category[1]
-                        } > ${
-                          category[2].length > 11
-                            ? category[2].substr(0, 11) + "..."
-                            : category[2]
-                        }
+                  <div className="flex flex-grow space-x-[8px] sm:space-x-[10px]">
+                    <span className="flex-[14]  ">
+                      {transactionName.length > 15
+                        ? transactionName.substr(0, 15) + "..."
+                        : transactionName}
+                    </span>
+                    <span className="flex-[14]  hidden lap:inline ">
+                      {from.length > 15 ? from.substr(0, 15) + "..." : from}
+                    </span>
+                    <span className="flex-[14]   ">
+                      {`${numeral(transactionAmount).format("0")}`.length > 8
+                        ? formatVal(transactionAmount).substr(0, 8) + "..."
+                        : formatVal(transactionAmount)}
+                    </span>
+                    <span className=" flex-[14] hidden lap:inline ">
+                      {to.length > 15 ? to.substr(0, 15) + "..." : to}
+                    </span>
+                    <span className=" flex-[12]  hidden smMob:inline">
+                      {date}
+                    </span>
+                    <span className=" flex-[12]  hidden md:inline">
+                      {createdOnDate}
+                    </span>
+                    <span className="flex-[20] hidden sm:inline  capitalize">
+                      {category.length === 3
+                        ? `${
+                            category[1].length > 11
+                              ? category[1].substr(0, 11) + "..."
+                              : category[1]
+                          } > ${
+                            category[2].length > 11
+                              ? category[2].substr(0, 11) + "..."
+                              : category[2]
+                          }
                   `
-                      : `${
-                          category[1].length > 11
-                            ? category[1].substr(0, 11) + "..."
-                            : category[1]
-                        }`}
-                  </span>
+                        : `${
+                            category[1].length > 11
+                              ? category[1].substr(0, 11) + "..."
+                              : category[1]
+                          }`}
+                    </span>
+                  </div>
+
                   <span
                     style={{
                       color: transactionType != "outgoing" ? "blue" : "#55a630",

@@ -8,6 +8,7 @@ export default {
     extend: {
       screens: {
         lap: '1250px',
+        smLap: '1170px',
         tab: '800px',
         smTab: '650px',
         mob: '500px',
