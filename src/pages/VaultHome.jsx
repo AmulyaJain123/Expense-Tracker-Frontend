@@ -69,7 +69,7 @@ export default function VaultHome() {
           </div>
           <div id="menu" className="flex flex-col items-center">
             <div className="flex justify-center space-x-10 mt-[80px] sm:mt-[125px]">
-              <Span className="text-base sm:text-base border-b-[1.5px] sm:border-b-2 border-black">
+              <Span className="text-sm border-b-[1.5px] sm:border-b-2 border-black">
                 How to Use <span className=" ">VAULT</span>
               </Span>
             </div>

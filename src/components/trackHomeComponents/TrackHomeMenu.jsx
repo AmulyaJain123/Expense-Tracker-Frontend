@@ -26,7 +26,7 @@ export default function TrackHomeMenu() {
 
   return (
     <div id="menu" className="max-w-[900px] mx-auto">
-      <div className="flex justify-center items-center  text-base tab:text-sm  mx-[50px] flex-col smTab:flex-row sm:flex-wrap gap-x-10 gap-y-3 smTab:gap-y-4 mt-[90px] tab:mt-[125px]">
+      <div className="flex justify-center items-center  text-sm flex-col sm:flex-row  mx-[50px] sm:flex-wrap gap-x-10 gap-y-3 smTab:gap-y-4 mt-[90px] tab:mt-[125px]">
         <Button
           $status={selectedMenu === 0}
           onClick={(event) => menuClick(event)}

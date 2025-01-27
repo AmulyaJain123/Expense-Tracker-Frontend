@@ -64,7 +64,10 @@ export default function SharedGeneral({ data }) {
                     <div className="flex flex-col text-[11px] sm:text-xs ">
                       <span className="font-medium ">Username</span>
                       <span className="text-[11px]">
-                        {data.splitInfo.sharedBy.username}
+                        <OnlyXChars
+                          text={data.splitInfo.sharedBy.username}
+                          x={15}
+                        />
                       </span>
                     </div>
                     <div className="flex flex-col text-[11px] sm:text-xs ">

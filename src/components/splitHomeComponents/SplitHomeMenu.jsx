@@ -24,7 +24,7 @@ export default function SplitHomeMenu() {
 
   return (
     <div id="menu" className="max-w-[900px] mx-auto">
-      <div className="flex sm:text-sm justify-center space-x-10  mt-[90px] tab:mt-[125px]">
+      <div className="flex text-sm justify-center space-x-10  mt-[90px] tab:mt-[125px]">
         <Button
           $status={selectedMenu === 1}
           onClick={(event) => menuClick(event)}

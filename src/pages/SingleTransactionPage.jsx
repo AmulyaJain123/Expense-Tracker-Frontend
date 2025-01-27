@@ -85,14 +85,11 @@ export default function SingleTransactionPage() {
                     <span className="text-black font-semibold text-lg">
                       Transaction Name
                     </span>
-                    <div className="p-2 px-6 rounded-lg bg-stone-200 flex-grow  text-center mb-8 font-medium ">
+                    <div className="p-2 px-6 rounded-lg bg-stone-200 flex-grow  text-center sm:mb-8 font-medium ">
                       <span>{data.transactionName}</span>
                     </div>
                   </div>
-                  <form
-                    method="dialog"
-                    className="flex pb-4 sm:pr-4 justify-center sm:justify-end space-x-6"
-                  >
+                  <div className="h-[50px] flex-grow justify-center mb-3 flex sm:hidden">
                     {deleting ? (
                       <div className="flex items-center">
                         <img
@@ -112,10 +109,34 @@ export default function SingleTransactionPage() {
                         <span className="text-red-500 tetx-lg ">{error}</span>
                       </div>
                     ) : null}
+                  </div>
+                  <form
+                    method="dialog"
+                    className="flex pb-4 sm:pr-4 justify-center sm:justify-end sm:space-x-6"
+                  >
+                    {deleting ? (
+                      <div className="sm:flex hidden items-center">
+                        <img
+                          src={load}
+                          className="w-[25px] h-[25px] flex justify-center items-center"
+                          alt=""
+                        />
+                      </div>
+                    ) : null}
+                    {error ? (
+                      <div className="hidden sm:flex items-center space-x-4">
+                        <img
+                          src={exclamation}
+                          className="w-[20px] h-[20px] flex justify-center items-center"
+                          alt=""
+                        />{" "}
+                        <span className="text-red-500 tetx-lg ">{error}</span>
+                      </div>
+                    ) : null}
                     <button
                       type="button"
                       onClick={closeHandle}
-                      className="p-2 px-4 rounded-lg bg-blue-500 text-white"
+                      className="p-2 px-4 mr-6 sm:mr-0 rounded-lg bg-blue-500 text-white"
                     >
                       Cancel
                     </button>
@@ -129,7 +150,7 @@ export default function SingleTransactionPage() {
                   </form>
                 </div>
               ) : modalOpen === 2 ? (
-                <div className="rounded-xl sm:w-[500px] bg-stone-100">
+                <div className="rounded-xl w-[400px] sm:w-[500px] bg-stone-100">
                   <h1 className="p-8  text-center text-lg sm:text-xl font-medium">
                     Successfully deleted the Transaction!!
                   </h1>

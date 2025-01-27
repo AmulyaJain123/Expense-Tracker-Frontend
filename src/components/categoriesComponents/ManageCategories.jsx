@@ -72,27 +72,35 @@ export default function ManageCategories() {
 
   return (
     <>
-      <div className="w-[90%]  mt-12 flex flex-col mx-auto bg-white rounded-2xl p-3">
+      <div className="w-[95%] sm:w-[90%] mt-6 sm:mt-12 flex flex-col mx-auto bg-white rounded-xl sm:rounded-2xl p-2 sm:p-3">
         <div
           id="categoryTop"
-          className="w-full bg-slate-100 py-[10px] uppercase text-2xl text-center rounded-xl font-bold text-stone-700"
+          className="w-full bg-slate-100 py-[8px] sm:py-[10px] uppercase text-xl sm:text-2xl text-center rounded-lg sm:rounded-xl font-bold text-stone-700"
         >
           Manage Categories
         </div>
 
-        <div className="flex w-full flex-col gap-y-4 flex-grow min-h-[800px] pb-[200px] bg-slate-100 rounded-xl p-4 mt-3">
+        <div className="flex w-full flex-col gap-y-3 sm:gap-y-4 flex-grow min-h-[500px] sm:min-h-[800px] pb-[150px] sm:pb-[200px] bg-slate-100 rounded-lg sm:rounded-xl p-3 sm:p-4 mt-2 sm:mt-3">
           {loading ? (
-            <div className="flex justify-center mt-44 flex-grow">
-              <img src={load} className="w-[50px] h-[50%]" alt="" />
+            <div className="flex justify-center mt-32 sm:mt-44 flex-grow">
+              <img
+                src={load}
+                className="w-[40px] h-[40px] sm:w-[50px] sm:h-[50px]"
+                alt=""
+              />
             </div>
           ) : data === null ? (
-            <div className="flex flex-col space-y-4 items-center mt-44 flex-grow">
-              <img src={errorIcon} className="w-[60px] h-[60%]" alt="" />
+            <div className="flex flex-col space-y-3 sm:space-y-4 text-sm sm:text-base items-center mt-32 sm:mt-44 flex-grow">
+              <img
+                src={errorIcon}
+                className="w-[50px] h-[50px] sm:w-[60px] sm:h-[60px]"
+                alt=""
+              />
               <span>Something went wrong</span>
             </div>
           ) : (
             <>
-              <div className="flex px-3 py-[6px] text-xs justify-end space-x-3">
+              <div className="flex px-2 sm:px-3 py-1 sm:py-[6px] text-[11px] sm:text-xs justify-end space-x-2 sm:space-x-3">
                 <button
                   style={{
                     backgroundColor: selected === 0 ? "#9d4edd" : "#dc93f6",
@@ -100,7 +108,7 @@ export default function ManageCategories() {
                   }}
                   disabled={loading || selected === 0}
                   onClick={() => setSelected(0)}
-                  className="py-[6px] disabled:pointer-events-none px-3 font-medium rounded-md duration-500  hover:scale-110 "
+                  className="py-1 sm:py-[6px] disabled:pointer-events-none px-2 sm:px-3 font-medium rounded-md duration-500  hover:scale-110 "
                 >
                   Outgoing
                 </button>
@@ -111,7 +119,7 @@ export default function ManageCategories() {
                   }}
                   disabled={loading || selected === 1}
                   onClick={() => setSelected(1)}
-                  className="py-[6px] disabled:pointer-events-none px-3 font-medium rounded-md duration-500 hover:scale-110 "
+                  className="py-1 sm:py-[6px] disabled:pointer-events-none px-2 sm:px-3 font-medium rounded-md duration-500 hover:scale-110 "
                 >
                   Incoming
                 </button>

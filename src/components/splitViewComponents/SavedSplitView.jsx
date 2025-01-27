@@ -167,10 +167,7 @@ export default function SavedSplitView() {
                       </div>
                     </div>
                   </div>
-                  <form
-                    method="dialog"
-                    className="flex pb-4 sm:pr-4 justify-center sm:justify-end space-x-6"
-                  >
+                  <div className="flex h-[25px] justify-center mb-6 space-x-2">
                     {deleting ? (
                       <div className="flex items-center">
                         <img
@@ -181,7 +178,31 @@ export default function SavedSplitView() {
                       </div>
                     ) : null}
                     {error ? (
-                      <div className="flex items-center space-x-4">
+                      <div className="flex items-center space-x-2">
+                        <img
+                          src={exclamation}
+                          className="w-[20px] h-[20px] flex justify-center items-center"
+                          alt=""
+                        />{" "}
+                        <span className="text-red-500 tetx-lg ">{error}</span>
+                      </div>
+                    ) : null}
+                  </div>
+                  <form
+                    method="dialog"
+                    className="flex pb-4 sm:pr-4 justify-center sm:justify-end sm:space-x-6"
+                  >
+                    {deleting ? (
+                      <div className="hidden sm:flex items-center">
+                        <img
+                          src={load}
+                          className="w-[25px] h-[25px] flex justify-center items-center"
+                          alt=""
+                        />
+                      </div>
+                    ) : null}
+                    {error ? (
+                      <div className="hidden sm:flex items-center space-x-4">
                         <img
                           src={exclamation}
                           className="w-[20px] h-[20px] flex justify-center items-center"
@@ -193,7 +214,7 @@ export default function SavedSplitView() {
                     <button
                       type="button"
                       onClick={closeHandle}
-                      className="p-2 px-4 rounded-lg bg-blue-500 text-white"
+                      className="p-2 px-4 rounded-lg mr-6 sm:mr-0 bg-blue-500 text-white"
                     >
                       Cancel
                     </button>
