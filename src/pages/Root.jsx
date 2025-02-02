@@ -3,31 +3,45 @@ import { styling } from "../util/styling";
 import SideNav from "../components/SideNav";
 import TopNav from "../components/TopNav";
 import { useNavigation } from "react-router-dom";
-// import { ToastContainer, toast } from "react-toastify";
-// import "react-toastify/dist/ReactToastify.css";
 import { useDispatch } from "react-redux";
-import { universalActions } from "../store/main";
+import { universalActions, realtimeActions } from "../store/main";
 import { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
 import styles from "./Root.module.css";
 import load from "../assets/loader.gif";
+import notificationSound from "../assets/sounds/notification.wav";
+
+import { createConnection } from "../util/socket";
 
 export default function Root() {
   const navigate = useNavigation();
   const dispatch = useDispatch();
-  // const toastMsg = useSelector((state) => state.universal.toastMsg);
   const userInfo = useSelector((state) => state.universal.userInfo);
   const [userFetch, setUserFetch] = useState(true);
 
-  // useEffect(() => {
-  //   if (toastMsg != null) {
-  //     if (toastMsg.mood === "success") {
-  //       toast.success(toastMsg.msg);
-  //     } else if (toastMsg.mood === "error") {
-  //       toast.error(toastMsg.msg);
-  //     }
-  //   }
-  // }, [toastMsg]);
+  function playSound(sound) {
+    new Audio(sound).play();
+  }
+
+  useEffect(() => {
+    const socket = createConnection();
+    socket.on("connect", () => {
+      socket.emit("test", "Hello Connect Formed ");
+      console.log(socket.id);
+    });
+
+    socket.on("new-notification", (notification) => {
+      console.log(notification);
+      playSound(notificationSound);
+      dispatch(realtimeActions.pushNotification(notification));
+    });
+
+    console.log("Hello", socket.listerners);
+
+    return () => {
+      socket.removeAllListeners();
+    };
+  }, []);
 
   useEffect(() => {
     async function fetchUserInfo() {
@@ -54,7 +68,8 @@ export default function Root() {
             throw "notfound";
           }
           console.log(result);
-          dispatch(universalActions.setUserInfo(result));
+          dispatch(universalActions.setUserInfo(result[0]));
+          dispatch(realtimeActions.setNotifications(result[1]));
           setUserFetch(false);
         } else {
           throw "error";
@@ -66,10 +81,6 @@ export default function Root() {
     }
     fetchUserInfo();
   }, []);
-
-  function close() {
-    dispatch(universalActions.clearToastMsg());
-  }
 
   return (
     <>

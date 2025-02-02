@@ -2,7 +2,7 @@ import { styling } from "../util/styling";
 import styled from "styled-components";
 import { NavLink, useLocation, Link } from "react-router-dom";
 import { universalActions } from "../store/main";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 
 const Main = styled.div`
   background-color: ${styling.navColor};
@@ -33,6 +33,7 @@ export default function PageTile({ details }) {
   const location = useLocation();
   const active = setActive(location, name, path);
   const dispatch = useDispatch();
+  const notifications = useSelector((state) => state.realtime.notifications);
 
   return (
     <div className="">
@@ -43,7 +44,7 @@ export default function PageTile({ details }) {
           return isActive ? "active" : undefined;
         }}
       >
-        <Main className="py-2 mb-2 pl-3 w-[170px] flex items-center rounded-r-lg">
+        <Main className="py-2 mb-2 pl-3 w-[170px] relative flex items-center rounded-r-lg">
           <img
             src={!active ? iconClass : iconClassBold}
             className="flex justify-center items-center w-[19px] mr-3 h-[19px]"
@@ -60,6 +61,11 @@ export default function PageTile({ details }) {
           >
             {name}
           </span>
+          {name === "Notifications" && notifications.length != 0 ? (
+            <div className="w-[20px] h-[20px] absolute right-4 rounded-full bg-[#7fffd4]  text-[11px] font-medium flex justify-center items-center">
+              <span className="h-fit">{notifications.length}</span>
+            </div>
+          ) : null}
         </Main>
       </NavLink>
     </div>

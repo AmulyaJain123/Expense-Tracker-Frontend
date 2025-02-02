@@ -21,6 +21,8 @@ import vaultoutline from "../assets/sideNavImages/vault-outline.png";
 import vaultsolid from "../assets/sideNavImages/vault-solid.png";
 import friendsoutline from "../assets/sideNavImages/friends-outline.png";
 import friendssolid from "../assets/sideNavImages/friends-solid.png";
+import notifyoutline from "../assets/sideNavImages/notify-outline.png";
+import notifysolid from "../assets/sideNavImages/notify-solid.png";
 
 const Main = styled.div`
   height: calc(100vh - ${styling.spacing * 2}px);
@@ -45,6 +47,14 @@ const pages = [
     iconClass: homeoutline,
     iconClassBold: homesolid,
     children: [],
+  },
+  {
+    name: "Notifications",
+    path: "notifications",
+    protected: true,
+    realtime: true,
+    iconClass: notifyoutline,
+    iconClassBold: notifysolid,
   },
   {
     name: "Vault",

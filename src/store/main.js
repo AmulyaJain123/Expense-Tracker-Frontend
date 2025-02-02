@@ -5,6 +5,8 @@ import { universalSlice } from "./universalSlice.js";
 import { transactionSlice } from "./transactionSlice.js";
 import { distributionSlice } from "./distributionSlice.js";
 import { dashboardSlice } from "./dashboardSlice.js";
+import { realtimeSlice } from "./realtimeSlice.js";
+
 
 const store = configureStore({
     reducer: {
@@ -13,7 +15,8 @@ const store = configureStore({
         universal: universalSlice.reducer,
         transactions: transactionSlice.reducer,
         distribution: distributionSlice.reducer,
-        dashboard: dashboardSlice.reducer
+        dashboard: dashboardSlice.reducer,
+        realtime: realtimeSlice.reducer
     }
 })
 
@@ -23,5 +26,7 @@ export const universalActions = universalSlice.actions;
 export const transactionActions = transactionSlice.actions;
 export const distributionActions = distributionSlice.actions;
 export const dashboardActions = dashboardSlice.actions;
+export const realtimeActions = realtimeSlice.actions;
+
 
 export default store;

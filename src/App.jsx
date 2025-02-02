@@ -45,6 +45,7 @@ import SharedSplits from "./pages/SharedSplits";
 import SharedSplitView from "./components/splitViewComponents/SharedSplitView";
 import Categories from "./pages/Categories";
 import SingleTransactionPage from "./pages/SingleTransactionPage";
+import Notifications from "./pages/Notifications";
 
 const router = createBrowserRouter([
   {
@@ -225,6 +226,16 @@ const router = createBrowserRouter([
           {
             path: "",
             element: <FriendsPage />,
+          },
+        ],
+      },
+      {
+        path: "notifications",
+        element: <ProtectedRoute />,
+        children: [
+          {
+            path: "",
+            element: <Notifications />,
           },
         ],
       },

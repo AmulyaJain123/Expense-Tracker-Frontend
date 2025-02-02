@@ -109,7 +109,7 @@ export default function ProfilePage() {
       </Helmet>
       <div className="h-full w-full bg-white pb-[100px] overflow-auto text-stone-700 rounded-l-xl rounded-r-xl lg:rounded-r-none">
         <div className="flex flex-col max-w-[1200px] mx-auto">
-          <h1 className="text-[25px] tab:text-[30px] py-1 text-white text-center bg-[#9d4edd] rounded-lg mob:rounded-xl mx-6 mob:mx-12 tab:mx-16 mt-6 mob:mt-8 font-bold uppercase">
+          <h1 className="text-[30px] lg:text-[35px] font-extrabold text-center mx-6 mob:mx-12 tab:mx-16 mt-6 mob:mt-8">
             My Profile
           </h1>
           <div className="flex flex-col sm:flex-row items-center sm:justify-center text-sm sm:space-x-8 tab:space-x-16 mt-6 mob:mt-12 tab:mt-16 ">
