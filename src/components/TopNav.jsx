@@ -39,7 +39,6 @@ export default function TopNav() {
       const res = await fetch(
         import.meta.env.VITE_BACKEND_API + "/auth/logout",
         {
-          method: "GET",
           credentials: "include",
         }
       );
