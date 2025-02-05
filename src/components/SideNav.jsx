@@ -134,8 +134,13 @@ export default function SideNav() {
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
+  const dom =
+    import.meta.env.VITE_ENV === "dev"
+      ? "localhost"
+      : import.meta.env.VITE_BACKEND_DOMAIN;
+
   function logOutClick() {
-    document.cookie = `token=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;`;
+    Cookies.remove("token", { domain: dom, path: "/" });
     navigate("/auth");
   }
 
@@ -159,7 +164,7 @@ export default function SideNav() {
           <div className="flex flex-col space-y-4 mb-[10px]  ">
             <button
               onClick={logOutClick}
-              className="rounded-lg hover:bg-slate-200 flex space-x-4 mx-3  p-2 duration-500"
+              className="rounded-lg hover:bg-slate-200 flex items-center space-x-4 mx-3  p-2 duration-500"
             >
               <img src={logOut} className=" w-[19px]" alt="" />
               <span className="font-medium text-xs">Logout</span>
@@ -169,7 +174,7 @@ export default function SideNav() {
           <div className="flex flex-col space-y-4  mb-[10px] mt-auto">
             <Link
               to={"/auth"}
-              className="rounded-lg space-x-4 flex mx-3 hover:bg-slate-200 p-2 duration-500"
+              className="rounded-lg space-x-4 flex items-center mx-3 hover:bg-slate-200 p-2 duration-500"
             >
               <img src={logIn} className=" w-[19px]" alt="" />
               <span className="font-medium text-xs">Login</span>

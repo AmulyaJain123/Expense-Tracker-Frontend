@@ -6,7 +6,7 @@ import noEntries from "../../assets/noEntries.png";
 import { format } from "date-fns";
 
 export default function Shared({ data }) {
-  console.log(data);
+  console.log("Hello", data);
 
   return (
     <div className="flex flex-col flex-grow">
@@ -32,7 +32,7 @@ export default function Shared({ data }) {
                   </div>
                 ) : (
                   <>
-                    {data.reverse().map((i) => {
+                    {data.map((i) => {
                       return (
                         <div className="flex group  justify-between rounded-2xl tab:rounded-full p-1 lg:p-[6px] space-x-3 bg-slate-200">
                           <div className="space-x-3 tab:space-x-4  lg:space-x-6 flex ">

@@ -19,15 +19,15 @@ export default function SharedSplits() {
         <div className="flex flex-col mx-auto max-w-[1200px]">
           <div className="flex justify-center tab:justify-between mb-8 sm:mb-10 tab:mb-12 my-10 tab:my-12  px-8 tab:px-16">
             <div className="flex sm:space-x-3 tab:space-x-6 items-center">
-              <div className="hidden  h-[32px] sm:h-[38px] sm:flex  w-[50px] sm:w-[60px] rounded-[4px] sm:rounded-md scale-[80%] sm:scale-90 tab:scale-100 bg-stone-100">
-                <div className="rounded-l-[4px] sm:rounded-l-md w-[15px] sm:w-[20px] striped"></div>
+              <div className="hidden  h-[32px] sm:h-[38px] sm:flex  w-[45px] sm:w-[55px] rounded-[4px] sm:rounded-[4px] scale-[80%] sm:scale-90 tab:scale-100 bg-stone-100">
+                <div className="rounded-l-[4px] sm:rounded-l-[4px] w-[5px] sm:w-[10px] bg-[#9d4edd]"></div>
                 <div className="flex flex-col px-[6px] flex-grow space-y-[3px] justify-center ">
-                  <div className="w-[90%]  border border-stone-400"></div>
-                  <div className="w-[50%]  border border-stone-400"></div>
-                  <div className="w-[40%]  border border-stone-400"></div>
-                  <div className="w-[60%]  border border-stone-400"></div>
-                  <div className="w-[80%]  border border-stone-400"></div>
-                  <div className="w-[50%]  border border-stone-400"></div>
+                  <div className="w-[90%]  border-[0.1px] border-stone-400"></div>
+                  <div className="w-[50%]  border-[0.1px] border-stone-400"></div>
+                  <div className="w-[40%]  border-[0.1px] border-stone-400"></div>
+                  <div className="w-[60%]  border-[0.1px] border-stone-400"></div>
+                  <div className="w-[80%]  border-[0.1px] border-stone-400"></div>
+                  <div className="w-[50%]  border-[0.1px] border-stone-400"></div>
                 </div>
               </div>
               <span className="text-[22px] sm:text-[26px] tab:text-[30px] font-bold text-stone-600">

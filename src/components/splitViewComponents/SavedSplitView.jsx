@@ -20,6 +20,7 @@ import RedirectingWindow from "../../UIComponents/RedirectingWindow";
 import ShareModal from "./ShareModal";
 import Shared from "./Shared";
 import { Helmet } from "react-helmet-async";
+import { utils, writeFile } from "xlsx";
 
 export default function SavedSplitView() {
   const data = useLoaderData();
@@ -35,6 +36,78 @@ export default function SavedSplitView() {
     setModalOpen(1);
     setDeleting(false);
     setError(null);
+  }
+
+  console.log(data);
+
+  function downloadFile() {
+    const originalTransactions = data.split[0].map((i) => ({
+      From: i.from,
+      To: i.to,
+      Value: i.val,
+    }));
+    const reducedTransactions = data.split[3].map((i) => ({
+      From: i.from,
+      To: i.to,
+      Value: i.val,
+    }));
+    let participants = "";
+    data.friends.forEach((i) => (participants += `${i.name}, \n`));
+    const metadata = [
+      {
+        "SPLIT Name": data.splitInfo.splitName,
+        "SPLIT Date": data.splitInfo.splitDate,
+        Description: data.splitInfo.description,
+        Participants: participants,
+      },
+    ];
+    const stats = data.split[2].map((i) => {
+      return {
+        Name: i.name,
+        Paid: data.split[4].find((j) => j.name == i.name).val,
+        Expense: data.split[5].find((j) => j.name == i.name).val,
+        "Debitor/Creditor":
+          data.split[2].find((j) => j.name == i.name).val > 0
+            ? "Debitor"
+            : data.split[2].find((j) => j.name == i.name).val === 0
+            ? "None"
+            : "Creditor",
+        Net: data.split[2].find((j) => j.name == i.name).val,
+      };
+    });
+    const bills = data.bills.map((i) => {
+      let str = "";
+      i.shares.forEach((j) => {
+        str += `${j.name}  ${j.share}, \n`;
+      });
+      return {
+        "Bill Name": i.billName,
+        "Bill Date": i.billDate ? new Date(i.billDate).toUTCString() : "NULL",
+        Description: i.description,
+        "Total Amount": i.totalAmt,
+        "Paid By": i.payedBy,
+        Shares: str,
+      };
+    });
+
+    const wb = utils.book_new();
+    const metadataWs = utils.json_to_sheet(metadata);
+    const statsWs = utils.json_to_sheet(stats);
+    const originalTransactionsWs = utils.json_to_sheet(originalTransactions);
+    const reducedTransactionsWs = utils.json_to_sheet(reducedTransactions);
+    const billsWs = utils.json_to_sheet(bills);
+
+    utils.book_append_sheet(wb, metadataWs, "Metadata");
+    utils.book_append_sheet(
+      wb,
+      originalTransactionsWs,
+      "Original Transactions"
+    );
+    utils.book_append_sheet(wb, reducedTransactionsWs, "Reduced Transactions");
+    utils.book_append_sheet(wb, statsWs, "Stats");
+    utils.book_append_sheet(wb, billsWs, "Bills");
+
+    writeFile(wb, `Split${new Date().getTime()}.xlsx`);
   }
 
   async function deleteConfirmed() {
@@ -167,7 +240,7 @@ export default function SavedSplitView() {
                       </div>
                     </div>
                   </div>
-                  <div className="flex h-[25px] justify-center mb-6 space-x-2">
+                  <div className="flex sm:hidden h-[25px] justify-center mb-6 space-x-2">
                     {deleting ? (
                       <div className="flex items-center">
                         <img
@@ -202,7 +275,7 @@ export default function SavedSplitView() {
                       </div>
                     ) : null}
                     {error ? (
-                      <div className="hidden sm:flex items-center space-x-4">
+                      <div className="hidden sm:flex items-center space-x-2">
                         <img
                           src={exclamation}
                           className="w-[20px] h-[20px] flex justify-center items-center"
@@ -255,8 +328,14 @@ export default function SavedSplitView() {
         <div className="flex flex-col mx-auto max-w-[1200px]">
           <div className="flex-grow flex mt-6 justify-center">
             <div className="flex p-2 sm:p-3  rounded-2xl max-w-[900px] mx-1 sm:mx-8 flex-grow flex-col">
-              <h1 className="py-1 sm:py-[6px] text-[20px] sm:text-[25px] font-bold text-center rounded-lg sm:rounded-xl bg-[#9d4edd] text-white ">
+              <h1 className="py-1 relative sm:py-[6px] text-[20px] sm:text-[25px] font-bold text-center rounded-lg sm:rounded-xl bg-[#9d4edd] text-white ">
                 SPLIT Result
+                <button
+                  onClick={downloadFile}
+                  className="absolute group hover:scale-110 duration-700 right-3 top-[50%] p-[4px] border-white border-2 rounded-md bg-white translate-y-[-50%]"
+                >
+                  <i className="fi fi-sr-down-to-line text-base flex justify-center items-center text-[#000]"></i>
+                </button>
               </h1>
               <div className=" font-bold min-h-[400px] flex text-center bg-white rounded-xl p-3 mt-4 flex-grow">
                 <div className="flex flex-col flex-grow">
@@ -330,7 +409,9 @@ export default function SavedSplitView() {
                     {status === 3 ? <Bills data={data.bills} /> : null}
                     {status === 2 ? <Stats data={data.split} /> : null}
                     {status === 1 ? <Transactions data={data.split} /> : null}
-                    {status === 4 ? <Shared data={data.sharedTo} /> : null}
+                    {status === 4 ? (
+                      <Shared data={[...data.sharedTo].reverse()} />
+                    ) : null}
                   </div>
                 </div>
               </div>

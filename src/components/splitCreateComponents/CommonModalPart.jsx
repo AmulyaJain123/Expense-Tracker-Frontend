@@ -12,6 +12,7 @@ const Textarea = styled.textarea`
 
 export default function CommonModalPart() {
   const dispatch = useDispatch();
+  const dateRef = useRef(null);
   const tempInfo = useSelector((state) => state.splitCreate.addBillTempStore);
 
   return (
@@ -61,6 +62,7 @@ export default function CommonModalPart() {
         <div className="flex-grow flex text-xs relative">
           <input
             type="date"
+            ref={dateRef}
             value={tempInfo.billDate}
             onChange={(event) =>
               dispatch(
@@ -75,6 +77,7 @@ export default function CommonModalPart() {
             style={{
               color: !tempInfo.billDate ? "#78716C" : "",
             }}
+            onClick={() => dateRef.current.showPicker()}
             className="rounded-[4px]  sm:rounded-md absolute font-medium left-2 sm:left-2 pl-2 bg-slate-100 w-[80%] flex items-center h-[26px] sm:h-[32px]  text-[11px] sm:text-xs "
           >
             {!tempInfo.billDate

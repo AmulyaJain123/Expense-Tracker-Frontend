@@ -5,6 +5,7 @@ import { createSplitHeirachy } from "../util/componentNavigation";
 import logIn from "../assets/logIn.png";
 import logOut from "../assets/logOut.png";
 import userIcon from "../assets/user.png";
+import notifyIcon from "../assets/sideNavImages/notify-solid.png";
 import { useEffect, useRef, useState } from "react";
 import { useDispatch } from "react-redux";
 import { universalActions } from "../store/main";
@@ -13,6 +14,7 @@ import TopNavButton from "../UIComponents/TopNavButton";
 import HamburgerMenu from "./HamburgerMenu";
 import { useSelector } from "react-redux";
 import OnlyXChars from "../UIComponents/OnlyXChars";
+import Cookies from "js-cookie";
 
 export default function TopNav() {
   const location = useLocation();
@@ -21,10 +23,16 @@ export default function TopNav() {
   const navigate = useNavigate();
   const userDetails = useSelector((state) => state.universal.userInfo);
   const menuStatus = useSelector((state) => state.universal.hamMenu);
+  const notifications = useSelector((state) => state.realtime.notifications);
   const dialogRef = useRef();
 
+  const dom =
+    import.meta.env.VITE_ENV === "dev"
+      ? "localhost"
+      : import.meta.env.VITE_BACKEND_DOMAIN;
+
   function logOutClick() {
-    document.cookie = `token=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;`;
+    Cookies.remove("token", { domain: dom, path: "/" });
     navigate("/auth");
   }
 
@@ -58,6 +66,19 @@ export default function TopNav() {
       <div className="ml-auto flex">
         {userDetails ? (
           <div className="flex items-center space-x-3 mr-[6px] sm:mr-[10px] ">
+            <Link
+              to={"/notifications"}
+              className="rounded-lg relative hidden sm:flex hover:bg-slate-200  p-2 duration-500"
+            >
+              <img
+                src={notifyIcon}
+                className="w-[20px] h-[20px] sm:h-[20px] sm:w-[20px]"
+                alt=""
+              />
+              {notifications.length != 0 ? (
+                <div className="absolute top-[6px] right-[6px] rounded-full h-[10px] w-[10px] bg-[#7fffd4]"></div>
+              ) : null}
+            </Link>
             <Link to={"/profile"}>
               <div className="flex  rounded-full p-1 items-center space-x-2 sm:space-x-4 bg-slate-200 pr-4 sm:pr-4">
                 <img
