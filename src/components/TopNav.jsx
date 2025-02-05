@@ -32,6 +32,7 @@ export default function TopNav() {
       : import.meta.env.VITE_BACKEND_DOMAIN;
 
   function logOutClick() {
+    console.log(dom);
     Cookies.remove("token", { domain: dom, path: "/" });
     navigate("/auth");
   }
