@@ -35,7 +35,7 @@ export function toadjlist(bills, names) {
             if (payerInd === payeeInd) {
                 continue;
             }
-            arr[payeeInd][payerInd] = j.share;
+            arr[payeeInd][payerInd] += j.share;
         }
     }
 
@@ -189,6 +189,7 @@ function getAllTransactions(edges, names) {
 }
 
 export function splitAlgo(bills) {
+    console.log(bills);
     const names = getNames(bills);
     const [adjMat, adjList, edges] = toadjlist(bills, names);
     console.log(adjMat, adjList, edges);
@@ -196,6 +197,7 @@ export function splitAlgo(bills) {
     const [finalMatrix, finalList] = getMatList(adjMat, adjList, names);
     const oweList = getOweList(edges, names);
     const [givers, recievers] = getOwes(edges, names);
+    console.log(expenditure, spendings);
 
     const transactions = [];
 
