@@ -40,9 +40,6 @@ export default function TopNav() {
         import.meta.env.VITE_BACKEND_API + "/auth/logout",
         {
           method: "GET",
-          headers: {
-            "Content-Type": "application/json",
-          },
           credentials: "include",
         }
       );
