@@ -15,6 +15,7 @@ import HamburgerMenu from "./HamburgerMenu";
 import { useSelector } from "react-redux";
 import OnlyXChars from "../UIComponents/OnlyXChars";
 import Cookies from "js-cookie";
+import load from "../assets/loader.gif";
 
 export default function TopNav() {
   const location = useLocation();
@@ -24,6 +25,7 @@ export default function TopNav() {
   const userDetails = useSelector((state) => state.universal.userInfo);
   const menuStatus = useSelector((state) => state.universal.hamMenu);
   const notifications = useSelector((state) => state.realtime.notifications);
+  const [loading, setLoading] = useState(false);
   const dialogRef = useRef();
 
   const dom =
@@ -31,10 +33,28 @@ export default function TopNav() {
       ? "localhost"
       : import.meta.env.VITE_BACKEND_DOMAIN;
 
-  function logOutClick() {
-    console.log(dom);
-    Cookies.remove("token", { domain: dom, path: "/" });
-    navigate("/auth");
+  async function logOutClick() {
+    try {
+      setLoading(true);
+      const res = await fetch(
+        import.meta.env.VITE_BACKEND_API + "/auth/logout",
+        {
+          method: "GET",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          credentials: "include",
+        }
+      );
+      if (!res.ok) {
+        throw "failed";
+      }
+      navigate("/auth");
+    } catch (err) {
+      console.log(err);
+    } finally {
+      setLoading(false);
+    }
   }
 
   function menuClick() {
@@ -92,16 +112,22 @@ export default function TopNav() {
                 </span>
               </div>
             </Link>
-            <button
-              onClick={logOutClick}
-              className="rounded-lg hover:bg-slate-200 p-2 duration-500"
-            >
-              <img
-                src={logOut}
-                className="w-[20px] h-[20px] sm:h-[20px] sm:w-[20px]"
-                alt=""
-              />
-            </button>
+            {loading ? (
+              <div className="flex justify-center p-2 items-center">
+                <img src={load} className="w-[20px] h-[20px]" alt="" />
+              </div>
+            ) : (
+              <button
+                onClick={logOutClick}
+                className="rounded-lg hover:bg-slate-200 p-2 duration-500"
+              >
+                <img
+                  src={logOut}
+                  className="w-[20px] h-[20px] sm:h-[20px] sm:w-[20px]"
+                  alt=""
+                />
+              </button>
+            )}
           </div>
         ) : (
           <div className="flex space-x-4 mr-[6px] sm:mr-[10px] ">

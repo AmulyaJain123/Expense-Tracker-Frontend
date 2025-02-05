@@ -23,6 +23,7 @@ import friendsoutline from "../assets/sideNavImages/friends-outline.png";
 import friendssolid from "../assets/sideNavImages/friends-solid.png";
 import notifyoutline from "../assets/sideNavImages/notify-outline.png";
 import notifysolid from "../assets/sideNavImages/notify-solid.png";
+import load from "../assets/loader.gif";
 
 const Main = styled.div`
   height: calc(100vh - ${styling.spacing * 2}px);
@@ -133,15 +134,35 @@ export default function SideNav() {
   const userDetails = useSelector((state) => state.universal.userInfo);
   const dispatch = useDispatch();
   const navigate = useNavigate();
+  const [loading, setLoading] = useState(false);
 
   const dom =
     import.meta.env.VITE_ENV === "dev"
       ? "localhost"
       : import.meta.env.VITE_BACKEND_DOMAIN;
 
-  function logOutClick() {
-    Cookies.remove("token", { domain: dom, path: "/" });
-    navigate("/auth");
+  async function logOutClick() {
+    try {
+      setLoading(true);
+      const res = await fetch(
+        import.meta.env.VITE_BACKEND_API + "/auth/logout",
+        {
+          method: "GET",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          credentials: "include",
+        }
+      );
+      if (!res.ok) {
+        throw "failed";
+      }
+      navigate("/auth");
+    } catch (err) {
+      console.log(err);
+    } finally {
+      setLoading(false);
+    }
   }
 
   return (
@@ -162,13 +183,19 @@ export default function SideNav() {
       <div className="flex flex-grow justify-end flex-col">
         {userDetails ? (
           <div className="flex flex-col space-y-4 mb-[10px]  ">
-            <button
-              onClick={logOutClick}
-              className="rounded-lg hover:bg-slate-200 flex items-center space-x-4 mx-3  p-2 duration-500"
-            >
-              <img src={logOut} className=" w-[19px]" alt="" />
-              <span className="font-medium text-xs">Logout</span>
-            </button>
+            {loading ? (
+              <div className="mx-3  p-2">
+                <img src={load} className="w-[20px] h-[20px]" alt="" />
+              </div>
+            ) : (
+              <button
+                onClick={logOutClick}
+                className="rounded-lg hover:bg-slate-200 flex items-center space-x-4 mx-3  p-2 duration-500"
+              >
+                <img src={logOut} className=" w-[19px]" alt="" />
+                <span className="font-medium text-xs">Logout</span>
+              </button>
+            )}
           </div>
         ) : (
           <div className="flex flex-col space-y-4  mb-[10px] mt-auto">
