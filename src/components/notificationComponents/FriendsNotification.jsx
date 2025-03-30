@@ -1,7 +1,7 @@
 import { format } from "date-fns";
 import friendsIcon from "../../assets/sideNavImages/friends-solid.png";
 import splitIcon from "../../assets/sideNavImages/split-solid.png";
-import logoutIcon from "../../assets/login.png";
+import logoutIcon from "../../assets/logIn.png";
 import userIcon from "../../assets/user.png";
 import { Link } from "react-router-dom";
 import cross2 from "../../assets/cross2.png";
