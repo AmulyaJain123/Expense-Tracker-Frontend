@@ -1,6 +1,7 @@
 import OnlyXChars from "../../UIComponents/OnlyXChars";
 import { formatVal } from "../../util/algo";
 import noEntries from "../../assets/noEntries.png";
+import { EmptyBox } from "../../UIComponents/NoneFound";
 
 export default function Transactions({ data }) {
   console.log(data);
@@ -46,7 +47,7 @@ export default function Transactions({ data }) {
                   data[3].map((i, index) => {
                     return (
                       <>
-                        <div className="flex  space-x-2 tab:space-x-3 text-start">
+                        <div className="flex space-x-2 tab:space-x-3 text-start">
                           <span className="w-[22px] py-[4px] tab:py-0 sm:w-[27px] rounded-[4px] sm:rounded-md bg-stone-100 tab:h-[27px] flex justify-center tab:items-center">
                             {index + 1}
                           </span>
@@ -74,13 +75,14 @@ export default function Transactions({ data }) {
                     );
                   })
                 ) : (
-                  <div className="flex flex-grow text-xs sm:text-sm text-slate-400 flex-col items-center space-y-2 sm:space-y-3 py-6 sm:py-8 ">
-                    <img
-                      src={noEntries}
-                      className="w-[60px] h-[60px] sm:w-[80px] sm:h-[80px] flex justify-center items-center"
-                      alt=""
+                  <div className="py-6">
+                    <EmptyBox
+                      IconSize={50}
+                      gap={8}
+                      textSize={14}
+                      textColor="#d6d3d1"
+                      msg="No Transactions"
                     />
-                    <span>No Transactions</span>
                   </div>
                 )}
               </div>
@@ -153,13 +155,14 @@ export default function Transactions({ data }) {
                     );
                   })
                 ) : (
-                  <div className="flex flex-grow text-xs sm:text-sm text-slate-400 flex-col items-center space-y-2 sm:space-y-3 py-6 sm:py-8 ">
-                    <img
-                      src={noEntries}
-                      className="w-[60px] h-[60px] sm:w-[80px] sm:h-[80px] flex justify-center items-center"
-                      alt=""
+                  <div className="py-6">
+                    <EmptyBox
+                      IconSize={50}
+                      gap={8}
+                      textSize={14}
+                      textColor="#d6d3d1"
+                      msg="No Transactions"
                     />
-                    <span>No Transactions</span>
                   </div>
                 )}
               </div>

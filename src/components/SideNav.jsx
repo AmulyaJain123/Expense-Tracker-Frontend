@@ -23,6 +23,8 @@ import friendsoutline from "../assets/sideNavImages/friends-outline.png";
 import friendssolid from "../assets/sideNavImages/friends-solid.png";
 import notifyoutline from "../assets/sideNavImages/notify-outline.png";
 import notifysolid from "../assets/sideNavImages/notify-solid.png";
+import messageoutline from "../assets/sideNavImages/message-outline.png";
+import messagesolid from "../assets/sideNavImages/message-solid.png";
 import load from "../assets/loader.gif";
 
 const Main = styled.div`
@@ -56,6 +58,14 @@ const pages = [
     realtime: true,
     iconClass: notifyoutline,
     iconClassBold: notifysolid,
+  },
+  {
+    name: "Messages",
+    path: "messages",
+    protected: true,
+    realtime: true,
+    iconClass: messageoutline,
+    iconClassBold: messagesolid,
   },
   {
     name: "Vault",

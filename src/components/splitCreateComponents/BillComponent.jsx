@@ -2,6 +2,7 @@ import { useDispatch } from "react-redux";
 import { splitCreateActions } from "../../store/main";
 import { useSelector } from "react-redux";
 import { formatVal } from "../../util/algo";
+import { format } from "date-fns";
 
 export default function BillComponent({ id }) {
   const bills = useSelector((state) => state.splitCreate.bills);
@@ -11,7 +12,12 @@ export default function BillComponent({ id }) {
   });
   const dispatch = useDispatch();
   if (reqBill === undefined) {
-    return <p className="text-center mt-24">No Bill Selected</p>;
+    return (
+      <div className="flex flex-grow text-slate-300 flex-col justify-center items-center">
+        <i class="fi fi-sr-choose flex items-center text-[60px]"></i>
+        <span className="mt-4 text-base font-normal">No Bill Selected</span>
+      </div>
+    );
   }
 
   return (
@@ -30,7 +36,7 @@ export default function BillComponent({ id }) {
             Bill Date :
           </span>
           <span className="p-1 px-2 text-stone-400 h-fit ">
-            {new Date(reqBill.billDate).toDateString()}
+            {format(new Date(reqBill.billDate), "EEE, dd MMM yyyy")}
           </span>
         </div>
       </div>
@@ -66,11 +72,11 @@ export default function BillComponent({ id }) {
       </div>
 
       <div className="p-1 px-2 bg-white h-fit   rounded-md sm:rounded-lg">
-        <div className="flex flex-col space-y-1">
+        <div className="flex flex-col space-y-1 pb-3">
           <span className="text-black text-md p-2 px-3 font-semibold">
             Shares :
           </span>
-          <div className="p-5 pt-2 px-4 sm:px-12 h-[170px] overflow-auto text-stone-400 customScrollThinLight">
+          <div className="p-5 pb-0 pt-2 px-4 sm:px-12 h-[170px] overflow-auto text-stone-400 specialScrollStone">
             {reqBill.shares.map((share) => {
               return (
                 <div key={share.name} className="flex justify-between">

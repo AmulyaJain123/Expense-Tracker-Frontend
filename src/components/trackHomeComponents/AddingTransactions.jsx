@@ -41,12 +41,22 @@ export default function AddingTransactions() {
             <span className="font-semibold mr-2 md:mr-4">Date and Time</span>
             <span>Choose the Date and Time of the Transaction.</span>
           </p>
+          <p>
+            <span className="font-semibold mr-2 md:mr-4">Description</span>
+            <span>Provide any other crucial information in Description.</span>
+          </p>
+          <p>
+            <span className="font-semibold mr-2 md:mr-4">Tags</span>
+            <span>
+              Select Tag(s) to better identify and classify transactions.
+            </span>
+          </p>
         </div>
       </div>
       <div className="flex bg-stone-100 py-2 px-2 border-b-2 border-stone-300 md:space-x-[50px]">
         <div className="font-medium md:w-1/3">Save Transaction </div>
         <div className="mx-[10px] md:w-2/3">
-          After entering all required details, click on the "Save" button to add
+          After entering all required details, click on the Save button to add
           the transaction to your expense tracker.
         </div>
       </div>

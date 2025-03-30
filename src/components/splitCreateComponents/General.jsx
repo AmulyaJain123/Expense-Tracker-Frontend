@@ -1,3 +1,4 @@
+import { format } from "date-fns";
 import OnlyXChars from "../../UIComponents/OnlyXChars";
 export default function General({ data }) {
   console.log(data);
@@ -27,14 +28,12 @@ export default function General({ data }) {
                     SPLIT Created on
                   </span>
                   <span className="bg-stone-100 p-[3px] sm:p-1 rounded-[5px] pl-2 sm:pl-3">
-                    <OnlyXChars
-                      x={30}
-                      text={
-                        data.splitInfo.splitDate === ""
-                          ? new Date().toDateString()
-                          : new Date(data.splitInfo.splitDate).toDateString()
-                      }
-                    />
+                    {format(
+                      data.splitInfo.splitDate === ""
+                        ? new Date()
+                        : new Date(data.splitInfo.splitDate),
+                      "EEE, dd MMM yyyy"
+                    )}
                   </span>
                 </div>
                 <div className="flex text-[11px] sm:text-xs text-start p-[6px] flex-col font-normal">

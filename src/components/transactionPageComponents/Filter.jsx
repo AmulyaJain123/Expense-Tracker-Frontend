@@ -8,6 +8,8 @@ import TypeFilter from "./TypeFilter";
 import NullFilter from "./NullFilter";
 import CategoryFilter from "./CategoryFilter";
 import DateFilter from "./DateFilter";
+import DescFilter from "./DescFilter";
+import TagFilter from "./TagFilter";
 
 const filterParams = [
   "Name",
@@ -17,6 +19,8 @@ const filterParams = [
   "Date",
   "Category",
   "Type",
+  "Description",
+  "Tags",
 ];
 
 export default function Filter() {
@@ -82,9 +86,11 @@ export default function Filter() {
           filterParam === "To" ? (
             <NameFilter />
           ) : null}
+          {filterParam === "Description" ? <DescFilter /> : null}
           {filterParam === "Amount" ? <AmountFilter /> : null}
           {filterParam === "Type" ? <TypeFilter /> : null}
           {filterParam === "Category" ? <CategoryFilter /> : null}
+          {filterParam === "Tags" ? <TagFilter /> : null}
           {filterParam === "Date" ? <DateFilter /> : null}
         </div>
       </div>

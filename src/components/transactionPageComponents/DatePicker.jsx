@@ -147,10 +147,6 @@ export default function DatePicker() {
   const dispatch = useDispatch();
 
   useEffect(() => {
-    const selectedMonth = new Date();
-    // console.log("erferf");
-    selectedMonth.setMonth(currMonth - 1);
-    selectedMonth.setFullYear(currYear);
     let totalDays = getNoOfDays();
     // console.log(totalDays);
     let DOW = 0;
@@ -160,9 +156,8 @@ export default function DatePicker() {
       // console.log("HEHEHE");
       const weekDay = DOW % 7;
       const thatDate = new Date();
-      thatDate.setMonth(currMonth - 1);
       thatDate.setFullYear(currYear);
-      thatDate.setDate(dayCounter + 1);
+      thatDate.setMonth(currMonth - 1, dayCounter + 1);
       const thatDatekaDOW = (thatDate.getDay() + 6) % 7;
       if (thatDatekaDOW === weekDay) {
         arr.push(dayCounter + 1);
@@ -194,6 +189,7 @@ export default function DatePicker() {
     }
     // console.log(ans);
     setCalander(ans);
+    console.log("aef");
   }, [currYear, currMonth]);
 
   function getNoOfDays() {
@@ -265,18 +261,19 @@ export default function DatePicker() {
 
   function dateClick(num) {
     if (pin1 === 1) {
+      console.log(currMonth, num);
       const date = new Date();
+      console.log(date);
       date.setFullYear(currYear);
-      date.setMonth(currMonth - 1);
-      date.setDate(num);
+      date.setMonth(currMonth - 1, num);
       date.setHours(0, 0, 0, 0);
+      console.log(date);
       setDate1(date);
       setPin1(2);
     } else if (pin2 === 1) {
       const date = new Date();
       date.setFullYear(currYear);
-      date.setMonth(currMonth - 1);
-      date.setDate(num);
+      date.setMonth(currMonth - 1, num);
       date.setHours(0, 0, 0, 0);
       setDate2(date);
       setPin2(2);
@@ -359,9 +356,8 @@ export default function DatePicker() {
                         let isInRange = false;
                         if (date1 && date2) {
                           const thumbDate = new Date();
-                          thumbDate.setMonth(currMonth - 1);
                           thumbDate.setFullYear(currYear);
-                          thumbDate.setDate(j);
+                          thumbDate.setMonth(currMonth - 1, j);
                           thumbDate.setHours(0, 0, 0, 0);
                           // console.log(thumbDate, date1, date2);
                           if (

@@ -5,42 +5,42 @@ import successIcon from "../../assets/success.png";
 import { useNavigate } from "react-router-dom";
 
 export default function Loading({ retry, changeMode, mode }) {
-  const [time, setTime] = useState(null);
-  const [timeFunc, setTimeFunc] = useState(null);
-  const [timer, setTimer] = useState(true);
+  // const [time, setTime] = useState(null);
+  // const [timeFunc, setTimeFunc] = useState(null);
+  // const [timer, setTimer] = useState(true);
   const navigate = useNavigate();
   function cancelClick() {
     changeMode(false);
   }
 
-  console.log(timeFunc);
+  // console.log(timeFunc);
 
-  useEffect(() => {
-    if (mode === "success" && timer === true) {
-      console.log("wfwe");
-      setTime(3);
-      const func = setInterval(() => {
-        console.log("entry", time);
-        setTime((preval) => {
-          if (preval > 1) {
-            console.log("dec");
-            return preval - 1;
-          } else {
-            console.log("end");
-            setTimer(false);
-            return preval;
-          }
-        });
-      }, 1000);
-      setTimeFunc(func);
-    } else if (timer === false && mode === "success") {
-      if (timeFunc) {
-        clearInterval(timeFunc);
-        setTimeFunc(null);
-        redirect();
-      }
-    }
-  }, [mode, timer]);
+  // useEffect(() => {
+  //   if (mode === "success" && timer === true) {
+  //     console.log("wfwe");
+  //     setTime(3);
+  //     const func = setInterval(() => {
+  //       console.log("entry", time);
+  //       setTime((preval) => {
+  //         if (preval > 1) {
+  //           console.log("dec");
+  //           return preval - 1;
+  //         } else {
+  //           console.log("end");
+  //           setTimer(false);
+  //           return preval;
+  //         }
+  //       });
+  //     }, 1000);
+  //     setTimeFunc(func);
+  //   } else if (timer === false && mode === "success") {
+  //     if (timeFunc) {
+  //       clearInterval(timeFunc);
+  //       setTimeFunc(null);
+  //       redirect();
+  //     }
+  //   }
+  // }, [mode, timer]);
 
   function retryClick() {
     retry();
@@ -74,10 +74,12 @@ export default function Loading({ retry, changeMode, mode }) {
                 alt=""
               />
 
-              <p className="text-center font-medium text-base mt-2">
-                Save Successful!! <br /> Redirecting to TRACK in{" "}
-                <span className="font-medium text-[#9d4edd]">{time}</span>
-              </p>
+              <button
+                onClick={redirect}
+                className="p-2 px-4 font-semibold rounded-lg text-[18px]  mr-6 sm:mr-0 bg-[#9d4edd] text-white"
+              >
+                Continue To TRACK
+              </button>
             </div>
           ) : null}
 

@@ -48,6 +48,9 @@ export default function TransactionPage() {
     if (name === "Category") {
       return i.category;
     }
+    if (name === "Tags") {
+      return i.tags;
+    }
     if (name === "Date") {
       return new Date(i.dateTime);
     }
@@ -56,6 +59,9 @@ export default function TransactionPage() {
     }
     if (name === "To") {
       return i.to;
+    }
+    if (name === "Description") {
+      return i.desc;
     }
     if (name === "Amount") {
       return i.transactionAmount;
@@ -114,7 +120,12 @@ export default function TransactionPage() {
       }
       // console.log("wekwfuef");
     }
-    if (name != "Date" && name != "Category" && name != "Type") {
+    if (
+      name != "Date" &&
+      name != "Category" &&
+      name != "Type" &&
+      name != "Tags"
+    ) {
       return arrVal.toLowerCase().includes(val.toLowerCase());
     } else if (name === "Category") {
       return (
@@ -124,6 +135,9 @@ export default function TransactionPage() {
           val[2] === arrVal[2]) ||
         (val.length === 2 && val[0] === arrVal[0] && val[1] === arrVal[1])
       );
+    } else if (name === "Tags") {
+      console.log(val, arrVal);
+      return arrVal.some((i) => i === val);
     } else if (name === "Type") {
       return val === arrVal;
     } else {
@@ -145,7 +159,9 @@ export default function TransactionPage() {
       name === "To" ||
       name === "From" ||
       name === "Category" ||
-      name === "Type"
+      name === "Type" ||
+      name === "Description" ||
+      name === "Tags"
     ) {
       return option;
     }
@@ -209,7 +225,7 @@ export default function TransactionPage() {
                 ) : null}
               </div>
 
-              <div className="p-2 sm:p-4 px-3 sm:px-6 rounded-t-sm  space-y-2 rounded-b-xl bg-[#f7ebfd] flex-grow">
+              <div className="relative p-2 sm:p-4 px-3 sm:px-6 rounded-t-sm  space-y-2 rounded-b-xl bg-[#f7ebfd] flex-grow">
                 {filteredData === null ? (
                   <DataDisplay
                     data={JSON.parse(JSON.stringify(data.transactions))}
@@ -223,7 +239,7 @@ export default function TransactionPage() {
             </div>
           </div>
         </div>
-        <div className="flex flex-col smMob:flex-row gap-y-2 text-center mt-8 sm:mt-12 tab:mt-16 px-8 sm:px-16 tab:px-24 justify-between">
+        <div className="flex flex-col smMob:flex-row gap-y-2 text-center mt-12 sm:mt-6 tab:mt-8 px-8 sm:px-12 tab:px-16 justify-between">
           <button onClick={() => navigate("/track/protected/dashboard")}>
             <NiceButton text={"Back to Dashboard"}></NiceButton>
           </button>

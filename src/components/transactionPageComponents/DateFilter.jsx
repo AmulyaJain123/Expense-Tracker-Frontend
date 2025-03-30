@@ -102,11 +102,11 @@ export default function DateFilter() {
                     >
                       <div className="flex flex-grow flex-col px-[10px]">
                         <div className="flex ">
-                          <span className="font-medium mr-1 ">From -</span>
+                          <span className="font-semibold mr-2 ">From </span>
                           <span className="   ">{date1}</span>
                         </div>
                         <div className="flex ">
-                          <span className="font-medium mr-1">To -</span>
+                          <span className="font-semibold mr-2">To</span>
                           <span className="  ">{date2}</span>
                         </div>
                       </div>

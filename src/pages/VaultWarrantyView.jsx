@@ -1,5 +1,5 @@
 import { Link, useLoaderData } from "react-router-dom";
-import { useEffect, useState } from "react";
+import { useEffect, useState, useRef } from "react";
 import Sort from "../components/vaultViewComponents/Sort";
 import Filter from "../components/vaultViewComponents/Filter";
 import close from "../assets/cancel.png";
@@ -16,6 +16,18 @@ export default function VaultWarrantyView() {
   const sorting = useSelector((state) => state.vault.recSorting);
   const filter = useSelector((state) => state.vault.recFilter);
   const dispatch = useDispatch();
+  const contentRef = useRef(null);
+  const [no, setNo] = useState(0);
+
+  useEffect(() => {
+    console.log(contentRef.current.clientWidth);
+    setNo(
+      Math.floor((contentRef.current.clientWidth - 64) / 290) -
+        (data.length %
+          Math.floor((contentRef.current.clientWidth - 64) / 290) ||
+          Math.floor((contentRef.current.clientWidth - 64) / 290))
+    );
+  }, [contentRef]);
 
   console.log(data);
 
@@ -59,7 +71,7 @@ export default function VaultWarrantyView() {
       </Helmet>
       <div className="h-full w-full bg-white overflow-auto pb-[150px] text-stone-700 rounded-r-2xl lg:rounded-r-none rounded-l-2xl">
         <div className="flex flex-col max-w-[1200px] mx-auto">
-          <div className="flex justify-between my-8 px-12">
+          <div className="flex border-b-[1.5px] border-stone-400 justify-between my-8 pb-2 mx-8 px-4">
             <div className="flex space-x-6 items-center">
               <img
                 src={warIcon}
@@ -71,16 +83,20 @@ export default function VaultWarrantyView() {
               </span>
             </div>
             <div className="flex items-center ">
-              <Filter data={data} changeFilter={changeFiltering}></Filter>
+              <Filter
+                type={"war"}
+                data={data}
+                changeFilter={changeFiltering}
+              ></Filter>
               <SortWarranty
                 data={filteredData}
                 changeSorting={changeSorting}
               ></SortWarranty>
             </div>
           </div>
-          <div className="flex max-w-[750px] mx-auto flex-col">
+          <div className="flex max-w-[750px] mb-4 mx-auto flex-col">
             {filter ? (
-              <div className="flex relative text-xs mx-4 p-[4px] rounded-xl bg-slate-100 items-center px-6">
+              <div className="flex relative text-xs mx-4 p-[4px] rounded-lg bg-slate-100 items-center px-6">
                 <span className="text-nowrap">Filtered Tags</span>
                 <div
                   // style={{ width: "calc( 100% - 200px )" }}
@@ -108,7 +124,7 @@ export default function VaultWarrantyView() {
             ) : null}
 
             {sorting ? (
-              <div className="flex relative mx-4 p-2 mt-2 text-xs rounded-xl bg-slate-100  px-6">
+              <div className="flex relative mx-4 p-2 py-[2px] mt-2 text-xs rounded-lg bg-slate-100  px-6">
                 <div className="flex  items-center py-2">
                   <span className="text-nowrap mr-6">Sort By</span>
                   <span className="font-medium text-nowrap rounded-md py-1 px-3 bg-[#dc93f6]">
@@ -137,11 +153,21 @@ export default function VaultWarrantyView() {
               </div>
             ) : null}
           </div>
-          <div className="mt-12 px-16 flex flex-wrap justify-center gap-6">
+          <div
+            ref={contentRef}
+            className="mt-2 px-16 flex flex-wrap justify-center gap-6"
+          >
             <SortedWarranties
               filteredData={filteredData}
               sorting={sorting}
             ></SortedWarranties>
+            {Array(no)
+              .fill(0)
+              .map((i, ind) => {
+                return (
+                  <div className="w-[260px] h-[200px] bg-slate-50   rounded-lg "></div>
+                );
+              })}
           </div>
         </div>
       </div>

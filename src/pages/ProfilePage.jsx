@@ -18,6 +18,7 @@ import ProfilePic from "../components/profileComponents/ProfilePic";
 import Activity from "../components/profileComponents/Activity";
 import QRPic from "../components/profileComponents/QRPic";
 import { Helmet } from "react-helmet-async";
+import { dateFormat } from "../util/algo";
 
 const monthArr = [
   "January",
@@ -39,6 +40,9 @@ export default function ProfilePage() {
   const upiRef = useRef();
   const [editUpi, setEditUpi] = useState(false);
   const [upiEditLoading, setUpiEditLoading] = useState(false);
+  const fullnameRef = useRef();
+  const [editFN, setEditFN] = useState(false);
+  const [fullNameLoading, setFullNameLoading] = useState(false);
 
   const dispatch = useDispatch();
 
@@ -101,6 +105,57 @@ export default function ProfilePage() {
     }
   }
 
+  function cancelEditFN() {
+    fullnameRef.current.value = data.fullname || "NOT ENTERED";
+    setEditFN(false);
+    setFullNameLoading(false);
+  }
+
+  function fullnamePencilClick() {
+    setEditFN(true);
+    if (data.fullname === null) {
+      fullnameRef.current.value = "";
+    }
+  }
+
+  async function confirmEditFN() {
+    const newUpiId = fullnameRef.current.value.trim();
+    if (newUpiId === "") {
+      setFullNameLoading("Invalid Full Name");
+      return;
+    }
+    setFullNameLoading(true);
+    try {
+      const res = await fetch(
+        import.meta.env.VITE_BACKEND_API + "/profile/changefullname",
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({
+            fullname: newUpiId,
+          }),
+          credentials: "include",
+        }
+      );
+      if (!res.ok) {
+        throw "failed";
+      }
+      if (newUpiId != "") {
+        data.fullname = newUpiId;
+        dispatch(universalActions.changeUserInfo({ fullname: newUpiId }));
+      } else {
+        data.fullname = null;
+      }
+      setFullNameLoading(false);
+      setEditFN(false);
+    } catch (err) {
+      console.log(err);
+      setFullNameLoading("Failed");
+    }
+  }
+
   return (
     <>
       <Helmet>
@@ -142,7 +197,9 @@ export default function ProfilePage() {
                         />
                         <span>Vault</span>
                       </span>
-                      <span>{data.vault.rec + data.vault.war}</span>
+                      <span>
+                        {data.vault.rec + data.vault.war + data.vault.doc}
+                      </span>
                     </div>
                     <div className="flex justify-between">
                       <span className="font-semibold flex items-center uppercase">
@@ -172,10 +229,90 @@ export default function ProfilePage() {
             </div>
             <div className="flex text-[11px] tab:text-[11px] tab:text-xs flex-col gap-y-6 sm:gap-y-8 max-w-[900px]">
               <div className="flex flex-col space-y-1 w-[280px] tab:w-[350px]">
+                <span className="font-semibold ">Full Name</span>
+                <div
+                  style={{ outline: !editFN ? "none" : "1.5px solid black" }}
+                  className="pl-4 tab:pl-6 items-center text-[13px] tab:text-sm font-medium rounded-sm flex bg-neutral-100 "
+                >
+                  <div className="relative flex flex-grow">
+                    <input
+                      defaultValue={data.fullname || "NOT ENTERED"}
+                      disabled={!editFN || fullNameLoading === true}
+                      ref={fullnameRef}
+                      style={{
+                        cursor: !editFN ? "default" : "auto",
+                      }}
+                      type="text"
+                      className=" py-[8px] w-full focus:outline-none disabled:text-neutral-500 text-[11px] tab:text-xs font-medium rounded-sm bg-neutral-100 "
+                    />
+
+                    {!editFN ? (
+                      <button
+                        onClick={fullnamePencilClick}
+                        className="absolute right-1 duration-500 rounded-md hover:bg-neutral-200 p-1 top-[50%] translate-y-[-50%]"
+                      >
+                        <img
+                          src={pencil}
+                          className="w-[14px] h-[14px] tab:w-[15px] tab:h-[15px] flex justify-center items-center"
+                          alt=""
+                        />
+                      </button>
+                    ) : (
+                      <div className="absolute top-[-10px] flex space-x-3 tab:space-x-4 right-2 translate-y-[-100%]">
+                        <button
+                          disabled={fullNameLoading === true}
+                          className="disabled:pointer-events-none disabled:opacity-50"
+                          onClick={cancelEditFN}
+                        >
+                          <img
+                            src={cross}
+                            className="w-[15px] hover:opacity-50 opacity-100 h-[15px] flex justify-center items-center"
+                            alt=""
+                          />
+                        </button>
+                        <button
+                          disabled={fullNameLoading === true}
+                          className="disabled:pointer-events-none disabled:opacity-50"
+                          onClick={confirmEditFN}
+                        >
+                          <img
+                            src={tick}
+                            className="w-[15px] hover:opacity-50 opacity-100 h-[15px] flex justify-center items-center"
+                            alt=""
+                          />
+                        </button>
+                        {fullNameLoading === true ? (
+                          <div className="absolute left-[-35px] translate-x-[-100%]">
+                            <img
+                              src={load}
+                              className="w-[15px] h-[15px] flex justify-center items-center"
+                              alt=""
+                            />
+                          </div>
+                        ) : fullNameLoading != true &&
+                          fullNameLoading != false ? (
+                          <div className="absolute flex text-nowrap text-red-500 text-[11px] tab:text-xs font-normal items-center left-[-55px] translate-x-[-100%]">
+                            <img
+                              src={exclamation}
+                              className="w-[12px] h-[12px] mr-[6px] tab:mr-2 flex justify-center items-center"
+                              alt=""
+                            />
+                            {fullNameLoading}
+                          </div>
+                        ) : null}
+                      </div>
+                    )}
+                  </div>
+                </div>
+              </div>
+              <div className="flex flex-col space-y-1 w-[280px] tab:w-[350px]">
                 <span className="font-semibold ">Username</span>
                 <div className="relative ">
-                  <div className="px-4 tab:px-6 py-1 tab:py-[6px] w-full text-neutral-500 text-[11px] tab:text-xs font-medium rounded-sm bg-neutral-100 ">
-                    {data.username}
+                  <div className="px-4 tab:px-6 py-1 flex tab:py-[6px] w-full items-center text-neutral-500 text-[11px] tab:text-xs font-medium rounded-sm bg-neutral-100 ">
+                    <span className="text-neutral-400 mr-[6px] text-sm tab:mr-4">
+                      @
+                    </span>
+                    <span>{data.username}</span>
                   </div>
                 </div>
               </div>
@@ -188,14 +325,16 @@ export default function ProfilePage() {
               <div className="flex flex-col space-y-1 w-[280px] tab:w-[350px]">
                 <span className="font-semibold ">User ID</span>
                 <div className="px-4 tab:px-6 py-1 tab:py-[6px] text-neutral-500 text-[11px] tab:text-xs font-medium rounded-sm bg-neutral-100 ">
-                  <span className="text-neutral-400 mr-2">#</span>
-                  <span className="text-[11px] tab:text-xs">{data.userId}</span>
+                  <span className="text-neutral-400 text-sm mr-2">#</span>
+                  <span className="ml-2 text-[11px] tab:text-xs">
+                    {data.userId}
+                  </span>
                 </div>
               </div>
               <div className="flex flex-col space-y-1 w-[280px] tab:w-[350px]">
                 <span className="font-semibold ">Joined On</span>
                 <div className="px-4 tab:px-6 py-1 tab:py-[6px] text-neutral-500 text-[11px] tab:text-xs font-medium rounded-sm bg-neutral-100 ">
-                  {formatDate(data.joinedOn)}
+                  {dateFormat(data.joinedOn)}
                 </div>
               </div>
               <div className="flex flex-col space-y-1 w-[280px] tab:w-[350px]">

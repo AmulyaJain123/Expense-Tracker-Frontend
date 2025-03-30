@@ -4,6 +4,7 @@ import right from "../../assets/right.png";
 import { getMonth } from "date-fns";
 import noEntries from "../../assets/empty.png";
 import LineGraph from "./LineGraph";
+import { EmptyBox } from "../../UIComponents/NoneFound";
 
 const monthArr = [
   "Jan",
@@ -122,8 +123,14 @@ export default function ExpensePattern() {
               </div>
             ) : (
               <div className="flex flex-grow text-sm flex-col justify-center items-center space-y-2">
-                <img src={noEntries} className="w-[60px] h-[60px]" alt="" />
-                <span>No Transactions Found</span>
+                <EmptyBox
+                  IconSize={50}
+                  gap={8}
+                  textSize={14}
+                  fontWeight={500}
+                  textColor="#d4d4d4"
+                  msg="No Transactions Found"
+                />
               </div>
             )}
           </div>

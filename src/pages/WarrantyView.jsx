@@ -17,6 +17,7 @@ import TagView from "../components/vaultViewComponents/TagView";
 import Warranty from "../components/vaultViewComponents/Warranty";
 import Renew from "../components/vaultViewComponents/Renew";
 import { Helmet } from "react-helmet-async";
+import { format } from "date-fns";
 
 export default function WarrantyView() {
   const data = useLoaderData();
@@ -28,6 +29,10 @@ export default function WarrantyView() {
     setModalOpen(1);
     setDeleting(false);
     setError(null);
+  }
+
+  function dateFormat(str) {
+    return format(new Date(str), "EEE, dd MMM yyyy");
   }
 
   async function deleteConfirmed() {
@@ -102,8 +107,8 @@ export default function WarrantyView() {
                             <span className="font-semibold">Created On</span>{" "}
                             <span className="pl-1">
                               <OnlyXChars
-                                x={15}
-                                text={data.details.createdOn}
+                                x={20}
+                                text={dateFormat(data.details.createdOn)}
                               />
                             </span>
                           </div>
@@ -113,7 +118,10 @@ export default function WarrantyView() {
                               Warranty Date
                             </span>{" "}
                             <span className="pl-1">
-                              <OnlyXChars x={15} text={data.details.warDate} />
+                              <OnlyXChars
+                                x={20}
+                                text={dateFormat(data.details.warDate)}
+                              />
                             </span>
                           </div>
                         </div>
@@ -131,7 +139,7 @@ export default function WarrantyView() {
                             <span className="">
                               <OnlyXChars
                                 x={20}
-                                text={data.details.expiry.date}
+                                text={dateFormat(data.details.expiry.date)}
                               />
                             </span>
                           </div>
@@ -160,41 +168,45 @@ export default function WarrantyView() {
                 </div>
                 <form
                   method="dialog"
-                  className="flex pb-4 sm:pr-4 justify-center sm:justify-end space-x-6"
+                  className="flex pb-4 sm:pr-4 justify-center sm:justify-between"
                 >
-                  {deleting ? (
-                    <div className="flex items-center">
-                      <img
-                        src={load}
-                        className="w-[25px] h-[25px] flex justify-center items-center"
-                        alt=""
-                      />
-                    </div>
-                  ) : null}
-                  {error ? (
-                    <div className="flex items-center space-x-4">
-                      <img
-                        src={exclamation}
-                        className="w-[20px] h-[20px] flex justify-center items-center"
-                        alt=""
-                      />{" "}
-                      <span className="text-red-500 tetx-lg ">{error}</span>
-                    </div>
-                  ) : null}
-                  <button
-                    type="button"
-                    onClick={closeHandle}
-                    className="p-2 px-4 rounded-lg bg-blue-500 text-white"
-                  >
-                    Cancel
-                  </button>
-                  <button
-                    className="p-2 px-4 rounded-lg bg-red-500 text-white"
-                    type="button"
-                    onClick={deleteConfirmed}
-                  >
-                    Confirm
-                  </button>
+                  <div className="pl-6 flex items-center">
+                    {deleting ? (
+                      <div className="flex items-center">
+                        <img
+                          src={load}
+                          className="w-[25px] h-[25px] flex justify-center items-center"
+                          alt=""
+                        />
+                      </div>
+                    ) : null}
+                    {error ? (
+                      <div className="flex items-center space-x-2">
+                        <img
+                          src={exclamation}
+                          className="w-[20px] h-[20px] flex justify-center items-center"
+                          alt=""
+                        />{" "}
+                        <span className="text-red-500 tetx-lg ">{error}</span>
+                      </div>
+                    ) : null}
+                  </div>
+                  <div className="flex gap-x-6">
+                    <button
+                      type="button"
+                      onClick={closeHandle}
+                      className="p-2 px-4 rounded-lg bg-blue-500 text-white"
+                    >
+                      Cancel
+                    </button>
+                    <button
+                      className="p-2 px-4 rounded-lg bg-red-500 text-white"
+                      type="button"
+                      onClick={deleteConfirmed}
+                    >
+                      Confirm
+                    </button>
+                  </div>
                 </form>
               </div>
             ) : modalOpen === 2 ? (
@@ -202,7 +214,7 @@ export default function WarrantyView() {
                 <h1 className="p-8  text-center text-lg sm:text-xl font-medium">
                   Successfully deleted the Warranty!!
                 </h1>
-                <div className="flex justify-center mt-6 ">
+                <div className="flex justify-center mt-2 ">
                   <img
                     src={deleted}
                     className="w-[100px] h-[100px] flex justify-center items-center"
@@ -210,9 +222,12 @@ export default function WarrantyView() {
                   />
                 </div>
                 <div className="mt-8 pb-12 flex justify-center">
-                  <RedirectingWindow add={"/vault/protected/view/warranty"}>
-                    <span>Redirecting to VAULT in </span>
-                  </RedirectingWindow>
+                  <Link
+                    to={"/vault/protected/view/warranty"}
+                    className="p-2 px-4 font-semibold rounded-lg text-[18px]  mr-6 sm:mr-0 bg-[#9d4edd] text-white"
+                  >
+                    Continue To Saved Warranties
+                  </Link>
                 </div>
               </div>
             ) : null}

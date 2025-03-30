@@ -7,6 +7,7 @@ import { useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import more from "../../assets/open-book.gif";
+import { EmptyBox } from "../../UIComponents/NoneFound";
 
 export default function Transactions() {
   const data = useSelector((state) => state.dashboard.data);
@@ -28,41 +29,42 @@ export default function Transactions() {
       </div>
       <div className="p-3 px-6 rounded-t-sm space-y-[6px] rounded-b-xl bg-[#f7ebfd]  ">
         <>
-          <header className="flex border-b-[1.5px] border-stone-500 pb-[6px] mr-4 space-x-2 flex-grow text-xs font-semibold text-stone-500 p-1 px-3">
+          <header className="flex border-b-[1.5px] border-stone-500 pb-[6px] mr-2 space-x-2 flex-grow text-xs font-semibold text-stone-500 p-1 px-3">
             <div className="flex-[0.14] flex space-x-3  ">
               <span className="flex justify-center items-center">Name</span>
             </div>
             <div className="flex-[0.14]  flex space-x-3 ">
               <span className="flex justify-center items-center">From</span>
             </div>
-            <div className="flex-[0.12]  flex space-x-3 ">
-              <span className="flex justify-center items-center">Amt</span>
-            </div>
+
             <div className=" flex-[0.14] flex space-x-3 ">
               <span className="flex justify-center items-center">To</span>
             </div>
-            <div className=" flex-[0.13] flex space-x-3 ">
+            <div className="flex-[0.14]  flex space-x-3 ">
+              <span className="flex justify-center items-center">Amt</span>
+            </div>
+            <div className=" flex-[0.12] flex space-x-3 ">
               <span className="flex justify-center items-center">Date</span>
             </div>
-            <div className=" flex-[0.13] flex space-x-3 ">
+            <div className=" flex-[0.12] flex space-x-3 ">
               <span className="flex justify-center items-center">Created</span>
             </div>
-            <div className="flex-[0.22]  flex space-x-3 ">
+            <div className="flex-[0.20]  flex space-x-3 ">
               <span className="flex justify-center items-center">Category</span>
             </div>
             <div className="w-[30px] flex space-x-3">Type</div>
           </header>
           <div className="flex flex-col pt-3 space-y-2 h-[350px] overflow-auto customScrollThin pr-2">
             {data != null && data.length === 0 ? (
-              <div className="flex flex-col mt-24 items-center space-y-3">
-                <img
-                  src={empty}
-                  className="h-[60px] w-[60px] flex justify-center items-center"
-                  alt=""
+              <div className="flex flex-col flex-grow items-center space-y-3">
+                <EmptyBox
+                  IconSize={50}
+                  gap={8}
+                  textSize={14}
+                  fontWeight={500}
+                  textColor="#d4d4d4"
+                  msg="No Transactions Found"
                 />
-                <p className="text-center text-stone-500 mt-16 text-sm font-medium">
-                  No Transactions Found
-                </p>
               </div>
             ) : (
               <>
@@ -98,18 +100,19 @@ export default function Transactions() {
                         <span className="flex-[0.14]   ">
                           {from.length > 15 ? from.substr(0, 15) + "..." : from}
                         </span>
-                        <span className="flex-[0.12]   ">
+
+                        <span className=" flex-[0.14]  ">
+                          {to.length > 15 ? to.substr(0, 15) + "..." : to}
+                        </span>
+                        <span className="flex-[0.14]   ">
                           {`${numeral(transactionAmount).format("0")}`.length >
                           8
                             ? formatVal(transactionAmount).substr(0, 8) + "..."
                             : formatVal(transactionAmount)}
                         </span>
-                        <span className=" flex-[0.14]  ">
-                          {to.length > 15 ? to.substr(0, 15) + "..." : to}
-                        </span>
-                        <span className=" flex-[0.13]  ">{date}</span>
-                        <span className=" flex-[0.13]  ">{createdOnDate}</span>
-                        <span className="flex-[0.22] capitalize">
+                        <span className=" flex-[0.12]  ">{date}</span>
+                        <span className=" flex-[0.12]  ">{createdOnDate}</span>
+                        <span className="flex-[0.20] capitalize">
                           {category.length === 3
                             ? `${
                                 category[1].length > 11

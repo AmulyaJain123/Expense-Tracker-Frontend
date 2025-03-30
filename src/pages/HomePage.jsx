@@ -47,8 +47,10 @@ export default function HomePage() {
             </span>
           </h2>
           <p className=" flex flex-col gap-1 mob:flex-row font-medium text-[14px] mob:text-[14px] tab:text-[13px] lap:text-[14px]  text-center mx-[20px]">
-            The{" "}
-            <span className="text-[#9d4edd] font-medium">Expense Tracker,</span>{" "}
+            <span>The</span>
+            <span className="text-[#9d4edd] font-medium">
+              Expense Tracker,
+            </span>{" "}
             <span className="text-[#9d4edd] font-medium">Digital Storage,</span>{" "}
             <span className="text-[#9d4edd] font-medium">
               Bill Splitter <span className="mob:inline hidden">-</span>
@@ -57,12 +59,23 @@ export default function HomePage() {
           </p>
         </header>
 
-        <div className="hidden smTab:flex flex-grow mob:mt-[7px] tab:mt-[15px] lap:mt-[20px] justify-center items-center">
+        <p className="text-center font-medium text-[14px] smTab:mx-[50px] tab:mx-[100px] lap:mx-[150px] tab:text-sm mt-6">
+          <span
+            style={{ fontFamily: "fredoka" }}
+            className="uppercase font-semibold"
+          >
+            BillBud
+          </span>{" "}
+          is a Expense Management Platform where you can make friends, chat and
+          manage expenses together in a fun, interactive way.
+        </p>
+
+        <div className="hidden smTab:flex flex-grow mob:mt-[7px] tab:mt-[8px] lap:mt-[12px] justify-center items-center">
           <SwipeAnimation />
         </div>
 
         <div className={`${styles.wrapper}`}>
-          <div className="flex flex-col mt-12 mob:mt-16 smTab:mt-0 px-[20px] smTab:mx-[50px] tab:mx-[100px] lap:mx-[150px] ">
+          <div className="flex flex-col mt-12 mob:mt-16 smTab:mt-8 px-[20px] smTab:mx-[50px] tab:mx-[100px] lap:mx-[150px] ">
             <p className="text-center flex flex-col space-y-2 font-medium text-[14px]  tab:text-sm">
               <p>
                 Managing finances can often be a daunting task, but with{" "}
@@ -131,6 +144,11 @@ export default function HomePage() {
           <h1 className="font-bold capitalize underline underline-offset-4 text-[18px] mob:text-[20px] tab:text-[24px] lap:text-[28px] text-center">
             Find me here
           </h1>
+
+          <p className="text-center font-medium text-[14px]  tab:text-sm mt-6">
+            Feel free to connect with me for feedback and suggestions on
+            following platforms.
+          </p>
 
           <div className="flex  justify-center  w-[80%] rounded-3xl mx-auto pt-[30px] pb-[70px] items-center mt-2 mob:mt-3 tab:mt-4 lap:mt-6 gap-[40px] mob:gap-[50px] tab:gap-[70px] lap:gap-20">
             <div className="text-lg relative flex justify-center items-center ">

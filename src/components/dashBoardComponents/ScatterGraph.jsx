@@ -5,6 +5,7 @@ import { getMonth } from "date-fns";
 import noEntries from "../../assets/empty.png";
 import LineGraph from "./LineGraph";
 import Scatter from "./Scatter";
+import { EmptyBox } from "../../UIComponents/NoneFound";
 
 export default function ScatterGraph() {
   const [val, setVal] = useState(null);
@@ -147,9 +148,15 @@ export default function ScatterGraph() {
                 ) : null}
               </div>
             ) : (
-              <div className="flex flex-grow text-sm flex-col min-h-[500px] justify-center items-center space-y-2">
-                <img src={noEntries} className="w-[60px] h-[60px]" alt="" />
-                <span>No Transactions Found</span>
+              <div className="flex flex-grow text-sm flex-col min-h-[400px] justify-center items-center space-y-2">
+                <EmptyBox
+                  IconSize={50}
+                  gap={8}
+                  textSize={14}
+                  fontWeight={500}
+                  textColor="#d4d4d4"
+                  msg="No Transactions Found"
+                />
               </div>
             )}
           </div>

@@ -31,6 +31,7 @@ export default function DashboardMenu() {
           Expense Distribution across Categories .
         </div>
       </div>
+
       <div className="flex bg-stone-100 py-2 px-2 border-b-2 border-stone-300 md:space-x-[50px] ">
         <div className="font-medium text-lg md:w-1/3">
           {" "}
@@ -40,6 +41,13 @@ export default function DashboardMenu() {
           See the Expense Distrbution of Incoming and Outgoing Expenses with
           respect to the amount and time along the years using a{" "}
           <span className="font-medium text-green-500">Scatter Plot</span>
+        </div>
+      </div>
+      <div className="flex bg-stone-100 py-2 px-2 border-b-2 border-stone-300 md:space-x-[50px] ">
+        <div className="font-medium text-lg md:w-1/3">Tag Distribution</div>
+        <div className="md:w-2/3">
+          Identify your Most Spend-On and Used Tags across your Transactions
+          using <span className="font-medium text-green-500">Pie Charts</span>.
         </div>
       </div>
       <div className="flex bg-stone-100 py-2 px-2 border-b-2 border-stone-300 md:space-x-[50px] ">

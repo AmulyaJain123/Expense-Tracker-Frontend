@@ -5,6 +5,7 @@ import { formatVal } from "../../util/algo";
 import { amountInRange } from "../../util/algo";
 import { useDispatch } from "react-redux";
 import { splitCreateActions } from "../../store/main";
+import { format } from "date-fns";
 
 const Textarea = styled.textarea`
   resize: none;
@@ -82,7 +83,7 @@ export default function CommonModalPart() {
           >
             {!tempInfo.billDate
               ? "NOT ENTERED"
-              : new Date(tempInfo.billDate).toDateString()}
+              : format(new Date(tempInfo.billDate), "EEE, dd MMM yyyy")}
           </span>
         </div>
       </div>

@@ -1,6 +1,6 @@
 import { processActivity } from "../util/loaderUtility";
 import { getTillExpiry } from "../util/algo";
-import { isAfter } from "date-fns";
+import { format, isAfter } from "date-fns";
 
 export async function profileLoader({ request }) {
     try {
@@ -117,6 +117,33 @@ export async function vaultWarrantyViewLoader({ request, params }) {
     }
 }
 
+export async function vaultDocViewLoader({ request, params }) {
+    try {
+        const res = await fetch(
+            import.meta.env.VITE_BACKEND_API + "/vault/getdocs",
+            {
+                method: "GET",
+                credentials: "include",
+            }
+        );
+        if (!res.ok) {
+            throw "500"
+        } else {
+            const result = await res.json();
+            for (let i of result) {
+                i.details.docDate ? i.details.docDate = new Date(new Date(i.details.docDate).toLocaleDateString()).toDateString() : i.details.docDate = 'NOT ENTERED';
+                i.details.createdOn = new Date(new Date(i.details.createdOn).toLocaleDateString()).toDateString();
+            }
+            result.reverse();
+            console.log(result);
+            return result
+        }
+    } catch (err) {
+        console.log(err);
+        throw "swr";
+    }
+}
+
 export async function receiptViewLoader({ request, params }) {
     try {
         const res = await fetch(
@@ -136,8 +163,38 @@ export async function receiptViewLoader({ request, params }) {
             throw "500"
         } else {
             const result = await res.json();
-            result.details.recDate = new Date(new Date(result.details.recDate).toLocaleDateString()).toDateString();
-            result.details.createdOn = new Date(new Date(result.details.createdOn).toLocaleDateString()).toDateString();
+            result.details.recDate = result.details.recDate ? format(new Date(result.details.recDate), 'EEE, dd MMM yyyy') : "NOT ENTERED";
+            result.details.createdOn = result.details.createdOn ? format(new Date(result.details.createdOn), 'EEE, dd MMM yyyy') : "NOT ENTERED";
+            console.log(result);
+            return result
+        }
+    } catch (err) {
+        console.log(err);
+        throw "swr";
+    }
+}
+
+export async function docViewLoader({ request, params }) {
+    try {
+        const res = await fetch(
+            import.meta.env.VITE_BACKEND_API + "/vault/getdoc",
+            {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json",
+                },
+                body: JSON.stringify({
+                    docId: params.docId
+                }),
+                credentials: "include",
+            }
+        );
+        if (!res.ok) {
+            throw "500"
+        } else {
+            const result = await res.json();
+            result.details.docDate = result.details.docDate ? format(new Date(result.details.docDate), 'EEE, dd MMM yyyy') : "NOT ENTERED";
+            result.details.createdOn = result.details.createdOn ? format(new Date(result.details.createdOn), 'EEE, dd MMM yyyy') : "NOT ENTERED";
             console.log(result);
             return result
         }
@@ -288,7 +345,7 @@ export async function sharedSplitViewLoader({ request, params }) {
 export async function transactionCreateLoader({ request, params }) {
     try {
         const res = await fetch(
-            import.meta.env.VITE_BACKEND_API + "/track/getcategories",
+            import.meta.env.VITE_BACKEND_API + "/track/getcategoriesntags",
             {
                 method: "GET",
                 credentials: "include",
@@ -299,7 +356,8 @@ export async function transactionCreateLoader({ request, params }) {
         } else {
             const result = await res.json();
             console.log(result);
-            return result
+            result.tags = result.tags.map((i) => ({ val: i, included: false }));
+            return result;
         }
     } catch (err) {
         console.log(err);
@@ -381,6 +439,35 @@ export async function dashboardLoader({ request, params }) {
                     return 1;
                 }
             });
+            console.log(result);
+            return result
+        }
+    } catch (err) {
+        console.log(err);
+        throw "swr";
+    }
+}
+
+export async function publicSplitViewLoader({ request, params }) {
+    try {
+        const res = await fetch(
+            import.meta.env.VITE_BACKEND_API + "/open/getsplit",
+            {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json",
+                },
+                body: JSON.stringify({
+                    userId: params.userId,
+                    splitId: params.splitId,
+                }),
+                credentials: "include",
+            }
+        );
+        if (!res.ok) {
+            throw "500"
+        } else {
+            const result = await res.json();
             console.log(result);
             return result
         }

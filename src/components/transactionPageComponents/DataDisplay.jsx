@@ -4,18 +4,17 @@ import { format, isAfter } from "date-fns";
 import numeral from "numeral";
 import empty from "../../assets/empty.png";
 import { useNavigate } from "react-router-dom";
+import OnlyXChars from "../../UIComponents/OnlyXChars";
+import exchange from "../../assets/reload.png";
+import { EmptyBox } from "../../UIComponents/NoneFound";
 
 export default function DataDisplay({ data }) {
   const [sorter, setSorter] = useState({ field: "date", order: "decreasing" });
   const [sortedData, setSortedData] = useState(
     JSON.parse(JSON.stringify(data))
   );
-  const [selectedField, setSelectedField] = useState("date");
   const navigate = useNavigate();
-  const dialogRef = useRef();
-  const fieldRef = useRef();
-  const orderRef = useRef();
-
+  const [hovered, setHovered] = useState(null);
   useEffect(() => {
     const arr = JSON.parse(JSON.stringify(data));
     arr.sort((a, b) => {
@@ -275,9 +274,37 @@ export default function DataDisplay({ data }) {
     setSortedData(arr);
   }, [sorter]);
 
+  function hoverOver(transaction, event) {
+    console.log(event);
+    const parent = document.querySelector(`#tran-${transaction.transactionId}`);
+    console.log(parent, parent.getBoundingClientRect());
+    const ele = parent.getBoundingClientRect();
+    const dad = document.querySelector("#tran-dad");
+    const dadele = dad.getBoundingClientRect();
+    console.log(
+      dadele,
+      dad.scrollTop,
+      Math.abs(dad.scrollHeight - dad.scrollTop),
+      dadele.top - event.clientY + dad.clientHeight
+    );
+    if (event.clientY - dadele.top >= dad.clientHeight - 100) {
+      setHovered([
+        transaction,
+        ele.y - dadele.y - ele.height + dad.scrollTop - ele.height - 25,
+        ele.x - dadele.x + 20,
+      ]);
+    } else {
+      setHovered([
+        transaction,
+        ele.y - dadele.y + ele.height + dad.scrollTop,
+        ele.x - dadele.x + 20,
+      ]);
+    }
+  }
+
   return (
     <>
-      <header className="flex border-b-[1px] sm:border-b-[1.5px] border-stone-500 pb-[6px] sm:pb-2 mr-2 sm:mr-3 space-x-2 sm:space-x-3 flex-grow text-[11px] tab:text-xs font-semibold text-stone-500 p-1 px-2 sm:px-3">
+      <header className="flex relative border-b-[1px] sm:border-b-[1.5px] border-stone-500 pb-[6px] sm:pb-2 mr-2 sm:mr-3 gap-x-2 sm:gap-x-3 flex-grow text-[11px] tab:text-xs font-semibold text-stone-500 p-1 px-2 sm:px-3">
         <div className="flex-[14]  flex space-x-2 sm:space-x-3  ">
           <span className="flex justify-center items-center">Name</span>
           <div className="flex flex-col justify-center pl-0">
@@ -336,6 +363,36 @@ export default function DataDisplay({ data }) {
             </button>
           </div>
         </div>
+
+        <div className=" flex-[14] hidden lap:flex space-x-3 ">
+          <span className="flex justify-center items-center">To</span>
+          <div className="flex flex-col justify-center pl-0">
+            <button
+              onClick={() => setSorter({ field: "to", order: "increasing" })}
+              className=""
+            >
+              <i
+                className={`${
+                  sorter.field === "to" && sorter.order === "increasing"
+                    ? "fi fi-sr-sort-down"
+                    : "fi fi-rr-sort-down"
+                } rotate-180 text-[11px] tab:text-xs flex justify-center items-center`}
+              ></i>
+            </button>
+            <button
+              onClick={() => setSorter({ field: "to", order: "decreasing" })}
+              className=""
+            >
+              <i
+                className={`${
+                  sorter.field === "to" && sorter.order === "decreasing"
+                    ? "fi fi-sr-sort-down"
+                    : "fi fi-rr-sort-down"
+                }  text-[11px] tab:text-xs flex justify-center items-center`}
+              ></i>
+            </button>
+          </div>
+        </div>
         <div className="flex-[14] flex space-x-3 ">
           <span className="flex justify-center items-center">Amt</span>
           <div className="flex flex-col justify-center pl-0">
@@ -362,35 +419,6 @@ export default function DataDisplay({ data }) {
               <i
                 className={`${
                   sorter.field === "amount" && sorter.order === "decreasing"
-                    ? "fi fi-sr-sort-down"
-                    : "fi fi-rr-sort-down"
-                }  text-[11px] tab:text-xs flex justify-center items-center`}
-              ></i>
-            </button>
-          </div>
-        </div>
-        <div className=" flex-[14] hidden lap:flex space-x-3 ">
-          <span className="flex justify-center items-center">To</span>
-          <div className="flex flex-col justify-center pl-0">
-            <button
-              onClick={() => setSorter({ field: "to", order: "increasing" })}
-              className=""
-            >
-              <i
-                className={`${
-                  sorter.field === "to" && sorter.order === "increasing"
-                    ? "fi fi-sr-sort-down"
-                    : "fi fi-rr-sort-down"
-                } rotate-180 text-[11px] tab:text-xs flex justify-center items-center`}
-              ></i>
-            </button>
-            <button
-              onClick={() => setSorter({ field: "to", order: "decreasing" })}
-              className=""
-            >
-              <i
-                className={`${
-                  sorter.field === "to" && sorter.order === "decreasing"
                     ? "fi fi-sr-sort-down"
                     : "fi fi-rr-sort-down"
                 }  text-[11px] tab:text-xs flex justify-center items-center`}
@@ -467,18 +495,20 @@ export default function DataDisplay({ data }) {
           Type
         </div>
       </header>
-      <div className="flex flex-col pt-2 sm:pt-3 space-y-2 sm:h-[500px] min-h-[300px] sm:overflow-auto customScrollThin pr-1 sm:pr-[6px]">
+
+      <div
+        id="tran-dad"
+        className="flex relative flex-col pt-2 sm:pt-3 space-y-2 sm:h-[500px] min-h-[300px] sm:overflow-auto customScrollThin pr-1 sm:pr-[6px]"
+      >
         {sortedData.length === 0 ? (
-          <div className="flex flex-col mt-[16px] sm:mt-24 items-center space-y-3 sm:space-y-4">
-            <img
-              src={empty}
-              className="h-[75px] w-[75px] sm:h-[100px] sm:w-[100px] flex justify-center items-center"
-              alt=""
-            />
-            <p className="text-center text-stone-500 mt-8 sm:mt-16 text-[11px] sm:text-[13px] font-medium">
-              No Transactions Found
-            </p>
-          </div>
+          <EmptyBox
+            IconSize={60}
+            gap={12}
+            textSize={16}
+            fontWeight={500}
+            textColor="#cbd5e1"
+            msg="No Transactions Found"
+          />
         ) : (
           <>
             {sortedData.map((i, ind) => {
@@ -502,8 +532,11 @@ export default function DataDisplay({ data }) {
               return (
                 <div
                   key={ind}
+                  id={`tran-${i.transactionId}`}
                   onClick={() => navigate(`view/${i.transactionId}`)}
-                  className="flex hover:opacity-60 cursor-pointer rounded-sm text-[10px] tab:text-[11px] border-b-[1px] sm:border-b-[1.5px] border-[#adb5bd] bg-[#f8f9fa] text-black space-x-[8px] sm:space-x-[10px] p-1 py-1 sm:py-[6px] px-2 sm:px-3"
+                  onMouseEnter={(event) => hoverOver(i, event)}
+                  onMouseLeave={() => setHovered(null)}
+                  className="flex hover:opacity-70 cursor-pointer rounded-sm text-[10px] tab:text-[11px] border-b-[1px] sm:border-b-[1.5px] border-[#adb5bd] bg-[#f8f9fa] text-black space-x-[8px] sm:space-x-[10px] p-1 py-1 sm:py-[6px] px-2 sm:px-3"
                 >
                   <div className="flex flex-grow space-x-[8px] sm:space-x-[10px]">
                     <span className="flex-[14]  ">
@@ -514,13 +547,14 @@ export default function DataDisplay({ data }) {
                     <span className="flex-[14]  hidden lap:inline ">
                       {from.length > 15 ? from.substr(0, 15) + "..." : from}
                     </span>
+
+                    <span className=" flex-[14] hidden lap:inline ">
+                      {to.length > 15 ? to.substr(0, 15) + "..." : to}
+                    </span>
                     <span className="flex-[14]   ">
                       {`${numeral(transactionAmount).format("0")}`.length > 8
                         ? formatVal(transactionAmount).substr(0, 8) + "..."
                         : formatVal(transactionAmount)}
-                    </span>
-                    <span className=" flex-[14] hidden lap:inline ">
-                      {to.length > 15 ? to.substr(0, 15) + "..." : to}
                     </span>
                     <span className=" flex-[12]  hidden smMob:inline">
                       {date}
@@ -556,11 +590,87 @@ export default function DataDisplay({ data }) {
                   >
                     {transactionType === "outgoing" ? "OUT" : "IN"}
                   </span>
+                  <div
+                    style={{
+                      display:
+                        hovered && hovered.transactionId == i.transactionId
+                          ? "flex"
+                          : "none",
+                    }}
+                    className="absolute  top-0 left-[-10px] w-full h-full px-1 items-center bg-stone-50"
+                  >
+                    <div className="flex items-center flex-1 gap-x-2 pl-1">
+                      {i.tags.length != 0 ? (
+                        i.tags.slice(0, 5).map((i) => {
+                          return (
+                            <span className="p-[2px] px-1 h-fit text-xs rounded-sm bg-[#dc93f6] text-black font-medium">
+                              {i}
+                            </span>
+                          );
+                        })
+                      ) : (
+                        <span className="p-[2px] px-1 h-fit text-xs rounded-sm bg-neutral-200 text-neutral-500 font-medium">
+                          No Tags
+                        </span>
+                      )}
+                    </div>
+
+                    <div className="flex items-center flex-1 gap-x-2 pl-1">
+                      <span className="text-[11px] text-black">
+                        <OnlyXChars
+                          text={i.desc === "" ? "None" : i.desc}
+                          x={20}
+                        />
+                      </span>
+                    </div>
+                  </div>
                 </div>
               );
             })}
           </>
         )}
+        {hovered ? (
+          <div
+            style={{
+              top: `${hovered[1]}px`,
+              left: `${hovered[2]}px`,
+              width: "calc( 100% - 46px )",
+            }}
+            className="absolute flex flex-col text-[11px] gap-y-2 bg-purple-200 shadow-xl rounded-lg w-full p-[6px] px-3 "
+          >
+            <div className="flex gap-x-2 items-center">
+              <span className="font-medium text-black mr-2 text-[13px]">
+                First 5 Tags{" "}
+              </span>
+              {hovered[0].tags?.length != 0 ? (
+                hovered[0].tags.slice(0, 5).map((i) => {
+                  return (
+                    <span className="p-1 px-2 rounded-md font-medium bg-[#9f21e3] text-white">
+                      {i}
+                    </span>
+                  );
+                })
+              ) : (
+                <span className="p-1 px-2 rounded-md font-medium bg-neutral-100 text-black">
+                  No Tags
+                </span>
+              )}
+            </div>
+            <div className="flex gap-x-2 items-center">
+              <span className="font-medium text-black mr-2 text-[13px]">
+                Description{" "}
+              </span>
+              <span className="text-black">
+                {hovered[0].desc === "" ? "None" : hovered[0].desc}
+              </span>
+            </div>
+          </div>
+        ) : null}
+      </div>
+
+      <div className="pt-2 flex text-sm gap-2 justify-end pr-2">
+        <span className="font-semibold ">Transactions Displayed:</span>
+        <span>{data.length}</span>
       </div>
     </>
   );

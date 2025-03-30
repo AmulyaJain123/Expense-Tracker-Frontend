@@ -6,7 +6,7 @@ flex flex-col text-center sm:text-start space-y-4 sm:space-y-0 items-center sm:i
 
 export default function FeaturesMenu() {
   return (
-    <div className="mt-12 flex flex-col space-y-2">
+    <div className="mt-6 flex flex-col space-y-2">
       <div className="flex flex-col text-center sm:text-start space-y-2 sm:space-y-0 items-center sm:items-start sm:flex-row bg-stone-100 py-3 px-2 border-b-2 border-stone-300 sm:space-x-[50px]   mx-[30px] sm:mx-[50px]">
         <div className="font-medium text-[14px] sm:w-[250px]">
           Create SPLITS

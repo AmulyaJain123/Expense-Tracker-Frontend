@@ -83,8 +83,8 @@ export default function Stats({ data }) {
                         <span className="w-[22px] sm:w-[27px] rounded-[4px] sm:rounded-md bg-stone-100 h-[22px] sm:h-[27px] flex justify-center items-center">
                           {index + 1}
                         </span>
-                        <span className="flex rounded-[4px] sm:rounded-md  bg-stone-100 flex-grow items-center pl-[6px] sm:pl-3">
-                          <span className="sm:w-[30%]">
+                        <span className="flex rounded-[4px] sm:rounded-md justify-between  bg-stone-100 flex-grow items-center px-[6px] sm:px-3">
+                          <span className="sm:w-[33%]">
                             <OnlyXChars x={15} text={i.name} />
                           </span>
                           <span
@@ -96,7 +96,7 @@ export default function Stats({ data }) {
                                   ? "red"
                                   : "black",
                             }}
-                            className="hidden sm:inline flex-grow w-[75px] text-center uppercase font-semibold text-stone-500"
+                            className="hidden sm:inline flex-grow  text-center uppercase font-semibold text-stone-500"
                           >
                             {i.val < 0
                               ? "Debitor"
@@ -113,7 +113,7 @@ export default function Stats({ data }) {
                                   ? "red"
                                   : "black",
                             }}
-                            className="px-[6px] sm:px-3 flex-grow text-right font-medium"
+                            className=" sm:w-[33%] text-right font-medium"
                           >
                             {formatVal(Math.abs(i.val))}
                           </span>

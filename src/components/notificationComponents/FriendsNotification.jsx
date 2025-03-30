@@ -1,72 +1,131 @@
 import { format } from "date-fns";
 import friendsIcon from "../../assets/sideNavImages/friends-solid.png";
+import splitIcon from "../../assets/sideNavImages/split-solid.png";
+import logoutIcon from "../../assets/login.png";
 import userIcon from "../../assets/user.png";
 import { Link } from "react-router-dom";
+import cross2 from "../../assets/cross2.png";
+import { useState } from "react";
 
-export default function FriendsNotification({ notification, newStatus }) {
+export default function FriendsNotification({
+  notification,
+  newStatus,
+  setOpenModal,
+  onlyDisplay = false,
+}) {
   return (
-    <div className="flex flex-col">
-      <div className="flex relative gap-x-3 bg-slate-200 rounded-xl justify-between p-2">
-        {newStatus ? (
-          <div className="p-1 rounded-md font-semibold text-[9px] bg-[#7fffd4] z-[20] absolute -right-[6px] -top-2">
-            NEW
-          </div>
-        ) : null}
-        <div className="flex space-x-8 ">
-          <Link to={"/friends"}>
-            <div className="p-2 bg-slate-100 group rounded-xl flex justify-center items-center">
-              <img
-                src={friendsIcon}
-                className="w-[25px] group-hover:scale-110 duration-700 h-[25px]"
-                alt=""
-              />
-            </div>
-          </Link>
-          <div className="flex gap-x-3">
-            {/* <div className="font-semibold flex mr-4 items-center">
-              {notification.topic === "friendRequestRecieved"
-                ? "Friend Request Recieved"
-                : notification.topic === "friendRemoved"
-                ? "Removed From Friends"
-                : notification.topic === "friendRequestAccepted"
-                ? "Friend Request Accepted"
-                : notification.topic === "friendRequestRejected"
-                ? "Friend Request Rejected"
-                : null}
-            </div> */}
-            <div className="flex  bg-white rounded-md pr-2">
-              <div className="p-[6px] flex justify-center items-center">
+    <>
+      <div className="rounded-lg relative bg-slate-200 p-2 flex flex-col w-[380px] h-[130px]">
+        <div className="flex   gap-x-2">
+          {[
+            "friendRequestRecieved",
+            "friendRemoved",
+            "friendRequestAccepted",
+            "friendRequestRejected",
+          ].includes(notification.topic) ? (
+            <Link to={"/friends"}>
+              <div className="w-[38px] h-[38px]  bg-[#dc93f6] group rounded-md flex justify-center items-center">
                 <img
-                  src={notification.data.profilePic || userIcon}
-                  className="w-[22px] h-[22px] rounded-full"
+                  src={friendsIcon}
+                  className="w-[22px] group-hover:scale-110 duration-700 h-[22px]"
                   alt=""
                 />
               </div>
-              <div className="flex text-[10px] flex-col justify-center">
-                <span>{notification.data.username}</span>
-                <span>{notification.data.userId}</span>
+            </Link>
+          ) : ["splitShared"].includes(notification.topic) ? (
+            <Link to={"/split/protected/view/shared"}>
+              <div className="w-[38px] h-[38px]  bg-[#dc93f6] group rounded-md flex justify-center items-center">
+                <img
+                  src={splitIcon}
+                  className="w-[22px] group-hover:scale-110 duration-700 h-[22px]"
+                  alt=""
+                />
+              </div>
+            </Link>
+          ) : ["loginActivityDetected"].includes(notification.topic) ? (
+            <div>
+              <div className="w-[38px] h-[38px]  bg-[#dc93f6] group rounded-md flex justify-center items-center">
+                <img
+                  src={logoutIcon}
+                  className="w-[22px] group-hover:scale-110 duration-700 h-[22px]"
+                  alt=""
+                />
               </div>
             </div>
-            <div className="font-medium text-sm flex items-center">
-              {notification.topic === "friendRequestRecieved"
-                ? "Sent you a Friend Request."
-                : notification.topic === "friendRemoved"
-                ? "Removed you from his Friends List."
-                : notification.topic === "friendRequestAccepted"
-                ? "Accepted your Friend Request."
-                : notification.topic === "friendRequestRejected"
-                ? "Rejected your Friend Request."
-                : null}
-            </div>
+          ) : null}
+
+          <span className="font-semibold text-sm text-[#000]">
+            {notification.topic === "friendRequestRecieved"
+              ? "New Friend Request Recieved"
+              : notification.topic === "friendRemoved"
+              ? "Removed From Friends"
+              : notification.topic === "friendRequestAccepted"
+              ? "Friend Request Accepted"
+              : notification.topic === "friendRequestRejected"
+              ? "Friend Request Rejected"
+              : notification.topic === "splitShared"
+              ? "SPLIT Shared"
+              : notification.topic === "loginActivityDetected"
+              ? "Sign In Attempt Detected"
+              : null}
+          </span>
+        </div>
+        <div className="flex flex-grow my-2 text-xs rounded-md ">
+          <div>
+            {notification.topic === "friendRequestRecieved" ? (
+              <>
+                <span className=" font-semibold">{`@${notification.data.username}`}</span>{" "}
+                <span>
+                  sent you a friend request. Go to Friends to accept or deny.
+                </span>
+              </>
+            ) : notification.topic === "friendRemoved" ? (
+              <>
+                <span className=" font-semibold">{`@${notification.data.username}`}</span>{" "}
+                <span>removed you from his friends list.</span>
+              </>
+            ) : notification.topic === "friendRequestAccepted" ? (
+              <>
+                <span className=" font-semibold">{`@${notification.data.username}`}</span>{" "}
+                <span>just accepted your friend request.</span>
+              </>
+            ) : notification.topic === "friendRequestRejected" ? (
+              <>
+                <span className=" font-semibold">{`@${notification.data.username}`}</span>{" "}
+                <span>rejected your friend request.</span>
+              </>
+            ) : notification.topic === "splitShared" ? (
+              <>
+                <span className=" font-semibold">{`@${notification.data.username}`}</span>{" "}
+                <span>shared a new SPLIT with you titled as</span>{" "}
+                <span className=" font-semibold">{`${notification.data.splitName}`}</span>
+              </>
+            ) : notification.topic === "loginActivityDetected" ? (
+              <>
+                <span>A Login Attempt with your email was made at </span>{" "}
+                <span className=" font-semibold">{`${notification.data.timestamp}`}</span>
+              </>
+            ) : null}
           </div>
         </div>
+        <div className="flex  text-[11px] items-center pr-1 justify-between">
+          {newStatus ? (
+            <div className="p-1 px-[6px] rounded-md font-semibold text-[9px] bg-[#7fffd4] ">
+              NEW
+            </div>
+          ) : (
+            <button onClick={() => !onlyDisplay && setOpenModal(notification)}>
+              <img src={cross2} className="w-[20px] h-[20px]" alt="" />{" "}
+            </button>
+          )}
+          <span>
+            {format(
+              new Date(notification.recieveDate),
+              "hh:mm a | EEE, dd MMM yyyy"
+            )}
+          </span>
+        </div>
       </div>
-      <span className="text-[11px] pr-2 mt-[2px] ml-auto">
-        {format(
-          new Date(notification.recieveDate),
-          "hh:mm a | EEE MMM dd yyyy"
-        )}
-      </span>
-    </div>
+    </>
   );
 }

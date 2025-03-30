@@ -51,13 +51,13 @@ export default function SplitHome() {
           </div>
           <SplitHomeMenu />
 
-          <div className="flex flex-col mt-[80px] sm:mt-[100px]">
+          <div className="flex flex-col mt-[40px] sm:mt-[60px]">
             <div className="flex justify-between items-center p-2 px-4 rounded-xl bg-slate-100 mx-[30px] sm:mx-[80px]">
-              <span className="text-[25px] sm:text-[30px] ml-[10px] sm:ml-[20px] font-bold">
-                SPLITS
+              <span className="text-[25px] sm:text-[30px] ml-[5px] sm:ml-[10px] font-bold">
+                ACTIONS
               </span>
             </div>
-            <div className="flex mt-[15px] p-6 rounded-xl pb-12 space-x-6 bg-slate-100 mx-[30px] sm:mx-[80px]">
+            <div className="flex mt-[15px] p-4 rounded-xl pb-6 space-x-6 bg-slate-100 mx-[30px] sm:mx-[80px]">
               {!userDetails ? (
                 <div className="flex flex-col flex-grow justify-center items-center">
                   <img

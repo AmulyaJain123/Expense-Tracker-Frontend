@@ -1,6 +1,6 @@
 import { useState, useRef, useEffect } from "react";
 import ErrorElement from "./ErrorElement";
-import { billAmountValidate } from "../../util/algo";
+import { billAmountValidate, dateFormat } from "../../util/algo";
 import { forwardRef, useImperativeHandle } from "react";
 import { useDispatch } from "react-redux";
 import { vaultActions } from "../../store/main";
@@ -287,12 +287,9 @@ const WarrantyDetails = forwardRef(function WarrantyDetails({ ...prop }, ref) {
               REQ
             </span>
           </div>
-          <input
-            type="text"
-            value={currDate}
-            disabled
-            className="flex p-2 px-3 text-xs text-center mx-3 mt-[6px] bg-slate-100"
-          />
+          <div className="flex p-2 px-3 text-xs justify-center text-center mx-3 mt-[6px] bg-slate-100">
+            {dateFormat(currDate)}
+          </div>
         </div>
         <div className="flex flex-col">
           <div className="text-base relative font-semibold flex justify-center">
@@ -311,9 +308,10 @@ const WarrantyDetails = forwardRef(function WarrantyDetails({ ...prop }, ref) {
             />
             <span
               style={{ color: wardate ? "#000" : "#737373" }}
-              className="absolute left-0 h-auto p-2 px-4 pl-6 flex items-center top-0 w-[70%] bg-slate-100"
+              onClick={() => warDateRef.current.showPicker()}
+              className="absolute hover:cursor-pointer left-0 h-auto p-2 px-4 pl-6 flex items-center top-0 w-[70%] bg-slate-100"
             >
-              {wardate ? new Date(wardate).toDateString() : "NOT ENTERED"}
+              {wardate ? dateFormat(wardate) : "NOT ENTERED"}
             </span>
           </div>
 
@@ -405,11 +403,10 @@ const WarrantyDetails = forwardRef(function WarrantyDetails({ ...prop }, ref) {
                     />
                     <span
                       style={{ color: expDate ? "#000" : "#737373" }}
-                      className="absolute left-0 h-auto p-2 px-3 pl-6 flex items-center top-0 w-[70%] bg-slate-100"
+                      onClick={() => expDateRef.current.showPicker()}
+                      className="absolute hover:cursor-pointer left-0 h-auto p-2 px-3 pl-6 flex items-center top-0 w-[70%] bg-slate-100"
                     >
-                      {expDate
-                        ? new Date(expDate).toDateString()
-                        : "NOT ENTERED"}
+                      {expDate ? dateFormat(expDate) : "NOT ENTERED"}
                     </span>
                   </div>
 
@@ -483,7 +480,7 @@ const WarrantyDetails = forwardRef(function WarrantyDetails({ ...prop }, ref) {
           ) : null}
         </div>
       </div>
-      <p className="px-3 text-xs mt-4 text-center">
+      <p className="px-3 text-xs mt-8 text-center">
         *Fields marked with{" "}
         <span className="px-2 py-1 font-medium text-neutral-500 bg-neutral-100 rounded-md mx-1">
           REQ

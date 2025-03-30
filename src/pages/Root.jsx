@@ -4,12 +4,17 @@ import SideNav from "../components/SideNav";
 import TopNav from "../components/TopNav";
 import { useNavigation } from "react-router-dom";
 import { useDispatch } from "react-redux";
-import { universalActions, realtimeActions } from "../store/main";
+import {
+  universalActions,
+  realtimeActions,
+  messagesActions,
+} from "../store/main";
 import { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
 import styles from "./Root.module.css";
 import load from "../assets/loader.gif";
 import notificationSound from "../assets/sounds/notification.wav";
+import messageSound from "../assets/sounds/message.mp3";
 
 import { createConnection } from "../util/socket";
 
@@ -18,6 +23,9 @@ export default function Root() {
   const dispatch = useDispatch();
   const userInfo = useSelector((state) => state.universal.userInfo);
   const [userFetch, setUserFetch] = useState(true);
+  const socketConnected = useSelector(
+    (state) => state.realtime.socketConnected
+  );
 
   function playSound(sound) {
     new Audio(sound).play();
@@ -25,9 +33,18 @@ export default function Root() {
 
   useEffect(() => {
     const socket = createConnection();
+    if (!socketConnected) {
+      socket.connect();
+    }
     socket.on("connect", () => {
       socket.emit("test", "Hello Connect Formed ");
       console.log(socket.id);
+      dispatch(realtimeActions.setSocketConnected(true));
+    });
+
+    socket.on("disconnect", () => {
+      console.log("disconnected");
+      dispatch(realtimeActions.setSocketConnected(false));
     });
 
     socket.on("new-notification", (notification) => {
@@ -36,10 +53,41 @@ export default function Root() {
       dispatch(realtimeActions.pushNotification(notification));
     });
 
-    console.log("Hello", socket.listerners);
+    socket.on("new-chat-message", (chat) => {
+      console.log(chat);
+      playSound(messageSound);
+      dispatch(messagesActions.unshiftChats(chat));
+      dispatch(messagesActions.addMessage({ chatId: chat.chatId, no: 1 }));
+    });
+
+    socket.on("new-message", ({ chatId, msg }) => {
+      playSound(messageSound);
+      dispatch(messagesActions.addMessageInChat({ chatId, message: msg }));
+      dispatch(messagesActions.addMessage({ chatId, no: 1 }));
+    });
+
+    socket.on("message-seen", (chat) => {
+      console.log(chat);
+      dispatch(messagesActions.overwriteChat(chat));
+    });
+
+    socket.on("socket-activity", (val) => {
+      dispatch(realtimeActions.setSocketActive(val));
+      dispatch(messagesActions.clearMessageFeature());
+      if (!val) {
+        socket.removeAllListeners([
+          "new-chat-message",
+          "new-message",
+          "message-seen",
+        ]);
+      }
+    });
+
+    console.log("Hello", socket.listeners);
 
     return () => {
       socket.removeAllListeners();
+      socket.close();
     };
   }, []);
 
@@ -70,6 +118,7 @@ export default function Root() {
           console.log(result);
           dispatch(universalActions.setUserInfo(result[0]));
           dispatch(realtimeActions.setNotifications(result[1]));
+          dispatch(messagesActions.setMessages(result[2]));
           setUserFetch(false);
         } else {
           throw "error";

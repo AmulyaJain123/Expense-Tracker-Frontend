@@ -21,8 +21,10 @@ import ShareModal from "./ShareModal";
 import Shared from "./Shared";
 import { Helmet } from "react-helmet-async";
 import { utils, writeFile } from "xlsx";
+import { useLocation } from "react-router-dom";
+import { ErrorText } from "../../UIComponents/NoneFound";
 
-export default function SavedSplitView() {
+export default function SavedSplitView({ onlyView }) {
   const data = useLoaderData();
   const [status, setStatus] = useState(0);
   const navigate = useNavigate();
@@ -31,6 +33,9 @@ export default function SavedSplitView() {
   const [modalOpen, setModalOpen] = useState(false);
   const [error, setError] = useState(false);
   const modalRef = useRef();
+  const [showLink, setShowLink] = useState(true);
+  const location = useLocation();
+  const userDetails = useSelector((state) => state.universal.userInfo);
 
   function deleteHandle() {
     setModalOpen(1);
@@ -39,6 +44,13 @@ export default function SavedSplitView() {
   }
 
   console.log(data);
+
+  function copyLink() {
+    navigator.clipboard.writeText(
+      `${window.location.origin}/unprotected/split/${userDetails.userId}/${data.splitId}`
+    );
+    setShowLink(false);
+  }
 
   function downloadFile() {
     const originalTransactions = data.split[0].map((i) => ({
@@ -162,10 +174,10 @@ export default function SavedSplitView() {
               {modalOpen === 1 ? (
                 <div className="rounded-xl w-[500px] bg-stone-100">
                   <h1 className="p-8  text-center text-xl font-medium">
-                    Are you sure you want to delete the following SPLIT?
+                    Are you sure you want to delete the SPLIT?
                   </h1>
                   <div className="flex  justify-center mt-2 mb-0 space-x-[120px] px-[50px]">
-                    <div className="origin-top scale-75 rounded-xl shadow-xl">
+                    {/* <div className="origin-top scale-75 rounded-xl shadow-xl">
                       <div className="flex h-[200px] rounded-xl bg-slate-100 ">
                         <div className="rounded-l-xl w-[100px] striped"></div>
                         <div className="flex flex-col space-y-2 pl-4">
@@ -238,7 +250,7 @@ export default function SavedSplitView() {
                           </div>
                         </div>
                       </div>
-                    </div>
+                    </div> */}
                   </div>
                   <div className="flex sm:hidden h-[25px] justify-center mb-6 space-x-2">
                     {deleting ? (
@@ -250,16 +262,7 @@ export default function SavedSplitView() {
                         />
                       </div>
                     ) : null}
-                    {error ? (
-                      <div className="flex items-center space-x-2">
-                        <img
-                          src={exclamation}
-                          className="w-[20px] h-[20px] flex justify-center items-center"
-                          alt=""
-                        />{" "}
-                        <span className="text-red-500 tetx-lg ">{error}</span>
-                      </div>
-                    ) : null}
+                    {error ? <ErrorText IconSize={20} textSize={15} /> : null}
                   </div>
                   <form
                     method="dialog"
@@ -275,13 +278,8 @@ export default function SavedSplitView() {
                       </div>
                     ) : null}
                     {error ? (
-                      <div className="hidden sm:flex items-center space-x-2">
-                        <img
-                          src={exclamation}
-                          className="w-[20px] h-[20px] flex justify-center items-center"
-                          alt=""
-                        />{" "}
-                        <span className="text-red-500 tetx-lg ">{error}</span>
+                      <div className="hidden sm:flex items-center ">
+                        <ErrorText IconSize={20} textSize={15} />
                       </div>
                     ) : null}
                     <button
@@ -302,20 +300,17 @@ export default function SavedSplitView() {
                 </div>
               ) : modalOpen === 2 ? (
                 <div className="rounded-xl sm:w-[500px] bg-stone-100">
-                  <h1 className="p-8  text-center text-lg sm:text-xl font-medium">
+                  <h1 className="p-8 pb-0 text-center text-lg sm:text-xl font-medium">
                     Successfully deleted the SPLIT!!
                   </h1>
-                  <div className="flex justify-center mt-6 ">
-                    <img
-                      src={deleted}
-                      className="w-[100px] h-[100px] flex justify-center items-center"
-                      alt=""
-                    />
-                  </div>
-                  <div className="mt-8 pb-12 flex justify-center">
-                    <RedirectingWindow add={"/split/protected/view/saved"}>
-                      <span>Redirecting to Saved SPLITS in </span>
-                    </RedirectingWindow>
+
+                  <div className="mt-8 pb-6 flex justify-center">
+                    <Link
+                      to={"/split/protected/view/saved"}
+                      className="p-2 px-4 rounded-lg mr-6 sm:mr-0 bg-blue-500 text-white"
+                    >
+                      Continue
+                    </Link>
                   </div>
                 </div>
               ) : null}
@@ -330,12 +325,22 @@ export default function SavedSplitView() {
             <div className="flex p-2 sm:p-3  rounded-2xl max-w-[900px] mx-1 sm:mx-8 flex-grow flex-col">
               <h1 className="py-1 relative sm:py-[6px] text-[20px] sm:text-[25px] font-bold text-center rounded-lg sm:rounded-xl bg-[#9d4edd] text-white ">
                 SPLIT Result
-                <button
-                  onClick={downloadFile}
-                  className="absolute group hover:scale-110 duration-700 right-3 top-[50%] p-[4px] border-white border-2 rounded-md bg-white translate-y-[-50%]"
-                >
-                  <i className="fi fi-sr-down-to-line text-base flex justify-center items-center text-[#000]"></i>
-                </button>
+                <div className="absolute right-2 sm:right-3 gap-x-[6px] sm:gap-x-2 flex top-[50%] translate-y-[-50%]">
+                  {onlyView ? null : (
+                    <button
+                      onClick={copyLink}
+                      className=" group hover:scale-110 duration-700  p-[4px] border-white border-2 rounded-md bg-white "
+                    >
+                      <i className="fi fi-br-link-alt text-xs sm:text-base flex justify-center items-center text-[#000]"></i>
+                    </button>
+                  )}
+                  <button
+                    onClick={downloadFile}
+                    className=" group hover:scale-110 duration-700  p-[4px] border-white border-2 rounded-md bg-white "
+                  >
+                    <i className="fi fi-sr-down-to-line text-xs sm:text-base flex justify-center items-center text-[#000]"></i>
+                  </button>
+                </div>
               </h1>
               <div className=" font-bold min-h-[400px] flex text-center bg-white rounded-xl p-3 mt-4 flex-grow">
                 <div className="flex flex-col flex-grow">
@@ -384,17 +389,19 @@ export default function SavedSplitView() {
                     >
                       Bills
                     </button>
-                    <button
-                      style={{
-                        color: status === 4 ? "white" : "black",
-                        backgroundColor: status === 4 ? "#9d4edd" : "#d393f6",
-                      }}
-                      disabled={status === 4}
-                      onClick={() => setStatus(4)}
-                      className="uppercase py-[2px] disabled:pointer-events-none hover:scale-110 duration-700 font-medium  text-[11px] sm:text-[12px] rounded-[5px] sm:rounded-md px-2 sm:px-3"
-                    >
-                      Shared
-                    </button>
+                    {onlyView ? null : (
+                      <button
+                        style={{
+                          color: status === 4 ? "white" : "black",
+                          backgroundColor: status === 4 ? "#9d4edd" : "#d393f6",
+                        }}
+                        disabled={status === 4}
+                        onClick={() => setStatus(4)}
+                        className="uppercase py-[2px] disabled:pointer-events-none hover:scale-110 duration-700 font-medium  text-[11px] sm:text-[12px] rounded-[5px] sm:rounded-md px-2 sm:px-3"
+                      >
+                        Shared
+                      </button>
+                    )}
                   </div>
 
                   <div className="flex bg-slate-100 p-2 sm:p-3 mt-[6px] sm:mt-2  rounded-xl sm:rounded-2xl flex-grow flex-col">
@@ -409,7 +416,7 @@ export default function SavedSplitView() {
                     {status === 3 ? <Bills data={data.bills} /> : null}
                     {status === 2 ? <Stats data={data.split} /> : null}
                     {status === 1 ? <Transactions data={data.split} /> : null}
-                    {status === 4 ? (
+                    {status === 4 && !onlyView ? (
                       <Shared data={[...data.sharedTo].reverse()} />
                     ) : null}
                   </div>
@@ -417,17 +424,19 @@ export default function SavedSplitView() {
               </div>
             </div>
           </div>
-          <div className="flex mt-6 sm:mt-16 justify-between mx-6 sm:mx-16">
-            <Link to={"/split/protected/view/saved"}>
-              <NiceButton text={"Go Back"} />
-            </Link>
-            <button onClick={shareClick}>
-              <NiceButton text={"Share"} />
-            </button>
-            <button onClick={deleteHandle}>
-              <RedButton text={"Delete"} />
-            </button>
-          </div>
+          {onlyView ? null : (
+            <div className="flex mt-6 sm:mt-16 justify-between mx-6 sm:mx-16">
+              <Link to={"/split/protected/view/saved"}>
+                <NiceButton text={"Go Back"} />
+              </Link>
+              <button onClick={shareClick}>
+                <NiceButton text={"Share"} />
+              </button>
+              <button onClick={deleteHandle}>
+                <RedButton text={"Delete"} />
+              </button>
+            </div>
+          )}
         </div>
       </div>
     </>

@@ -57,7 +57,7 @@ export default function TrackHome() {
           <div className="flex flex-col mt-[80px] sm:mt-[100px]">
             <div className="flex justify-between items-center p-2 px-4 rounded-xl bg-slate-100 mx-[30px] sm:mx-[80px]">
               <span className="text-[25px] sm:text-[30px] ml-[15px] font-bold">
-                TRACK
+                ACTIONS
               </span>
             </div>
             <div className="flex mt-[15px] p-6 rounded-xl pb-12 space-x-6 bg-slate-100 mx-[30px] sm:mx-[80px]">
@@ -119,6 +119,14 @@ export default function TrackHome() {
                   >
                     <p className="pb-[6px] border-b-[1.5px] border-white group-hover:border-[#000] ">
                       Manage Categories
+                    </p>
+                  </Link>
+                  <Link
+                    className="py-[6px] sm:py-2 px-2 sm:px-3 w-[120px] h-[120px] sm:w-[150px] sm:h-[150px] leading-tight group justify-center items-center rounded-lg sm:rounded-xl text-sm sm:text-lg  text-[#fff] hover:text-[#000] hover:scale-110 hover:bg-[#fff] border-[1.5px] border-[#000] duration-500 font-semibold bg-[#000]"
+                    to={"protected/tags"}
+                  >
+                    <p className="pb-[6px] border-b-[1.5px] border-white group-hover:border-[#000] ">
+                      Manage Tags
                     </p>
                   </Link>
                 </div>

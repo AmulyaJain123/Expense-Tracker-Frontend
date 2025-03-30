@@ -1,5 +1,6 @@
 import { formatVal } from "../../util/algo";
 import OnlyXChars from "../../UIComponents/OnlyXChars";
+import { format } from "date-fns";
 
 export default function SingleBill({ data }) {
   console.log(data);
@@ -20,7 +21,7 @@ export default function SingleBill({ data }) {
             Bill Date :
           </span>
           <span className="p-1 px-[6px] sm:px-2 text-stone-400 h-fit ">
-            {new Date(billDate).toDateString()}
+            {format(new Date(billDate), "EEE, dd MMM yyyy")}
           </span>
         </div>
       </div>
@@ -56,11 +57,11 @@ export default function SingleBill({ data }) {
       </div>
 
       <div className="p-1 px-2 bg-stone-100 h-fit rounded-[4px] sm:rounded-md">
-        <div className="flex flex-col text-left space-y-1">
+        <div className="flex flex-col text-left pb-3 space-y-1">
           <span className="text-black text-md p-[6px] sm:p-2 px-3 sm:px-4 font-semibold">
             Shares :
           </span>
-          <div className="p-3 sm:p-5 pt-[0px] sm:pt-2  px-4 sm:px-12 h-[160px] sm:h-[180px] overflow-auto text-stone-400 customScrollThin">
+          <div className="pb-0 sm:pb-0 p-3 sm:p-5 pt-[0px] sm:pt-2  pl-4 sm:pl-12 pr-2 sm:pr-8 h-[160px] sm:h-[180px] overflow-auto text-stone-400 specialScrollStone">
             {shares.map((share) => {
               return (
                 <div key={share.name} className="flex justify-between">

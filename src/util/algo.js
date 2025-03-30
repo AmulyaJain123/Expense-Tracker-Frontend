@@ -1,4 +1,4 @@
-import { add, differenceInDays, differenceInMonths, differenceInYears } from "date-fns"
+import { add, differenceInDays, differenceInMonths, differenceInYears, format } from "date-fns"
 import numeral from "numeral";
 
 function getNames(bills) {
@@ -330,4 +330,24 @@ export function getTillExpiry(today, expiry) {
     const days = differenceInDays(expiry, temp);
     return { months, years, days };
 
+}
+
+export function dateFormat(str) {
+    if (str == 'NOT ENTERED') {
+        return str;
+    }
+    if (str == null) {
+        return null;
+    }
+    return format(new Date(str), "EEE, dd MMM yyyy");
+}
+
+export function dateTimeFormat(str) {
+    if (str == 'NOT ENTERED') {
+        return str;
+    }
+    if (str == null) {
+        return null;
+    }
+    return format(new Date(str), "hh:mm aa | EEE, dd MMM yyyy");
 }

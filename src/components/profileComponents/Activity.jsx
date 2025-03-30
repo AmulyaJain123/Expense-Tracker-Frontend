@@ -2,6 +2,7 @@ import { useState } from "react";
 import right from "../../assets/right.png";
 import left from "../../assets/left.png";
 import { format, set } from "date-fns";
+import { dateFormat } from "../../util/algo";
 
 export default function Activity({ data }) {
   const [selectedYear, setSelectedYear] = useState(
@@ -43,7 +44,7 @@ export default function Activity({ data }) {
       month: parseInt(day.monthNo) - 1,
       year: parseInt(day.year),
     });
-    const formattedDate = date.toDateString();
+    const formattedDate = dateFormat(date);
     setToolTip({
       x: temp.x - temp2.x + 10,
       y: temp.y - temp2.y - 30,

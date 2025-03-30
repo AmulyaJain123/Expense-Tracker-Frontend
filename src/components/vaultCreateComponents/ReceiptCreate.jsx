@@ -66,7 +66,7 @@ export default function ReceiptCreate() {
           <InputFile ref={inputRef} />
         </div>
         <div className="mx-auto mt-8 w-full px-4">
-          <Tags ref={tagRef}></Tags>
+          <Tags type={"rec"} ref={tagRef}></Tags>
         </div>
       </div>
       {loading != false ? (

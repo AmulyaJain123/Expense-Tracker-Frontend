@@ -8,7 +8,7 @@ share */
 
 export default function HowItWorksMenu() {
   return (
-    <div className="mt-12 flex  flex-col text-[13px] space-y-[6px]">
+    <div className="mt-6 flex  flex-col text-[13px] space-y-[6px]">
       <div className="flex flex-col text-center justify-center sm:text-start space-y-4 sm:space-y-0 items-center sm:items-start sm:flex-row bg-stone-100 py-3 px-2 border-b-2 border-stone-300 sm:space-x-[50px]  mx-[30px] sm:mx-[50px]">
         Under the hood, SPLIT leverages a heap-based algorithm to minimize
         transactions.

@@ -19,10 +19,11 @@ import CategoryDistribution from "../components/dashBoardComponents/CategoryDist
 import ScatterGraph from "../components/dashBoardComponents/ScatterGraph";
 import CategoricalHeirarchy from "../components/dashBoardComponents/CategoricalHeirarchy";
 import { Helmet } from "react-helmet-async";
+import TagDistribution from "../components/dashBoardComponents/TagDistribution";
 
 export default function DashBoard() {
   const loadedData = useLoaderData();
-  const [count, setCount] = useState("3");
+  const [count, setCount] = useState("4");
   const dispatch = useDispatch();
   const data = useSelector((state) => state.dashboard.data);
 
@@ -121,6 +122,9 @@ export default function DashBoard() {
           </div>
           <CategoryDistribution />
           <ScatterGraph />
+          <div className="flex gap-x-3 mx-3 mt-3">
+            <TagDistribution />
+          </div>
           <Transactions />
           <CategoricalHeirarchy />
         </div>

@@ -1,5 +1,5 @@
 import { useState } from "react";
-import addFriend from "../../assets/addFriend.png";
+import addFriend from "../../assets/extras/addFriend.png";
 import user from "../../assets/user.png";
 import OnlyXChars from "../../UIComponents/OnlyXChars";
 import { Link } from "react-router-dom";
@@ -7,44 +7,84 @@ import waiting from "../../assets/waiting.png";
 import load from "../../assets/loader.gif";
 import exclamation from "../../assets/exclamation.png";
 
-export default function FindTile({ i }) {
-  const [loading, setLoading] = useState(false);
-  const [error, setError] = useState(null);
+export default function FindTile({ i, setShowModal }) {
   const [sent, setSent] = useState(i.waiting);
 
-  async function sendRequest() {
-    setLoading(true);
-    setError(null);
-    try {
-      const res = await fetch(
-        import.meta.env.VITE_BACKEND_API + "/friends/sendrequest",
-        {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify({
-            email: i.email,
-            userId: i.userId,
-          }),
-          credentials: "include",
-        }
-      );
-      if (!res.ok) {
-        throw "failed";
-      }
-      const result = await res.json();
-      setSent(result);
-      if (result === "recieved") {
-        setError("Request Already Recieved");
-      }
-      setLoading(false);
-    } catch (err) {
-      console.log(err);
-      setError("Failed");
-      setLoading(false);
-    }
-  }
+  return (
+    <>
+      <div className="flex flex-col sm:flex-row group duration-500 justify-between rounded-md tab:rounded-lg p-[6px] sm:space-x-3 bg-slate-200">
+        <div className="space-x-2 mob:space-x-4 xl:space-x-6 flex items-center">
+          <div className="flex flex-col gap-y-3 ml-1 tab:ml-0 self-start tab:self-center mt-2 tab:mt-0 items-center">
+            <Link to={`/profile/public/${i.userId}`}>
+              <img
+                src={i.profilePic || user}
+                className="w-[45px] h-[45px] mob:w-[55px] mob:h-[55px] tab:ml-2 xl:ml-0 xl:w-[45px] xl:h-[45px] rounded-full"
+                alt=""
+              />
+            </Link>
+          </div>
+          <div className="flex flex-col xl:flex-row flex-wrap xl:flex-nowrap  h-[120px] smMob:h-[80px] sm:h-[120px] tab:h-[80px] gap-x-4 gap-y-2 xl:space-x-6  xl:h-auto">
+            <div className="flex flex-col justify-center">
+              <span className="text-[11px] bg-slate-100 pl-[6px] rounded-[4px] mb-[2px] mob:text-xs">
+                Full Name
+              </span>
+              <span className="w-[140px] italic mob:w-[160px] xl:w-[200px]  px-[6px] xl:px-[6px] rounded-[4px] flex items-center">
+                <span className="flex font-['Open Sans'] text-[11px] mob:text-xs xl:text-[13px] overflow-clip flex-grow font-medium items-center">
+                  <OnlyXChars x={20} text={i.fullname} />
+                </span>
+              </span>
+            </div>
+
+            <div className="flex flex-col w-[165px] xl:w-[180px] justify-center">
+              <span className=" text-[11px] bg-slate-100 pl-[6px] rounded-[4px] mb-[2px] mob:text-xs">
+                Username
+              </span>
+              <span className="flex italic px-[6px] xl:px-[6px] rounded-[4px] items-center font-medium text-[11px] mob:text-xs xl:text-[13px]">
+                <span>{`@${i.username}`}</span>
+              </span>
+            </div>
+
+            <div className="flex flex-col w-[95px] xl:w-[120px] justify-center">
+              <span className=" text-[11px] bg-slate-100 pl-[6px] rounded-[4px] mb-[2px] mob:text-xs">
+                Status
+              </span>
+              <span
+                style={{
+                  color: i.status === "User" ? "blue" : "green",
+                }}
+                className="flex italic px-[6px] xl:px-[6px] rounded-[4px] items-center font-medium text-[11px] mob:text-xs xl:text-[13px]"
+              >
+                {i.status}
+              </span>
+            </div>
+          </div>
+        </div>
+        <div className="flex justify-end h-[35px]  sm:h-auto sm:justify-start items-center pr-1 sm:pr-2">
+          {i.status === "User" && i.waiting ? (
+            <>
+              <span className="capitalize flex items-center text-xs mob:text-sm mr-1 mob:mr-[6px] lap:mr-2 font-medium">
+                {i.waiting}
+              </span>
+              <div className="p-2">
+                <img
+                  src={waiting}
+                  className="flex justify-center items-center w-[17px] h-[17px] mob:w-[20px] mob:h-[20px]"
+                  alt=""
+                />
+              </div>
+            </>
+          ) : i.status === "User" && !i.waiting ? (
+            <button
+              onClick={() => setShowModal(i)}
+              className="p-[6px] rounded-md hover:bg-white bg-slate-100 duration-700"
+            >
+              <img src={addFriend} className="w-[20px] h-[20px]" alt="" />
+            </button>
+          ) : null}
+        </div>
+      </div>
+    </>
+  );
 
   return (
     <>
@@ -105,10 +145,10 @@ export default function FindTile({ i }) {
                   alt=""
                 />
               </div>
-            ) : i.status === "User" && sent ? (
+            ) : i.status === "User" && i.waiting ? (
               <>
                 <span className="capitalize flex items-center text-xs mob:text-sm mr-1 mob:mr-2 lap:mr-3 font-medium">
-                  {sent}
+                  {i.waiting}
                 </span>
                 <div className="p-2">
                   <img
@@ -118,7 +158,7 @@ export default function FindTile({ i }) {
                   />
                 </div>
               </>
-            ) : i.status === "User" && !sent ? (
+            ) : i.status === "User" && !i.waiting ? (
               <button
                 onClick={sendRequest}
                 className="rounded-xl p-2 hover:bg-slate-100 duration-500"

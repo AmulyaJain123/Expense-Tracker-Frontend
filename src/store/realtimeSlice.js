@@ -1,7 +1,10 @@
 import { createSlice } from "@reduxjs/toolkit";
 
 const intialRealtimeState = {
-    notifications: []
+    notifications: [],
+    socketActive: true,
+    socketConnected: false
+
 };
 
 export const realtimeSlice = createSlice({
@@ -16,6 +19,13 @@ export const realtimeSlice = createSlice({
         },
         setNotifications(state, action) {
             state.notifications = action.payload;
+        },
+        setSocketActive(state, action) {
+            state.socketActive = action.payload;
+        },
+        setSocketConnected(state, action) {
+            state.socketConnected = action.payload;
         }
+
     },
 });

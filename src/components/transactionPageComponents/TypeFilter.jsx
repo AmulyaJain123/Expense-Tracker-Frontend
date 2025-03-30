@@ -55,7 +55,7 @@ export default function TypeFilter() {
   }
 
   return (
-    <div className="flex relative flex-col flex-grow bg-[#fefae0] mr-4 rounded-r-xl p-4 px-16">
+    <div className="flex relative flex-col flex-grow bg-[#fefae0] mr-4 rounded-r-lg p-4 px-16">
       <div className="font-semibold flex flex-col mt-[8px] mb-[20px] text-xl text-black text-center"></div>
 
       <div className="text-base font-semibold mx-auto mb-[10px] uppercase">

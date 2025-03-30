@@ -1,5 +1,10 @@
+import { format } from "date-fns";
 import styles from "./Warranty.module.css";
 import numeral from "numeral";
+
+function dateFormat(str) {
+  return format(new Date(str), "EEE, dd MMM yyyy");
+}
 
 export default function Warranty({ data }) {
   console.log(data);
@@ -32,7 +37,7 @@ export default function Warranty({ data }) {
             Created On
           </div>
           <div className="flex px-3 justify-center text-stone-500 rounded-md text-xs mx-4 mt-[6px] bg-slate-100">
-            {data.details.createdOn}
+            {dateFormat(data.details.createdOn)}
           </div>
         </div>
         <div className="flex flex-col">
@@ -40,7 +45,7 @@ export default function Warranty({ data }) {
             Warranty Date
           </div>
           <div className="  px-4 text-xs text-center text-stone-500 rounded-md mx-4 mt-[6px] bg-slate-100">
-            {data.details.warDate}
+            {dateFormat(data.details.warDate)}
           </div>
         </div>
         <div className="flex flex-col">
@@ -112,12 +117,12 @@ export default function Warranty({ data }) {
             <span className=" mx-auto text-xs">
               <span className="font-semibold mr-2">Renewed On </span>{" "}
               <span className=" font-normal">
-                {data.details.expiry.renewedOn}
+                {dateFormat(data.details.expiry.renewedOn)}
               </span>
             </span>
           ) : null}
           <div className="  px-4 text-xs text-center text-stone-500 rounded-md mx-4 mt-[6px] bg-slate-100">
-            {data.details.expiry.date}
+            {dateFormat(data.details.expiry.date)}
           </div>
         </div>
 
@@ -156,19 +161,19 @@ export default function Warranty({ data }) {
               <div className="flex text-xs justify-center space-x-4">
                 <div className="flex flex-col items-center space-y-1 ">
                   <span className="font-medium">Years</span>
-                  <span className="py-1 px-3 rounded-md bg-green-100 text-green-500 w-[60px] text-center ">
+                  <span className="py-1 px-3 rounded-md bg-yellow-100 text-yellow-500 w-[60px] text-center ">
                     {data.details.expiry.till.years}
                   </span>
                 </div>
                 <div className="flex flex-col items-center space-y-1 ">
                   <span className="font-medium">Months</span>
-                  <span className="py-1 px-3 rounded-md bg-green-100 text-green-500 w-[60px] text-center ">
+                  <span className="py-1 px-3 rounded-md bg-yellow-100 text-yellow-500 w-[60px] text-center ">
                     {data.details.expiry.till.months}
                   </span>
                 </div>
                 <div className="flex flex-col items-center space-y-1 ">
                   <span className="font-medium">Days</span>
-                  <span className="py-1 px-3 rounded-md bg-green-100 text-green-500 w-[60px] text-center ">
+                  <span className="py-1 px-3 rounded-md bg-yellow-100 text-yellow-500 w-[60px] text-center ">
                     {data.details.expiry.till.days}
                   </span>
                 </div>

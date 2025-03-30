@@ -66,7 +66,7 @@ export default function WarrantyCreate() {
           <InputFile ref={inputRef} />
         </div>
         <div className="mx-auto mt-8 w-full px-4">
-          <Tags ref={tagRef}></Tags>
+          <Tags type={"war"} ref={tagRef}></Tags>
         </div>
       </div>
       {loading != false ? (

@@ -18,7 +18,7 @@ export default function Categories() {
               <RedButton text={"Go Back To TRACK"} />
             </Link>
           </div>
-          <div className="flex flex-col mt-6 tab:mt-8 items-center space-y-3 sm:space-y-4">
+          <div className="flex flex-col  items-center space-y-3 sm:space-y-4">
             <p className="p-[6px] px-2 sm:px-3 text-center bg-stone-100 mx-4 w-fit border-b-[1px] sm:border-b-[1.5px] text-[11px] sm:text-xs border-stone-600">
               On Deleting a Category, the Categories of all the Transactions
               having the same Category will be changed to NULL

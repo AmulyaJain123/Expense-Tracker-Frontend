@@ -26,6 +26,14 @@ tspan {
   font-family: "Poppins";
 }
 
+.epr_6daqyu * {
+  font-family: "Poppins" !important;
+}
+
+.epr_390n37 {
+  padding-left: 20px !important;
+}
+
 .MuiChartsTooltip-root {
   font-size: 12px;
   text-transform: capitalize;
@@ -81,6 +89,86 @@ customScrollThinLight
   border-radius: 20px;
 }
 
+.specialScroll::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+  border-radius: 20px;
+}
+
+.specialScroll::-webkit-scrollbar-track {
+  border: 1.5px solid #94a3b8;
+  border-radius: 20px;
+}
+
+.specialScroll::-webkit-scrollbar-thumb {
+  background: #94a3b8;
+  border-radius: 20px;
+}
+
+.chatScroll::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+  border-radius: 20px;
+}
+
+.chatScroll::-webkit-scrollbar-track {
+  /* border: 1.5px solid #94a3b8; */
+  border-radius: 20px;
+}
+
+.chatScroll:hover::-webkit-scrollbar-thumb {
+  border-radius: 20px;
+  background: #cbd5e1;
+}
+
+.specialScrollLight::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+  border-radius: 20px;
+}
+
+.specialScrollLight::-webkit-scrollbar-track {
+  border: 1.5px solid #cbd5e1;
+  border-radius: 20px;
+}
+
+.specialScrollLight::-webkit-scrollbar-thumb {
+  background: #cbd5e1;
+  border-radius: 20px;
+}
+
+.specialScrollDark::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+  border-radius: 20px;
+}
+
+.specialScrollDark::-webkit-scrollbar-track {
+  border: 1.5px solid #9f21e3;
+  border-radius: 20px;
+}
+
+.specialScrollDark::-webkit-scrollbar-thumb {
+  background: #9f21e3;
+  border-radius: 20px;
+}
+
+.specialScrollStone::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+  border-radius: 20px;
+}
+
+.specialScrollStone::-webkit-scrollbar-track {
+  border: 1.5px solid #a8a29e;
+  border-radius: 20px;
+}
+
+.specialScrollStone::-webkit-scrollbar-thumb {
+  background: #a8a29e;
+  border-radius: 20px;
+}
+
 .customScrollThinLight::-webkit-scrollbar {
   width: 4px;
   border-radius: 20px;
@@ -104,6 +192,12 @@ customScrollThinLight
 
 .whiteScr {
   background-image: url("./assets/bg-pattern-once.png");
+  background-repeat: repeat;
+  background-size: contain;
+}
+
+.errorBack {
+  background-image: url("./assets/extras/stripes-light.webp");
   background-repeat: repeat;
   background-size: contain;
 }

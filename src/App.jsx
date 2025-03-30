@@ -31,6 +31,9 @@ import {
   transactionsLoader,
   transactionLoader,
   dashboardLoader,
+  publicSplitViewLoader,
+  vaultDocViewLoader,
+  docViewLoader,
 } from "./loaders/loaders";
 import Tags from "./pages/Tags";
 import ProtectedRoute from "./pages/ProtectedRoute";
@@ -46,6 +49,12 @@ import SharedSplitView from "./components/splitViewComponents/SharedSplitView";
 import Categories from "./pages/Categories";
 import SingleTransactionPage from "./pages/SingleTransactionPage";
 import Notifications from "./pages/Notifications";
+import PublicSplitView from "./components/splitViewComponents/PublicSplitView";
+import MessagePage from "./pages/MessagePage";
+import VaultDocCreate from "./pages/VaultDocCreate";
+import VaultDocView from "./pages/VaultDocView";
+import DocView from "./pages/DocView";
+import TransactionTags from "./pages/TransactionTags";
 
 const router = createBrowserRouter([
   {
@@ -97,6 +106,10 @@ const router = createBrowserRouter([
                 element: <SingleTransactionPage />,
                 loader: transactionLoader,
                 errorElement: <ErrorPage />,
+              },
+              {
+                path: "tags",
+                element: <TransactionTags />,
               },
             ],
           },
@@ -171,6 +184,11 @@ const router = createBrowserRouter([
                 errorElement: <ErrorPage />,
               },
               {
+                path: "create/doc",
+                element: <VaultDocCreate />,
+                errorElement: <ErrorPage />,
+              },
+              {
                 path: "tags",
                 element: <Tags />,
               },
@@ -196,6 +214,18 @@ const router = createBrowserRouter([
                 path: "view/warranty/:warId",
                 element: <WarrantyView />,
                 loader: warrantyViewLoader,
+                errorElement: <ErrorPage />,
+              },
+              {
+                path: "view/doc",
+                element: <VaultDocView />,
+                loader: vaultDocViewLoader,
+                errorElement: <ErrorPage />,
+              },
+              {
+                path: "view/doc/:docId",
+                element: <DocView />,
+                loader: docViewLoader,
                 errorElement: <ErrorPage />,
               },
             ],
@@ -236,6 +266,26 @@ const router = createBrowserRouter([
           {
             path: "",
             element: <Notifications />,
+          },
+        ],
+      },
+      {
+        path: "messages",
+        element: <ProtectedRoute />,
+        children: [
+          {
+            path: "",
+            element: <MessagePage />,
+          },
+        ],
+      },
+      {
+        path: "unprotected",
+        children: [
+          {
+            path: "split/:userId/:splitId",
+            loader: publicSplitViewLoader,
+            element: <PublicSplitView />,
           },
         ],
       },

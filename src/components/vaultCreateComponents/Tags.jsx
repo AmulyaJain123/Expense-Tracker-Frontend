@@ -7,8 +7,9 @@ import exclamation from "../../assets/exclamation.png";
 import tick from "../../assets/selected.png";
 import { forwardRef } from "react";
 import { useImperativeHandle } from "react";
+import { EmptyBox, ErrorBox, ErrorText } from "../../UIComponents/NoneFound";
 
-const Tags = forwardRef(function Tags({ ...props }, ref) {
+const Tags = forwardRef(function Tags({ type }, ref) {
   const [fetchedData, setFetchedData] = useState(null);
   const [filteredData, setFilteredData] = useState(null);
   const [msg, setMsg] = useState(null);
@@ -33,7 +34,7 @@ const Tags = forwardRef(function Tags({ ...props }, ref) {
       if (!res.ok) {
         throw "failed";
       } else {
-        const data = await res.json();
+        const data = (await res.json())[type];
         const newArr = data.map((p) => {
           return {
             val: p,
@@ -87,7 +88,7 @@ const Tags = forwardRef(function Tags({ ...props }, ref) {
           headers: {
             "Content-Type": "application/json",
           },
-          body: JSON.stringify({ value: word }),
+          body: JSON.stringify({ value: word, type: type }),
           credentials: "include",
         }
       );
@@ -207,7 +208,7 @@ const Tags = forwardRef(function Tags({ ...props }, ref) {
 
                 <div className="h-[40px] border-y-[1.5px] border-slate-100 items-center flex w-full my-3 flex-grow px-4">
                   {loading ? (
-                    <div className="ml-6 flex">
+                    <div className="ml-6 flex items-center">
                       <div className="flex mr-6 items-center">
                         <img
                           src={load}
@@ -215,18 +216,11 @@ const Tags = forwardRef(function Tags({ ...props }, ref) {
                           alt=""
                         />
                       </div>
-                      <span>Please wait.</span>
+                      <span className="text-[12px]">Please Wait</span>
                     </div>
                   ) : error ? (
                     <div className="ml-6 flex items-center">
-                      <div className="flex mr-3 items-center">
-                        <img
-                          src={exclamation}
-                          className="w-[15px] h-[15px] flex justify-center items-center"
-                          alt=""
-                        />
-                      </div>
-                      <span className="text-red-500">{error}</span>
+                      <ErrorText msg={error} textSize={13} gap={6} />
                     </div>
                   ) : msg ? (
                     <div className="ml-6 text-xs flex">
@@ -235,44 +229,35 @@ const Tags = forwardRef(function Tags({ ...props }, ref) {
                   ) : null}
                 </div>
 
-                <div className="mx-2 my-2 mt-2 mb-2 h-[335px] px-3 py-3  overflow-auto customScrollThin">
+                <div className="mx-2 my-2 mt-2 mb-2 flex h-[235px] px-3 py-3  overflow-auto specialScrollLight">
                   {fetchedData === null ? (
-                    <div className="mt-32 flex justify-center">
+                    <div className="flex-grow flex justify-center items-center">
                       <img src={load} className="w-[40px] h-[40px]" alt="" />
                     </div>
                   ) : null}
 
                   {fetchedData === false ? (
-                    <div className="flex flex-col mx-auto mt-24 items-center">
-                      <img
-                        src={errorIcon}
-                        className="w-[50px] h-[50px] mb-3"
-                        alt=""
-                      />
-                      <p className="text-center text-sm">
-                        Failed to load resources.
-                      </p>
-                      <div className="mt-4">
-                        <button
-                          onClick={loadTags}
-                          className="px-3 py-1 w-[80px] rounded-md bg-blue-500 text-white border-[1.5px] border-blue-500 hover:scale-105 hover:text-blue-500 hover:bg-white hover hover:shadow-lg duration-500"
-                        >
-                          Retry
-                        </button>
-                      </div>
-                    </div>
+                    <ErrorBox IconSize={50} gap={12}>
+                      {" "}
+                      <button
+                        onClick={loadTags}
+                        className="px-3 py-[2px]  text-[13px] rounded-md bg-blue-500 text-white border-[1.5px] border-blue-500 hover:scale-105 hover:text-blue-500 hover:bg-white hover hover:shadow-lg duration-500"
+                      >
+                        Retry
+                      </button>
+                    </ErrorBox>
                   ) : null}
 
                   {fetchedData != null &&
                   fetchedData != false &&
                   filteredData != null &&
                   filteredData.length > 0 ? (
-                    <div className="flex flex-wrap  gap-3 justify-center">
+                    <div className="flex flex-wrap h-fit gap-2 justify-center">
                       {filteredData.map((i) => {
                         return (
                           <button
                             onClick={() => selectTag(i.val)}
-                            className="py-1 relative px-3 rounded-md h-fit hover:scale-105 duration-500 flex items-center text-[14px] capitalize bg-[#dc93f6] text-black"
+                            className="py-1 relative px-3 rounded-md h-fit hover:scale-105 duration-500 flex items-center text-[13px] capitalize bg-[#dc93f6] text-black"
                           >
                             <span>{i.val}</span>
                             {i.included ? (
@@ -292,9 +277,12 @@ const Tags = forwardRef(function Tags({ ...props }, ref) {
                     fetchedData != false &&
                     filteredData != null &&
                     filteredData.length === 0 ? (
-                    <div className="flex justify-center text-sm">
-                      No Tags Found
-                    </div>
+                    <EmptyBox
+                      textColor="#cbd5e1"
+                      IconSize={50}
+                      textSize={15}
+                      gap={12}
+                    />
                   ) : null}
                 </div>
               </div>
@@ -304,7 +292,7 @@ const Tags = forwardRef(function Tags({ ...props }, ref) {
                 Tags Applied
               </h1>
               <div className="bg-white flex  m-2 mb-0 rounded-md">
-                <div className="flex-col overflow-auto py-4 items-center customScrollThin h-[430px] space-y-3 my-4 flex-grow flex mx-2">
+                <div className="flex-col overflow-auto py-4 items-center customScrollThin h-[330px] space-y-3 my-4 flex-grow flex mx-2">
                   {fetchedData &&
                     fetchedData.map((i) => {
                       if (i.included) {

@@ -6,6 +6,7 @@ import { useState } from "react";
 import right from "../../assets/right.png";
 import { useLoaderData } from "react-router-dom";
 import noEntries from "../../assets/empty.png";
+import { EmptyBox } from "../../UIComponents/NoneFound";
 
 export default function PieCharts({ data }) {
   const { colors } = useLoaderData();
@@ -52,8 +53,14 @@ export default function PieCharts({ data }) {
         {data.pc1.filter((i) => i.value != 0).length === 0 ? (
           <div className="min-h-[200px]">
             <div className="flex text-sm absolute top-[50%] w-[300px] left-[50%] pr-24 translate-x-[-50%] translate-y-[-50%]  flex-grow flex-col justify-center items-center space-y-3">
-              <img src={noEntries} className="w-[60px] h-[60px]" alt="" />
-              <span>No Transactions Found</span>
+              <EmptyBox
+                IconSize={50}
+                gap={8}
+                textSize={14}
+                fontWeight={500}
+                textColor="#d4d4d4"
+                msg="No Transactions Found"
+              />
             </div>
           </div>
         ) : (
@@ -98,8 +105,14 @@ export default function PieCharts({ data }) {
         ) : null}
         {data.pc2.filter((i) => i.value != 0).length === 0 ? (
           <div className="flex text-sm absolute top-[50%] w-[300px] left-[50%] pr-24 translate-x-[-50%] translate-y-[-50%]  flex-grow flex-col justify-center items-center space-y-3">
-            <img src={noEntries} className="w-[60px] h-[60px]" alt="" />
-            <span>No Transactions Found</span>
+            <EmptyBox
+              IconSize={50}
+              gap={8}
+              textSize={14}
+              fontWeight={500}
+              textColor="#d4d4d4"
+              msg="No Transactions Found"
+            />
           </div>
         ) : (
           <Box sx={{ flexGrow: 1 }}>
@@ -212,8 +225,14 @@ export default function PieCharts({ data }) {
         ) : null}
         {data.pc3.filter((i) => i.value != 0).length === 0 ? (
           <div className="flex text-sm absolute top-[50%] w-[300px] left-[50%] pr-24 translate-x-[-50%] translate-y-[-50%]  flex-grow flex-col justify-center items-center space-y-3">
-            <img src={noEntries} className="w-[60px] h-[60px]" alt="" />
-            <span>No Transactions Found</span>
+            <EmptyBox
+              IconSize={50}
+              gap={8}
+              textSize={14}
+              fontWeight={500}
+              textColor="#d4d4d4"
+              msg="No Transactions Found"
+            />
           </div>
         ) : (
           <Box sx={{ flexGrow: 1 }}>

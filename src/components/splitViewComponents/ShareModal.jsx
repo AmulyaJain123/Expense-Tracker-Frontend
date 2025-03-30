@@ -15,6 +15,7 @@ import OnlyXChars from "../../UIComponents/OnlyXChars";
 import selectedIcon from "../../assets/extras/tick.png";
 import add from "../../assets/extras/send.png";
 import { useNavigate } from "react-router-dom";
+import { ErrorBox, EmptyBox, ErrorText } from "../../UIComponents/NoneFound";
 
 const ShareModal = forwardRef(function ShareModal({ data }, ref) {
   const dialog = useRef();
@@ -116,14 +117,14 @@ const ShareModal = forwardRef(function ShareModal({ data }, ref) {
 
   return (
     <>
-      <dialog className="rounded-xl sm:rounded-2xl max-h-[80%]" ref={dialog}>
-        <div className="bg-white flex rounded-xl sm:rounded-2xl w-[300px]  sm:w-[450px] h-full  max-h-[450px]">
-          <div className="p-2 sm:p-3 flex flex-col flex-grow">
-            <h1 className="py-1 sm:py-[6px] bg-slate-100 rounded-lg sm:rounded-xl text-center text-xl sm:text-2xl font-bold">
+      <dialog className="rounded-lg sm:rounded-xl max-h-[80%]" ref={dialog}>
+        <div className="bg-white flex rounded-xl sm:rounded-2xl w-[300px]  sm:w-[400px] h-full  max-h-[450px]">
+          <div className="p-2 flex flex-col flex-grow">
+            <h1 className="py-1 sm:py-[6px] bg-slate-100 rounded-lg text-center text-xl sm:text-2xl font-bold">
               Share To Friends
             </h1>
-            <div className="flex flex-col flex-grow bg-slate-100 rounded-lg sm:rounded-xl p-2 sm:p-3 pr-[6px] sm:pr-2 mt-2 sm:mt-3">
-              <div className="flex flex-col  h-[200px] sm:h-[250px]  space-y-[6px] sm:space-y-2 pr-[6px] sm:pr-2 overflow-auto customScrollThin">
+            <div className="flex flex-col flex-grow bg-slate-100 rounded-lg  p-2 sm:p-3 pl-3 sm:pl-4 pr-[6px] sm:pr-2 mt-2 ">
+              <div className="flex flex-col  h-[200px] sm:h-[250px]  space-y-[6px] sm:space-y-2 pr-[6px] sm:pr-2 overflow-auto specialScroll">
                 {loading ? (
                   <div className="flex flex-grow justify-center items-center">
                     <img
@@ -133,54 +134,41 @@ const ShareModal = forwardRef(function ShareModal({ data }, ref) {
                     />
                   </div>
                 ) : friends === null ? (
-                  <div className="flex flex-grow text-xs sm:text-sm flex-col justify-center space-y-2 sm:space-y-3  items-center">
-                    <img
-                      src={errorIcon}
-                      className="w-[35px] h-[35px] sm:w-[40px] sm:h-[40px] flex justify-center items-center"
-                      alt=""
-                    />
-                    <span>Something went wrong</span>
-                  </div>
+                  <ErrorBox IconSize={50} textSize={14} />
                 ) : friends.length === 0 ? (
-                  <div className="flex justify-center text-xs sm:text-sm flex-col text-slate-500 space-y-3 sm:space-y-4 items-center mt-16 sm:mt-20">
-                    <img
-                      src={noEntries}
-                      className="w-[50px] h-[50px] sm:w-[60px] sm:h-[60px] flex justify-center items-center"
-                      alt=""
-                    />
-                    <span>No Friends Found</span>
-                  </div>
+                  <EmptyBox
+                    textColor="#cbd5e1"
+                    IconSize={50}
+                    textSize={15}
+                    gap={12}
+                  />
                 ) : (
                   <>
                     {friends.map((i) => {
                       return (
                         <>
-                          <div className="flex group  justify-between rounded-full p-1 sm:p-[6px] space-x-2 sm:space-x-3 bg-slate-200">
-                            <div className="space-x-3 sm:space-x-4 flex items-center">
+                          <div className="flex group  justify-between rounded-lg p-1 pr-[6px] sm:p-[6px]  space-x-2 sm:space-x-3 bg-slate-200">
+                            <div className="gap-x-2 sm:gap-x-2 flex items-center">
                               <div>
                                 <img
                                   src={i.profilePic || user}
-                                  className="w-[35px] h-[35px] sm:w-[40px] sm:h-[40px] rounded-full"
+                                  className="w-[35px] h-[35px] sm:w-[35px] sm:h-[35px] rounded-full"
                                   alt=""
                                 />
                               </div>
                               <span className="justify-center w-[150px] sm:w-[200px] px-1 sm:px-[6px] flex-col rounded-md flex ">
-                                <span className="flex max-w-[300px] text-[11px] sm:text-xs overflow-clip flex-grow font-medium items-center">
-                                  <OnlyXChars x={20} text={i.username} />
+                                <span className="flex max-w-[300px] text-xs sm:text-[13px] overflow-clip flex-grow font-medium items-center">
+                                  <OnlyXChars x={20} text={i.fullname} />
                                 </span>
-                                <div className="flex flex-grow border border-slate-400"></div>
-                                <span className="flex px-1 sm:px-[6px]  rounded-md items-center font-medium text-[11px] sm:text-xs">
-                                  <span className="font-semibold mr-1 sm:mr-[6px]">
-                                    #
-                                  </span>{" "}
-                                  <span>{i.userId}</span>
+                                <span className="flex text-slate-500 rounded-md items-center font-medium text-[10px] sm:text-[11px]">
+                                  <span>{`@${i.username}`}</span>
                                 </span>
                               </span>
                             </div>
                             <div className="flex items-center">
                               <button
                                 onClick={() => selectClick(i.userId)}
-                                className="p-[6px] sm:p-[8px] rounded-full hover:bg-slate-100 duration-700"
+                                className="p-[6px] sm:p-[8px] rounded-md sm:rounded-lg hover:bg-slate-100 duration-700"
                               >
                                 <img
                                   src={
@@ -206,8 +194,8 @@ const ShareModal = forwardRef(function ShareModal({ data }, ref) {
                 ? `${selected.length} Friends Selected`
                 : null}
             </div>
-            <div className="flex justify-between mt-2 sm:mt-3">
-              <div className="flex space-x-[6px] sm:space-x-2 text-[11px] sm:text-xs items-center pl-[6px] sm:pl-3">
+            <div className="flex justify-between mt-[6px] sm:mt-2">
+              <div className="flex space-x-[6px] sm:space-x-2 text-[10px] sm:text-xs items-center pl-[6px] sm:pl-3">
                 {loading2 ? (
                   <div>
                     <img
@@ -218,25 +206,18 @@ const ShareModal = forwardRef(function ShareModal({ data }, ref) {
                   </div>
                 ) : error ? (
                   <>
-                    <img
-                      src={exclamation}
-                      className="w-[12px] sm:w-[15px] h-[12px] sm:h-[15px] flex justify-center items-center"
-                      alt=""
-                    />
-                    <span className="text-red-500 mt-[2px]">
-                      Something went wrong
-                    </span>
+                    <ErrorText textSize={12} msg="Something Went Wrong" />
                   </>
                 ) : success ? (
                   <span className="text-green-500 font-medium">Shared</span>
                 ) : null}
               </div>
-              <div className="flex space-x-2 sm:space-x-3 items-center">
+              <div className="flex gap-x-2 sm:gap-x-3 items-center">
                 <form method="dialog">
                   <button
                     disabled={loading2}
                     ref={closeButton}
-                    className="text-xs sm:text-sm disabled:pointer-events-none disabled:opacity-50 font-medium text-white bg-red-500 border-[1.5px] border-red-500 hover:text-red-500 hover:bg-white duration-500 rounded-md py-1 px-2 sm:px-3"
+                    className="text-xs sm:text-[13px] disabled:pointer-events-none disabled:opacity-50 font-medium text-white bg-red-500 border-[1.5px] border-red-500 hover:text-red-500 hover:bg-white duration-500 rounded-md py-1 px-2 sm:px-[10px]"
                   >
                     Cancel
                   </button>
@@ -244,7 +225,7 @@ const ShareModal = forwardRef(function ShareModal({ data }, ref) {
                 <button
                   onClick={shareClick}
                   disabled={loading2 || selected.length === 0}
-                  className="text-xs sm:text-sm disabled:pointer-events-none disabled:opacity-50 font-medium text-white bg-green-500 border-[1.5px] border-green-500 hover:text-green-500 hover:bg-white duration-500 rounded-md py-1 px-2 sm:px-3"
+                  className="text-xs sm:text-[13px] disabled:pointer-events-none disabled:opacity-50 font-medium text-white bg-green-500 border-[1.5px] border-green-500 hover:text-green-500 hover:bg-white duration-500 rounded-md py-1 px-2 sm:px-[10px]"
                 >
                   Share
                 </button>

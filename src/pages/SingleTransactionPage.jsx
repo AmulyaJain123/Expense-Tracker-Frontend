@@ -1,5 +1,5 @@
 import { useEffect, useState, useRef } from "react";
-import { formatVal, splitAlgo } from "../util/algo";
+import { dateTimeFormat, formatVal, splitAlgo } from "../util/algo";
 import { useSelector } from "react-redux";
 import load from "../assets/loader.gif";
 import { useLoaderData } from "react-router-dom";
@@ -112,41 +112,45 @@ export default function SingleTransactionPage() {
                   </div>
                   <form
                     method="dialog"
-                    className="flex pb-4 sm:pr-4 justify-center sm:justify-end sm:space-x-6"
+                    className="flex pb-4 sm:pr-4 justify-center sm:justify-between sm:space-x-6"
                   >
-                    {deleting ? (
-                      <div className="sm:flex hidden items-center">
-                        <img
-                          src={load}
-                          className="w-[25px] h-[25px] flex justify-center items-center"
-                          alt=""
-                        />
-                      </div>
-                    ) : null}
-                    {error ? (
-                      <div className="hidden sm:flex items-center space-x-4">
-                        <img
-                          src={exclamation}
-                          className="w-[20px] h-[20px] flex justify-center items-center"
-                          alt=""
-                        />{" "}
-                        <span className="text-red-500 tetx-lg ">{error}</span>
-                      </div>
-                    ) : null}
-                    <button
-                      type="button"
-                      onClick={closeHandle}
-                      className="p-2 px-4 mr-6 sm:mr-0 rounded-lg bg-blue-500 text-white"
-                    >
-                      Cancel
-                    </button>
-                    <button
-                      className="p-2 px-4 rounded-lg bg-red-500 text-white"
-                      type="button"
-                      onClick={deleteConfirmed}
-                    >
-                      Confirm
-                    </button>
+                    <div className="pl-4 flex items-center">
+                      {deleting ? (
+                        <div className="sm:flex hidden items-center">
+                          <img
+                            src={load}
+                            className="w-[25px] h-[25px] flex justify-center items-center"
+                            alt=""
+                          />
+                        </div>
+                      ) : null}
+                      {error ? (
+                        <div className="hidden sm:flex items-center space-x-4">
+                          <img
+                            src={exclamation}
+                            className="w-[20px] h-[20px] flex justify-center items-center"
+                            alt=""
+                          />{" "}
+                          <span className="text-red-500 tetx-lg ">{error}</span>
+                        </div>
+                      ) : null}
+                    </div>
+                    <div className="flex gap-x-3">
+                      <button
+                        type="button"
+                        onClick={closeHandle}
+                        className="p-2 px-4 mr-6 sm:mr-0 rounded-lg bg-blue-500 text-white"
+                      >
+                        Cancel
+                      </button>
+                      <button
+                        className="p-2 px-4 rounded-lg bg-red-500 text-white"
+                        type="button"
+                        onClick={deleteConfirmed}
+                      >
+                        Confirm
+                      </button>
+                    </div>
                   </form>
                 </div>
               ) : modalOpen === 2 ? (
@@ -154,7 +158,7 @@ export default function SingleTransactionPage() {
                   <h1 className="p-8  text-center text-lg sm:text-xl font-medium">
                     Successfully deleted the Transaction!!
                   </h1>
-                  <div className="flex justify-center mt-6 ">
+                  <div className="flex justify-center  ">
                     <img
                       src={deleted}
                       className="w-[100px] h-[100px] flex justify-center items-center"
@@ -162,9 +166,15 @@ export default function SingleTransactionPage() {
                     />
                   </div>
                   <div className="mt-8 pb-12 flex justify-center">
-                    <RedirectingWindow add={"/track/protected/transactions"}>
+                    <Link
+                      to={"/track/protected/transactions"}
+                      className="p-2 px-4 font-semibold rounded-lg text-[18px]  mr-6 sm:mr-0 bg-[#9d4edd] text-white"
+                    >
+                      Continue To Transactions
+                    </Link>
+                    {/* <RedirectingWindow add={"/track/protected/transactions"}>
                       <span>Redirecting to Transactions in </span>
-                    </RedirectingWindow>
+                    </RedirectingWindow> */}
                   </div>
                 </div>
               ) : null}
@@ -221,8 +231,7 @@ export default function SingleTransactionPage() {
                       Transaction Date
                     </span>
                     <span className="rounded-md sm:rounded-lg py-1 sm:py-2 px-2 sm:px-4 text-stone-400 bg-stone-50 font-medium">
-                      {format(new Date(data.dateTime), "HH:mm a ")} |{" "}
-                      {new Date(data.dateTime).toDateString()}
+                      {dateTimeFormat(data.dateTime)}
                     </span>
                   </div>
 
@@ -231,8 +240,7 @@ export default function SingleTransactionPage() {
                       Created On
                     </span>
                     <span className="rounded-md sm:rounded-lg py-1 sm:py-2 px-2 sm:px-4 text-stone-400 bg-stone-50 font-medium">
-                      {format(new Date(data.createdOn), "HH:mm a ")} |{" "}
-                      {new Date(data.createdOn).toDateString()}
+                      {dateTimeFormat(data.createdOn)}
                     </span>
                   </div>
 
@@ -251,6 +259,40 @@ export default function SingleTransactionPage() {
                     </span>
                     <span className="rounded-md sm:rounded-lg py-1 sm:py-2 px-2 sm:px-4 text-stone-400 bg-stone-50 font-medium">
                       {data.transactionType}
+                    </span>
+                  </div>
+
+                  <div className="flex flex-col space-y-1">
+                    <span className="font-semibold text-stone-600 text-xs sm:text-sm">
+                      Description
+                    </span>
+                    <span className="rounded-md  sm:rounded-lg py-1 sm:py-2 px-2 sm:px-4 text-stone-400 bg-stone-50 flex font-medium">
+                      <span className="whitespace-pre text-wrap text-start bg-neutral-100 border-[1.5px]  border-stone-400 flex-grow p-[6px] ">
+                        {data.desc == "" ? "None" : data.desc}
+                      </span>
+                    </span>
+                  </div>
+
+                  <div className="flex flex-col space-y-1">
+                    <span className="font-semibold text-stone-600 text-xs sm:text-sm">
+                      Tags
+                    </span>
+                    <span className="rounded-md  sm:rounded-lg py-1 sm:py-2 px-2 sm:px-4 text-stone-400 bg-stone-50 flex justify-center font-medium">
+                      <span className="flex gap-2 justify-center flex-wrap ">
+                        {data.tags && data.tags.length > 0 ? (
+                          data.tags.map((i) => {
+                            return (
+                              <span className="rounded-md bg-[#dc93f6] text-black font-medium p-1 px-3">
+                                {i}
+                              </span>
+                            );
+                          })
+                        ) : (
+                          <span className="rounded-md bg-neutral-200 text-neutral-500 font-medium p-1 px-3">
+                            No Tags
+                          </span>
+                        )}
+                      </span>
                     </span>
                   </div>
                 </div>

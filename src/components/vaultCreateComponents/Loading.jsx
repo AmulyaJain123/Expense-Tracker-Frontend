@@ -5,42 +5,10 @@ import successIcon from "../../assets/success.png";
 import { useNavigate } from "react-router-dom";
 
 export default function Loading({ retry, changeMode, mode }) {
-  const [time, setTime] = useState(null);
-  const [timeFunc, setTimeFunc] = useState(null);
-  const [timer, setTimer] = useState(true);
   const navigate = useNavigate();
   function cancelClick() {
     changeMode(false);
   }
-
-  console.log(timeFunc);
-
-  useEffect(() => {
-    if (mode === "success" && timer === true) {
-      console.log("wfwe");
-      setTime(3);
-      const func = setInterval(() => {
-        console.log("entry", time);
-        setTime((preval) => {
-          if (preval > 1) {
-            console.log("dec");
-            return preval - 1;
-          } else {
-            console.log("end");
-            setTimer(false);
-            return preval;
-          }
-        });
-      }, 1000);
-      setTimeFunc(func);
-    } else if (timer === false && mode === "success") {
-      if (timeFunc) {
-        clearInterval(timeFunc);
-        setTimeFunc(null);
-        redirect();
-      }
-    }
-  }, [mode, timer]);
 
   function retryClick() {
     retry();
@@ -59,7 +27,7 @@ export default function Loading({ retry, changeMode, mode }) {
               <h1 className="text-3xl font-bold text-neutral-700">Saving</h1>
               <img src={load} className="w-[50px] h-[50px] my-8 mt-10" alt="" />
 
-              <p className="text-center font-medium text-base mt-2">
+              <p className="text-center font-medium text-lg mt-2">
                 Please Wait
               </p>
             </div>
@@ -74,10 +42,12 @@ export default function Loading({ retry, changeMode, mode }) {
                 alt=""
               />
 
-              <p className="text-center font-medium text-base mt-2">
-                Save Successful!! <br /> Redirecting to VAULT in{" "}
-                <span className="font-medium text-[#9d4edd]">{time}</span>
-              </p>
+              <button
+                onClick={redirect}
+                className="p-2 px-4 font-semibold rounded-lg text-[18px]  mr-6 sm:mr-0 bg-[#9d4edd] text-white"
+              >
+                Continue To VAULT
+              </button>
             </div>
           ) : null}
 
@@ -92,8 +62,8 @@ export default function Loading({ retry, changeMode, mode }) {
                 alt=""
               />
 
-              <p className="text-center font-medium text-base mt-2">
-                Something went wrong.
+              <p className="text-center font-medium text-lg mt-2">
+                Something Went Wrong
               </p>
 
               <div className="flex text-xl w-full mt-8 justify-evenly">

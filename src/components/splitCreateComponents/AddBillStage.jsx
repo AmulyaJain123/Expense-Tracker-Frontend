@@ -13,6 +13,7 @@ import {
 import BillComponent from "./BillComponent";
 import { splitAlgo } from "../../util/algo";
 import DiscardButton from "../../UIComponents/DiscardButton";
+import { EmptyBox } from "../../UIComponents/NoneFound";
 
 export default function AddBillStage() {
   const modalRef = useRef();
@@ -46,33 +47,47 @@ export default function AddBillStage() {
         </header>
         <div className="text-sm flex flex-col text-stone-500  rounded-lg bg-slate-100 ">
           {bills.length === 0 ? (
-            <p className="flex flex-grow justify-center pt-8">
-              {" "}
-              No Bills Added
-            </p>
-          ) : (
-            <div className="border-b-2 border-white gap-[6px] p-2 sm:p-3 flex flex-wrap flex-grow ">
-              {bills.map((bill) => {
-                return (
-                  <AddBillNavThumbs
-                    key={bill.id}
-                    viewOnly="false"
-                    status={bill.id === selectBillNavStatus ? "true" : "false"}
-                    identity={bill.id}
-                  >
-                    {bill.billName}
-                  </AddBillNavThumbs>
-                );
-              })}
+            <div className="p-[6px] sm:p-3 mb-2 sm:mb-3 w-full flex min-h-[460px] sm:min-h-[410px] ">
+              <EmptyBox
+                IconSize={60}
+                gap={14}
+                textColor="#cbd5e1"
+                textSize={15}
+                msg="No Bills Added"
+              />
             </div>
+          ) : (
+            <>
+              <div className="border-b-2 border-white gap-[6px] p-2 sm:p-3 flex flex-wrap flex-grow ">
+                {bills.map((bill) => {
+                  return (
+                    <AddBillNavThumbs
+                      key={bill.id}
+                      viewOnly="false"
+                      status={
+                        bill.id === selectBillNavStatus ? "true" : "false"
+                      }
+                      identity={bill.id}
+                    >
+                      {bill.billName}
+                    </AddBillNavThumbs>
+                  );
+                })}
+              </div>
+              <div className="p-[6px] flex sm:p-3 mb-2 sm:mb-3 w-full min-h-[460px] sm:min-h-[410px]">
+                {bills.length === 0 ? null : selectBillNavStatus === null ? (
+                  <div className="flex w-full text-slate-300 flex-col flex-grow justify-center items-center">
+                    <i class="fi fi-sr-choose flex items-center text-[60px]"></i>
+                    <span className="mt-4 text-base font-normal">
+                      No Bill Selected
+                    </span>
+                  </div>
+                ) : (
+                  <BillComponent id={selectBillNavStatus} />
+                )}
+              </div>
+            </>
           )}
-          <div className="p-[6px] sm:p-3 mb-2 sm:mb-3 w-full min-h-[460px] sm:min-h-[410px]">
-            {bills.length === 0 ? null : selectBillNavStatus === null ? (
-              <p className="text-center mt-8 sm:mt-16">No Bill Selected</p>
-            ) : (
-              <BillComponent id={selectBillNavStatus} />
-            )}
-          </div>
         </div>
         <button
           onClick={addBillClick}

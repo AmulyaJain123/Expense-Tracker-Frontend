@@ -1,6 +1,8 @@
 import user from "../../assets/user.png";
 import tick from "../../assets/tick.png";
 import cross from "../../assets/cross.png";
+import Hcross from "../../assets/hand-cross.png";
+import Htick from "../../assets/hand-tick.png";
 import OnlyXChars from "../../UIComponents/OnlyXChars";
 import { useEffect, useState } from "react";
 import load from "../../assets/loader.gif";
@@ -8,45 +10,103 @@ import exclamation from "../../assets/exclamation.png";
 import { Link } from "react-router-dom";
 import { format } from "date-fns";
 
-export default function RequestTile({ i }) {
+export default function RequestTile({ i, openModal, stat }) {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
-  const [stat, setStat] = useState(i.status != "sent" ? i.status : "buttons");
 
-  async function closeRequest(val) {
-    setError(null);
-    setLoading(true);
-    try {
-      const res = await fetch(
-        import.meta.env.VITE_BACKEND_API + "/friends/closerequest",
-        {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify({
-            val: val,
-            email: i.email,
-            userId: i.userId,
-          }),
-          credentials: "include",
-        }
-      );
-      if (!res.ok) {
-        throw "failed";
-      }
-      if (val) {
-        setStat("accepted");
-      } else {
-        setStat("rejected");
-      }
-      setLoading(false);
-    } catch (err) {
-      console.log(err);
-      setError(true);
-      setLoading(false);
-    }
-  }
+  return (
+    <div className="flex flex-col  group duration-500 justify-between rounded-md tab:rounded-lg  sm:gap-x-3 bg-slate-200">
+      <div className=" flex items-center justify-between p-[6px]">
+        <div className="gap-x-2 mob:gap-x-4 xl:gap-x-6 flex items-center">
+          <div className="flex flex-col gap-y-3 ml-1 tab:ml-0 self-start tab:self-center mt-2 tab:mt-0 items-center">
+            <Link to={`/profile/public/${i.userId}`}>
+              <img
+                src={i.profilePic || user}
+                className="w-[45px] h-[45px] mob:w-[55px] mob:h-[55px] tab:ml-2 xl:ml-0 xl:w-[45px] xl:h-[45px] rounded-full"
+                alt=""
+              />
+            </Link>
+          </div>
+          <div className="flex flex-col xl:flex-row flex-wrap xl:flex-nowrap  h-[120px] smMob:h-[80px] sm:h-[120px] tab:h-[80px] gap-x-4 gap-y-2 xl:space-x-6  xl:h-auto">
+            <div className="flex flex-col justify-center">
+              <span className="text-[11px] bg-slate-100 pl-[6px] rounded-[4px] mb-[2px] mob:text-xs">
+                Full Name
+              </span>
+              <span className="w-[140px] italic mob:w-[160px] xl:w-[200px]  px-[6px] xl:px-[6px] rounded-[4px] flex items-center">
+                <span className="flex font-['Open Sans'] text-[11px] mob:text-xs xl:text-[13px] overflow-clip flex-grow font-medium items-center">
+                  <OnlyXChars x={20} text={i.fullname} />
+                </span>
+              </span>
+            </div>
+
+            <div className="flex flex-col w-[165px] xl:w-[180px] justify-center">
+              <span className=" text-[11px] bg-slate-100 pl-[6px] rounded-[4px] mb-[2px] mob:text-xs">
+                Username
+              </span>
+              <span className="flex italic px-[6px] xl:px-[6px] rounded-[4px] items-center font-medium text-[11px] mob:text-xs xl:text-[13px]">
+                <span>{`@${i.username}`}</span>
+              </span>
+            </div>
+          </div>
+        </div>
+
+        <div className="flex gap-x-2 mr-4">
+          {stat === "sent" ? (
+            <>
+              <button
+                onClick={() => openModal({ ...i, justClicked: true })}
+                disabled={loading}
+                className="p-[6px] tab:p-2 disabled:pointer-events-none disabled:opacity-50 rounded-lg hover:bg-slate-100 duration-500"
+              >
+                <img
+                  src={tick}
+                  className="w-[17px] h-[17px] tab:w-[20px] tab:h-[20px] flex justify-center items-center"
+                  alt=""
+                />
+              </button>
+              <button
+                onClick={() => openModal({ ...i, justClicked: false })}
+                disabled={loading}
+                className="p-[6px] tab:p-2 disabled:pointer-events-none disabled:opacity-50 rounded-lg hover:bg-slate-100 duration-500"
+              >
+                <img
+                  src={cross}
+                  className="w-[17px] h-[17px] tab:w-[20px] tab:h-[20px] flex justify-center items-center"
+                  alt=""
+                />
+              </button>
+            </>
+          ) : (
+            <img
+              src={stat === "accepted" ? Htick : Hcross}
+              className="w-[25px] h-[25px]"
+              alt=""
+            />
+          )}
+        </div>
+      </div>
+      <span className="flex text-[11px] p-[6px] pr-2 border-t-[1.5px] border-white justify-end ">
+        <span className="">
+          <span className="font-semibold mr-1 mob:mr-2">Sent On</span>{" "}
+          <span>{`${format(
+            new Date(i.sendDate),
+            "hh:mm a | dd MMM yyyy"
+          )}`}</span>
+        </span>
+        {i.resolvedDate ? (
+          <span className="sm:ml-6">
+            <span className="font-semibold capitalize mr-1 mob:mr-2">
+              {i.status} On
+            </span>{" "}
+            <span>{`${format(
+              new Date(i.resolvedDate),
+              "hh:mm a | dd MMM yyyy"
+            )}`}</span>
+          </span>
+        ) : null}
+      </span>
+    </div>
+  );
 
   return (
     <>

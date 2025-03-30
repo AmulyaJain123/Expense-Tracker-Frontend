@@ -9,6 +9,7 @@ import welcome from "../../assets/success.gif";
 export default function SignUp({ login, disableButton, enableButton }) {
   const [stage, setStage] = useState(1);
   const usernameRef = useRef();
+  const fullnameRef = useRef();
   const confirmPassRef = useRef(null);
   const signUpEmailRef = useRef(null);
   const otpRef = useRef(null);
@@ -198,6 +199,20 @@ export default function SignUp({ login, disableButton, enableButton }) {
         setSignUpError("Username cannot be empty");
       } else if (usernameRef.current.value.trim().length > 20) {
         setSignUpError("Username must be less than 20 characters.");
+      } else if (usernameRef.current.value.includes(" ")) {
+        setSignUpError("Username cannot have any Whitespaces.");
+      } else if (!/^[a-zA-Z0-9]+$/.test(usernameRef.current.value.trim())) {
+        setSignUpError("Username can only contain alphanumeric characters.");
+      } else if (fullnameRef.current.value.trim() === "") {
+        setSignUpError("Full Name cannot be empty");
+      } else if (fullnameRef.current.value.trim().length > 25) {
+        setSignUpError("Full Name must be less than 25 characters.");
+      } else if (
+        !RegExp(/^[A-Za-z]+(?: [A-Za-z]+)?$/).test(fullnameRef.current.value)
+      ) {
+        setSignUpError(
+          "Full Name must only consist of alphabets and a single space between First Name and Last Name(if any). "
+        );
       } else if (validatePassword(signUpPasswordRef.current.value) != "ok") {
         const err = validatePassword(signUpPasswordRef.current.value);
         if (err === "space") {
@@ -214,6 +229,7 @@ export default function SignUp({ login, disableButton, enableButton }) {
         setSignUpLoading(true);
         const password = signUpPasswordRef.current.value;
         const username = usernameRef.current.value;
+        const fullname = fullnameRef.current.value;
         const res = await fetch(
           import.meta.env.VITE_BACKEND_API + "/auth/signup/createaccount",
           {
@@ -222,9 +238,10 @@ export default function SignUp({ login, disableButton, enableButton }) {
               "Content-Type": "application/json",
             },
             body: JSON.stringify({
-              email: email,
+              email: email.trim(),
+              fullname: fullname.trim(),
               password: password,
-              username: username,
+              username: username.trim(),
             }),
           }
         );
@@ -233,6 +250,8 @@ export default function SignUp({ login, disableButton, enableButton }) {
         setSignUpLoading(false);
         if (result == "success") {
           setStage(4);
+        } else if (result == "username-taken") {
+          setSignUpError("Username already taken.");
         } else {
           setSignUpError("Something went wrong.");
         }
@@ -368,15 +387,27 @@ export default function SignUp({ login, disableButton, enableButton }) {
               <div className="flex flex-col space-y-1  rounded-xl">
                 <span className="text-sm sm:text-sm text-black rounded-lg font-semibold p-1 px-2 w-fit">
                   Username{" "}
-                  <span className="text-xs ml-6 font-normal">
-                    *Cannot be changed afterwards
+                  <span className="text-[11px] ml-6 font-normal">
+                    *Cannot be changed after
                   </span>
+                </span>
+                <input
+                  className="p-2 px-3 bg-stone-100  duration-700 focus:outline-none mx-1 flex rounded-lg pl-4 sm:pl-6 text-sm sm:text-sm flex-grow "
+                  placeholder="JohnDoe123"
+                  type="text"
+                  ref={usernameRef}
+                  onChange={() => setSignUpError(null)}
+                />
+              </div>
+              <div className="flex flex-col mt-3 space-y-1  rounded-xl">
+                <span className="text-sm sm:text-sm text-black rounded-lg font-semibold p-1 px-2 w-fit">
+                  Full Name{" "}
                 </span>
                 <input
                   className="p-2 px-3 bg-stone-100  duration-700 focus:outline-none mx-1 flex rounded-lg pl-4 sm:pl-6 text-sm sm:text-sm flex-grow "
                   placeholder="John Doe"
                   type="text"
-                  ref={usernameRef}
+                  ref={fullnameRef}
                   onChange={() => setSignUpError(null)}
                 />
               </div>
@@ -467,15 +498,15 @@ export default function SignUp({ login, disableButton, enableButton }) {
       </div>
 
       <div className="pt-[20px] mb-2 flex flex-col sm:flex-row space-y-4 sm:space-y-0 justify-between">
-        <p className="text-red-500 flex items-center justify-center text-center sm:text-start text-xs sm:text-xs p-1 h-[40px] px-4">
+        <p className="text-red-500 flex items-center justify-center text-center sm:text-start text-xs sm:text-xs p-1 h-[40px] pr-4">
           {signUpError ? (
             <img
               src={exclamation}
-              className="w-[15px] h-[15px] flex justify-center items-center mr-3"
+              className="w-[15px] h-[15px] flex justify-center items-center mr-2"
               alt=""
             />
           ) : null}{" "}
-          {signUpError}
+          <span className="mt-[1px]">{signUpError}</span>
         </p>
         <div className="relative h-fit">
           <button

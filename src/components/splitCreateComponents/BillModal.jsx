@@ -95,11 +95,11 @@ const BillModal = forwardRef(function BillModal({ ...rest }, ref) {
               >
                 <span className="hidden sm:block">{text}</span>
                 {text === "Divide Equally" ? (
-                  <i class="fi fi-ss-equality flex justify-center py-[2px] text-xl sm:hidden"></i>
+                  <i className="fi fi-ss-equality flex justify-center py-[2px] text-xl sm:hidden"></i>
                 ) : text === "Divide Manually" ? (
-                  <i class="fi fi-ss-pen-nib flex justify-center py-[2px] text-xl sm:hidden"></i>
+                  <i className="fi fi-ss-pen-nib flex justify-center py-[2px] text-xl sm:hidden"></i>
                 ) : (
-                  <i class="fi fi-ss-chart-pie-alt flex justify-center py-[2px] text-xl sm:hidden"></i>
+                  <i className="fi fi-ss-chart-pie-alt flex justify-center py-[2px] text-xl sm:hidden"></i>
                 )}
               </NavButton>
             );

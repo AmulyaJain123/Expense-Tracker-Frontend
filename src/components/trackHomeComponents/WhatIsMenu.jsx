@@ -30,9 +30,9 @@ export default function WhatIsMenu() {
         <div className="font-medium  md:w-1/3">Comprehensive Overview</div>
         <div className="mx-[10px] md:w-2/3">
           Comprehensive Overview: Provides an overall picture of your Financial
-          status, including Expense Distribution, Trends and Categorical
-          Distributions, aiding in better Financial Planning and
-          decision-making.
+          status, including Expense Distribution, Trends, Categorical
+          Distributions and Tag Distribution, aiding in better Financial
+          Planning and decision-making.
         </div>
       </div>
       <div className="flex bg-stone-100 py-2 px-2 border-b-2 border-stone-300 md:space-x-[50px] mx-[100px]">

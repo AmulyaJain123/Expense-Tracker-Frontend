@@ -2,12 +2,13 @@ import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import numeral from "numeral";
 import { formats } from "numeral";
-import exit from "../../assets/backward.png";
+import tags from "../../assets/supermarket.png";
 import add from "../../assets/plus.png";
 import application from "../../assets/application.png";
 import { useSelector } from "react-redux";
 import { formatVal } from "../../util/algo";
 import noEntries from "../../assets/empty.png";
+import { EmptyBox } from "../../UIComponents/NoneFound";
 
 export default function WidgetSquare() {
   const [val, setVal] = useState(null);
@@ -81,29 +82,35 @@ export default function WidgetSquare() {
           </div>
         ) : (
           <div className="flex flex-grow text-sm h-[205px] flex-col justify-center items-center space-y-2">
-            <img src={noEntries} className="w-[60px] h-[60px]" alt="" />
-            <span>No Transactions Found</span>
+            <EmptyBox
+              IconSize={50}
+              gap={8}
+              textSize={14}
+              fontWeight={500}
+              textColor="#d4d4d4"
+              msg="No Transactions Found"
+            />
           </div>
         )}
       </div>
 
       <div className="flex flex-1 flex-grow space-x-4">
         <Link
-          to={"/track"}
-          className="rounded-2xl aspect-square  group  duration-500 flex-grow flex justify-center items-center bg-[#f7ebfd] flex-1 p-4"
-        >
-          <img
-            src={exit}
-            className="w-[100px] group-hover:scale-[120%] duration-500"
-            alt=""
-          />
-        </Link>
-        <Link
           to={"/track/protected/create"}
           className="rounded-2xl aspect-square  group  duration-500 flex-grow flex justify-center items-center bg-[#f7ebfd] flex-1 p-4"
         >
           <img
             src={add}
+            className="w-[100px] group-hover:scale-[120%] duration-500"
+            alt=""
+          />
+        </Link>
+        <Link
+          to={"/track/protected/tags"}
+          className="rounded-2xl aspect-square  group  duration-500 flex-grow flex justify-center items-center bg-[#f7ebfd] flex-1 p-4"
+        >
+          <img
+            src={tags}
             className="w-[100px] group-hover:scale-[120%] duration-500"
             alt=""
           />

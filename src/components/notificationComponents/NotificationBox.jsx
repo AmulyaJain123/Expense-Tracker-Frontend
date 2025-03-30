@@ -1,18 +1,24 @@
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import load from "../../assets/loader.gif";
+import tick from "../../assets/tick.png";
+import cross from "../../assets/cross.png";
 import errorIcon from "../../assets/error.png";
 // import FriendTile from "./FriendTile";
+import cross2 from "../../assets/cross2.png";
 import noEntries from "../../assets/noEntries.png";
 import reload from "../../assets/reload.png";
 import FriendsNotification from "./FriendsNotification";
 import { useSelector, useDispatch } from "react-redux";
 import { realtimeActions } from "../../store/main";
 import { createConnection } from "../../util/socket";
-import SplitNotification from "./SplitNotification";
+import { EmptyBox, ErrorBox } from "../../UIComponents/NoneFound";
+import errorIcon2 from "../../assets/error2-red.png";
 
 export default function NotificationBox() {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
+  const [openModal, setOpenModal] = useState(false);
+  const contentRef = useRef();
   const [notifications, setNotifications] = useState([]);
   const dispatch = useDispatch();
   const [newNotifications, setNewNotifications] = useState([]);
@@ -20,6 +26,8 @@ export default function NotificationBox() {
     (state) => state.realtime.notifications
   );
   const [liveLoad, setLiveLoad] = useState(false);
+  const [loading2, setLoading2] = useState(false);
+  const [error2, setError2] = useState(false);
 
   async function fetchNotifications() {
     setLoading(true);
@@ -70,89 +78,150 @@ export default function NotificationBox() {
     fetchNotifications();
   }, []);
 
-  function removeFriend(email, userId) {
-    let newFriends = JSON.parse(JSON.stringify(notifications));
-    newFriends = newFriends.filter((i) => i.userId != userId);
-    setNotifications(newFriends);
+  function removeNotification(id) {
+    setNewNotifications((preval) => preval.filter((i) => i._id != id));
+    setNotifications((preval) => preval.filter((i) => i._id != id));
+  }
+
+  async function delNotification(notification) {
+    setLoading2(true);
+    const socket = createConnection();
+    socket.emit("delete-notification", { id: notification._id }, (val) => {
+      setLoading2(false);
+      if (val) {
+        removeNotification(notification._id);
+        setOpenModal(false);
+      } else {
+        setError2("Something Went Wrong");
+      }
+    });
+  }
+
+  function openDelModal(notification) {
+    setLoading2(false);
+    setError2(null);
+    setOpenModal(notification);
   }
 
   return (
-    <div className="sm:w-[450px] bg-slate-100 flex flex-col rounded-xl flex-grow">
-      {/* <div className="text-xl mob:text-2xl font-bold uppercase p-[6px] lg:p-2 py-2 lg:py-3 rounded-xl bg-white text-center">
-        <span>Notifications</span>
-      </div> */}
-      <div className="relative flex flex-col p-1 sm:p-3 space-y-2 rounded-xl bg-white flex-grow">
-        {/* <div className="flex justify-end"> */}
-        {/* <button
-          onClick={fetchNotifications}
-          disabled={loading}
-          className="disabled:pointer-events-none disabled:opacity-50 absolute top-[-48px] mob:top-[-52px] lg:top-[-56px] p-2 bg-white rounded-full hover:bg-slate-100 duration-500 z-[1]  right-0 translate-x-[-50%] "
+    <div className="flex flex-col flex-grow ">
+      <div className="p-2 text-3xl text-center font-extrabold bg-white rounded-lg">
+        Notifications
+      </div>
+      <div
+        style={{ height: "calc( 100% - 70px )" }}
+        className="bg-white mt-2 relative flex-grow rounded-lg p-2 py-3 "
+      >
+        {openModal ? (
+          <div className="w-full z-[3] rounded-lg h-full absolute top-0 left-0 backdrop-blur flex justify-center items-center">
+            <div className="bg-white relative rounded-lg flex flex-col shadow-md p-4 px-8 justify-center">
+              <button onClick={() => setOpenModal(false)}>
+                <img
+                  src={cross2}
+                  className="w-[20px] h-[20px] absolute top-1 right-1"
+                  alt=""
+                />
+              </button>
+              <div className="h-[120px] w-[290px] overflow-clip">
+                <div className="scale-75  origin-top-left">
+                  <FriendsNotification
+                    notification={openModal}
+                    onlyDisplay={true}
+                    newStatus={false}
+                    setOpenModal={() => {}}
+                  />
+                </div>
+              </div>
+              <span className="text-center mt-1 font-medium text-sm">
+                Delete Notification?
+              </span>
+              <div className="h-[24px] mt-2 flex justify-center gap-x-4">
+                {error2 ? (
+                  <span className="flex items-center gap-x-1 text-xs font-medium text-red-500">
+                    <img
+                      src={errorIcon2}
+                      className="w-[15px] h-[15px]"
+                      alt=""
+                    />
+                    <span>{error2}</span>
+                  </span>
+                ) : loading2 ? (
+                  <div className="flex items-center">
+                    <img src={load} className="w-[16px] h-[16px]" alt="" />
+                  </div>
+                ) : (
+                  <>
+                    <button
+                      onClick={() => setOpenModal(false)}
+                      className="rounded-md p-[4px] hover:bg-slate-100 duration-500"
+                    >
+                      <img src={cross} className="w-[16px] h-[16px]" alt="" />
+                    </button>
+                    <button
+                      onClick={() => delNotification(openModal)}
+                      className="rounded-md p-[4px] hover:bg-slate-100 duration-500"
+                    >
+                      <img src={tick} className="w-[16px] h-[16px]" alt="" />
+                    </button>
+                  </>
+                )}
+              </div>
+            </div>
+          </div>
+        ) : null}
+        <div
+          style={{ height: "100%" }}
+          ref={contentRef}
+          className="overflow-auto flex flex-wrap justify-center overflow-x-hidden gap-3 specialScrollLight p-2 py-0"
         >
-          <img
-            src={reload}
-            className="w-[15px] h-[15px] flex justify-center items-center"
-            alt=""
-          />
-        </button> */}
-        {/* </div> */}
-        <div className="p-2 sm:p-4 py-3 sm:py-6 pt-0 sm:pt-2 flex max-tab:min-h-[500px] tab:h-[500px] overflow-auto customScrollThin flex-col space-y-[10px] sm:space-y-4  mt-2 sm:mt-3 ">
           {loading ? (
-            <div className="flex justify-center items-center mt-20 ">
+            <div className="flex justify-center items-center flex-grow ">
               <img
                 src={load}
-                className="w-[30px] h-[30px] flex justify-center items-center"
+                className="w-[40px] h-[40px] flex justify-center items-center"
                 alt=""
               />
             </div>
           ) : error ? (
-            <div className="flex flex-col justify-center text-sm items-center mt-24 ">
-              <img
-                src={errorIcon}
-                className="w-[40px] h-[40px] mb-4 flex justify-center items-center"
-                alt=""
-              />
-              <span>Something went wrong.</span>
-            </div>
+            <ErrorBox IconSize={55} textSize={15} gap={10} fontWeight={500} />
           ) : (
             <>
               {notifications.length != 0 ? (
-                <>
+                <div className="flex flex-col justify-center gap-3 h-fit">
                   {notifications.map((i, ind) => {
                     const status = ind + 1 <= newNotifications.length;
-                    console.log(i);
-                    if (
-                      [
-                        "friendRequestRecieved",
-                        "friendRemoved",
-                        "friendRequestAccepted",
-                        "friendRequestRejected",
-                      ].includes(i.topic)
-                    ) {
-                      return (
-                        <FriendsNotification
-                          notification={i}
-                          newStatus={status}
-                        />
-                      );
-                    } else if (i.topic === "splitShared") {
-                      return (
-                        <SplitNotification
-                          notification={i}
-                          newStatus={status}
-                        />
-                      );
-                    }
+
+                    return (
+                      <FriendsNotification
+                        notification={i}
+                        newStatus={status}
+                        setOpenModal={openDelModal}
+                        removeNotification={removeNotification}
+                      />
+                    );
                   })}
-                </>
-              ) : (
-                <div className="flex justify-center text-xs sm:text-sm flex-col text-slate-500 space-y-3 sm:space-y-4 items-center mt-24 sm:mt-32">
-                  <img
-                    src={noEntries}
-                    className="w-[60px] h-[60px] sm:w-[80px] sm:h-[80px] flex justify-center items-center"
-                    alt=""
-                  />
-                  <span>No Notifications Found</span>
+                  {Array(
+                    Math.floor(contentRef.current.clientWidth / 250) -
+                      (notifications.length %
+                        Math.floor(contentRef.current.clientWidth / 250) ||
+                        Math.floor(contentRef.current.clientWidth / 250))
+                  )
+                    .fill(0)
+                    .map((i, ind) => {
+                      return (
+                        <div className="w-[235px] h-[150px] bg-slate-50   rounded-lg "></div>
+                      );
+                    })}
                 </div>
+              ) : (
+                <EmptyBox
+                  textColor={"#cbd5e1"}
+                  textSize={16}
+                  fontWeight={500}
+                  gap={16}
+                  IconSize={60}
+                  msg={"No Notifications Found"}
+                />
               )}
             </>
           )}

@@ -30,14 +30,12 @@ export default function SharedGeneral({ data }) {
                     SPLIT Created on
                   </span>
                   <span className="bg-stone-100 p-[3px] sm:p-1 rounded-[5px] pl-2 sm:pl-3">
-                    <OnlyXChars
-                      x={30}
-                      text={
-                        data.splitInfo.splitDate === ""
-                          ? new Date().toDateString()
-                          : new Date(data.splitInfo.splitDate).toDateString()
-                      }
-                    />
+                    {format(
+                      data.splitInfo.splitDate === ""
+                        ? new Date()
+                        : new Date(data.splitInfo.splitDate),
+                      "EEE, dd MMM yyyy"
+                    )}
                   </span>
                 </div>
                 <div className="flex text-[11px] sm:text-xs text-start p-[6px] flex-col font-normal">
@@ -47,8 +45,8 @@ export default function SharedGeneral({ data }) {
                   <span className="bg-stone-100 p-[3px] sm:p-1 rounded-[5px] pl-2 sm:pl-3">
                     {`${format(
                       new Date(data.splitInfo.sharedOn),
-                      "hh:mm a"
-                    )} | ${new Date(data.splitInfo.sharedOn).toDateString()}`}
+                      "hh:mm a | EEE, dd MMM yyyy"
+                    )} `}
                   </span>
                 </div>
                 <div className="flex text-[11px] sm:text-xs text-start p-[6px] flex-col font-normal">
@@ -61,19 +59,22 @@ export default function SharedGeneral({ data }) {
                       className="w-[27px] h-[27px] sm:w-[30px] sm:h-[30px] rounded-full"
                       alt=""
                     />
-                    <div className="flex flex-col text-[11px] sm:text-xs ">
-                      <span className="font-medium ">Username</span>
+                    <div className="flex flex-col text-[11px] mr-2 sm:text-xs ">
+                      <span className="font-medium ">Full Name</span>
                       <span className="text-[11px]">
                         <OnlyXChars
-                          text={data.splitInfo.sharedBy.username}
+                          text={data.splitInfo.sharedBy.fullname}
                           x={15}
                         />
                       </span>
                     </div>
                     <div className="flex flex-col text-[11px] sm:text-xs ">
-                      <span className="font-medium ">User ID</span>
+                      <span className="font-medium ">Username</span>
                       <span className="text-[11px]">
-                        {data.splitInfo.sharedBy.userId}
+                        <OnlyXChars
+                          text={`@${data.splitInfo.sharedBy.username}`}
+                          x={15}
+                        />
                       </span>
                     </div>
                   </span>

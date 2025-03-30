@@ -82,9 +82,10 @@ export default function Scatter({ data, mode, year }) {
       color: "#ffba49",
       valueFormatter: (val) => {
         console.log(val);
-        return `${
-          format(new Date(val.x), "hh:mm a ") + new Date(val.x).toDateString()
-        } | ${formatVal(val.y)}`;
+        return `${format(
+          new Date(val.x),
+          "hh:mm a EEE, dd MMM yyyy"
+        )} | ${formatVal(val.y)}`;
       },
       data: data.outgoing.map((v) => ({
         x: v.date,
@@ -97,9 +98,10 @@ export default function Scatter({ data, mode, year }) {
       color: "#20a39e",
       valueFormatter: (val) => {
         console.log(val);
-        return `${
-          format(new Date(val.x), "hh:mm a ") + new Date(val.x).toDateString()
-        } | ${formatVal(val.y)}`;
+        return `${format(
+          new Date(val.x),
+          "hh:mm a EEE, dd MMM yyyy"
+        )} | ${formatVal(val.y)}`;
       },
       data: data.incoming.map((v) => ({
         x: v.date,

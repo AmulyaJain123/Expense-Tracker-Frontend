@@ -5,6 +5,8 @@ import exclamation from "../../assets/exclamation.png";
 import successIcon from "../../assets/success.png";
 import load from "../../assets/loader.gif";
 import RedirectingWindow from "../../UIComponents/RedirectingWindow";
+import { format } from "date-fns";
+import { Link } from "react-router-dom";
 
 export default function Renew({ earlyExpDate, warId }) {
   const [editing, setEditing] = useState(false);
@@ -104,7 +106,7 @@ export default function Renew({ earlyExpDate, warId }) {
                         className="absolute left-0 h-auto p-2 px-4 pl-8 flex items-center top-0 w-[70%] bg-slate-200"
                       >
                         {expDate
-                          ? new Date(expDate).toDateString()
+                          ? format(new Date(expDate), "EEE, dd MMM yyyy")
                           : "NOT ENTERED"}
                       </span>
                     </div>
@@ -174,9 +176,12 @@ export default function Renew({ earlyExpDate, warId }) {
                   />
                 </div>
                 <div className="mt-8 pb-12 flex justify-center">
-                  <RedirectingWindow add={"/vault/protected/view/warranty"}>
-                    <span>Redirecting to VAULT in </span>
-                  </RedirectingWindow>
+                  <Link
+                    to={"/vault/protected/view/warranty"}
+                    className="p-2 px-4 font-semibold rounded-lg text-[18px]  mr-6 sm:mr-0 bg-[#9d4edd] text-white"
+                  >
+                    Continue To Saved Warranties
+                  </Link>
                 </div>
               </div>
             ) : null}

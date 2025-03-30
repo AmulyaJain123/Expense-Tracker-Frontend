@@ -42,7 +42,7 @@ export default function SplitHomeMenu() {
           How it works
         </Button>
       </div>
-      <div id="menuContent" className="mt-6 min-h-[200px]  ">
+      <div id="menuContent" className="mt-6 min-h-[250px]  ">
         {selectedMenu === 0 ? <HowItWorksMenu /> : null}
         {selectedMenu === 1 ? <FeaturesMenu /> : null}
       </div>

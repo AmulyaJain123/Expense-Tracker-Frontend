@@ -9,6 +9,7 @@ export const createConnection = () => {
         console.log('Connection Forming');
         socket = io(VITE_BACKEND_API, {
             withCredentials: true,
+            reconnection: false
         });
     }
     return socket;

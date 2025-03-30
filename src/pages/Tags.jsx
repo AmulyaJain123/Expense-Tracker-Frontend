@@ -12,7 +12,7 @@ export default function Tags() {
       </Helmet>
       <div className="h-full w-full bg-white whiteScr overflow-auto pb-[80px] rounded-r-xl lg:rounded-r-none rounded-l-xl">
         <div className="flex flex-col max-w-[1200px] mx-auto">
-          <div className="flex my-8 mx-12">
+          <div className="flex my-8 mb-0 mx-12">
             <Link to={"/vault"}>
               <RedButton text={"Go Back To VAULT"} />
             </Link>

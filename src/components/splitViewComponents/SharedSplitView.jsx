@@ -24,6 +24,7 @@ import { format } from "date-fns";
 import { Helmet } from "react-helmet-async";
 import user from "../../assets/user.png";
 import { utils, writeFile } from "xlsx";
+import { ErrorText } from "../../UIComponents/NoneFound";
 
 export default function SharedSplitView() {
   const data = useLoaderData();
@@ -158,10 +159,10 @@ export default function SharedSplitView() {
               {modalOpen === 1 ? (
                 <div className="rounded-xl w-[500px] bg-stone-100">
                   <h1 className="p-8  text-center text-xl font-medium">
-                    Are you sure you want to delete the following SPLIT?
+                    Are you sure you want to delete the SPLIT?
                   </h1>
                   <div className="flex  justify-center mt-2 mb-0 space-x-[120px] px-[50px]">
-                    <div className="origin-top scale-75 shadow-xl">
+                    {/* <div className="origin-top scale-75 rounded-xl shadow-xl">
                       <div className="flex h-[200px] rounded-xl bg-slate-100 ">
                         <div className="rounded-l-xl w-[100px] striped"></div>
                         <div className="flex flex-col space-y-2 pl-4 w-[400px]">
@@ -245,7 +246,7 @@ export default function SharedSplitView() {
                           </div>
                         </div>
                       </div>
-                    </div>
+                    </div> */}
                   </div>
                   <div className="flex sm:hidden h-[25px] justify-center mb-6 space-x-2">
                     {deleting ? (
@@ -257,16 +258,7 @@ export default function SharedSplitView() {
                         />
                       </div>
                     ) : null}
-                    {error ? (
-                      <div className="flex items-center space-x-2">
-                        <img
-                          src={exclamation}
-                          className="w-[20px] h-[20px] flex justify-center items-center"
-                          alt=""
-                        />{" "}
-                        <span className="text-red-500 tetx-lg ">{error}</span>
-                      </div>
-                    ) : null}
+                    {error ? <ErrorText IconSize={20} textSize={15} /> : null}
                   </div>
                   <form
                     method="dialog"
@@ -282,13 +274,8 @@ export default function SharedSplitView() {
                       </div>
                     ) : null}
                     {error ? (
-                      <div className="hidden sm:flex items-center space-x-4">
-                        <img
-                          src={exclamation}
-                          className="w-[20px] h-[20px] flex justify-center items-center"
-                          alt=""
-                        />{" "}
-                        <span className="text-red-500 tetx-lg ">{error}</span>
+                      <div className="hidden sm:flex items-center ">
+                        <ErrorText IconSize={20} textSize={15} />
                       </div>
                     ) : null}
                     <button
@@ -309,20 +296,17 @@ export default function SharedSplitView() {
                 </div>
               ) : modalOpen === 2 ? (
                 <div className="rounded-xl sm:w-[500px] bg-stone-100">
-                  <h1 className="p-8  text-center text-lg sm:text-xl font-medium">
+                  <h1 className="p-8 pb-0 text-center text-lg sm:text-xl font-medium">
                     Successfully deleted the SPLIT!!
                   </h1>
-                  <div className="flex justify-center mt-6 ">
-                    <img
-                      src={deleted}
-                      className="w-[100px] h-[100px] flex justify-center items-center"
-                      alt=""
-                    />
-                  </div>
-                  <div className="mt-8 pb-12 flex justify-center">
-                    <RedirectingWindow add={"/split/protected/view/shared"}>
-                      <span>Redirecting to Shared SPLITS in </span>
-                    </RedirectingWindow>
+
+                  <div className="mt-8 pb-6 flex justify-center">
+                    <Link
+                      to={"/split/protected/view/shared"}
+                      className="p-2 px-4 rounded-lg mr-6 sm:mr-0 bg-blue-500 text-white"
+                    >
+                      Continue
+                    </Link>
                   </div>
                 </div>
               ) : null}

@@ -17,8 +17,14 @@ import trackCreate from "../assets/gallery/trackCreate.webp";
 import transaction from "../assets/gallery/transaction.webp";
 import transactions from "../assets/gallery/transactions.webp";
 import warranty from "../assets/gallery/warranty.webp";
-import warrantyView from "../assets/gallery/warrantyView.webp";
+import docView from "../assets/gallery/docView.webp";
 import bills from "../assets/gallery/bills.webp";
+import chat from "../assets/gallery/chat.webp";
+import notification from "../assets/gallery/notification.webp";
+import tagDis from "../assets/gallery/tagDis.webp";
+
+import pauseIcon from "../assets/extras/pause.png";
+import playIcon from "../assets/extras/play.png";
 
 const config = [
   {
@@ -26,12 +32,16 @@ const config = [
     name: "Transaction Details | TRACK > Transactions > View",
     width: 700,
   },
+  { image: notification, name: "Notifications", width: 700 },
+
   {
     image: transactions,
     name: "Transaction History | TRACK > Transactions",
     width: 700,
   },
   { image: activity, name: "Activity | Profile", width: 700 },
+  { image: chat, name: "Messages", width: 700 },
+
   { image: bargraph, name: "Expense Pattern | TRACK > Dashboard", width: 700 },
   {
     image: categories,
@@ -46,11 +56,14 @@ const config = [
     width: 700,
   },
   { image: profile, name: "Profile", width: 700 },
+
   {
     image: scatterplot,
     name: "Expense Distribution | TRACK > Dashboard",
     width: 700,
   },
+  { image: tagDis, name: "Tag Distribution | TRACK > Dashboard", width: 700 },
+
   { image: splitModal, name: "Adding Bills | SPLIT > Create", width: 700 },
   { image: splitRes, name: "SPLIT Result | SPLIT > Create", width: 700 },
   {
@@ -77,28 +90,40 @@ const config = [
     width: 700,
   },
   {
-    image: warrantyView,
-    name: "Saved Warranties | VAULT > View > Warranty",
+    image: docView,
+    name: "Saved Docs | VAULT > View > Doc",
     width: 700,
   },
   { image: bills, name: "Adding Bills | SPLIT > Create", width: 700 },
 ];
 
+let temp;
+
 export default function SwipeAnimation() {
   const [ind, setInd] = useState(0);
-  const [test, setTest] = useState(0);
+  const [play, setPlay] = useState(true);
 
   useEffect(() => {
-    const temp = setInterval(() => {
-      setInd((ind) => {
-        return (ind + 1) % config.length;
-      });
-    }, [4000]);
+    if (play) {
+      temp = setInterval(() => {
+        setInd((ind) => {
+          return (ind + 1) % config.length;
+        });
+      }, [4000]);
+    } else {
+      clearInterval(temp);
+    }
 
     return () => {
       clearInterval(temp);
     };
-  }, []);
+  }, [play]);
+
+  function imageSelect(index) {
+    setInd(index);
+    setPlay(false);
+  }
+
   return (
     <div className="mob:mb-6 tab:mb-8 lap:mb-10 mt-2 mob:pb-[45px] tab:pb-[60px] lap:pb-[80px] rounded-lg mx-auto w-full">
       <div className=" relative p-4   w-full flex flex-col justify-center items-center">
@@ -117,13 +142,24 @@ export default function SwipeAnimation() {
         <span className="absolute mob:bottom-[5px] tab:bottom-[5px] lap:bottom-[-5px text-nowrap right-[50%] translate-x-[50%] mob:text-sm tab:text-base font-bold">
           {config[ind].name}
         </span>
-        <div className="absolute mob:bottom-[-12px] tab:bottom-[-15px] lap:bottom-[-25px] flex mob:space-x-[10px] tab:space-x-3 right-[50%] translate-x-[50%]">
+        <button
+          onClick={() => setPlay((p) => !p)}
+          className="absolute p-[6px] rounded-md hover:bg-slate-200 duration-700 mob:bottom-[-37px] tab:bottom-[-40px] lap:bottom-[-50px] right-[50%] translate-y-[100%] translate-x-[50%]"
+        >
+          <img
+            src={play ? pauseIcon : playIcon}
+            className="w-[14px] h-[14px] tab:w-[16px] tab:h-[16px]"
+            alt=""
+          />
+        </button>
+        <div className="absolute mob:bottom-[-22px] tab:bottom-[-25px] lap:bottom-[-35px] flex mob:space-x-[10px] tab:space-x-3 right-[50%] translate-x-[50%]">
           {new Array(config.length).fill(0).map((i, index) => {
             return (
-              <div
+              <button
+                onClick={() => imageSelect(index)}
                 style={{ backgroundColor: index === ind ? "black" : "" }}
-                className="w-[6px] h-[6px] tab:w-[7px] tab:h-[7px] rounded-full duration-700 border border-black"
-              ></div>
+                className="w-[6px] h-[6px] hover:bg-[#dc93f6] tab:w-[7px] tab:h-[7px] rounded-full duration-700 border border-black"
+              ></button>
             );
           })}
         </div>

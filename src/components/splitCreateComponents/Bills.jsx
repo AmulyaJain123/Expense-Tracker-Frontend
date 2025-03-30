@@ -31,9 +31,12 @@ export default function Bills({ data }) {
 
               <div className="p-2 sm:p-3 text-[12px] sm:text-[13px] min-h-[300px] sm:min-h-[400px] w-full ">
                 {selectedBill === null ? (
-                  <p className="text-center mt-20 sm:mt-24 text-xs sm:text-sm text-stone-500 font-normal">
-                    No Bill Selected
-                  </p>
+                  <div className="flex w-full text-slate-300 flex-col h-full justify-center items-center">
+                    <i class="fi fi-sr-choose flex items-center text-[60px]"></i>
+                    <span className="mt-4 text-base font-normal">
+                      No Bill Selected
+                    </span>
+                  </div>
                 ) : (
                   <SingleBill data={data.find((i) => i.id === selectedBill)} />
                 )}

@@ -6,6 +6,8 @@ import { transactionSlice } from "./transactionSlice.js";
 import { distributionSlice } from "./distributionSlice.js";
 import { dashboardSlice } from "./dashboardSlice.js";
 import { realtimeSlice } from "./realtimeSlice.js";
+import { messagesSlice } from "./messagesSlice.js";
+
 
 
 const store = configureStore({
@@ -16,7 +18,9 @@ const store = configureStore({
         transactions: transactionSlice.reducer,
         distribution: distributionSlice.reducer,
         dashboard: dashboardSlice.reducer,
-        realtime: realtimeSlice.reducer
+        realtime: realtimeSlice.reducer,
+        messages: messagesSlice.reducer,
+
     }
 })
 
@@ -27,6 +31,8 @@ export const transactionActions = transactionSlice.actions;
 export const distributionActions = distributionSlice.actions;
 export const dashboardActions = dashboardSlice.actions;
 export const realtimeActions = realtimeSlice.actions;
+export const messagesActions = messagesSlice.actions;
+
 
 
 export default store;

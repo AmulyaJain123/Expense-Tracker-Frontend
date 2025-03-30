@@ -3,6 +3,8 @@ import { Link } from "react-router-dom";
 import recIcon from "../../assets/rec.png";
 import empty from "../../assets/empty.png";
 import OnlyXChars from "../../UIComponents/OnlyXChars";
+import { EmptyBox } from "../../UIComponents/NoneFound";
+import { dateFormat } from "../../util/algo";
 
 export default function Sorted({ filteredData, sorting }) {
   const [sortedData, setSortedData] = useState(null);
@@ -151,28 +153,31 @@ export default function Sorted({ filteredData, sorting }) {
               return (
                 <Link
                   to={`${i.recId}`}
-                  className="flex hover:scale-105 hover:shadow-lg duration-500 flex-col rounded-xl bg-slate-100 "
+                  className="flex hover:scale-105 w-[270px] h-[160px] hover:shadow-lg duration-500 flex-col rounded-xl bg-slate-100 "
                 >
                   <div className="p-3  flex space-x-3 ">
                     <div className="p-2 rounded-xl bg-slate-200">
                       <img
                         src={recIcon}
-                        className="w-[110px] h-[110px] flex justify-center items-center"
+                        className="w-[90px] h-[90px] flex justify-center items-center"
                         alt=""
                       />
                     </div>
                     <div className="flex flex-col w-[120px] text-xs justify-center space-y-[6px]">
                       <div className="flex flex-col">
                         <span className="font-semibold">Receipt Name</span>{" "}
-                        <span className="pl-1">
+                        <span className="">
                           <OnlyXChars x={15} text={i.details.recName} />
                         </span>
                       </div>
 
                       <div className="flex flex-col">
                         <span className="font-semibold">Created On</span>{" "}
-                        <span className="pl-1">
-                          <OnlyXChars x={15} text={i.details.createdOn} />
+                        <span className="">
+                          <OnlyXChars
+                            x={20}
+                            text={dateFormat(i.details.createdOn)}
+                          />
                         </span>
                       </div>
 
@@ -180,8 +185,11 @@ export default function Sorted({ filteredData, sorting }) {
                         <span className="font-semibold text-nowrap">
                           Receipt Date
                         </span>{" "}
-                        <span className="pl-1">
-                          <OnlyXChars x={15} text={i.details.recDate} />
+                        <span className="">
+                          <OnlyXChars
+                            x={20}
+                            text={dateFormat(i.details.recDate)}
+                          />
                         </span>
                       </div>
                     </div>
@@ -199,14 +207,13 @@ export default function Sorted({ filteredData, sorting }) {
             })
           ) : (
             <div className="flex flex-col mt-8 items-center space-y-2">
-              <img
-                src={empty}
-                className="h-[90px] w-[90px] flex justify-center items-center"
-                alt=""
+              <EmptyBox
+                IconSize={60}
+                textColor="#cbd5e1"
+                textSize={16}
+                msg="No Warranty Found"
+                gap={12}
               />
-              <p className="text-center text-stone-500 mt-12 text-sm font-medium">
-                No Receipts Found
-              </p>
             </div>
           )}
         </>

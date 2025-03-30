@@ -24,7 +24,7 @@ export default function NullFilter() {
       ) : (
         <div className="flex relative flex-col flex-grow bg-[#fefae0] mr-4  rounded-r-xl p-4 px-12">
           <div className="text-lg mt-[6px] tracking-wide font-bold mx-auto mb-[10px] uppercase">
-            Filters Added:
+            Filters Added
           </div>
           <div className="flex mt-3 overflow-auto pt-[15px] customScroll pr-3 flex-wrap gap-[10px]">
             {filters.map((i, index) => {

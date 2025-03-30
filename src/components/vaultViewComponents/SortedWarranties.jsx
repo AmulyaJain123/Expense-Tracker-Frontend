@@ -3,6 +3,8 @@ import { Link } from "react-router-dom";
 import warIcon from "../../assets/war.png";
 import empty from "../../assets/empty.png";
 import OnlyXChars from "../../UIComponents/OnlyXChars";
+import { EmptyBox } from "../../UIComponents/NoneFound";
+import { dateFormat } from "../../util/algo";
 
 export default function SortedWarranties({ filteredData, sorting }) {
   const [sortedData, setSortedData] = useState(null);
@@ -139,28 +141,31 @@ export default function SortedWarranties({ filteredData, sorting }) {
               return (
                 <Link
                   to={`${i.warId}`}
-                  className="flex relative hover:scale-105 hover:shadow-lg duration-500 flex-col rounded-xl bg-slate-100 "
+                  className="flex relative hover:scale-105 w-[260px] h-[200px] hover:shadow-lg duration-500 flex-col rounded-xl bg-slate-100 "
                 >
                   <div className="p-3  flex space-x-3 ">
-                    <div className="p-2 flex justify-center items-center w-[130px] h-[130px] rounded-xl bg-slate-200">
+                    <div className="p-2 flex justify-center items-center w-[110px] h-[110px] rounded-xl bg-slate-200">
                       <img
                         src={warIcon}
-                        className="w-[105px] h-[105px] flex justify-center items-center"
+                        className="w-[85px] h-[85px] flex justify-center items-center"
                         alt=""
                       />
                     </div>
                     <div className="flex flex-col w-[120px] justify-center space-y-[6px] text-xs">
                       <div className="flex flex-col">
                         <span className="font-semibold">Warranty Name</span>{" "}
-                        <span className="pl-1">
+                        <span className="">
                           <OnlyXChars x={15} text={i.details.warName} />
                         </span>
                       </div>
 
                       <div className="flex flex-col">
                         <span className="font-semibold">Created On</span>{" "}
-                        <span className="pl-1">
-                          <OnlyXChars x={15} text={i.details.createdOn} />
+                        <span className="">
+                          <OnlyXChars
+                            x={20}
+                            text={dateFormat(i.details.createdOn)}
+                          />
                         </span>
                       </div>
 
@@ -168,8 +173,11 @@ export default function SortedWarranties({ filteredData, sorting }) {
                         <span className="font-semibold text-nowrap">
                           Warranty Date
                         </span>{" "}
-                        <span className="pl-1">
-                          <OnlyXChars x={15} text={i.details.warDate} />
+                        <span className="">
+                          <OnlyXChars
+                            x={20}
+                            text={dateFormat(i.details.warDate)}
+                          />
                         </span>
                       </div>
                     </div>
@@ -185,7 +193,10 @@ export default function SortedWarranties({ filteredData, sorting }) {
                       <div className="flex flex-col ">
                         <span className="font-semibold">Expiry Date</span>{" "}
                         <span className="">
-                          <OnlyXChars x={20} text={i.details.expiry.date} />
+                          <OnlyXChars
+                            x={20}
+                            text={dateFormat(i.details.expiry.date)}
+                          />
                         </span>
                       </div>
                       <div className="flex flex-col ">
@@ -222,7 +233,7 @@ export default function SortedWarranties({ filteredData, sorting }) {
                         Renewed On{" "}
                       </span>{" "}
                       <span className="text-xs font-normal">
-                        {i.details.expiry.renewedOn}
+                        {dateFormat(i.details.expiry.renewedOn)}
                       </span>
                     </span>
                   ) : null}
@@ -231,14 +242,13 @@ export default function SortedWarranties({ filteredData, sorting }) {
             })
           ) : (
             <div className="flex flex-col mt-8 items-center space-y-2">
-              <img
-                src={empty}
-                className="h-[90px] w-[90px] flex justify-center items-center"
-                alt=""
+              <EmptyBox
+                IconSize={60}
+                textColor="#cbd5e1"
+                textSize={16}
+                msg="No Warranty Found"
+                gap={12}
               />
-              <p className="text-center text-stone-500 mt-12 text-sm font-medium">
-                No Warranty Found
-              </p>
             </div>
           )}
         </>

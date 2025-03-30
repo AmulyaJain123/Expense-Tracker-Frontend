@@ -103,7 +103,7 @@ export default function ReceiptView() {
                             <span className="font-semibold">Created On</span>{" "}
                             <span className="pl-1">
                               <OnlyXChars
-                                x={15}
+                                x={20}
                                 text={data.details.createdOn}
                               />
                             </span>
@@ -114,7 +114,7 @@ export default function ReceiptView() {
                               Receipt Date
                             </span>{" "}
                             <span className="pl-1">
-                              <OnlyXChars x={15} text={data.details.recDate} />
+                              <OnlyXChars x={20} text={data.details.recDate} />
                             </span>
                           </div>
                         </div>
@@ -132,41 +132,45 @@ export default function ReceiptView() {
                 </div>
                 <form
                   method="dialog"
-                  className="flex pb-4 sm:pr-4 justify-center sm:justify-end space-x-6"
+                  className="flex pb-4 sm:pr-4 justify-center sm:justify-between"
                 >
-                  {deleting ? (
-                    <div className="flex items-center">
-                      <img
-                        src={load}
-                        className="w-[25px] h-[25px] flex justify-center items-center"
-                        alt=""
-                      />
-                    </div>
-                  ) : null}
-                  {error ? (
-                    <div className="flex items-center space-x-[10px]">
-                      <img
-                        src={exclamation}
-                        className="w-[20px] h-[20px] flex justify-center items-center"
-                        alt=""
-                      />{" "}
-                      <span className="text-red-500 text-base ">{error}</span>
-                    </div>
-                  ) : null}
-                  <button
-                    type="button"
-                    onClick={closeHandle}
-                    className="p-2 px-4 rounded-lg bg-blue-500 text-white"
-                  >
-                    Cancel
-                  </button>
-                  <button
-                    className="p-2 px-4 rounded-lg bg-red-500 text-white"
-                    type="button"
-                    onClick={deleteConfirmed}
-                  >
-                    Confirm
-                  </button>
+                  <div className="pl-6 flex items-center">
+                    {deleting ? (
+                      <div className="flex items-center">
+                        <img
+                          src={load}
+                          className="w-[25px] h-[25px] flex justify-center items-center"
+                          alt=""
+                        />
+                      </div>
+                    ) : null}
+                    {error ? (
+                      <div className="flex items-center space-x-2">
+                        <img
+                          src={exclamation}
+                          className="w-[20px] h-[20px] flex justify-center items-center"
+                          alt=""
+                        />{" "}
+                        <span className="text-red-500 tetx-lg ">{error}</span>
+                      </div>
+                    ) : null}
+                  </div>
+                  <div className="flex gap-x-6">
+                    <button
+                      type="button"
+                      onClick={closeHandle}
+                      className="p-2 px-4 rounded-lg bg-blue-500 text-white"
+                    >
+                      Cancel
+                    </button>
+                    <button
+                      className="p-2 px-4 rounded-lg bg-red-500 text-white"
+                      type="button"
+                      onClick={deleteConfirmed}
+                    >
+                      Confirm
+                    </button>
+                  </div>
                 </form>
               </div>
             ) : modalOpen === 2 ? (
@@ -174,7 +178,7 @@ export default function ReceiptView() {
                 <h1 className="p-8  text-center text-lg sm:text-xl font-medium">
                   Successfully deleted the Receipt!!
                 </h1>
-                <div className="flex justify-center mt-6 ">
+                <div className="flex justify-center mt-2 ">
                   <img
                     src={deleted}
                     className="w-[100px] h-[100px] flex justify-center items-center"
@@ -182,9 +186,12 @@ export default function ReceiptView() {
                   />
                 </div>
                 <div className="mt-8 pb-12 flex justify-center">
-                  <RedirectingWindow add={"/vault/protected/view/receipt"}>
-                    <span>Redirecting to VAULT in </span>
-                  </RedirectingWindow>
+                  <Link
+                    to={"/vault/protected/view/receipt"}
+                    className="p-2 px-4 font-semibold rounded-lg text-[18px]  mr-6 sm:mr-0 bg-[#9d4edd] text-white"
+                  >
+                    Continue To Saved Receipts
+                  </Link>
                 </div>
               </div>
             ) : null}

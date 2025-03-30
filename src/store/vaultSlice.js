@@ -13,7 +13,9 @@ const intialSplitCreateState = {
   recFilter: null,
   recSorting: null,
   warFilter: null,
-  warSorting: null
+  warSorting: null,
+  docFilter: null,
+  docSorting: null
 
 };
 
@@ -75,6 +77,12 @@ export const vaultSlice = createSlice({
     },
     setWarSorting(state, action) {
       state.warSorting = action.payload;
+    },
+    setDocFilter(state, action) {
+      state.docFilter = action.payload;
+    },
+    setDocSorting(state, action) {
+      state.docSorting = action.payload;
     }
   },
 });

@@ -5,6 +5,7 @@ import { forwardRef, useImperativeHandle } from "react";
 import { useDispatch } from "react-redux";
 import { vaultActions } from "../../store/main";
 import styles from "./ReceiptDetails.module.css";
+import { format } from "date-fns";
 
 const ReceiptDetails = forwardRef(function ReceiptDetails({ ...prop }, ref) {
   const recDateRef = useRef();
@@ -143,12 +144,9 @@ const ReceiptDetails = forwardRef(function ReceiptDetails({ ...prop }, ref) {
               REQ
             </span>
           </div>
-          <input
-            type="text"
-            value={currDate}
-            disabled
-            className="flex p-2 px-3 text-xs text-center mx-3 mt-[6px] bg-slate-100"
-          />
+          <div className="flex p-2 px-3 text-xs text-center justify-center font-medium mx-3 mt-[6px] bg-slate-100">
+            {format(new Date(currDate), "EEE, dd MMM yyyy")}
+          </div>
         </div>
         <div className="flex flex-col">
           <div className="text-base relative font-semibold flex justify-center">
@@ -167,9 +165,12 @@ const ReceiptDetails = forwardRef(function ReceiptDetails({ ...prop }, ref) {
             />
             <span
               style={{ color: recdate ? "#000" : "#737373" }}
-              className="absolute left-0 h-auto p-2 px-4 pl-6 flex items-center top-0 w-[70%] bg-slate-100"
+              onClick={() => recDateRef.current.showPicker()}
+              className="absolute hover:cursor-pointer left-0 h-auto p-2 px-4 pl-6 flex items-center top-0 w-[70%] bg-slate-100"
             >
-              {recdate ? new Date(recdate).toDateString() : "NOT ENTERED"}
+              {recdate
+                ? format(new Date(recdate), "EEE, dd MMM yyyy")
+                : "NOT ENTERED"}
             </span>
           </div>
 

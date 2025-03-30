@@ -34,15 +34,14 @@ export default function PageTile({ details }) {
   const active = setActive(location, name, path);
   const dispatch = useDispatch();
   const notifications = useSelector((state) => state.realtime.notifications);
+  const messages = useSelector((state) => state.messages.messages);
 
   return (
     <div className="">
       <NavLink
         to={path}
         onClick={() => dispatch(universalActions.closeMenu())}
-        className={({ isActive }) => {
-          return isActive ? "active" : undefined;
-        }}
+        className={active ? "active" : ""}
       >
         <Main className="py-2 mb-2 pl-3 w-[170px] relative flex items-center rounded-r-lg">
           <img
@@ -62,9 +61,16 @@ export default function PageTile({ details }) {
             {name}
           </span>
           {name === "Notifications" && notifications.length != 0 ? (
-            <div className="w-[20px] h-[20px] absolute right-4 rounded-full bg-[#7fffd4]  text-[11px] font-medium flex justify-center items-center">
-              <span className="h-fit">{notifications.length}</span>
-            </div>
+            <span className="w-[20px] h-[20px] absolute right-4 rounded-full bg-[#7fffd4]  text-[11px] font-medium flex justify-center items-center">
+              <span className="h-fit pt-[2px]">{notifications.length}</span>
+            </span>
+          ) : null}
+          {name === "Messages" && Object.keys(messages).length != 0 ? (
+            <span className="w-[20px] h-[20px] absolute right-4 rounded-full bg-[#7fffd4]  text-[11px] font-medium flex justify-center items-center">
+              <span className="h-fit pt-[2px]">
+                {Object.keys(messages).length}
+              </span>
+            </span>
           ) : null}
         </Main>
       </NavLink>

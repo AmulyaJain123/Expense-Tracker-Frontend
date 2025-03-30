@@ -8,8 +8,9 @@ import exclamation from "../../assets/exclamation.png";
 import tick from "../../assets/selected.png";
 import { forwardRef } from "react";
 import { useImperativeHandle } from "react";
+import { ErrorBox, EmptyBox } from "../../UIComponents/NoneFound";
 
-const Tags = forwardRef(function Tags({ closeClick, applyFilter }, ref) {
+const Tags = forwardRef(function Tags({ closeClick, applyFilter, type }, ref) {
   const [fetchedData, setFetchedData] = useState(null);
   const [filteredData, setFilteredData] = useState(null);
   const [active, setActive] = useState(false);
@@ -45,7 +46,7 @@ const Tags = forwardRef(function Tags({ closeClick, applyFilter }, ref) {
       if (!res.ok) {
         throw "failed";
       } else {
-        const data = await res.json();
+        const data = (await res.json())[type];
         const newArr = data.map((p) => {
           return {
             val: p,
@@ -117,10 +118,10 @@ const Tags = forwardRef(function Tags({ closeClick, applyFilter }, ref) {
     <div className={` pt-1 mx-auto`}>
       <div className="flex justify-between ">
         {" "}
-        <div className="p-4 w-full">
+        <div className="p-3 w-full">
           <div className="flex space-x-3 w-full">
-            <div className="p-2 rounded-lg mx-2 w-[900px] pb-4 bg-slate-100">
-              <div className="font-bold rounded-xl bg-white py-2 m-2 mb-4  text-2xl uppercase text-center">
+            <div className="p-1 rounded-xl mx-2 w-[900px] pb-4 bg-slate-100">
+              <div className="font-bold rounded-lg bg-white py-2 m-2 mb-3  text-2xl uppercase text-center">
                 Search Tags
               </div>
               <div className="bg-white  rounded-lg mx-2">
@@ -140,7 +141,7 @@ const Tags = forwardRef(function Tags({ closeClick, applyFilter }, ref) {
                   </div>
                 </div>
 
-                <div className="mx-2 my-8 mt-2 mb-2 h-[300px] px-4 py-4  overflow-auto customScrollThin">
+                <div className="mx-2 my-8 mt-2 mb-1 h-[300px] px-4 py-4  overflow-auto customScrollThin">
                   {fetchedData === null ? (
                     <div className="mt-24 flex justify-center">
                       <img src={load} className="w-[50px] h-[50px]" alt="" />
@@ -148,21 +149,16 @@ const Tags = forwardRef(function Tags({ closeClick, applyFilter }, ref) {
                   ) : null}
 
                   {fetchedData === false ? (
-                    <div className="flex flex-col mx-auto mt-12 items-center">
-                      <img
-                        src={errorIcon}
-                        className="w-[70px] h-[70px] mb-4"
-                        alt=""
-                      />
-                      <p className="text-center">Failed to load resources.</p>
-                      <div className="mt-8">
+                    <div className="w-full h-full flex">
+                      <ErrorBox IconSize={60} textSize={16} gap={12}>
+                        {" "}
                         <button
                           onClick={loadTags}
-                          className="px-4 py-2 w-[120px] rounded-lg bg-blue-500 text-white border-2 border-blue-500 hover:scale-105 hover:text-blue-500 hover:bg-white hover hover:shadow-lg duration-500"
+                          className="px-3 py-[2px] scale-125 text-[13px] rounded-md bg-blue-500 text-white border-[1.5px] border-blue-500 hover:scale-105 hover:text-blue-500 hover:bg-white hover hover:shadow-lg duration-500"
                         >
                           Retry
                         </button>
-                      </div>
+                      </ErrorBox>
                     </div>
                   ) : null}
 
@@ -170,7 +166,7 @@ const Tags = forwardRef(function Tags({ closeClick, applyFilter }, ref) {
                   fetchedData != false &&
                   filteredData != null &&
                   filteredData.length > 0 ? (
-                    <div className="flex flex-wrap  gap-4 justify-center">
+                    <div className="flex flex-wrap  gap-3 justify-center">
                       {filteredData.map((i) => {
                         return (
                           <button
@@ -195,18 +191,26 @@ const Tags = forwardRef(function Tags({ closeClick, applyFilter }, ref) {
                     fetchedData != false &&
                     filteredData != null &&
                     filteredData.length === 0 ? (
-                    <div className="flex justify-center">No Tags Found</div>
+                    <div className="flex w-full h-full items-center justify-center">
+                      <EmptyBox
+                        textSize={18}
+                        textColor="#cbd5e1"
+                        gap={12}
+                        IconSize={60}
+                        msg="No Tag Found"
+                      />
+                    </div>
                   ) : null}
                 </div>
 
                 <div className="flex h-[15px]"></div>
               </div>
             </div>
-            <div className=" flex-grow flex flex-col bg-slate-100 w-[300px] py-4 rounded-md">
-              <h1 className="font-bold rounded-xl bg-white py-2 mx-4 text-2xl uppercase text-center">
+            <div className=" flex-grow flex flex-col bg-slate-100 w-[300px] py-3 rounded-xl">
+              <h1 className="font-bold rounded-lg bg-white py-2 mx-3 text-2xl uppercase text-center">
                 Tags Applied
               </h1>
-              <div className="bg-white flex  m-4 mb-0 rounded-lg">
+              <div className="bg-white flex  m-3 mb-0 rounded-lg">
                 <div className="flex-col overflow-auto py-4 items-center customScrollThin h-[340px] space-y-4 my-6 flex-grow flex mx-4">
                   {fetchedData &&
                     fetchedData.map((i) => {

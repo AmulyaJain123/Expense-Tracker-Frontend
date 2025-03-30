@@ -17,6 +17,7 @@ import { Helmet } from "react-helmet-async";
 import { useRef, useState } from "react";
 import ProfilePic from "../components/profileComponents/ProfilePic";
 import Activity from "../components/profileComponents/Activity";
+import { dateFormat } from "../util/algo";
 
 const monthArr = [
   "January",
@@ -93,7 +94,9 @@ export default function ProfileViewPage() {
                         />
                         <span>Vault</span>
                       </span>
-                      <span>{data.vault.rec + data.vault.war}</span>
+                      <span>
+                        {data.vault.rec + data.vault.war + data.vault.doc}
+                      </span>
                     </div>
                     <div className="flex justify-between">
                       <span className="font-semibold flex items-center uppercase">
@@ -123,24 +126,35 @@ export default function ProfileViewPage() {
             </div>
             <div className="flex text-[11px] tab:text-[11px] tab:text-xs flex-col gap-y-6 sm:gap-y-8 max-w-[900px]">
               <div className="flex flex-col space-y-1 w-[280px] tab:w-[350px]">
+                <span className="font-semibold ">Full Name</span>
+                <div className="px-4 tab:px-6 py-1 tab:py-[6px] text-neutral-500 text-[11px] tab:text-xs font-medium rounded-sm bg-neutral-100 ">
+                  {data.fullname}
+                </div>
+              </div>
+              <div className="flex flex-col space-y-1 w-[280px] tab:w-[350px]">
                 <span className="font-semibold ">Username</span>
                 <div className="relative ">
-                  <span className="px-4 tab:px-6 py-1 tab:py-[6px] flex disabled:text-neutral-500 text-[11px] tab:text-xs font-medium rounded-sm bg-neutral-100 ">
-                    {data.username}
+                  <span className="px-4 tab:px-6 text-neutral-500 py-1 text items-center tab:py-[6px] flex disabled:text-neutral-500 text-[11px] tab:text-xs font-medium rounded-sm bg-neutral-100 ">
+                    <span className="text-neutral-400 mr-[6px] text-sm tab:mr-4">
+                      @
+                    </span>
+                    <span>{data.username}</span>
                   </span>
                 </div>
               </div>
               <div className="flex flex-col space-y-1 w-[280px] tab:w-[350px]">
                 <span className="font-semibold ">User ID</span>
                 <div className="px-4 tab:px-6 py-1 tab:py-[6px] text-[11px] tab:text-xs font-medium rounded-sm bg-neutral-100 ">
-                  <span className="text-neutral-400 mr-2">#</span>
-                  <span className="text-[11px] tab:text-xs">{data.userId}</span>
+                  <span className="text-neutral-400 mr-4 text-sm">#</span>
+                  <span className="text-[11px] tab:text-xs text-neutral-500">
+                    {data.userId}
+                  </span>
                 </div>
               </div>
               <div className="flex flex-col space-y-1 w-[280px] tab:w-[350px]">
                 <span className="font-semibold ">Joined On</span>
                 <div className="px-4 tab:px-6 py-1 tab:py-[6px] text-neutral-500 text-[11px] tab:text-xs font-medium rounded-sm bg-neutral-100 ">
-                  {formatDate(data.joinedOn)}
+                  {dateFormat(data.joinedOn)}
                 </div>
               </div>
               <div className="flex flex-col space-y-1 w-[280px] tab:w-[350px]">
@@ -151,7 +165,7 @@ export default function ProfileViewPage() {
                   </span>
 
                   <div className="relative flex flex-grow">
-                    <span className="px-4 py-[8px] w-full focus:outline-none disabled:text-neutral-500 text-[11px] tab:text-xs font-medium rounded-sm bg-neutral-100 ">
+                    <span className="px-4 py-[8px] w-full text-neutral-500 focus:outline-none disabled:text-neutral-500 text-[11px] tab:text-xs font-medium rounded-sm bg-neutral-100 ">
                       {data.upiId || "NOT ENTERED"}
                     </span>
                   </div>
