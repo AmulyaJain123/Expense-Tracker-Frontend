@@ -2,7 +2,7 @@ import { Helmet } from "react-helmet-async";
 import NotificationBox from "../components/notificationComponents/NotificationBox";
 import friendsIcon from "../assets/sideNavImages/friends-solid.png";
 import splitIcon from "../assets/sideNavImages/split-solid.png";
-import loginIcon from "../assets/login.png";
+import loginIcon from "../assets/logIn.png";
 import { useState } from "react";
 
 const template = {
