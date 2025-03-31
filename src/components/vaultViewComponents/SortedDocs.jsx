@@ -223,7 +223,7 @@ export default function SortedDocs({ filteredData, sorting }) {
                 IconSize={60}
                 textColor="#cbd5e1"
                 textSize={16}
-                msg="No Warranty Found"
+                msg="No Doc Found"
                 gap={12}
               />
             </div>
