@@ -584,7 +584,7 @@ export default function DataDisplay({ data }) {
 
                   <span
                     style={{
-                      color: transactionType != "outgoing" ? "blue" : "#55a630",
+                      color: transactionType != "outgoing" ? "#55a630" : "blue",
                     }}
                     className="w-[30px] font-semibold "
                   >

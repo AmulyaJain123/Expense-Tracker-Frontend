@@ -43,7 +43,7 @@ export default function ScatterGraph() {
     <>
       <div className="flex flex-grow flex-col mx-3 space-y-3">
         <div className="flex flex-col space-y-3 flex-grow rounded-xl p-3 bg-[#f7ebfd]">
-          <header className="flex p-[6px] px-4 pr-2 h-fit justify-center rounded-md bg-[#9f21e3] text-white">
+          <header className="flex p-[6px] px-4 pr-2 h-fit justify-center rounded-lg bg-[#9f21e3] text-white">
             <span className="text-lg font-semibold ">Expense Distribution</span>
           </header>
 
@@ -92,11 +92,11 @@ export default function ScatterGraph() {
                     <div className="flex space-x-6 pl-6">
                       <div className="flex space-x-2 text-xs">
                         <div className="flex items-center">
-                          <div className="w-[15px] h-[15px] bg-[#ffba49] rounded-full border mr-[6px] border-stone-500"></div>
+                          <div className="w-[15px] h-[15px] bg-blue-600 rounded-full border mr-[6px] border-stone-500"></div>
                           <span>Outgoing</span>
                         </div>
                         <div className="flex items-center">
-                          <div className="w-[15px] h-[15px] bg-[#20a39e] rounded-full border mr-[6px] border-stone-500"></div>
+                          <div className="w-[15px] h-[15px] bg-green-600 rounded-full border mr-[6px] border-stone-500"></div>
                           <span>Incoming</span>
                         </div>
                       </div>

@@ -79,7 +79,7 @@ export default function Scatter({ data, mode, year }) {
   const configObj = [
     {
       label: "Outgoing",
-      color: "#ffba49",
+      color: "blue", // #ffba49
       valueFormatter: (val) => {
         console.log(val);
         return `${format(
@@ -95,7 +95,7 @@ export default function Scatter({ data, mode, year }) {
     },
     {
       label: "Incoming",
-      color: "#20a39e",
+      color: "green", // #20a39e
       valueFormatter: (val) => {
         console.log(val);
         return `${format(

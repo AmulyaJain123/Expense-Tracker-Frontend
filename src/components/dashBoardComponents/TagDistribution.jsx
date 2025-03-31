@@ -94,7 +94,7 @@ export default function TagDistribution() {
   return (
     <>
       <div className="flex flex-grow flex-col  space-y-3">
-        <div className="flex flex-col space-y-3 flex-grow rounded-lg p-3 bg-[#f7ebfd]">
+        <div className="flex flex-col space-y-3 flex-grow rounded-xl p-3 bg-[#f7ebfd]">
           <header className="flex p-[6px] px-4 pr-2 h-fit justify-center rounded-lg bg-[#9f21e3] text-white">
             <span className="text-lg font-semibold ">Tag Distribution</span>
           </header>

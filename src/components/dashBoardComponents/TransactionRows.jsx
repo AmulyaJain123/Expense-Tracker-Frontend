@@ -42,7 +42,7 @@ export default function TransactionRows({ data }) {
       <span className="flex-[0.15]  ">{category}</span>
       <span
         style={{
-          color: transactionType === "Outgoing" ? "blue" : "#55a630",
+          color: transactionType === "Outgoing" ? "#55a630" : "blue",
         }}
         className="flex-[0.1] font-semibold "
       >

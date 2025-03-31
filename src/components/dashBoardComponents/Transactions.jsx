@@ -134,8 +134,8 @@ export default function Transactions() {
                           style={{
                             color:
                               transactionType != "outgoing"
-                                ? "blue"
-                                : "#55a630",
+                                ? "#55a630"
+                                : "blue",
                           }}
                           className="w-[30px] font-semibold "
                         >
