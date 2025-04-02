@@ -14,6 +14,8 @@ export default function ManageCategories() {
 
   async function fetchTags() {
     try {
+      setLoading(true);
+
       const res = await fetch(
         import.meta.env.VITE_BACKEND_API + "/track/getcategories",
         {
@@ -129,6 +131,7 @@ export default function ManageCategories() {
                 selected={selected}
                 removeData={removeData}
                 changeData={changeData}
+                reFetchData={fetchTags}
               />
             </>
           )}

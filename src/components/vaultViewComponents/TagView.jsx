@@ -19,7 +19,9 @@ export default function TagView({ data }) {
 
         <div className="mt-8 flex flex-wrap gap-3 mx-6">
           {data.length === 0 ? (
-            <p className="text-xs mx-auto">No Tags Applied</p>
+            <div className="py-1 px-3 capitalize text-neutral-500 text-sm rounded-lg font-medium bg-neutral-100">
+              No Tags
+            </div>
           ) : (
             data.map((i) => {
               return (

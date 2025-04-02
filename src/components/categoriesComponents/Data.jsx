@@ -3,11 +3,18 @@ import cancel from "../../assets/cancel.png";
 import load from "../../assets/loader.gif";
 import tick from "../../assets/tick.png";
 import cross from "../../assets/cross.png";
+import pencil from "../../assets/pencil.png";
 import side from "../../assets/side.png";
 import exclamation from "../../assets/exclamation.png";
 import OnlyXChars from "../../UIComponents/OnlyXChars";
 
-export default function Data({ data, changeData, removeData, selected }) {
+export default function Data({
+  data,
+  changeData,
+  removeData,
+  selected,
+  reFetchData,
+}) {
   const [inputBox, setInputBox] = useState([]);
   const [inputContent, setInputContent] = useState(
     data.map((i) => ({
@@ -26,6 +33,14 @@ export default function Data({ data, changeData, removeData, selected }) {
     error: null,
     val: "",
   });
+
+  const [error2, setError2] = useState(null);
+  const [renaming, setRenaming] = useState(false);
+
+  const [renameModal, setRenameModal] = useState(null);
+  const [renameModal2, setRenameModal2] = useState(null);
+  const [newName, setNewName] = useState("");
+  const [newCat, setCat] = useState("");
 
   function addCatClick(name) {
     setInputBox((preval) => {
@@ -337,8 +352,386 @@ export default function Data({ data, changeData, removeData, selected }) {
 
   console.log(inputContent);
 
+  function closeHandle() {
+    setNewName("");
+    setRenameModal(null);
+    setRenameModal2(null);
+    setError2(null);
+    setRenaming(false);
+    setCat("");
+  }
+
+  // useEffect(() => {
+  //   calcFilteredData(inputRef.current.value.trim().toLowerCase());
+  // }, [fetchedData]);
+
+  function openRenameCategoryModal(arr) {
+    setRenameModal(arr);
+    setNewName("");
+    setCat(arr[0].name);
+    setError2(null);
+    setRenaming(false);
+  }
+  function openRenameGroupModal(str) {
+    setRenameModal2(str);
+    setNewName("");
+    setError2(null);
+    setRenaming(false);
+  }
+
+  async function renameConfirm() {
+    setError2(null);
+    setRenaming(true);
+    try {
+      const res = await fetch(
+        import.meta.env.VITE_BACKEND_API + "/track/editsubcat",
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({
+            preVal: [
+              selected === 0 ? "outgoing" : "incoming",
+              renameModal[0].name,
+              renameModal[1],
+            ],
+            newVal: [
+              selected === 0 ? "outgoing" : "incoming",
+              newCat.trim(),
+              newName.trim(),
+            ],
+          }),
+          credentials: "include",
+        }
+      );
+      setRenaming(false);
+      if (!res.ok) {
+        const error = await res.json();
+        setError2(error.error);
+      } else {
+        reFetchData();
+        closeHandle();
+      }
+    } catch (err) {
+      console.log(err);
+      setRenaming(false);
+      setError2("Something went wrong.");
+    }
+  }
+
+  async function renameConfirm2() {
+    setError2(null);
+    setRenaming(true);
+    try {
+      const res = await fetch(
+        import.meta.env.VITE_BACKEND_API + "/track/editcat",
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({
+            preVal: [
+              selected === 0 ? "outgoing" : "incoming",
+              renameModal2.name,
+            ],
+            newVal: [selected === 0 ? "outgoing" : "incoming", newName.trim()],
+          }),
+          credentials: "include",
+        }
+      );
+      setRenaming(false);
+      if (!res.ok) {
+        const error = await res.json();
+        setError2(error.error);
+      } else {
+        reFetchData();
+        closeHandle();
+      }
+    } catch (err) {
+      console.log(err);
+      setRenaming(false);
+      setError2("Something went wrong.");
+    }
+  }
+
   return (
     <>
+      {renameModal2 == null ? null : (
+        <div className="bg-black/30 z-[9999] fixed top-0 left-0 h-screen w-screen flex justify-center items-center">
+          <div className="bg-white rounded-xl w-[550px] p-3 flex flex-col">
+            <div className="p-2 rounded-lg bg-slate-100 flex justify-center font-bold uppercase text-xl">
+              Rename Group
+            </div>
+            <div className="bg-slate-100 px-4 mt-3 rounded-lg p-2 flex flex-col">
+              <div className="flex ">
+                <div className="flex flex-col flex-1 items-center py-3 ">
+                  <span className="uppercase mb-1 font-semibold text-sm text-neutral-500">
+                    Old Group
+                  </span>
+                  <div className="py-1 px-3 pr-2 rounded-md h-fit flex items-center text-sm capitalize bg-[#dc93f6] text-black">
+                    <span>
+                      <OnlyXChars text={renameModal2.name} x={15} />
+                    </span>
+                    <div className="ml-2 hover:scale-110 duration-500">
+                      <img
+                        src={pencil}
+                        className="w-[15px] h-[15px] flex justify-center items-center"
+                        alt=""
+                      />
+                    </div>
+                    <div className="ml-1 hover:scale-110 duration-500">
+                      <img
+                        src={cancel}
+                        className="w-[15px] h-[15px] flex justify-center items-center"
+                        alt=""
+                      />
+                    </div>
+                  </div>
+                </div>
+                <div className="flex flex-1 flex-col items-center py-3 ">
+                  <span className="uppercase mb-1 font-semibold text-sm text-neutral-500">
+                    new Group
+                  </span>
+                  <div className="py-1 px-3 pr-2 rounded-md h-fit flex items-center text-sm capitalize bg-[#dc93f6] text-black">
+                    <span>
+                      <OnlyXChars
+                        text={newName === "" ? "NULL" : newName}
+                        x={15}
+                      />
+                    </span>
+                    <div className="ml-2 hover:scale-110 duration-500">
+                      <img
+                        src={pencil}
+                        className="w-[15px] h-[15px] flex justify-center items-center"
+                        alt=""
+                      />
+                    </div>
+                    <div className="ml-1 hover:scale-110 duration-500">
+                      <img
+                        src={cancel}
+                        className="w-[15px] h-[15px] flex justify-center items-center"
+                        alt=""
+                      />
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div className="mt-4 mb-2 flex  gap-x-4 items-center">
+                <span className="text-sm uppercase font-medium">
+                  Enter group Name
+                </span>
+                <input
+                  type="text"
+                  onChange={(event) => setNewName(event.target.value)}
+                  placeholder="Name"
+                  className="rounded-md flex-grow text-xs p-1 px-2 outline-none"
+                />
+              </div>
+            </div>
+
+            <div className="flex mt-3 justify-center sm:justify-between gap-4">
+              <div className="pl-3 flex items-center">
+                {renaming ? (
+                  <div className="sm:flex hidden items-center">
+                    <img
+                      src={load}
+                      className="w-[20px] h-[20px] flex justify-center items-center"
+                      alt=""
+                    />
+                  </div>
+                ) : null}
+                {error2 ? (
+                  <div className="hidden sm:flex items-center space-x-[6px]">
+                    <img
+                      src={exclamation}
+                      className="w-[14px] h-[14px] flex justify-center items-center"
+                      alt=""
+                    />{" "}
+                    <span className="text-red-500 text-xs ">{error2}</span>
+                  </div>
+                ) : null}
+              </div>
+              <div className="flex text-sm gap-x-[10px]">
+                <button
+                  onClick={closeHandle}
+                  className="p-1 px-3 mr-6 sm:mr-0 rounded-md bg-blue-500 text-white"
+                >
+                  Cancel
+                </button>
+                <button
+                  className="p-1 px-3 rounded-md bg-red-500 text-white"
+                  onClick={renameConfirm2}
+                >
+                  Confirm
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      )}
+      {renameModal == null ? null : (
+        <div className="bg-black/30 z-[9999] fixed top-0 left-0 h-screen w-screen flex justify-center items-center">
+          <div className="bg-white rounded-xl w-[550px] p-3 flex flex-col">
+            <div className="p-2 rounded-lg bg-slate-100 flex justify-center font-bold uppercase text-xl">
+              Edit Category
+            </div>
+            <div className="bg-slate-100 px-4 mt-3 rounded-lg p-2 flex flex-col">
+              <span className="uppercase font-semibold text-center">
+                migrate Category
+              </span>
+              <div className="flex ">
+                <div className="flex flex-col flex-1 items-center py-3 ">
+                  <span className="uppercase mb-1 font-semibold text-sm text-neutral-500">
+                    Old Group
+                  </span>
+                  <div className="py-1 px-3  rounded-md h-fit flex items-center text-sm capitalize bg-white font-medium text-black">
+                    <OnlyXChars text={renameModal[0].name} x={15} />
+                  </div>
+                </div>
+                <div className="flex flex-1 flex-col items-center py-3 ">
+                  <span className="uppercase mb-1 font-semibold text-sm text-neutral-500">
+                    new Group
+                  </span>
+                  <div className="py-1 px-3  rounded-md h-fit flex items-center text-sm capitalize bg-white font-medium text-black">
+                    <OnlyXChars text={newCat === "" ? "NULL" : newCat} x={15} />
+                  </div>
+                </div>
+              </div>
+              <div className="mt-2 mb-1 flex  flex-col gap-y-1">
+                <div className="mt-4 mb-2 flex  gap-x-4 items-center">
+                  <span className="text-sm uppercase font-medium">
+                    Enter group Name
+                  </span>
+                  <select
+                    onChange={(event) => setCat(event.target.value)}
+                    defaultValue={renameModal[0].name}
+                    name=""
+                    id=""
+                    className="text-xs p-1 px-2 rounded-md flex-grow"
+                  >
+                    {data.map((k) => {
+                      return (
+                        <option value={k.name} className="capitalize">
+                          {k.name}
+                        </option>
+                      );
+                    })}
+                  </select>
+                </div>
+              </div>
+            </div>
+            <div className="bg-slate-100 px-4 mt-3 rounded-lg p-2 flex flex-col">
+              <span className="uppercase font-semibold text-center">
+                Rename category
+              </span>
+              <div className="flex ">
+                <div className="flex flex-col flex-1 items-center py-3 ">
+                  <span className="uppercase mb-1 font-semibold text-sm text-neutral-500">
+                    Old category
+                  </span>
+                  <div className="py-1 px-3 pr-2 rounded-md h-fit flex items-center text-sm capitalize bg-[#dc93f6] text-black">
+                    <span>
+                      <OnlyXChars text={renameModal[1]} x={15} />
+                    </span>
+                    <div className="ml-2 hover:scale-110 duration-500">
+                      <img
+                        src={pencil}
+                        className="w-[15px] h-[15px] flex justify-center items-center"
+                        alt=""
+                      />
+                    </div>
+                    <div className="ml-1 hover:scale-110 duration-500">
+                      <img
+                        src={cancel}
+                        className="w-[15px] h-[15px] flex justify-center items-center"
+                        alt=""
+                      />
+                    </div>
+                  </div>
+                </div>
+                <div className="flex flex-1 flex-col items-center py-3 ">
+                  <span className="uppercase mb-1 font-semibold text-sm text-neutral-500">
+                    new category
+                  </span>
+                  <div className="py-1 px-3 pr-2 rounded-md h-fit flex items-center text-sm capitalize bg-[#dc93f6] text-black">
+                    <span>
+                      <OnlyXChars
+                        text={newName === "" ? "NULL" : newName}
+                        x={15}
+                      />
+                    </span>
+                    <div className="ml-2 hover:scale-110 duration-500">
+                      <img
+                        src={pencil}
+                        className="w-[15px] h-[15px] flex justify-center items-center"
+                        alt=""
+                      />
+                    </div>
+                    <div className="ml-1 hover:scale-110 duration-500">
+                      <img
+                        src={cancel}
+                        className="w-[15px] h-[15px] flex justify-center items-center"
+                        alt=""
+                      />
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div className="mt-4 mb-2 flex  gap-x-4 items-center">
+                <span className="text-sm uppercase font-medium">
+                  Enter category Name
+                </span>
+                <input
+                  type="text"
+                  onChange={(event) => setNewName(event.target.value)}
+                  placeholder="Name"
+                  className="rounded-md flex-grow text-xs p-1 px-2 outline-none"
+                />
+              </div>
+            </div>
+
+            <div className="flex mt-3 justify-center sm:justify-between gap-4">
+              <div className="pl-3 flex items-center">
+                {renaming ? (
+                  <div className="sm:flex hidden items-center">
+                    <img
+                      src={load}
+                      className="w-[20px] h-[20px] flex justify-center items-center"
+                      alt=""
+                    />
+                  </div>
+                ) : null}
+                {error2 ? (
+                  <div className="hidden sm:flex items-center space-x-[6px]">
+                    <img
+                      src={exclamation}
+                      className="w-[14px] h-[14px] flex justify-center items-center"
+                      alt=""
+                    />{" "}
+                    <span className="text-red-500 text-xs ">{error2}</span>
+                  </div>
+                ) : null}
+              </div>
+              <div className="flex text-sm gap-x-[10px]">
+                <button
+                  onClick={closeHandle}
+                  className="p-1 px-3 mr-6 sm:mr-0 rounded-md bg-blue-500 text-white"
+                >
+                  Cancel
+                </button>
+                <button
+                  className="p-1 px-3 rounded-md bg-red-500 text-white"
+                  onClick={renameConfirm}
+                >
+                  Confirm
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      )}
       {data.length != 0 &&
         data.map((i) => {
           return (
@@ -504,19 +897,34 @@ export default function Data({ data, changeData, removeData, selected }) {
                       </>
                     ) : null}
                   </div>
-                  <button
-                    disabled={
-                      inputContent.find((j) => j.name === i.name)?.loading2
-                    }
-                    onClick={() => removeGrpClick(i.name)}
-                    className=""
-                  >
-                    <img
-                      src={cancel}
-                      className="w-[12px] h-[12px] sm:w-[15px] sm:h-[15px] flex items-center justify-center"
-                      alt=""
-                    />
-                  </button>
+                  <div className="flex gap-x-1">
+                    <button
+                      disabled={
+                        inputContent.find((j) => j.name === i.name)?.loading2
+                      }
+                      onClick={() => openRenameGroupModal(i)}
+                      className=" hover:scale-110 duration-500"
+                    >
+                      <img
+                        src={pencil}
+                        className="w-[15px] h-[15px] flex justify-center items-center"
+                        alt=""
+                      />
+                    </button>
+                    <button
+                      disabled={
+                        inputContent.find((j) => j.name === i.name)?.loading2
+                      }
+                      onClick={() => removeGrpClick(i.name)}
+                      className="hover:scale-110 duration-500"
+                    >
+                      <img
+                        src={cancel}
+                        className="w-[12px] h-[12px] sm:w-[15px] sm:h-[15px] flex items-center justify-center"
+                        alt=""
+                      />
+                    </button>
+                  </div>
                 </div>
                 <div className="flex mt-2 sm:mt-3 ">
                   <div className=" smMob:flex hidden  pl-[50px] sm:pl-[80px] ">
@@ -539,8 +947,24 @@ export default function Data({ data, changeData, removeData, selected }) {
                                     inputContent.find((j) => j.name === i.name)
                                       ?.loading2
                                   }
+                                  onClick={() =>
+                                    openRenameCategoryModal([i, j])
+                                  }
+                                  className=" hover:scale-110 duration-500"
+                                >
+                                  <img
+                                    src={pencil}
+                                    className="w-[15px] h-[15px] flex justify-center items-center"
+                                    alt=""
+                                  />
+                                </button>
+                                <button
+                                  disabled={
+                                    inputContent.find((j) => j.name === i.name)
+                                      ?.loading2
+                                  }
                                   onClick={() => removeCatClick(i.name, j)}
-                                  className=""
+                                  className="ml-1"
                                 >
                                   <img
                                     src={cancel}

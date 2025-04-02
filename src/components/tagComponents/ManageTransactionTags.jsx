@@ -1,14 +1,11 @@
 import search from "../../assets/search.png";
 import { useState, useEffect, useRef } from "react";
 import load from "../../assets/loader.gif";
-import errorIcon from "../../assets/error.png";
 import cross from "../../assets/cancel.png";
+import pencil from "../../assets/pencil.png";
 import exclamation from "../../assets/exclamation.png";
-import TagsWindow from "./TagsWindow";
-import reqImg from "../../assets/rec.png";
-import warImg from "../../assets/war.png";
-import docImg from "../../assets/doc.png";
 import { ErrorBox } from "../../UIComponents/NoneFound";
+import OnlyXChars from "../../UIComponents/OnlyXChars";
 
 export default function ManageTransactionTags() {
   const [fetchedData, setFetchedData] = useState(null);
@@ -18,6 +15,11 @@ export default function ManageTransactionTags() {
   const [msg, setMsg] = useState(null);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
+  const [error2, setError2] = useState(null);
+  const [renaming, setRenaming] = useState(false);
+
+  const [renameModal, setRenameModal] = useState(null);
+  const [newName, setNewName] = useState("");
   const inputRef = useRef();
   const addTagRef = useRef();
 
@@ -154,11 +156,171 @@ export default function ManageTransactionTags() {
     }
   }
 
+  function closeHandle() {
+    setNewName("");
+    setRenameModal(null);
+    setError2(null);
+    setRenaming(false);
+  }
+
+  useEffect(() => {
+    calcFilteredData(inputRef.current.value.trim().toLowerCase());
+  }, [fetchedData]);
+
+  async function renameConfirm() {
+    setError2(null);
+    setRenaming(true);
+    try {
+      const res = await fetch(
+        import.meta.env.VITE_BACKEND_API + "/track/edittag",
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({ preVal: renameModal, newVal: newName.trim() }),
+          credentials: "include",
+        }
+      );
+      setRenaming(false);
+      if (!res.ok) {
+        const error = await res.json();
+        setError2(error.error);
+      } else {
+        setFetchedData((p) => {
+          return p.map((i) => {
+            if (i == renameModal) {
+              return newName;
+            }
+            return i;
+          });
+        });
+        closeHandle();
+      }
+    } catch (err) {
+      console.log(err);
+      setRenaming(false);
+      setError2("Something went wrong.");
+    }
+  }
+
   return (
     <div className="w-[90%] mt-12 flex flex-col mx-auto bg-white rounded-2xl p-3">
       <div className="w-full bg-slate-100 py-3 uppercase text-2xl text-center rounded-lg font-bold text-stone-700">
         Manage Tags
       </div>
+      {renameModal == null ? null : (
+        <div className="bg-black/30 z-[9999] fixed top-0 left-0 h-screen w-screen flex justify-center items-center">
+          <div className="bg-white rounded-xl w-[550px] p-3 flex flex-col">
+            <div className="p-2 rounded-lg bg-slate-100 flex justify-center font-bold uppercase text-xl">
+              Rename Tag
+            </div>
+            <div className="bg-slate-100 px-4 mt-3 rounded-lg p-2 flex flex-col">
+              <div className="flex ">
+                <div className="flex flex-col flex-1 items-center py-3 ">
+                  <span className="uppercase mb-1 font-semibold text-sm text-neutral-500">
+                    Old tag
+                  </span>
+                  <div className="py-1 px-3 pr-2 rounded-md h-fit flex items-center text-sm capitalize bg-[#dc93f6] text-black">
+                    <span>
+                      <OnlyXChars text={renameModal} x={15} />
+                    </span>
+                    <div className="ml-2 hover:scale-110 duration-500">
+                      <img
+                        src={pencil}
+                        className="w-[15px] h-[15px] flex justify-center items-center"
+                        alt=""
+                      />
+                    </div>
+                    <div className="ml-1 hover:scale-110 duration-500">
+                      <img
+                        src={cross}
+                        className="w-[15px] h-[15px] flex justify-center items-center"
+                        alt=""
+                      />
+                    </div>
+                  </div>
+                </div>
+                <div className="flex flex-1 flex-col items-center py-3 ">
+                  <span className="uppercase mb-1 font-semibold text-sm text-neutral-500">
+                    new tag
+                  </span>
+                  <div className="py-1 px-3 pr-2 rounded-md h-fit flex items-center text-sm capitalize bg-[#dc93f6] text-black">
+                    <span>
+                      <OnlyXChars
+                        text={newName === "" ? "NULL" : newName}
+                        x={15}
+                      />
+                    </span>
+                    <div className="ml-2 hover:scale-110 duration-500">
+                      <img
+                        src={pencil}
+                        className="w-[15px] h-[15px] flex justify-center items-center"
+                        alt=""
+                      />
+                    </div>
+                    <div className="ml-1 hover:scale-110 duration-500">
+                      <img
+                        src={cross}
+                        className="w-[15px] h-[15px] flex justify-center items-center"
+                        alt=""
+                      />
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div className="mt-4 mb-2 flex  gap-x-4 items-center">
+                <span className="text-sm uppercase font-medium">
+                  Enter Tag Name
+                </span>
+                <input
+                  type="text"
+                  onChange={(event) => setNewName(event.target.value)}
+                  className="rounded-md flex-grow text-xs p-1 px-2 outline-none"
+                />
+              </div>
+            </div>
+
+            <div className="flex mt-3 justify-center sm:justify-between gap-4">
+              <div className="pl-3 flex items-center">
+                {renaming ? (
+                  <div className="sm:flex hidden items-center">
+                    <img
+                      src={load}
+                      className="w-[20px] h-[20px] flex justify-center items-center"
+                      alt=""
+                    />
+                  </div>
+                ) : null}
+                {error2 ? (
+                  <div className="hidden sm:flex items-center space-x-[6px]">
+                    <img
+                      src={exclamation}
+                      className="w-[14px] h-[14px] flex justify-center items-center"
+                      alt=""
+                    />{" "}
+                    <span className="text-red-500 text-xs ">{error2}</span>
+                  </div>
+                ) : null}
+              </div>
+              <div className="flex text-sm gap-x-[10px]">
+                <button
+                  onClick={closeHandle}
+                  className="p-1 px-3 mr-6 sm:mr-0 rounded-md bg-blue-500 text-white"
+                >
+                  Cancel
+                </button>
+                <button
+                  className="p-1 px-3 rounded-md bg-red-500 text-white"
+                  onClick={renameConfirm}
+                >
+                  Confirm
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      )}
       <div className="flex flex-grow flex-col rounded-lg bg-slate-100 gap-y-8 mt-3 ">
         <div className="flex flex-col flex-grow">
           <div className="flex   flex-grow">
@@ -284,11 +446,22 @@ export default function ManageTransactionTags() {
                             <span>{i}</span>
                             <button
                               disabled={loading}
+                              onClick={() => setRenameModal(i)}
                               className="ml-2 hover:scale-110 duration-500"
                             >
                               <img
+                                src={pencil}
+                                className="w-[15px] h-[15px] flex justify-center items-center"
+                                alt=""
+                              />
+                            </button>
+                            <button
+                              disabled={loading}
+                              onClick={() => deleteTag(i)}
+                              className="ml-1 hover:scale-110 duration-500"
+                            >
+                              <img
                                 src={cross}
-                                onClick={() => deleteTag(i)}
                                 className="w-[15px] h-[15px] flex justify-center items-center"
                                 alt=""
                               />
