@@ -21,9 +21,9 @@ const Input = styled.input``;
 
 const typeArr = ["outgoing", "incoming"];
 
-export default function InOut({ type, data }) {
+export default function EditInOut({ type, data }) {
   const navigate = useNavigate();
-  const [fetchedCategories, setFetchedCategories] = useState(data);
+  const [fetchedCategories, setFetchedCategories] = useState(data.categories);
   const [category, setCategory] = useState(["null"]);
   const [nameError, setNameError] = useState(null);
   const [amountError, setAmountError] = useState(null);
@@ -37,13 +37,17 @@ export default function InOut({ type, data }) {
   const nameRef = useRef();
   const amountRef = useRef();
   const toNameRef = useRef();
-  const [name, setName] = useState("");
-  const [amt, setAmt] = useState("");
-  const [toName, setToName] = useState("");
-  const [date, setDate] = useState(new Date());
+  const [name, setName] = useState(data.transaction.transactionName);
+  const [amt, setAmt] = useState(
+    parseFloat(data.transaction.transactionAmount)
+  );
+  const [toName, setToName] = useState(
+    type === 1 ? data.transaction.from : data.transaction.to
+  );
+  const [date, setDate] = useState(new Date(data.transaction.dateTime));
   const [timeChecked, setTimeChecked] = useState(true);
   const descRef = useRef();
-  const [desc, setDesc] = useState("");
+  const [desc, setDesc] = useState(data.transaction.desc);
   const [msg, setMsg] = useState(null);
   const [loading2, setLoading2] = useState(false);
   const [error, setError] = useState(null);
@@ -56,6 +60,7 @@ export default function InOut({ type, data }) {
   const [adding, setAdding] = useState(false);
   const [newName, setNewName] = useState("");
   const [cat, setCat] = useState("");
+  const [firstTime, setFirstTime] = useState(true);
 
   function nameChange(event) {
     const name = event.target.value.trim();
@@ -82,7 +87,12 @@ export default function InOut({ type, data }) {
   }, []);
 
   useEffect(() => {
-    setCategory(["null"]);
+    if (!firstTime) {
+      setCategory(["null"]);
+    } else {
+      setCategory(data.transaction.category.slice(1));
+      setFirstTime(false);
+    }
   }, [type]);
 
   function amountChange(event) {
@@ -135,7 +145,9 @@ export default function InOut({ type, data }) {
   }
 
   function discardHandle() {
-    navigate("/track");
+    navigate(
+      `/track/protected/transactions/view/${data.transaction.transactionId}`
+    );
   }
 
   function disableCheck() {
@@ -157,6 +169,7 @@ export default function InOut({ type, data }) {
   async function clickHandle() {
     setLoading("load");
     const obj = {
+      transactionId: data.transaction.transactionId,
       transactionName: nameRef.current.value.trim(),
       transactionAmount: parseFloat(amountRef.current.value),
       from: type === 0 ? "Me" : toNameRef.current.value.trim(),
@@ -164,7 +177,7 @@ export default function InOut({ type, data }) {
       dateTime: timeChecked
         ? new Date(date).toUTCString()
         : new Date(new Date(date).setHours(0, 0, 0, 0)).toUTCString(),
-      createdOn: new Date().toUTCString(),
+      editedOn: new Date().toUTCString(),
       transactionType: type === 0 ? "outgoing" : "incoming",
       category: [type === 0 ? "outgoing" : "incoming", ...category],
       desc: descRef.current.value.trim(),
@@ -173,7 +186,7 @@ export default function InOut({ type, data }) {
     console.log(obj);
     try {
       const response = await fetch(
-        import.meta.env.VITE_BACKEND_API + "/track/createtransaction",
+        import.meta.env.VITE_BACKEND_API + "/track/edittransaction",
         {
           method: "POST",
           headers: {
@@ -480,7 +493,13 @@ export default function InOut({ type, data }) {
       <div className={`${styles.main} flex-col xl:flex-row flex-grow w-full`}>
         <div className="p-3 bg-white w-[50%] flex flex-col space-y-3  rounded-xl">
           {loading != false ? (
-            <Loading retry={retry} changeMode={changeMode} mode={loading} />
+            <Loading
+              retry={retry}
+              changeMode={changeMode}
+              mode={loading}
+              dest={`/track/protected/transactions/view/${data.transaction.transactionId}`}
+              msg="Continue to Transactions"
+            />
           ) : null}
           <div
             id={styles.largeTitle}
@@ -500,6 +519,7 @@ export default function InOut({ type, data }) {
                 id={styles.inputBox}
                 className="flex-grow p-[6px] px-3  bg-white  text-stone-600 rounded-md"
                 placeholder="Name"
+                defaultValue={data.transaction.transactionName}
                 onChange={(event) => nameChange(event)}
                 type="text"
                 ref={nameRef}
@@ -525,6 +545,7 @@ export default function InOut({ type, data }) {
                   id={styles.inputBox}
                   className="flex-grow disableScroll p-[6px] pl-3 bg-white  text-stone-600 rounded-md"
                   type="number"
+                  defaultValue={parseFloat(data.transaction.transactionAmount)}
                   onChange={(event) => amountChange(event)}
                   placeholder="Amount"
                   min={"0"}
@@ -557,6 +578,11 @@ export default function InOut({ type, data }) {
                     <Input
                       id={styles.inputBox}
                       className="flex-grow p-[6px] pl-3 bg-white rounded-md text-xs"
+                      defaultValue={
+                        data.transaction.transactionType === "outgoing"
+                          ? ""
+                          : data.transaction.from
+                      }
                       onChange={(event) => toNameChange(event)}
                       ref={toNameRef}
                       placeholder="Name"
@@ -598,6 +624,11 @@ export default function InOut({ type, data }) {
                     <Input
                       id={styles.inputBox}
                       className="flex-grow p-[6px] pl-3 bg-white  text-stone-600 rounded-md"
+                      defaultValue={
+                        data.transaction.transactionType === "outgoing"
+                          ? data.transaction.to
+                          : ""
+                      }
                       $error={toNameError != null ? "true" : "false"}
                       onChange={(event) => toNameChange(event)}
                       type="text"
@@ -687,6 +718,7 @@ export default function InOut({ type, data }) {
                 onChange={(event) => descChange(event)}
                 id={styles.inputBox}
                 name=""
+                defaultValue={data.transaction.desc}
                 ref={descRef}
                 placeholder="Description"
                 rows={5}

@@ -244,6 +244,17 @@ export default function SingleTransactionPage() {
                     </span>
                   </div>
 
+                  {data.editedOn ? (
+                    <div className="flex flex-col space-y-1">
+                      <span className="font-semibold text-stone-600 text-xs sm:text-sm">
+                        Edited On
+                      </span>
+                      <span className="rounded-md sm:rounded-lg py-1 sm:py-2 px-2 sm:px-4 text-stone-400 bg-stone-50 font-medium">
+                        {dateTimeFormat(data.editedOn)}
+                      </span>
+                    </div>
+                  ) : null}
+
                   <div className="flex flex-col space-y-1">
                     <span className="font-semibold text-stone-600 text-xs sm:text-sm">
                       Category
@@ -267,7 +278,7 @@ export default function SingleTransactionPage() {
                       Description
                     </span>
                     <span className="rounded-md  sm:rounded-lg py-1 sm:py-2 px-2 sm:px-4 text-stone-400 bg-stone-50 flex font-medium">
-                      <span className="whitespace-pre text-wrap text-start bg-neutral-100 border-[1.5px]  border-stone-400 flex-grow p-[6px] ">
+                      <span className="whitespace-pre text-wrap normal-case text-start bg-neutral-100 border-[1.5px]  border-stone-400 flex-grow p-[6px] ">
                         {data.desc == "" ? "None" : data.desc}
                       </span>
                     </span>
@@ -302,6 +313,11 @@ export default function SingleTransactionPage() {
           <div className="flex mt-8 sm:mt-12 justify-between mx-8 sm:mx-12">
             <Link to={"/track/protected/transactions"}>
               <NiceButton text={"Go Back"} />
+            </Link>
+            <Link
+              to={`/track/protected/transactions/edit/${data.transactionId}`}
+            >
+              <NiceButton text={"Edit"} />
             </Link>
             <button onClick={deleteHandle}>
               <RedButton text={"Delete"} />

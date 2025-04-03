@@ -4,7 +4,13 @@ import errorIcon from "../../assets/failed.png";
 import successIcon from "../../assets/success.png";
 import { useNavigate } from "react-router-dom";
 
-export default function Loading({ retry, changeMode, mode }) {
+export default function Loading({
+  retry,
+  changeMode,
+  mode,
+  dest = "/track",
+  msg = "Continue To TRACK",
+}) {
   // const [time, setTime] = useState(null);
   // const [timeFunc, setTimeFunc] = useState(null);
   // const [timer, setTimer] = useState(true);
@@ -47,7 +53,7 @@ export default function Loading({ retry, changeMode, mode }) {
   }
 
   function redirect() {
-    navigate("/track");
+    navigate(dest);
   }
 
   return (
@@ -78,7 +84,7 @@ export default function Loading({ retry, changeMode, mode }) {
                 onClick={redirect}
                 className="p-2 px-4 font-semibold rounded-lg text-[18px]  mr-6 sm:mr-0 bg-[#9d4edd] text-white"
               >
-                Continue To TRACK
+                {msg}
               </button>
             </div>
           ) : null}

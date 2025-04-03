@@ -417,6 +417,35 @@ export async function transactionLoader({ request, params }) {
     }
 }
 
+export async function editTransactionLoader({ request, params }) {
+    try {
+        const res = await fetch(
+            import.meta.env.VITE_BACKEND_API + "/track/gettransactionncatntags",
+            {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json",
+                },
+                body: JSON.stringify({
+                    transactionId: params.trackId
+                }),
+                credentials: "include",
+            }
+        );
+        if (!res.ok) {
+            throw "500"
+        } else {
+            const result = await res.json();
+            result.tags = result.tags.map((i) => ({ val: i, included: result.transaction.tags.some((j) => j.trim().toLowerCase() === i.trim().toLowerCase()) }));
+            console.log(result);
+            return result
+        }
+    } catch (err) {
+        console.log(err);
+        throw "swr";
+    }
+}
+
 export async function dashboardLoader({ request, params }) {
     try {
         const res = await fetch(

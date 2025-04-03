@@ -34,6 +34,7 @@ import {
   publicSplitViewLoader,
   vaultDocViewLoader,
   docViewLoader,
+  editTransactionLoader,
 } from "./loaders/loaders";
 import Tags from "./pages/Tags";
 import ProtectedRoute from "./pages/ProtectedRoute";
@@ -55,6 +56,7 @@ import VaultDocCreate from "./pages/VaultDocCreate";
 import VaultDocView from "./pages/VaultDocView";
 import DocView from "./pages/DocView";
 import TransactionTags from "./pages/TransactionTags";
+import EditTransaction from "./pages/EditTransaction";
 
 const router = createBrowserRouter([
   {
@@ -110,6 +112,12 @@ const router = createBrowserRouter([
               {
                 path: "tags",
                 element: <TransactionTags />,
+              },
+              {
+                path: "transactions/edit/:trackId",
+                element: <EditTransaction />,
+                loader: editTransactionLoader,
+                errorElement: <ErrorPage />,
               },
             ],
           },
