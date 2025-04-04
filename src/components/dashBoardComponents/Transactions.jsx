@@ -81,10 +81,10 @@ export default function Transactions() {
                       transactionType,
                     } = i;
 
-                    const date = format(new Date(dateTime), "HH:mm dd-MM-yy");
+                    const date = format(new Date(dateTime), "HH:mm dd MM yy");
                     const createdOnDate = format(
                       new Date(createdOn),
-                      "HH:mm dd-MM-yy"
+                      "HH:mm dd MM yy"
                     );
 
                     return (
@@ -110,8 +110,46 @@ export default function Transactions() {
                             ? formatVal(transactionAmount).substr(0, 8) + "..."
                             : formatVal(transactionAmount)}
                         </span>
-                        <span className=" flex-[0.12]  ">{date}</span>
-                        <span className=" flex-[0.12]  ">{createdOnDate}</span>
+                        <span className=" flex-[0.12]  ">
+                          <div className="flex gap-x-[4px]">
+                            <span className="w-[30px]">
+                              {date.split(" ")[0]}
+                            </span>
+                            <div className="flex ">
+                              <span className="w-[15px] text-center">
+                                {date.split(" ")[1]}
+                              </span>
+                              -
+                              <span className="w-[15px] text-center">
+                                {date.split(" ")[2]}
+                              </span>
+                              -
+                              <span className="w-[15px] text-center">
+                                {date.split(" ")[3]}
+                              </span>
+                            </div>
+                          </div>
+                        </span>
+                        <span className=" flex-[0.12]  ">
+                          <div className="flex gap-x-[4px]">
+                            <span className="w-[30px]">
+                              {createdOnDate.split(" ")[0]}
+                            </span>
+                            <div className="flex ">
+                              <span className="w-[15px] text-center">
+                                {createdOnDate.split(" ")[1]}
+                              </span>
+                              -
+                              <span className="w-[15px] text-center">
+                                {createdOnDate.split(" ")[2]}
+                              </span>
+                              -
+                              <span className="w-[15px] text-center">
+                                {createdOnDate.split(" ")[3]}
+                              </span>
+                            </div>
+                          </div>
+                        </span>
                         <span className="flex-[0.20] capitalize">
                           {category.length === 3
                             ? `${

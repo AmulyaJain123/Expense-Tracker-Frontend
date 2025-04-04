@@ -523,10 +523,10 @@ export default function DataDisplay({ data }) {
                 transactionType,
               } = i;
 
-              const date = format(new Date(dateTime), "HH:mm dd-MM-yy");
+              const date = format(new Date(dateTime), "HH:mm dd MM yy");
               const createdOnDate = format(
                 new Date(createdOn),
-                "HH:mm dd-MM-yy"
+                "HH:mm dd MM yy"
               );
 
               return (
@@ -557,10 +557,42 @@ export default function DataDisplay({ data }) {
                         : formatVal(transactionAmount)}
                     </span>
                     <span className=" flex-[12]  hidden smMob:inline">
-                      {date}
+                      <div className="flex gap-x-[4px]">
+                        <span className="w-[30px]">{date.split(" ")[0]}</span>
+                        <div className="flex ">
+                          <span className="w-[15px] text-center">
+                            {date.split(" ")[1]}
+                          </span>
+                          -
+                          <span className="w-[15px] text-center">
+                            {date.split(" ")[2]}
+                          </span>
+                          -
+                          <span className="w-[15px] text-center">
+                            {date.split(" ")[3]}
+                          </span>
+                        </div>
+                      </div>
                     </span>
                     <span className=" flex-[12]  hidden md:inline">
-                      {createdOnDate}
+                      <div className="flex gap-x-[4px]">
+                        <span className="w-[30px]">
+                          {createdOnDate.split(" ")[0]}
+                        </span>
+                        <div className="flex ">
+                          <span className="w-[15px] text-center">
+                            {createdOnDate.split(" ")[1]}
+                          </span>
+                          -
+                          <span className="w-[15px] text-center">
+                            {createdOnDate.split(" ")[2]}
+                          </span>
+                          -
+                          <span className="w-[15px] text-center">
+                            {createdOnDate.split(" ")[3]}
+                          </span>
+                        </div>
+                      </div>
                     </span>
                     <span className="flex-[20] hidden sm:inline  capitalize">
                       {category.length === 3
