@@ -92,14 +92,14 @@ export default function PieCharts({ data }) {
             if (i.label === "Outgoing" && i.value > 0) {
               return (
                 <span className="flex items-center gap-x-1 text-xs ">
-                  <span className="w-[15px] h-[15px] bg-blue-600 rounded-full border-black border"></span>
+                  <span className="w-[15px] h-[15px] bg-blue-600 rounded-full "></span>
                   <span>Outgoing Expenses</span>
                 </span>
               );
             } else if (i.label === "Incoming" && i.value > 0) {
               return (
                 <span className="flex items-center gap-x-1 text-xs ">
-                  <span className="w-[15px] h-[15px] bg-green-600 rounded-full border-black border"></span>
+                  <span className="w-[15px] h-[15px] bg-green-600 rounded-full "></span>
                   <span>Incoming Expenses</span>
                 </span>
               );
@@ -239,7 +239,7 @@ export default function PieCharts({ data }) {
                 <span className="flex items-center gap-x-1 text-xs ">
                   <span
                     style={{ backgroundColor: col }}
-                    className="w-[15px] h-[15px] rounded-full border-black border"
+                    className="w-[15px] h-[15px] rounded-full "
                   ></span>
                   <span>{i.label === "null" ? "NULL" : i.label}</span>
                 </span>
@@ -378,7 +378,7 @@ export default function PieCharts({ data }) {
                 <span className="flex items-center gap-x-1 text-xs ">
                   <span
                     style={{ backgroundColor: col }}
-                    className="w-[15px] h-[15px] rounded-full border-black border"
+                    className="w-[15px] h-[15px] rounded-full "
                   ></span>
                   <span>{i.label === "null" ? "NULL" : i.label}</span>
                 </span>

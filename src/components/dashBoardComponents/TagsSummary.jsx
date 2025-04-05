@@ -8,6 +8,7 @@ import { useLoaderData } from "react-router-dom";
 import noEntries from "../../assets/empty.png";
 import { EmptyBox } from "../../UIComponents/NoneFound";
 import { formatDistanceToNowStrict } from "date-fns";
+import OnlyXChars from "../../UIComponents/OnlyXChars";
 
 export default function TagsSummary({ data }) {
   const { tagColors } = useLoaderData();
@@ -48,10 +49,10 @@ export default function TagsSummary({ data }) {
                     </span>
                     <span className="w-[140px] ">
                       <span className="rounded-[5px] text-black min-w-[40px] p-[3px] px-2 bg-white  text-xs">
-                        {i.label}
+                        <OnlyXChars text={i.label} x={15} />
                       </span>
                     </span>
-                    <span className="text-neutral-500 mx-2 w-[100px] font-medium text-xs">
+                    <span className="text-neutral-500 mx-2 w-[80px] font-medium text-xs">
                       {formatVal(i.value)}
                     </span>
                     <span className="w-[70px] rounded-sm bg-white flex h-[15px] border-[1.5px] border-[#9f21e3]">
@@ -91,7 +92,7 @@ export default function TagsSummary({ data }) {
                     </span>
                     <span className="w-[140px] ">
                       <span className="rounded-[5px] text-black min-w-[40px] p-[3px] px-2 bg-white  text-xs">
-                        {i.label}
+                        <OnlyXChars text={i.label} x={15} />
                       </span>
                     </span>
                     <span className="text-neutral-500 mx-2 w-[30px] font-medium text-xs">
@@ -132,7 +133,7 @@ export default function TagsSummary({ data }) {
                     </span>
                     <span className="w-[140px] ">
                       <span className="rounded-[5px] text-black min-w-[40px] p-[3px] px-2 bg-white  text-xs">
-                        {i.label}
+                        <OnlyXChars text={i.label} x={15} />
                       </span>
                     </span>
                     <span className="text-neutral-500  capitalize font-medium text-xs">
