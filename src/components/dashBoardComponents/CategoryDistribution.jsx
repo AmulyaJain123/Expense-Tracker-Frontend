@@ -114,7 +114,7 @@ export default function CategoryDistribution() {
           <div className="flex flex-grow py-3 pb-0">
             {val != null ? <PieCharts data={val} /> : null}
           </div>
-          <div className="flex flex-col  flex-grow">
+          <div className="flex flex-col pt-4 flex-grow">
             {open ? <Pallate /> : null}
             <div className="flex flex-grow flex-col items-center">
               <span className="uppercase text-sm font-medium mb-1">

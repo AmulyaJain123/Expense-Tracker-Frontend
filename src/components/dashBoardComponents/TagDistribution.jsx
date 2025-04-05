@@ -7,6 +7,7 @@ import right from "../../assets/right.png";
 import PieChart from "./TagsPieChart";
 import TagsPieChart from "./TagsPieChart";
 import TagPallate from "./TagPallate";
+import TagsSummary from "./TagsSummary";
 
 export default function TagDistribution() {
   const { tags } = useLoaderData();
@@ -48,45 +49,65 @@ export default function TagDistribution() {
         return b.value - a.value;
       });
       console.log(tagMap2);
-      if (tagMap.length > 5) {
-        const val = tagMap[4].value;
-        let ind = 5;
-        while (ind < tagMap.length && tagMap[ind].value === val) {
-          ++ind;
-        }
-        if (ind != tagMap.length) {
-          let sum = 0;
-          let count = 0;
-          for (let i = ind; i < tagMap.length; ++i) {
-            sum += tagMap[i].value;
-            ++count;
-          }
-          let str = `${count} Others`;
-          tagMap = [...tagMap.slice(0, ind), { label: str, value: sum }];
-        }
-      }
 
-      if (tagMap2.length > 5) {
-        const val = tagMap2[4].value;
-        let ind = 5;
-        while (ind < tagMap2.length && tagMap2[ind].value === val) {
-          ++ind;
-        }
-        if (ind != tagMap2.length) {
-          let sum = 0;
-          let count = 0;
-          for (let i = ind; i < tagMap2.length; ++i) {
-            sum += tagMap2[i].value;
-            count++;
+      let tagMap3 = [];
+      tags.forEach((i) => {
+        tagMap3.push({ label: i, value: 0 });
+      });
+      data.forEach((i) => {
+        console.log(i);
+        i.tags.forEach((j) => {
+          const val = tagMap3.find((k) => k.label === j).value;
+          if (val === 0) {
+            tagMap3.find((k) => k.label === j).value = i.createdOn;
           }
-          let str = `${count} Others`;
-          tagMap2 = [...tagMap2.slice(0, ind), { label: str, value: sum }];
-        }
-      }
+        });
+      });
+      tagMap3 = tagMap3.filter((i) => i.value != 0);
+      tagMap3.sort((a, b) => {
+        return new Date(b.value).getTime() - new Date(a.value).getTime();
+      });
+
+      // if (tagMap.length > 5) {
+      //   const val = tagMap[4].value;
+      //   let ind = 5;
+      //   while (ind < tagMap.length && tagMap[ind].value === val) {
+      //     ++ind;
+      //   }
+      //   if (ind != tagMap.length) {
+      //     let sum = 0;
+      //     let count = 0;
+      //     for (let i = ind; i < tagMap.length; ++i) {
+      //       sum += tagMap[i].value;
+      //       ++count;
+      //     }
+      //     let str = `${count} Others`;
+      //     tagMap = [...tagMap.slice(0, ind), { label: str, value: sum }];
+      //   }
+      // }
+
+      // if (tagMap2.length > 5) {
+      //   const val = tagMap2[4].value;
+      //   let ind = 5;
+      //   while (ind < tagMap2.length && tagMap2[ind].value === val) {
+      //     ++ind;
+      //   }
+      //   if (ind != tagMap2.length) {
+      //     let sum = 0;
+      //     let count = 0;
+      //     for (let i = ind; i < tagMap2.length; ++i) {
+      //       sum += tagMap2[i].value;
+      //       count++;
+      //     }
+      //     let str = `${count} Others`;
+      //     tagMap2 = [...tagMap2.slice(0, ind), { label: str, value: sum }];
+      //   }
+      // }
 
       setVal({
-        tagMap,
-        tagMap2,
+        tagMap: tagMap.slice(0, 10),
+        tagMap2: tagMap2.slice(0, 10),
+        tagMap3: tagMap3.slice(0, 10),
       });
     }
   }, [data]);
@@ -99,9 +120,9 @@ export default function TagDistribution() {
             <span className="text-lg font-semibold ">Tag Distribution</span>
           </header>
           <div className="flex flex-grow py-3 pb-6">
-            {val != null ? <TagsPieChart data={val} /> : null}
+            {val != null ? <TagsSummary data={val} /> : null}
           </div>
-          <div className="flex flex-col   flex-grow">
+          {/* <div className="flex flex-col   flex-grow">
             {open ? <TagPallate /> : null}
             <div className="flex flex-grow flex-col items-center">
               <span className="uppercase text-sm font-medium mb-1">
@@ -121,7 +142,7 @@ export default function TagDistribution() {
                 />
               </button>
             </div>
-          </div>
+          </div> */}
         </div>
       </div>
     </>

@@ -27,7 +27,7 @@ export default function VaultWarrantyView() {
           Math.floor((contentRef.current.clientWidth - 64) / 290) ||
           Math.floor((contentRef.current.clientWidth - 64) / 290))
     );
-  }, [contentRef]);
+  }, [contentRef, filteredData]);
 
   console.log(data);
 

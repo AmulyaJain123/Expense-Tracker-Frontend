@@ -119,7 +119,7 @@ export default function TagsPieChart({ data }) {
         )}
       </div>
 
-      <div className="flex flex-grow flex-col border-l-[1.5px] pl-2 border-stone-500">
+      <div className="flex flex-grow flex-col gap-y-2 border-l-[1.5px] pl-2 border-stone-500">
         <div className="flex flex-col flex-1 ">
           <span className="font-semibold uppercase text-base">
             Highest Spending Tags{" "}

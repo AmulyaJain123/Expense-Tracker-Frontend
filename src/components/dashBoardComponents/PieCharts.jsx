@@ -46,7 +46,7 @@ export default function PieCharts({ data }) {
 
   return (
     <div className="flex flex-grow justify-evenly mt-4 ml-24 ">
-      <div className="flex flex-col relative items-center">
+      <div className="flex flex-col w-[300px] relative items-center">
         <span className="pr-24 text-sm font-medium mb-6 ">
           Overall Expenses
         </span>
@@ -64,14 +64,14 @@ export default function PieCharts({ data }) {
             </div>
           </div>
         ) : (
-          <Box sx={{ flexGrow: 1 }}>
+          <Box>
             <PieChart
-              colors={["blue", "green"]}
+              colors={["#2563eb", "#16a34a"]}
               series={[
                 {
                   data: data.pc1,
                   highlightScope: { fade: "global", highlight: "item" },
-                  cornerRadius: 6,
+                  cornerRadius: 5,
                   faded: {
                     innerRadius: 30,
                     additionalRadius: -30,
@@ -86,14 +86,34 @@ export default function PieCharts({ data }) {
             />
           </Box>
         )}
+        <div className="min-h-[40px] mt-6 pr-24 text-xs flex capitalize"></div>
+        <div className="flex relative justify-center max-w-[300px] -left-12 flex-wrap gap-x-2 gap-y-1">
+          {data.pc1.map((i) => {
+            if (i.label === "Outgoing" && i.value > 0) {
+              return (
+                <span className="flex items-center gap-x-1 text-xs ">
+                  <span className="w-[15px] h-[15px] bg-blue-600 rounded-full border-black border"></span>
+                  <span>Outgoing Expenses</span>
+                </span>
+              );
+            } else if (i.label === "Incoming" && i.value > 0) {
+              return (
+                <span className="flex items-center gap-x-1 text-xs ">
+                  <span className="w-[15px] h-[15px] bg-green-600 rounded-full border-black border"></span>
+                  <span>Incoming Expenses</span>
+                </span>
+              );
+            }
+          })}
+        </div>
       </div>
 
-      <div className="flex flex-col relative items-center">
+      <div className="flex flex-col w-[300px] relative items-center">
         <span className="pr-24 text-sm font-medium mb-6 ">
           Outgoing Expenses
         </span>
         {pc2Content != null ? (
-          <div className="absolute top-[50%] translate-y-[-50%] -left-10 transalate-x-[-100%]">
+          <div className="absolute top-[150px] translate-y-[-50%] -left-10 transalate-x-[-100%]">
             <button onClick={() => setPc2Content(null)}>
               <img
                 src={right}
@@ -115,7 +135,7 @@ export default function PieCharts({ data }) {
             />
           </div>
         ) : (
-          <Box sx={{ flexGrow: 1 }}>
+          <Box>
             {pc2Content === null ? (
               <PieChart
                 series={[
@@ -129,7 +149,7 @@ export default function PieCharts({ data }) {
                           j.list[1] === i.label
                       ).color,
                     })),
-                    cornerRadius: 6,
+                    cornerRadius: 5,
                     highlightScope: { fade: "global", highlight: "item" },
 
                     faded: {
@@ -182,7 +202,7 @@ export default function PieCharts({ data }) {
                           j.list[2] === i.label
                       ).color,
                     })),
-                    cornerRadius: 6,
+                    cornerRadius: 5,
                     highlightScope: { fade: "global", highlight: "item" },
                     innerRadius: 75,
                     outerRadius: 100,
@@ -206,14 +226,35 @@ export default function PieCharts({ data }) {
         <div className="min-h-[40px] mt-6 pr-24 text-xs flex capitalize">
           {pc2Content != null ? pc2Content.name : ""}
         </div>
+        <div className="flex relative max-w-[300px] justify-center -left-12 flex-wrap gap-x-2 gap-y-2">
+          {data.pc2.map((i, ind) => {
+            if (i.value > 0) {
+              const col = colors.find(
+                (j) =>
+                  j.list.length === 2 &&
+                  j.list[0] === "outgoing" &&
+                  j.list[1] === i.label
+              ).color;
+              return (
+                <span className="flex items-center gap-x-1 text-xs ">
+                  <span
+                    style={{ backgroundColor: col }}
+                    className="w-[15px] h-[15px] rounded-full border-black border"
+                  ></span>
+                  <span>{i.label === "null" ? "NULL" : i.label}</span>
+                </span>
+              );
+            }
+          })}
+        </div>
       </div>
 
-      <div className="flex flex-col relative items-center">
+      <div className="flex flex-col w-[300px] relative items-center">
         <span className="pr-24 text-sm font-medium mb-6 ">
           Incoming Expenses
         </span>
         {pc3Content != null ? (
-          <div className="absolute top-[50%] translate-y-[-50%] -left-10 transalate-x-[-100%]">
+          <div className="absolute top-[150px] translate-y-[-50%] -left-10 transalate-x-[-100%]">
             <button onClick={() => setPc3Content(null)}>
               <img
                 src={right}
@@ -235,7 +276,7 @@ export default function PieCharts({ data }) {
             />
           </div>
         ) : (
-          <Box sx={{ flexGrow: 1 }}>
+          <Box>
             {pc3Content === null ? (
               <PieChart
                 series={[
@@ -249,7 +290,7 @@ export default function PieCharts({ data }) {
                           j.list[1] === i.label
                       ).color,
                     })),
-                    cornerRadius: 6,
+                    cornerRadius: 5,
                     highlightScope: { fade: "global", highlight: "item" },
                     faded: {
                       innerRadius: 30,
@@ -301,7 +342,7 @@ export default function PieCharts({ data }) {
                           j.list[2] === i.label
                       ).color,
                     })),
-                    cornerRadius: 6,
+                    cornerRadius: 5,
                     highlightScope: { fade: "global", highlight: "item" },
                     innerRadius: 75,
                     outerRadius: 100,
@@ -321,8 +362,29 @@ export default function PieCharts({ data }) {
             )}
           </Box>
         )}
-        <div className="min-h-[40px] mt-8 pr-24 text-xs flex capitalize">
+        <div className="min-h-[40px] mt-6 pr-24 text-xs flex capitalize">
           {pc3Content != null ? pc3Content.name : ""}
+        </div>
+        <div className="flex relative max-w-[300px] justify-center -left-12 flex-wrap gap-x-2 gap-y-2">
+          {data.pc3.map((i, ind) => {
+            if (i.value > 0) {
+              const col = colors.find(
+                (j) =>
+                  j.list.length === 2 &&
+                  j.list[0] === "incoming" &&
+                  j.list[1] === i.label
+              ).color;
+              return (
+                <span className="flex items-center gap-x-1 text-xs ">
+                  <span
+                    style={{ backgroundColor: col }}
+                    className="w-[15px] h-[15px] rounded-full border-black border"
+                  ></span>
+                  <span>{i.label === "null" ? "NULL" : i.label}</span>
+                </span>
+              );
+            }
+          })}
         </div>
       </div>
     </div>
