@@ -700,9 +700,22 @@ export default function DataDisplay({ data }) {
         ) : null}
       </div>
 
-      <div className="pt-2 flex text-sm gap-2 justify-end pr-2">
-        <span className="font-semibold ">Transactions Displayed:</span>
-        <span>{data.length}</span>
+      <div className="pt-2 flex text-sm gap-4 justify-between pr-2">
+        <div className="flex gap-2">
+          <span className="font-semibold ">Transactions Displayed:</span>
+          <span>{data.length}</span>
+        </div>
+        <div className="flex gap-2">
+          <span className="font-semibold ">Transactions Total:</span>
+          <span>
+            {formatVal(
+              data.reduce(
+                (sum, curr) => parseFloat(curr.transactionAmount) + sum,
+                0
+              )
+            )}
+          </span>
+        </div>
       </div>
     </>
   );
