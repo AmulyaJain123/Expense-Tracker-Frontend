@@ -108,7 +108,7 @@ const DocDetails = forwardRef(function DocDetails({ ...prop }, ref) {
           </div>
           <input
             type="text"
-            placeholder="Receipt Name"
+            placeholder="Doc Name"
             maxLength={"40"}
             ref={recNameRef}
             value={name}
